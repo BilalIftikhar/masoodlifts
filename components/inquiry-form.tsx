@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useId, useState } from "react"
-import { CheckCircle2, Loader2, Mail } from "lucide-react"
+import { CheckCircle2, Phone } from "lucide-react"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
 import { siteConfig, waLink } from "@/lib/site-config"
 
@@ -30,7 +30,7 @@ const initialState: FormFields = {
 
 const durations = ["Single job / few hours", "1–6 days", "1–3 weeks", "1 month", "2+ months"]
 
-type Status = "idle" | "sending" | "sent" | "error"
+type Status = "idle" | "sent"
 
 const styles = {
   full: {
@@ -100,74 +100,71 @@ export function InquiryForm({
   const set = (field: keyof FormFields) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setFormData({ ...formData, [field]: e.target.value })
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const whatsappHref = waLink(
+    ["Hello Abdul Masood Trading, I'd like a quote for equipment rental.", ...summaryLines(formData)].join("\n"),
+  )
+
+  /**
+   * Opens WhatsApp's official click-to-chat link with the details already
+   * typed; the visitor presses send in WhatsApp. Websites can't send the
+   * message for them. An email copy goes to the inbox in the background, so
+   * the lead still arrives if they close WhatsApp without sending or don't
+   * have it installed.
+   */
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // Honeypot: real visitors never see or fill this field.
     const honey = new FormData(e.currentTarget).get("_honey")
     if (honey) return
 
-    setStatus("sending")
-    const fields = {
-      Name: formData.name,
-      Company: formData.company || "—",
-      Phone: formData.phone,
-      Email: formData.email || "—",
-      Equipment: formData.equipment || "—",
-      "Site location": formData.location || "—",
-      Duration: formData.duration || "—",
-      Details: formData.message || "—",
-      Page: window.location.href,
-    }
+    // Must run synchronously inside the submit event, or browsers block the new window.
+    const chat = window.open(whatsappHref, "_blank")
+    if (chat) chat.opener = null
 
-    const sendEmail = async () => {
-      const res = await fetch(siteConfig.inquiryEndpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          _subject: `Equipment rental inquiry: ${formData.equipment || "General"}${formData.location ? ` — ${formData.location}` : ""}`,
-          _template: "table",
-          _captcha: "false",
-          ...(formData.email && { _replyto: formData.email }),
-          ...fields,
-        }),
-      })
-      const json = (await res.json().catch(() => ({}))) as { success?: string | boolean }
-      if (!res.ok || String(json.success) !== "true") throw new Error("Email not accepted")
-    }
+    void fetch(siteConfig.inquiryEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        _subject: `Equipment rental inquiry: ${formData.equipment || "General"}${formData.location ? ` — ${formData.location}` : ""}`,
+        _template: "table",
+        _captcha: "false",
+        ...(formData.email && { _replyto: formData.email }),
+        Name: formData.name,
+        Company: formData.company || "—",
+        Phone: formData.phone,
+        Email: formData.email || "—",
+        Equipment: formData.equipment || "—",
+        "Site location": formData.location || "—",
+        Duration: formData.duration || "—",
+        Details: formData.message || "—",
+        Page: window.location.href,
+      }),
+      keepalive: true,
+    }).catch(() => {})
 
-    // Forwards the same details to the company WhatsApp (app/api/inquiry-whatsapp).
-    const sendWhatsApp = async () => {
-      const res = await fetch("/api/inquiry-whatsapp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(fields),
-      })
-      const json = (await res.json().catch(() => ({}))) as { sent?: boolean }
-      if (!json.sent) throw new Error("WhatsApp not sent")
-    }
-
-    // Either channel reaching the team counts as delivered.
-    const results = await Promise.allSettled([sendEmail(), sendWhatsApp()])
-    setStatus(results.some((result) => result.status === "fulfilled") ? "sent" : "error")
+    setStatus("sent")
   }
-
-  const whatsappHref = waLink(
-    ["Hello Abdul Masood Trading, I'd like a quote for equipment rental.", ...summaryLines(formData)].join("\n"),
-  )
 
   if (status === "sent") {
     return (
       <div className={`flex flex-col items-center gap-4 text-center ${compact ? "py-6" : "py-10"}`} role="status">
         <CheckCircle2 size={compact ? 40 : 48} className="text-accent" />
-        <p className={`font-extrabold text-foreground ${compact ? "text-xl" : "text-2xl"}`}>Inquiry sent — thank you</p>
+        <p className={`font-extrabold text-foreground ${compact ? "text-xl" : "text-2xl"}`}>Almost done: press Send in WhatsApp</p>
         <p className="max-w-sm font-medium text-muted-foreground">
-          Our team will contact you on {formData.phone}. For an urgent job, call {siteConfig.phoneDisplay} now.
+          WhatsApp has opened with your inquiry typed in. Press send to reach our team. A copy of your details is also
+          being emailed to us.
         </p>
         <a
-          href={siteConfig.telHref}
-          className="rounded-md bg-accent px-6 py-3 text-sm font-bold text-accent-foreground hover:bg-accent/90"
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-md bg-[#25D366] px-6 py-3 text-sm font-bold text-white hover:bg-[#1fb855]"
         >
-          Call {siteConfig.phoneDisplay}
+          <WhatsAppIcon size={18} />
+          WhatsApp didn&apos;t open? Open it here
+        </a>
+        <a href={siteConfig.telHref} className="text-sm font-bold text-foreground hover:text-accent">
+          Or call {siteConfig.phoneDisplay}
         </a>
       </div>
     )
@@ -197,8 +194,8 @@ export function InquiryForm({
         </Heading>
         <p className="mt-1 text-sm font-medium text-muted-foreground">
           {compact
-            ? "Prefer email to WhatsApp? Send your requirement and we'll call or email you back."
-            : `Sent directly to ${siteConfig.email}. Fields marked * are required.`}
+            ? "Fill in your requirement and it opens in WhatsApp, ready to send."
+            : "Your inquiry opens in WhatsApp, ready to send. Fields marked * are required."}
         </p>
       </div>
 
@@ -303,61 +300,25 @@ export function InquiryForm({
 
       <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
-      {status === "error" && (
-        <p role="alert" className="rounded-md border border-destructive/40 bg-destructive/10 p-3 text-sm font-medium text-foreground">
-          We couldn&apos;t send the form. Please call {siteConfig.phoneDisplay}, send it on WhatsApp, or{" "}
-          <a
-            className="font-bold text-accent underline"
-            href={`mailto:${siteConfig.email}?subject=${encodeURIComponent("Equipment rental inquiry")}&body=${encodeURIComponent(summaryLines(formData).join("\n"))}`}
-          >
-            email us directly
+      <div className="space-y-2">
+        <button
+          type="submit"
+          className={`flex w-full items-center justify-center gap-2 rounded-md bg-[#25D366] px-4 font-bold text-white transition-all hover:bg-[#1fb855] hover:shadow-lg ${compact ? "py-3" : "py-3.5"}`}
+        >
+          <WhatsAppIcon size={18} />
+          Send Inquiry on WhatsApp
+        </button>
+        <p className="text-center text-xs font-medium text-muted-foreground">
+          No WhatsApp?{" "}
+          <a href={siteConfig.telHref} className="inline-flex items-center gap-1 font-bold text-foreground hover:text-accent">
+            <Phone size={12} /> Call {siteConfig.phoneDisplay}
+          </a>{" "}
+          or email{" "}
+          <a href={`mailto:${siteConfig.email}`} className="font-bold text-foreground hover:text-accent">
+            {siteConfig.email}
           </a>
-          .
         </p>
-      )}
-
-      {compact ? (
-        <div className="space-y-2">
-          <button
-            type="submit"
-            disabled={status === "sending"}
-            className="flex w-full items-center justify-center gap-2 rounded-md bg-accent px-4 py-3 font-bold text-accent-foreground transition-all hover:bg-accent/90 hover:shadow-lg disabled:opacity-70"
-          >
-            {status === "sending" ? <Loader2 size={18} className="animate-spin" /> : <Mail size={18} />}
-            {status === "sending" ? "Sending…" : "Send Inquiry"}
-          </button>
-          <p className="text-center text-xs font-medium text-muted-foreground">
-            Or{" "}
-            <a href={siteConfig.telHref} className="font-bold text-foreground hover:text-accent">
-              call {siteConfig.phoneDisplay}
-            </a>{" "}
-            ·{" "}
-            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="font-bold text-foreground hover:text-accent">
-              WhatsApp
-            </a>
-          </p>
-        </div>
-      ) : (
-        <div className="grid gap-3 sm:grid-cols-2">
-          <button
-            type="submit"
-            disabled={status === "sending"}
-            className="flex items-center justify-center gap-2 rounded-md bg-accent px-4 py-3.5 font-bold text-accent-foreground transition-all hover:bg-accent/90 hover:shadow-lg disabled:opacity-70"
-          >
-            {status === "sending" ? <Loader2 size={18} className="animate-spin" /> : <Mail size={18} />}
-            {status === "sending" ? "Sending…" : "Send Inquiry"}
-          </button>
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-4 py-3.5 font-bold text-white transition-all hover:bg-[#1fb855]"
-          >
-            <WhatsAppIcon size={18} />
-            Send on WhatsApp
-          </a>
-        </div>
-      )}
+      </div>
     </form>
   )
 }
