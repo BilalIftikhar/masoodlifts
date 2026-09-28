@@ -30,7 +30,7 @@ export function HeaderNav({ menus }: { menus: NavMenu[] }) {
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/95 backdrop-blur-sm">
       <div className="hazard-stripe h-1" aria-hidden="true" />
 
-      {/* Registration strip — the letterhead details, on every page. */}
+      {/* Contact strip — the letterhead details, on every page. */}
       <div className="bg-industrial text-industrial-foreground">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 text-xs">
           <div className="flex items-center gap-5">
@@ -46,9 +46,8 @@ export function HeaderNav({ menus }: { menus: NavMenu[] }) {
           <p className="flex items-center gap-1.5 text-right text-industrial-foreground/80">
             <MapPin size={13} className="hidden shrink-0 text-safety sm:block" />
             <span>
-              C.R. No. {siteConfig.crNumber}
-              <span className="hidden md:inline"> · {siteConfig.addressLine}</span>
-              <span className="md:hidden"> · Sohar, Oman</span>
+              <span className="hidden md:inline">{siteConfig.addressLine}</span>
+              <span className="md:hidden">Sohar, Oman</span>
             </span>
           </p>
         </div>

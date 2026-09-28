@@ -4,6 +4,8 @@ import Footer from "@/components/footer"
 import EquipmentShowcase from "@/components/equipment-showcase"
 import ProcessSection from "@/components/process-section"
 import ContactSection from "@/components/contact-section"
+import { PageHero } from "@/components/page-hero"
+import { TestimonialsSection } from "@/components/testimonials-section"
 import { JsonLd } from "@/components/json-ld"
 import { breadcrumbSchema } from "@/lib/schema"
 import { pageMetadata } from "@/lib/seo"
@@ -28,7 +30,14 @@ export default function EquipmentPage() {
         ])}
       />
       <Header />
-      <EquipmentShowcase headingLevel="h1" />
+      <PageHero
+        eyebrow="Our Fleet"
+        title="Equipment Fleet for Rent in Oman"
+        intro={`Cranes, tippers, boom loaders, 3 ton forklifts, excavators, JCBs, and wheel loaders, hired with operators from ${siteConfig.legalName} in Sohar. Daily, weekly, and monthly terms.`}
+        backgroundImage="/images/site/port-container-yard.jpg"
+      />
+      <EquipmentShowcase />
+      <TestimonialsSection className="bg-background" />
       <ProcessSection />
       <ContactSection />
       <Footer />

@@ -6,7 +6,10 @@ import Footer from "@/components/footer"
 import { FaqList } from "@/components/faq-list"
 import { Reveal } from "@/components/reveal"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
+import { HeroQuoteForm } from "@/components/contact-form"
+import { TestimonialsSection } from "@/components/testimonials-section"
 import { siteConfig, waLink } from "@/lib/site-config"
+import type { EquipmentKey } from "@/lib/equipment"
 
 export type SpecRow = { label: string; value: string }
 export type BulletGroup = { title: string; items: string[] }
@@ -30,6 +33,10 @@ type ServiceLandingTemplateProps = {
   ctaHeading: string
   ctaSubheading: string
   whatsappMessage: string
+  /** The machine and city this page is about: pre-fills the hero form and picks testimonials. */
+  equipmentKey?: EquipmentKey
+  equipmentLabel?: string
+  cityName?: string
 }
 
 export function ServiceLandingTemplate({
@@ -47,16 +54,27 @@ export function ServiceLandingTemplate({
   ctaHeading,
   ctaSubheading,
   whatsappMessage,
+  equipmentKey,
+  equipmentLabel,
+  cityName,
 }: ServiceLandingTemplateProps) {
   const whatsappHref = waLink(whatsappMessage)
+  // Sections below the bullet groups alternate backgrounds; which one starts
+  // shaded depends on whether the optional local-context section is present.
+  const shaded = (on: boolean) => (on ? "bg-secondary/40 py-20 md:py-28" : "py-20 md:py-28")
+  const b = Boolean(localContext)
 
   return (
     <main className="w-full overflow-x-hidden">
       <Header />
 
       <section className="relative overflow-hidden bg-primary py-16 text-white md:py-24">
+        <div className="absolute inset-0">
+          <Image src={heroImage} alt={heroImageAlt} fill priority className="object-cover opacity-20" sizes="100vw" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/80" />
+        </div>
         <div className="bg-blueprint absolute inset-0" aria-hidden="true" />
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 md:items-center">
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-2 lg:items-center">
           <div className="animate-slide-up space-y-5">
             <span className="inline-flex rounded-md bg-accent px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-foreground">
               {eyebrow}
@@ -82,9 +100,7 @@ export function ServiceLandingTemplate({
               </a>
             </div>
           </div>
-          <div className="animate-fade-in relative hidden h-80 overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/10 md:block">
-            <Image src={heroImage} alt={heroImageAlt} fill className="object-cover" sizes="(min-width: 768px) 50vw, 100vw" priority />
-          </div>
+          <HeroQuoteForm equipment={equipmentLabel} location={cityName} />
         </div>
       </section>
 
@@ -140,7 +156,7 @@ export function ServiceLandingTemplate({
         </section>
       )}
 
-      <section className={localContext ? "bg-secondary/40 py-20 md:py-28" : "py-20 md:py-28"}>
+      <section className={shaded(b)}>
         <div className="mx-auto max-w-7xl px-4">
           <Reveal>
             <h2 className="mb-8 text-foreground">{areasHeading}</h2>
@@ -160,7 +176,13 @@ export function ServiceLandingTemplate({
         </div>
       </section>
 
-      <section className={localContext ? "py-20 md:py-28" : "bg-secondary/40 py-20 md:py-28"}>
+      <TestimonialsSection
+        equipment={equipmentKey}
+        city={cityName}
+        className={b ? "bg-background" : "bg-secondary/40"}
+      />
+
+      <section className={shaded(b)}>
         <div className="mx-auto max-w-4xl px-4">
           <Reveal>
             <h2 className="mb-10 text-foreground">Frequently Asked Questions</h2>
@@ -169,7 +191,7 @@ export function ServiceLandingTemplate({
         </div>
       </section>
 
-      <section className={localContext ? "bg-secondary/40 py-20 md:py-28" : "py-20 md:py-28"}>
+      <section className={shaded(!b)}>
         <div className="mx-auto max-w-4xl space-y-8 px-4 text-center">
           <h2 className="text-foreground">{ctaHeading}</h2>
           <p className="text-xl font-medium text-muted-foreground">{ctaSubheading}</p>

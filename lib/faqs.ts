@@ -30,6 +30,6 @@ export const generalFaqs: Faq[] = [
   {
     question: "Is ABDUL MASOOD TRADING LLC a registered company?",
     answer:
-      "Yes. ABDUL MASOOD TRADING LLC (عبد المسعود للتجارة ش م م) is registered in the Sultanate of Oman under C.R. No. 1441246, with its address at P.O. Box 326, Postal Code 119, Sohar.",
+      "Yes. ABDUL MASOOD TRADING LLC (عبد المسعود للتجارة ش م م) is registered in the Sultanate of Oman, with its address at P.O. Box 326, Postal Code 119, Sohar.",
   },
 ]

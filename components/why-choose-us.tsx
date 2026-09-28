@@ -5,7 +5,7 @@ const reasons = [
   {
     icon: FileBadge,
     title: "Registered Omani Company",
-    description: "ABDUL MASOOD TRADING LLC, C.R. No. 1441246 — a registered company you can contract and invoice with.",
+    description: "ABDUL MASOOD TRADING LLC — a registered Omani company you can contract and invoice with.",
   },
   {
     icon: MapPin,

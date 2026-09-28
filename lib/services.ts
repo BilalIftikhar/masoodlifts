@@ -1,5 +1,5 @@
 import type { Faq } from "@/lib/faqs"
-import { getEquipment } from "@/lib/equipment"
+import { getEquipment, type EquipmentKey } from "@/lib/equipment"
 import { getLocationBySlug, locations } from "@/lib/locations"
 import { serviceAreaHref } from "@/lib/service-areas"
 import type { AreaLink, BulletGroup, LocalContext, SpecRow } from "@/components/service-landing-template"
@@ -33,6 +33,9 @@ export type ServiceHub = {
   ctaHeading: string
   ctaSubheading: string
   whatsappMessage: string
+  /** Main machine and city: pre-fill the hero form and pick testimonials. */
+  equipmentKey?: EquipmentKey
+  cityName?: string
 }
 
 const crane = getEquipment("crane")
@@ -53,6 +56,8 @@ const sohar = getLocationBySlug("sohar")!
 export const services: ServiceHub[] = [
   {
     slug: "crane-forklift-rental-sohar",
+    equipmentKey: "crane",
+    cityName: "Sohar",
     href: "/services/crane-forklift-rental-sohar",
     title: "Crane & Forklift Rental in Sohar",
     shortTitle: "Crane & Forklift Rental Sohar",
@@ -134,6 +139,7 @@ export const services: ServiceHub[] = [
   },
   {
     slug: "boom-loader-excavator-rental-oman",
+    equipmentKey: "boom-loader",
     href: "/services/boom-loader-excavator-rental-oman",
     title: "Boom Loader & Excavator Rental in Oman",
     shortTitle: "Boom Loader & Excavator Rental",

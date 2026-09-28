@@ -19,7 +19,6 @@ export const siteConfig = {
   shortName: "Abdul Masood Trading",
   activity: "Renting Equipment & Engineering Machinery of Construction & Civil Work",
   activityAr: "تأجير المعدات وآلات الهندسية البناء والأعمال المدنية",
-  crNumber: "1441246",
 
   // MUST match the host that actually serves content and holds a valid TLS
   // certificate — canonicals, sitemap entries, and schema URLs all use it.

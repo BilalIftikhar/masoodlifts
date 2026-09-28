@@ -6,6 +6,7 @@ import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema"
 import { pageMetadata } from "@/lib/seo"
 import { serviceAreaPages, getServiceAreaPage } from "@/lib/service-areas"
 import { services, getServiceBySlug } from "@/lib/services"
+import { getEquipment } from "@/lib/equipment"
 import { siteConfig } from "@/lib/site-config"
 
 type PageProps = { params: Promise<{ slug: string }> }
@@ -22,6 +23,7 @@ function resolve(slug: string) {
       ...hub,
       breadcrumbName: hub.shortTitle,
       schemaName: hub.h1,
+      equipmentLabel: hub.equipmentKey ? getEquipment(hub.equipmentKey).label : undefined,
     }
   }
 
@@ -36,6 +38,9 @@ function resolve(slug: string) {
     serviceType: `${equipment.label} rental`,
     breadcrumbName: page.cardTitle,
     schemaName: page.h1,
+    equipmentKey: equipment.key,
+    equipmentLabel: equipment.label,
+    cityName: location.cityName,
   }
 }
 
@@ -99,6 +104,9 @@ export default async function ServicePage({ params }: PageProps) {
         ctaHeading={page.ctaHeading}
         ctaSubheading={page.ctaSubheading}
         whatsappMessage={page.whatsappMessage}
+        equipmentKey={page.equipmentKey}
+        equipmentLabel={page.equipmentLabel}
+        cityName={page.cityName}
       />
     </>
   )

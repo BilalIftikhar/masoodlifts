@@ -1,6 +1,6 @@
 # ABDUL MASOOD TRADING LLC — masoodlifts.com
 
-Production website for **ABDUL MASOOD TRADING LLC** (عبد المسعود للتجارة ش م م, C.R. No. 1441246), Sohar, Sultanate of Oman — renting equipment and engineering machinery for construction and civil works: crane, tipper, boom loader, 3 ton forklift, excavator, JCB, and wheel loader.
+Production website for **ABDUL MASOOD TRADING LLC** (عبد المسعود للتجارة ش م م), Sohar, Sultanate of Oman — renting equipment and engineering machinery for construction and civil works: crane, tipper, boom loader, 3 ton forklift, excavator, JCB, and wheel loader.
 
 ## Tech Stack
 
@@ -23,7 +23,7 @@ app/
   sitemap.ts, robots.ts, llms.txt/
 components/                 Header, footer, templates, homepage sections
 lib/
-  site-config.ts            Company NAP, C.R. no., phones, email, form endpoint — single source of truth
+  site-config.ts            Company NAP, phones, email, form endpoint — single source of truth
   equipment.ts              The 7 fleet categories
   locations.ts              The 6 Oman hubs, with per-city copy and notes
   service-areas.ts          Generates the 42 equipment × city pages
@@ -57,7 +57,7 @@ are delivered. WhatsApp is offered next to the form as a fallback.
   - "Crane & Forklift Rental Sohar" → `/services/crane-forklift-rental-sohar`
   - "Construction Machinery Rental Muscat" → `/locations/muscat`
   - "Boom Loader & Excavator Rental Oman" → `/services/boom-loader-excavator-rental-oman`
-- `LocalBusiness` (homepage, contact) and `Organization` (every page) JSON-LD point to the Sohar address, the Oman phone, and the C.R. number.
+- `LocalBusiness` (homepage, contact) and `Organization` (every page) JSON-LD point to the Sohar address and the Oman phone.
 - City pages use `Service` + `areaServed`, not `LocalBusiness` — the company has one registered address.
 - Update `lib/site-config.ts` first when phone numbers, address, or domain change.
 - After deploying, run `pnpm indexnow` to ping Bing/IndexNow, and submit the sitemap in Search Console.

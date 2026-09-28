@@ -19,7 +19,6 @@ different phone format) weaken every listing.
 | Arabic name | عبد المسعود للتجارة ش م م |
 | Activity | Renting Equipment & Engineering Machinery of Construction & Civil Work |
 | Activity (Arabic) | تأجير المعدات وآلات الهندسية البناء والأعمال المدنية |
-| C.R. No. | 1441246 |
 | Postal address | P.O. Box 326, Postal Code 119, Sohar, Sultanate of Oman |
 | Phone (GSM) | +968 7928 8727 |
 | WhatsApp | +968 7928 8727 |
@@ -58,7 +57,7 @@ Al Wusta, Salalah, Dhofar.
 > ABDUL MASOOD TRADING LLC rents cranes, tipper trucks, boom loaders, 3 ton forklifts, excavators, JCB backhoe loaders and wheel loaders for construction and civil works. Based in Sohar and serving Muscat, Al Buraimi, Nizwa, Duqm and Salalah. Machines supplied with operators; daily, weekly and monthly hire.
 
 **Long (about 700 characters)**
-> ABDUL MASOOD TRADING LLC (C.R. No. 1441246) is a Sohar-registered company renting equipment and engineering machinery for construction and civil works. We supply cranes, tipper trucks, boom loaders, 3 ton forklifts, excavators, JCB backhoe loaders and wheel loaders to contractors, factories and logistics operators, with experienced operators and drivers. From Sohar we cover Sohar Port and Freezone, Sohar Industrial Estate and the Batinah coast, with road links to Muscat, Al Buraimi and Nizwa, and planned project hire in Duqm and Salalah. Daily, weekly and monthly terms. Call or WhatsApp +968 7928 8727.
+> ABDUL MASOOD TRADING LLC is a Sohar-registered company renting equipment and engineering machinery for construction and civil works. We supply cranes, tipper trucks, boom loaders, 3 ton forklifts, excavators, JCB backhoe loaders and wheel loaders to contractors, factories and logistics operators, with experienced operators and drivers. From Sohar we cover Sohar Port and Freezone, Sohar Industrial Estate and the Batinah coast, with road links to Muscat, Al Buraimi and Nizwa, and planned project hire in Duqm and Salalah. Daily, weekly and monthly terms. Call or WhatsApp +968 7928 8727.
 
 ---
 

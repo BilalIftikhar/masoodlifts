@@ -4,15 +4,13 @@ import { Reveal } from "@/components/reveal"
 import { EquipmentVisual } from "@/components/equipment-visual"
 import { equipmentTypes } from "@/lib/equipment"
 
-export default function EquipmentShowcase({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
-  const Heading = headingLevel
-
+export default function EquipmentShowcase() {
   return (
     <section className="w-full bg-secondary/60 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4">
         <Reveal className="mb-14 max-w-2xl space-y-3">
           <p className="text-sm font-bold uppercase tracking-widest text-accent">Our Fleet</p>
-          <Heading className="text-foreground">Equipment &amp; Engineering Machinery for Rent</Heading>
+          <h2 className="text-foreground">Equipment &amp; Engineering Machinery for Rent</h2>
           <p className="text-lg font-medium text-muted-foreground">
             Seven categories of construction and civil works equipment, each hired with an experienced operator or
             driver.

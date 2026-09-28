@@ -6,6 +6,8 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { JsonLd } from "@/components/json-ld"
 import { Reveal } from "@/components/reveal"
+import { PageHero } from "@/components/page-hero"
+import { TestimonialsSection } from "@/components/testimonials-section"
 import { breadcrumbSchema } from "@/lib/schema"
 import { pageMetadata } from "@/lib/seo"
 import { primaryLocations, secondaryLocations } from "@/lib/locations"
@@ -35,19 +37,14 @@ export default function LocationsPage() {
         ])}
       />
       <Header />
-
-      <div className="min-h-screen bg-gradient-to-b from-background to-secondary pb-20 pt-16 md:pt-24">
+      <PageHero
+        eyebrow="Oman Service Network"
+        title="Where We Supply Equipment"
+        intro={`${siteConfig.legalName} is registered in Sohar. From there we supply construction and civil works machinery across the Batinah coast, Muscat, Al Buraimi, and the interior, with planned project hire in Duqm and Salalah.`}
+        backgroundImage="/images/site/port-container-yard.jpg"
+      />
+      <div className="bg-gradient-to-b from-background to-secondary pb-20 pt-16 md:pt-20">
         <div className="mx-auto max-w-7xl px-4">
-          <Reveal className="mb-16 max-w-3xl space-y-4">
-            <p className="text-sm font-bold uppercase tracking-widest text-accent">Oman Service Network</p>
-            <h1 className="text-foreground">Where We Supply Equipment</h1>
-            <p className="text-lg font-medium text-muted-foreground">
-              {siteConfig.legalName} is registered in Sohar. From there we supply construction and civil works
-              machinery across the Batinah coast, Muscat, Al Buraimi, and the interior, with planned project hire in
-              Duqm and Salalah.
-            </p>
-          </Reveal>
-
           <Reveal className="mb-8">
             <h2 className="text-foreground">Core Coverage</h2>
           </Reveal>
@@ -117,6 +114,7 @@ export default function LocationsPage() {
           </div>
         </div>
       </div>
+      <TestimonialsSection />
       <Footer />
     </main>
   )

@@ -4,6 +4,8 @@ import Footer from "@/components/footer"
 import { PostCard } from "@/components/blog/post-card"
 import { JsonLd } from "@/components/json-ld"
 import { Reveal } from "@/components/reveal"
+import { PageHero } from "@/components/page-hero"
+import { TestimonialsSection } from "@/components/testimonials-section"
 import { breadcrumbSchema } from "@/lib/schema"
 import { pageMetadata } from "@/lib/seo"
 import { getAllPosts } from "@/lib/blog/posts"
@@ -28,18 +30,13 @@ export default function BlogIndexPage() {
         ])}
       />
       <Header />
-
-      <div className="min-h-screen bg-gradient-to-b from-background to-secondary pb-20 pt-16 md:pt-24">
+      <PageHero
+        eyebrow="Guides & Insights"
+        title="Equipment Rental Guides"
+        intro="Practical guidance on choosing the right machine, preparing your site, and planning equipment hire for construction and civil works projects across Oman."
+      />
+      <div className="bg-gradient-to-b from-background to-secondary pb-20 pt-16 md:pt-20">
         <div className="mx-auto max-w-7xl px-4">
-          <Reveal className="mb-16 max-w-3xl space-y-4">
-            <p className="text-sm font-bold uppercase tracking-widest text-accent">Guides &amp; Insights</p>
-            <h1 className="text-foreground">Equipment Rental Guides</h1>
-            <p className="text-lg font-medium text-muted-foreground">
-              Practical guidance on choosing the right machine, preparing your site, and planning equipment hire for
-              construction and civil works projects across Oman.
-            </p>
-          </Reveal>
-
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post, index) => (
               <Reveal key={post.slug} delay={index * 100} className="h-full">
@@ -49,6 +46,7 @@ export default function BlogIndexPage() {
           </div>
         </div>
       </div>
+      <TestimonialsSection />
       <Footer />
     </main>
   )

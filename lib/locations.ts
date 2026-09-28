@@ -243,7 +243,7 @@ export const locations: LocationSummary[] = [
       },
       {
         title: "Registered Company",
-        description: "ABDUL MASOOD TRADING LLC, C.R. No. 1441246 — a registered Omani company you can contract with.",
+        description: "ABDUL MASOOD TRADING LLC — a registered Omani company you can contract and invoice with.",
       },
     ],
     faqs: [
@@ -361,7 +361,7 @@ export const locations: LocationSummary[] = [
       },
       {
         title: "Registered Omani Company",
-        description: "ABDUL MASOOD TRADING LLC, C.R. No. 1441246, registered in Sohar, Sultanate of Oman.",
+        description: "ABDUL MASOOD TRADING LLC, registered in Sohar, Sultanate of Oman.",
       },
       {
         title: "One Point of Contact",
@@ -487,7 +487,7 @@ export const locations: LocationSummary[] = [
       },
       {
         title: "Registered Omani Company",
-        description: "ABDUL MASOOD TRADING LLC, C.R. No. 1441246, Sohar, Sultanate of Oman.",
+        description: "ABDUL MASOOD TRADING LLC, registered in Sohar, Sultanate of Oman.",
       },
     ],
     faqs: [
@@ -601,7 +601,7 @@ export const locations: LocationSummary[] = [
       },
       {
         title: "Registered Omani Company",
-        description: "ABDUL MASOOD TRADING LLC, C.R. No. 1441246, Sohar, Sultanate of Oman.",
+        description: "ABDUL MASOOD TRADING LLC, registered in Sohar, Sultanate of Oman.",
       },
     ],
     faqs: [
@@ -713,7 +713,7 @@ export const locations: LocationSummary[] = [
       },
       {
         title: "Registered Omani Company",
-        description: "ABDUL MASOOD TRADING LLC, C.R. No. 1441246, Sohar, Sultanate of Oman.",
+        description: "ABDUL MASOOD TRADING LLC, registered in Sohar, Sultanate of Oman.",
       },
     ],
     faqs: [

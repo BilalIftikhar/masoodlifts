@@ -19,7 +19,7 @@ export function GET() {
     "",
     `> ${siteConfig.description}`,
     "",
-    `${siteConfig.legalName} (${siteConfig.legalNameAr}) is registered in the Sultanate of Oman under C.R. No. ${siteConfig.crNumber}. Activity: ${siteConfig.activity}. Address: ${siteConfig.addressLine}. GSM and WhatsApp: ${siteConfig.phoneDisplay}. Email: ${siteConfig.email}. Machines are hired with operators on daily, weekly, and monthly terms. Rates are quote-based; the site does not publish prices.`,
+    `${siteConfig.legalName} (${siteConfig.legalNameAr}) is registered in Sohar, Sultanate of Oman. Activity: ${siteConfig.activity}. Address: ${siteConfig.addressLine}. GSM and WhatsApp: ${siteConfig.phoneDisplay}. Email: ${siteConfig.email}. Machines are hired with operators on daily, weekly, and monthly terms. Rates are quote-based; the site does not publish prices.`,
     "",
     "## Company",
     link("About", "/about", "registration details, activity, coverage"),

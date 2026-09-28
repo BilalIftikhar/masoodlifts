@@ -6,6 +6,7 @@ import ServicesSection from "@/components/services-section"
 import WhyChooseUs from "@/components/why-choose-us"
 import CoverageSection from "@/components/coverage-section"
 import ProcessSection from "@/components/process-section"
+import { TestimonialsSection } from "@/components/testimonials-section"
 import { FaqSection } from "@/components/faq-section"
 import ContactSection from "@/components/contact-section"
 import Footer from "@/components/footer"
@@ -39,6 +40,7 @@ export default function Home() {
       <WhyChooseUs />
       <CoverageSection />
       <ProcessSection />
+      <TestimonialsSection className="bg-background" />
       <FaqSection
         faqs={generalFaqs}
         subheading="What to know before renting equipment from Abdul Masood Trading."

@@ -21,13 +21,6 @@ const baseGeo = {
   longitude: siteConfig.geo.longitude,
 }
 
-/** Oman Commercial Registration number, as a machine-readable identifier. */
-const crIdentifier = {
-  "@type": "PropertyValue",
-  propertyID: "Oman Commercial Registration (C.R.) No.",
-  value: siteConfig.crNumber,
-}
-
 const defaultAreaServed = [
   { "@type": "Country", name: "Oman" },
   ...locations.map((location) => ({ "@type": "City", name: location.cityName })),
@@ -58,7 +51,6 @@ export function localBusinessSchema(opts?: { url?: string }): WithContext<Record
     currenciesAccepted: "OMR",
     image: logoUrl,
     logo: logoUrl,
-    identifier: crIdentifier,
     address: baseAddress,
     geo: baseGeo,
     areaServed: defaultAreaServed,
@@ -98,7 +90,6 @@ export function organizationSchema(): WithContext<Record<string, unknown>> {
     description: siteConfig.description,
     email: siteConfig.email,
     telephone: siteConfig.phoneE164,
-    identifier: crIdentifier,
     address: baseAddress,
     // Plain statements of what the company is an authority on. Answer engines
     // use these to decide which entity to cite for a topic.

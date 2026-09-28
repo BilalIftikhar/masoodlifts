@@ -5,6 +5,7 @@ import { ContactForm } from "@/components/contact-form"
 import { ContactDetails } from "@/components/contact-details"
 import { JsonLd } from "@/components/json-ld"
 import { Reveal } from "@/components/reveal"
+import { TestimonialsSection } from "@/components/testimonials-section"
 import { breadcrumbSchema, contactPageSchema, localBusinessSchema } from "@/lib/schema"
 import { pageMetadata } from "@/lib/seo"
 import { siteConfig } from "@/lib/site-config"
@@ -34,7 +35,7 @@ export default function ContactPage() {
         ]}
       />
       <Header />
-      <div className="min-h-screen bg-gradient-to-b from-background to-secondary pb-20 pt-16 md:pt-24">
+      <div className="bg-gradient-to-b from-background to-secondary pb-20 pt-16 md:pt-24">
         <div className="mx-auto max-w-7xl px-4">
           <Reveal className="mb-14 max-w-3xl space-y-4">
             <p className="text-sm font-bold uppercase tracking-widest text-accent">Get In Touch</p>
@@ -55,6 +56,7 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+      <TestimonialsSection />
       <Footer />
     </main>
   )

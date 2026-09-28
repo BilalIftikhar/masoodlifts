@@ -1,6 +1,7 @@
-import { Phone, FileBadge, MapPin, Truck } from "lucide-react"
+import { Phone, HardHat, MapPin, Truck } from "lucide-react"
 import Image from "next/image"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
+import { HeroQuoteForm } from "@/components/contact-form"
 import { siteConfig, waLink } from "@/lib/site-config"
 import { equipmentTypes } from "@/lib/equipment"
 
@@ -22,7 +23,7 @@ export default function HeroSection() {
         <div className="bg-blueprint absolute inset-0" />
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-2 md:py-24 lg:py-28">
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 md:py-24 lg:grid-cols-2 lg:items-center lg:py-28">
         <div className="space-y-7">
           <span className="animate-slide-up inline-flex items-center gap-2 rounded-md bg-accent px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-foreground">
             <MapPin size={13} /> Sohar · Muscat · Duqm · Salalah · Nizwa · Al Buraimi
@@ -59,9 +60,9 @@ export default function HeroSection() {
             </div>
             <div>
               <dt className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-white/60">
-                <FileBadge size={14} className="text-safety" /> C.R. No.
+                <HardHat size={14} className="text-safety" /> Operators
               </dt>
-              <dd className="mt-1 text-xl font-extrabold md:text-2xl">{siteConfig.crNumber}</dd>
+              <dd className="mt-1 text-xl font-extrabold md:text-2xl">Included</dd>
             </div>
           </dl>
 
@@ -85,26 +86,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="animate-fade-in relative hidden md:block" style={{ animationDelay: "200ms" }}>
-          <div className="relative h-full min-h-[420px] overflow-hidden rounded-lg shadow-2xl ring-1 ring-white/10">
-            <Image
-              src="/images/mobile-crane.jpeg"
-              alt="Yellow all-terrain mobile crane with its boom retracted"
-              fill
-              priority
-              className="object-cover"
-              sizes="(min-width: 768px) 50vw, 100vw"
-            />
-            <div className="hazard-stripe absolute inset-x-0 bottom-0 h-3" aria-hidden="true" />
-          </div>
-          <div className="absolute -bottom-6 -left-6 hidden rounded-lg border-l-4 border-accent bg-white p-5 text-foreground shadow-xl lg:block">
-            <p className="text-sm font-extrabold uppercase tracking-wide">{siteConfig.legalName}</p>
-            <p lang="ar" dir="rtl" className="font-arabic text-sm text-muted-foreground">
-              {siteConfig.legalNameAr}
-            </p>
-            <p className="mt-1 text-xs font-semibold text-muted-foreground">{siteConfig.addressLine}</p>
-          </div>
-        </div>
+        <HeroQuoteForm />
       </div>
     </section>
   )

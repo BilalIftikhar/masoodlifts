@@ -1,11 +1,11 @@
-import { Phone, Mail, MapPin, FileBadge } from "lucide-react"
+import { Phone, Mail, MapPin } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
 import { siteConfig, waLink } from "@/lib/site-config"
 
 /**
  * Contact cards with the full letterhead details: phones, WhatsApp, email,
- * postal address, and C.R. number. Shared by the homepage and /contact.
+ * and postal address. Shared by the homepage and /contact.
  */
 export function ContactDetails() {
   const cards = [
@@ -79,9 +79,6 @@ export function ContactDetails() {
               </span>
               <span className="block font-semibold text-foreground">
                 {siteConfig.address.addressLocality}, {siteConfig.address.countryName}
-              </span>
-              <span className="mt-2 flex items-center gap-1.5 text-sm font-bold text-foreground">
-                <FileBadge size={15} className="text-accent" /> C.R. No. {siteConfig.crNumber}
               </span>
             </span>
           </p>

@@ -6,6 +6,8 @@ import { FaqList } from "@/components/faq-list"
 import { Reveal } from "@/components/reveal"
 import { EquipmentVisual } from "@/components/equipment-visual"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
+import { HeroQuoteForm } from "@/components/contact-form"
+import { TestimonialsSection } from "@/components/testimonials-section"
 import { siteConfig, waLink } from "@/lib/site-config"
 import type { EquipmentType } from "@/lib/equipment"
 
@@ -24,7 +26,7 @@ export function EquipmentDetailTemplate({ equipment, cityLinks }: EquipmentDetai
 
       <section className="relative overflow-hidden bg-primary py-16 text-white md:py-24">
         <div className="bg-blueprint absolute inset-0" aria-hidden="true" />
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 md:items-center">
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-2 lg:items-center">
           <div className="animate-slide-up space-y-5">
             <span className="inline-flex rounded-md bg-accent px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-foreground">
               {equipment.tag} · Oman
@@ -53,18 +55,21 @@ export function EquipmentDetailTemplate({ equipment, cityLinks }: EquipmentDetai
               </a>
             </div>
           </div>
-          <div className="animate-fade-in relative h-72 overflow-hidden rounded-lg shadow-2xl ring-1 ring-white/10 md:h-96">
-            <EquipmentVisual equipment={equipment} sizes="(min-width: 768px) 50vw, 100vw" priority />
-          </div>
+          <HeroQuoteForm equipment={equipment.label} />
         </div>
       </section>
 
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-4">
-          <Reveal className="mb-12 space-y-2">
-            <p className="text-sm font-bold uppercase tracking-widest text-accent">Typical Jobs</p>
-            <h2 className="text-foreground">What Our {equipment.label}s Are Hired For</h2>
-          </Reveal>
+          <div className="mb-12 grid gap-8 md:grid-cols-2 md:items-center">
+            <Reveal className="space-y-2">
+              <p className="text-sm font-bold uppercase tracking-widest text-accent">Typical Jobs</p>
+              <h2 className="text-foreground">What Our {equipment.label}s Are Hired For</h2>
+            </Reveal>
+            <div className="relative h-56 overflow-hidden rounded-lg shadow-lg md:h-72">
+              <EquipmentVisual equipment={equipment} sizes="(min-width: 768px) 50vw, 100vw" />
+            </div>
+          </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {equipment.applications.map((application, idx) => (
               <Reveal key={application.title} delay={idx * 90} className="h-full">
@@ -137,7 +142,9 @@ export function EquipmentDetailTemplate({ equipment, cityLinks }: EquipmentDetai
         </div>
       </section>
 
-      <section className="bg-secondary/60 py-20 md:py-28">
+      <TestimonialsSection equipment={equipment.key} className="bg-secondary/60" />
+
+      <section className="py-20 md:py-28">
         <div className="mx-auto max-w-4xl px-4">
           <Reveal>
             <h2 className="mb-10 text-foreground">{equipment.label} Rental FAQs</h2>
@@ -146,7 +153,7 @@ export function EquipmentDetailTemplate({ equipment, cityLinks }: EquipmentDetai
         </div>
       </section>
 
-      <section className="py-20 md:py-28">
+      <section className="bg-secondary/60 py-20 md:py-28">
         <div className="mx-auto max-w-4xl space-y-8 px-4 text-center">
           <h2 className="text-foreground">Need a {equipment.label}?</h2>
           <p className="text-xl font-medium text-muted-foreground">

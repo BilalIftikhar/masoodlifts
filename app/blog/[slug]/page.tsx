@@ -9,6 +9,8 @@ import { ContentRenderer } from "@/components/blog/content-renderer"
 import { PostCard } from "@/components/blog/post-card"
 import { JsonLd } from "@/components/json-ld"
 import { Reveal } from "@/components/reveal"
+import { PageHero } from "@/components/page-hero"
+import { TestimonialsSection } from "@/components/testimonials-section"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
 import { blogPostingSchema, breadcrumbSchema } from "@/lib/schema"
 import { pageMetadata } from "@/lib/seo"
@@ -76,34 +78,29 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       />
       <Header />
 
-      <article className="min-h-screen bg-background pb-20 pt-16 md:pt-24">
+      <PageHero eyebrow={post.category} title={post.title} intro={post.description}>
+        <div className="flex flex-wrap items-center gap-5 text-sm font-semibold text-white/70">
+          <span className="flex items-center gap-1.5">
+            <Calendar size={15} />
+            {formatDate(post.datePublished)}
+          </span>
+          {post.dateModified && post.dateModified !== post.datePublished && (
+            <span>Updated {formatDate(post.dateModified)}</span>
+          )}
+          <span className="flex items-center gap-1.5">
+            <Clock size={15} />
+            {post.readingTime}
+          </span>
+        </div>
+      </PageHero>
+
+      <article className="bg-background pb-20 pt-10 md:pt-14">
         <div className="mx-auto max-w-3xl px-4">
           <Link href="/blog" className="text-sm font-bold text-accent hover:underline">
             ← Back to Blog
           </Link>
 
-          <header className="mt-6 space-y-4">
-            <span className="inline-block rounded-md bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wide text-accent-foreground">
-              {post.category}
-            </span>
-            <h1 className="text-foreground">{post.title}</h1>
-            <p className="text-lg font-medium text-muted-foreground">{post.description}</p>
-            <div className="flex items-center gap-5 text-sm font-semibold text-muted-foreground">
-              <span className="flex items-center gap-1.5">
-                <Calendar size={15} />
-                {formatDate(post.datePublished)}
-              </span>
-              {post.dateModified && post.dateModified !== post.datePublished && (
-                <span>Updated {formatDate(post.dateModified)}</span>
-              )}
-              <span className="flex items-center gap-1.5">
-                <Clock size={15} />
-                {post.readingTime}
-              </span>
-            </div>
-          </header>
-
-          <div className="relative mt-8 h-72 w-full overflow-hidden rounded-xl md:h-96">
+          <div className="relative mt-6 h-72 w-full overflow-hidden rounded-xl md:h-96">
             <Image
               src={post.heroImage}
               alt={post.heroImageAlt}
@@ -176,6 +173,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         )}
       </article>
+
+      <TestimonialsSection />
 
       <Footer />
     </main>

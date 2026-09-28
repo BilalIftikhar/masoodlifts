@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Phone, Mail, MapPin, FileBadge } from "lucide-react"
+import { Phone, Mail, MapPin } from "lucide-react"
 import { BrandLogo } from "@/components/brand-logo"
 import { siteConfig, serviceAreas } from "@/lib/site-config"
 import { equipmentTypes } from "@/lib/equipment"
@@ -34,10 +34,6 @@ export default function Footer() {
               </p>
             </div>
             <address className="space-y-2.5 pt-1 text-sm not-italic text-white/85">
-              <p className="flex items-start gap-2.5">
-                <FileBadge size={16} className="mt-0.5 shrink-0 text-safety" />
-                C.R. No. {siteConfig.crNumber}
-              </p>
               <p className="flex items-start gap-2.5">
                 <MapPin size={16} className="mt-0.5 shrink-0 text-safety" />
                 {siteConfig.addressLine}
@@ -128,7 +124,7 @@ export default function Footer() {
 
         <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-8 text-center text-sm text-white/60 md:flex-row md:text-left">
           <p>
-            &copy; {year} {siteConfig.legalName} · C.R. No. {siteConfig.crNumber}. All rights reserved.
+            &copy; {year} {siteConfig.legalName}. All rights reserved.
           </p>
           <p lang="ar" dir="rtl" className="font-arabic">
             {siteConfig.legalNameAr} — صحار، سلطنة عمان

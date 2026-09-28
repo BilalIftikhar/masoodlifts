@@ -5,6 +5,8 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { JsonLd } from "@/components/json-ld"
 import { Reveal } from "@/components/reveal"
+import { PageHero } from "@/components/page-hero"
+import { TestimonialsSection } from "@/components/testimonials-section"
 import { aboutPageSchema, breadcrumbSchema } from "@/lib/schema"
 import { pageMetadata } from "@/lib/seo"
 import { siteConfig } from "@/lib/site-config"
@@ -17,7 +19,7 @@ const path = "/about"
 export const metadata: Metadata = pageMetadata({
   title: "About Abdul Masood Trading LLC",
   description:
-    "ABDUL MASOOD TRADING LLC (C.R. 1441246), Sohar, Oman: renting equipment and engineering machinery for construction and civil works across Oman.",
+    "ABDUL MASOOD TRADING LLC, Sohar, Oman: renting equipment and engineering machinery for construction and civil works across Oman.",
   path,
 })
 
@@ -28,7 +30,6 @@ export const metadata: Metadata = pageMetadata({
  */
 const facts: { label: string; value: string; ar?: string }[] = [
   { label: "Legal name", value: siteConfig.legalName, ar: siteConfig.legalNameAr },
-  { label: "Commercial Registration", value: `C.R. No. ${siteConfig.crNumber}` },
   { label: "Activity", value: siteConfig.activity, ar: siteConfig.activityAr },
   { label: "Registered address", value: siteConfig.addressLine },
   { label: "Equipment", value: equipmentTypes.map((equipment) => equipment.label).join(", ") },
@@ -55,23 +56,19 @@ export default function AboutPage() {
       />
       <Header />
 
-      <section className="bg-gradient-to-b from-background to-secondary pb-16 pt-16 md:pt-24">
-        <div className="mx-auto max-w-4xl space-y-6 px-4">
-          <p className="text-sm font-bold uppercase tracking-widest text-accent">About Us</p>
-          <h1 className="text-foreground">About {siteConfig.legalName}</h1>
-          <p lang="ar" dir="rtl" className="font-arabic text-xl text-muted-foreground">
-            {siteConfig.legalNameAr}
-          </p>
+      <PageHero eyebrow="About Us" title={`About ${siteConfig.legalName}`}>
+        <p lang="ar" dir="rtl" className="font-arabic text-xl text-white/70">
+          {siteConfig.legalNameAr}
+        </p>
+        <p className="max-w-xl text-lg font-medium leading-relaxed text-white/85">
+          {siteConfig.legalName} is a Sohar-registered company that rents equipment and engineering machinery for construction and civil works. We supply cranes, tipper trucks, boom loaders, 3 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders to contractors, factories, and logistics operators, with experienced operators and drivers.
+        </p>
+      </PageHero>
+
+      <section className="pt-16 md:pt-20">
+        <div className="mx-auto max-w-4xl px-4">
           <p className="text-lg font-medium leading-relaxed text-muted-foreground">
-            {siteConfig.legalName} is a Sohar-registered company (C.R. No. {siteConfig.crNumber}) that rents
-            equipment and engineering machinery for construction and civil works. We supply cranes, tipper trucks,
-            boom loaders, 3 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders to contractors,
-            factories, and logistics operators, with experienced operators and drivers.
-          </p>
-          <p className="text-lg font-medium leading-relaxed text-muted-foreground">
-            Being in Sohar puts us close to Sohar Port and Freezone, Sohar Industrial Estate, and the Batinah coast,
-            with road links to Muscat, Al Buraimi, and the interior. For projects in Duqm and Salalah we plan
-            transport in advance and supply machines on weekly and monthly hire.
+            Being in Sohar puts us close to Sohar Port and Freezone, Sohar Industrial Estate, and the Batinah coast, with road links to Muscat, Al Buraimi, and the interior. For projects in Duqm and Salalah we plan transport in advance and supply machines on weekly and monthly hire.
           </p>
         </div>
       </section>
@@ -155,6 +152,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <TestimonialsSection className="bg-secondary/60" />
 
       <Footer />
     </main>

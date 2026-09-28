@@ -6,6 +6,8 @@ import Footer from "@/components/footer"
 import { FaqList } from "@/components/faq-list"
 import { Reveal } from "@/components/reveal"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
+import { HeroQuoteForm } from "@/components/contact-form"
+import { TestimonialsSection } from "@/components/testimonials-section"
 import { siteConfig, waLink } from "@/lib/site-config"
 import type { Faq } from "@/lib/faqs"
 
@@ -72,8 +74,9 @@ export function LocationLandingTemplate({
           <Image src={heroImage} alt={heroImageAlt} fill priority className="object-cover opacity-30" sizes="100vw" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/80" />
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 py-16 md:py-24">
-          <div className="animate-slide-up max-w-2xl space-y-5">
+        <div className="bg-blueprint absolute inset-0" aria-hidden="true" />
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 md:py-24 lg:grid-cols-2 lg:items-center">
+          <div className="animate-slide-up space-y-5">
             <span className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-foreground">
               <MapPin size={13} />
               {eyebrow}
@@ -99,6 +102,7 @@ export function LocationLandingTemplate({
               </a>
             </div>
           </div>
+          <HeroQuoteForm location={cityName} />
         </div>
       </section>
 
@@ -183,8 +187,10 @@ export function LocationLandingTemplate({
         </div>
       </section>
 
+      <TestimonialsSection city={cityName} className="bg-secondary/40" />
+
       {faqs && faqs.length > 0 && (
-        <section className="bg-secondary/40 py-20 md:py-28">
+        <section className="py-20 md:py-28">
           <div className="mx-auto max-w-4xl px-4">
             <Reveal>
               <h2 className="mb-10 text-foreground">Frequently Asked Questions</h2>
@@ -195,7 +201,7 @@ export function LocationLandingTemplate({
       )}
 
       {nearbyLinks && nearbyLinks.length > 0 && (
-        <section className="py-16 md:py-20">
+        <section className="bg-secondary/40 py-16 md:py-20">
           <div className="mx-auto max-w-7xl px-4">
             <Reveal>
               <h2 className="mb-8 text-foreground">{nearbyHeading}</h2>
