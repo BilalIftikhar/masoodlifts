@@ -12,7 +12,7 @@ import type { Faq } from "@/lib/faqs"
 export type LocationServiceLink = {
   key: string
   label: string
-  capacityRange: string
+  tag: string
   href: string
 }
 
@@ -33,6 +33,7 @@ type LocationLandingTemplateProps = {
   faqs?: Faq[]
   /** Free-text guidance on working in this area, shown after the area list. */
   localContext?: { heading: string; paragraphs: string[] }
+  governorate: string
   nearbyLinks?: NearbyLink[]
   nearbyHeading?: string
   ctaHeading: string
@@ -53,6 +54,7 @@ export function LocationLandingTemplate({
   whyPoints,
   faqs,
   localContext,
+  governorate,
   nearbyLinks,
   nearbyHeading = "Nearby Coverage",
   ctaHeading,
@@ -72,7 +74,7 @@ export function LocationLandingTemplate({
         </div>
         <div className="relative mx-auto max-w-7xl px-4 py-16 md:py-24">
           <div className="animate-slide-up max-w-2xl space-y-5">
-            <span className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-foreground">
+            <span className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-foreground">
               <MapPin size={13} />
               {eyebrow}
             </span>
@@ -80,20 +82,20 @@ export function LocationLandingTemplate({
             <p className="text-lg font-medium leading-relaxed text-white/85">{intro}</p>
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
+                href={siteConfig.telHref}
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-7 py-3.5 text-sm font-bold text-accent-foreground shadow-lg transition-transform hover:scale-[1.02]"
+              >
+                <Phone size={18} />
+                Call {siteConfig.phoneDisplay}
+              </a>
+              <a
                 href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-7 py-3.5 text-sm font-bold text-accent-foreground shadow-lg transition-transform hover:scale-[1.02]"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-7 py-3.5 text-sm font-bold text-white shadow-lg transition-transform hover:scale-[1.02]"
               >
                 <WhatsAppIcon size={18} />
-                Request a Quote
-              </a>
-              <a
-                href={siteConfig.telHref}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-white/30 bg-white/10 px-7 py-3.5 text-sm font-bold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-              >
-                <Phone size={18} />
-                {siteConfig.phoneDisplay}
+                WhatsApp for a Quote
               </a>
             </div>
           </div>
@@ -103,7 +105,8 @@ export function LocationLandingTemplate({
       <section className="py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4">
           <Reveal>
-            <h2 className="mb-8 text-foreground">Areas We Cover</h2>
+            <h2 className="mb-2 text-foreground">Areas We Cover</h2>
+            <p className="mb-8 font-semibold uppercase tracking-wide text-muted-foreground">{governorate} Governorate</p>
           </Reveal>
           <div className="flex flex-wrap gap-3">
             {areas.map((area) => (
@@ -145,9 +148,9 @@ export function LocationLandingTemplate({
                 >
                   <div className="space-y-2">
                     <span className="inline-block rounded-md bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
-                      {service.capacityRange}
+                      {service.tag}
                     </span>
-                    <h3 className="text-foreground">
+                    <h3 className="text-lg font-extrabold text-foreground">
                       {service.label} {cityName}
                     </h3>
                   </div>
@@ -219,20 +222,20 @@ export function LocationLandingTemplate({
           <p className="text-xl font-medium text-muted-foreground">{ctaSubheading}</p>
           <div className="flex flex-col justify-center gap-4 md:flex-row">
             <a
+              href={siteConfig.telHref}
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-8 py-3.5 text-sm font-bold text-accent-foreground transition-transform hover:scale-105"
+            >
+              <Phone size={18} />
+              Call {siteConfig.phoneDisplay}
+            </a>
+            <a
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-8 py-3.5 text-sm font-bold text-accent-foreground transition-transform hover:scale-105"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-8 py-3.5 text-sm font-bold text-white transition-transform hover:scale-105"
             >
               <WhatsAppIcon size={18} />
               Request a Quote on WhatsApp
-            </a>
-            <a
-              href={siteConfig.telHref}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
-            >
-              <Phone size={18} />
-              {siteConfig.phoneDisplay}
             </a>
           </div>
         </div>

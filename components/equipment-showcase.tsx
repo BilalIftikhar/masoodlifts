@@ -1,127 +1,74 @@
 import Link from "next/link"
-import Image from "next/image"
+import { ArrowRight } from "lucide-react"
 import { Reveal } from "@/components/reveal"
-import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
-import { waLink } from "@/lib/site-config"
+import { EquipmentVisual } from "@/components/equipment-visual"
+import { equipmentTypes } from "@/lib/equipment"
 
-interface Equipment {
-  title: string
-  image: string
-  description: string
-  features: string[]
-  detailLink: string
-}
-
-const equipment: Equipment[] = [
-  {
-    title: "Mobile Crane",
-    image: "/images/mobile-crane.jpeg",
-    description:
-      "Heavy-duty mobile cranes engineered for large-scale lifting operations and complex construction projects with precision control.",
-    features: [
-      "25-500 ton capacity options",
-      "Extendable boom reach up to 60m",
-      "All-terrain capability",
-      "Professional certified operators",
-    ],
-    detailLink: "/services/mobile-crane-rental-uae",
-  },
-  {
-    title: "Telehandler",
-    image: "/images/fleet/telehandler-jcb.jpg",
-    description:
-      "Versatile telehandlers designed for confined spaces with intelligent material positioning and maximum operational efficiency.",
-    features: [
-      "5-17 meter reach height",
-      "3-10 ton load capacity",
-      "Compact design for tight spaces",
-      "Rotating jib attachment compatible",
-    ],
-    detailLink: "/services/telehandler-rental",
-  },
-  {
-    title: "Man Lift / Aerial Platform",
-    image: "/images/fleet/scissor-lift.jpg",
-    description:
-      "Safe elevated work platforms with advanced safety systems for maintenance, construction, and installation tasks at height.",
-    features: [
-      "10-50m working height",
-      "Multiple platform configurations",
-      "Advanced safety features",
-      "Certified trained operators included",
-    ],
-    detailLink: "/services/man-lift-access",
-  },
-]
-
-export default function EquipmentShowcase() {
-  const whatsappHref = waLink("I am interested in equipment rental.")
+export default function EquipmentShowcase({ headingLevel = "h2" }: { headingLevel?: "h1" | "h2" }) {
+  const Heading = headingLevel
 
   return (
-    <section className="w-full bg-secondary/40 py-20 md:py-28">
+    <section className="w-full bg-secondary/60 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4">
         <Reveal className="mb-14 max-w-2xl space-y-3">
-          <p className="text-sm font-bold uppercase tracking-widest text-accent">Our Premium Fleet</p>
-          <h2 className="text-foreground">World-Class Equipment for Every Project</h2>
+          <p className="text-sm font-bold uppercase tracking-widest text-accent">Our Fleet</p>
+          <Heading className="text-foreground">Equipment &amp; Engineering Machinery for Rent</Heading>
           <p className="text-lg font-medium text-muted-foreground">
-            State-of-the-art heavy lifting and access equipment maintained to enterprise standards
+            Seven categories of construction and civil works equipment, each hired with an experienced operator or
+            driver.
           </p>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {equipment.map((item, idx) => (
-            <Reveal key={item.title} delay={idx * 100} className="h-full">
-              <article className="flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
-                <div className="relative h-64 w-full bg-muted">
-                  <Image
-                    src={item.image}
-                    alt={`${item.title} rental in the UAE`}
-                    fill
-                    className="object-cover transition-transform duration-500 hover:scale-105"
-                    sizes="(min-width: 768px) 33vw, 100vw"
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {equipmentTypes.map((equipment, idx) => (
+            <Reveal key={equipment.key} delay={(idx % 4) * 90} className="h-full">
+              <Link
+                href={equipment.href}
+                className="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg"
+              >
+                <div className="relative h-44 w-full overflow-hidden bg-muted">
+                  <EquipmentVisual
+                    equipment={equipment}
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-
-                <div className="flex flex-1 flex-col justify-between gap-5 p-7">
-                  <div className="space-y-4">
-                    <div>
-                      <h3 className="text-foreground">{item.title}</h3>
-                      <p className="mt-1.5 text-sm font-medium leading-relaxed text-muted-foreground">
-                        {item.description}
-                      </p>
-                    </div>
-
-                    <ul className="space-y-2">
-                      {item.features.map((feature) => (
-                        <li key={feature} className="flex gap-2.5 text-sm font-medium text-foreground">
-                          <span className="mt-0.5 shrink-0 text-accent">✓</span>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                <div className="flex flex-1 flex-col justify-between gap-4 p-5">
+                  <div className="space-y-2">
+                    <span className="inline-block rounded bg-primary/10 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-primary">
+                      {equipment.tag}
+                    </span>
+                    <h3 className="text-lg font-extrabold text-foreground">{equipment.label} Rental</h3>
+                    <p className="text-sm font-medium leading-relaxed text-muted-foreground">{equipment.summary}</p>
                   </div>
-
-                  <div className="flex gap-3">
-                    <Link
-                      href={item.detailLink}
-                      className="flex-1 rounded-lg bg-secondary px-4 py-3 text-center text-sm font-bold text-foreground transition-colors hover:bg-secondary/80"
-                    >
-                      Learn More
-                    </Link>
-                    <a
-                      href={whatsappHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-[#25D366] px-4 py-3 text-sm font-bold text-white transition-all hover:scale-[1.02] hover:bg-[#1fb855]"
-                    >
-                      <WhatsAppIcon size={16} />
-                      Get Quote
-                    </a>
-                  </div>
+                  <span className="inline-flex items-center gap-1.5 text-sm font-bold text-accent">
+                    Details &amp; Quote
+                    <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+                  </span>
                 </div>
-              </article>
+              </Link>
             </Reveal>
           ))}
+
+          <Reveal delay={270} className="h-full">
+            <Link
+              href="/contact"
+              className="group flex h-full flex-col justify-between gap-4 rounded-lg bg-industrial p-6 text-white transition-all hover:-translate-y-1 hover:shadow-lg"
+            >
+              <div className="space-y-3">
+                <span className="hazard-stripe block h-2 w-16 rounded-sm" aria-hidden="true" />
+                <h3 className="text-xl font-extrabold">Need Several Machines?</h3>
+                <p className="text-sm font-medium leading-relaxed text-white/75">
+                  Excavator, loader, and tippers for earthworks, then a boom loader or crane for the structure — one
+                  supplier, one schedule.
+                </p>
+              </div>
+              <span className="inline-flex items-center gap-1.5 text-sm font-bold text-safety">
+                Request a Package Quote
+                <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+              </span>
+            </Link>
+          </Reveal>
         </div>
       </div>
     </section>

@@ -54,30 +54,31 @@ export function ServiceLandingTemplate({
     <main className="w-full overflow-x-hidden">
       <Header />
 
-      <section className="bg-primary py-16 text-white md:py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 md:items-center">
+      <section className="relative overflow-hidden bg-primary py-16 text-white md:py-24">
+        <div className="bg-blueprint absolute inset-0" aria-hidden="true" />
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 md:grid-cols-2 md:items-center">
           <div className="animate-slide-up space-y-5">
-            <span className="inline-flex rounded-full bg-accent px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-foreground">
+            <span className="inline-flex rounded-md bg-accent px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-accent-foreground">
               {eyebrow}
             </span>
             <h1 className="text-white">{title}</h1>
             <p className="max-w-xl text-lg font-medium leading-relaxed text-white/85">{intro}</p>
             <div className="flex flex-col gap-3 sm:flex-row">
               <a
+                href={siteConfig.telHref}
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-7 py-3.5 text-sm font-bold text-accent-foreground shadow-lg transition-transform hover:scale-[1.02]"
+              >
+                <Phone size={18} />
+                Call {siteConfig.phoneDisplay}
+              </a>
+              <a
                 href={whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-7 py-3.5 text-sm font-bold text-accent-foreground shadow-lg transition-transform hover:scale-[1.02]"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-7 py-3.5 text-sm font-bold text-white shadow-lg transition-transform hover:scale-[1.02]"
               >
                 <WhatsAppIcon size={18} />
-                Request a Quote
-              </a>
-              <a
-                href={siteConfig.telHref}
-                className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-white/30 bg-white/10 px-7 py-3.5 text-sm font-bold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
-              >
-                <Phone size={18} />
-                {siteConfig.phoneDisplay}
+                WhatsApp for a Quote
               </a>
             </div>
           </div>
@@ -174,20 +175,20 @@ export function ServiceLandingTemplate({
           <p className="text-xl font-medium text-muted-foreground">{ctaSubheading}</p>
           <div className="flex flex-col justify-center gap-4 md:flex-row">
             <a
+              href={siteConfig.telHref}
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-accent px-8 py-3.5 text-sm font-bold text-accent-foreground transition-transform hover:scale-105"
+            >
+              <Phone size={18} />
+              Call {siteConfig.phoneDisplay}
+            </a>
+            <a
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-8 py-3.5 text-sm font-bold text-accent-foreground transition-transform hover:scale-105"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-8 py-3.5 text-sm font-bold text-white transition-transform hover:scale-105"
             >
               <WhatsAppIcon size={18} />
               Request a Quote on WhatsApp
-            </a>
-            <a
-              href={siteConfig.telHref}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-sm font-bold text-primary-foreground transition-transform hover:scale-105"
-            >
-              <Phone size={18} />
-              {siteConfig.phoneDisplay}
             </a>
           </div>
         </div>

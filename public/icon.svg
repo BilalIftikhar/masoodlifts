@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="tile"><rect width="64" height="64" rx="10"/></clipPath>
+    <pattern id="hz" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+      <rect width="4" height="8" fill="#f5b301"/><rect x="4" width="4" height="8" fill="#0f172a"/>
+    </pattern>
+  </defs>
+  <g clip-path="url(#tile)">
+    <rect width="64" height="64" fill="#1b2e4f"/>
+    <rect y="50" width="64" height="14" fill="url(#hz)"/>
+    <rect y="47" width="64" height="3" fill="#c2410c"/>
+  </g>
+  <text x="32" y="38" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#ffffff" letter-spacing="-1">AM</text>
+</svg>

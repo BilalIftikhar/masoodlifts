@@ -5,7 +5,7 @@ import EquipmentShowcase from "@/components/equipment-showcase"
 import ServicesSection from "@/components/services-section"
 import WhyChooseUs from "@/components/why-choose-us"
 import CoverageSection from "@/components/coverage-section"
-import Features from "@/components/features"
+import ProcessSection from "@/components/process-section"
 import { FaqSection } from "@/components/faq-section"
 import ContactSection from "@/components/contact-section"
 import Footer from "@/components/footer"
@@ -15,10 +15,17 @@ import { pageMetadata } from "@/lib/seo"
 import { generalFaqs } from "@/lib/faqs"
 
 export const metadata: Metadata = pageMetadata({
-  title: "Heavy Equipment Rental UAE | Forklift, Crane & Lift Hire",
+  title: "Heavy Equipment Rental in Oman",
   description:
-    "Forklifts (3–25 ton), mobile cranes (25–500 ton), telehandlers & man lifts for rent across all 7 emirates. Certified operators, 24/7 deployment.",
+    "Crane, tipper, boom loader, 3 ton forklift, excavator, JCB & wheel loader rental across Oman with operators. Based in Sohar. Call +968 7928 8727.",
   path: "/",
+  keywords: [
+    "heavy equipment rental Oman",
+    "equipment rental Oman",
+    "construction equipment rental Oman",
+    "heavy equipment rental Sohar",
+    "machinery rental Oman",
+  ],
 })
 
 export default function Home() {
@@ -31,8 +38,11 @@ export default function Home() {
       <ServicesSection />
       <WhyChooseUs />
       <CoverageSection />
-      <Features />
-      <FaqSection faqs={generalFaqs} subheading="Everything you need to know before renting equipment with Seven Lift." />
+      <ProcessSection />
+      <FaqSection
+        faqs={generalFaqs}
+        subheading="What to know before renting equipment from Abdul Masood Trading."
+      />
       <ContactSection />
       <Footer />
     </main>

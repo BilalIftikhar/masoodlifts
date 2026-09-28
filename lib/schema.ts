@@ -1,10 +1,15 @@
 import { siteConfig } from "@/lib/site-config"
+import { equipmentTypes } from "@/lib/equipment"
+import { locations } from "@/lib/locations"
 
 type WithContext<T> = T & { "@context": "https://schema.org" }
 
+const logoUrl = `${siteConfig.url}/images/brand/logo-512.png`
+
 const baseAddress = {
   "@type": "PostalAddress",
-  streetAddress: siteConfig.address.streetAddress,
+  postOfficeBoxNumber: siteConfig.address.postOfficeBoxNumber,
+  postalCode: siteConfig.address.postalCode,
   addressLocality: siteConfig.address.addressLocality,
   addressRegion: siteConfig.address.addressRegion,
   addressCountry: siteConfig.address.addressCountry,
@@ -16,15 +21,25 @@ const baseGeo = {
   longitude: siteConfig.geo.longitude,
 }
 
+/** Oman Commercial Registration number, as a machine-readable identifier. */
+const crIdentifier = {
+  "@type": "PropertyValue",
+  propertyID: "Oman Commercial Registration (C.R.) No.",
+  value: siteConfig.crNumber,
+}
+
+const defaultAreaServed = [
+  { "@type": "Country", name: "Oman" },
+  ...locations.map((location) => ({ "@type": "City", name: location.cityName })),
+]
+
+const sameAs = Object.values(siteConfig.social)
+
 /**
- * Core LocalBusiness entity for the whole company, reused (with area-specific
- * overrides) across the homepage and every /locations page.
+ * Core LocalBusiness entity for the whole company. Emitted on the homepage and
+ * the contact page — the pages that represent the Sohar business itself.
  */
-export function localBusinessSchema(opts?: {
-  areaServed?: string[]
-  geo?: { latitude: number; longitude: number }
-  url?: string
-}): WithContext<Record<string, unknown>> {
+export function localBusinessSchema(opts?: { url?: string }): WithContext<Record<string, unknown>> {
   return {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "GeneralContractor"],
@@ -34,36 +49,39 @@ export function localBusinessSchema(opts?: {
     "@id": `${siteConfig.url}/#localbusiness`,
     parentOrganization: { "@id": `${siteConfig.url}/#organization` },
     name: siteConfig.legalName,
-    alternateName: siteConfig.shortName,
+    alternateName: [siteConfig.legalNameAr, siteConfig.name],
     description: siteConfig.description,
     url: opts?.url ?? siteConfig.url,
     telephone: siteConfig.phoneE164,
     email: siteConfig.email,
     priceRange: siteConfig.priceRange,
-    image: `${siteConfig.url}/images/brand/logo-icon-512.png`,
-    logo: `${siteConfig.url}/images/brand/logo-icon-512.png`,
+    currenciesAccepted: "OMR",
+    image: logoUrl,
+    logo: logoUrl,
+    identifier: crIdentifier,
     address: baseAddress,
-    geo: opts?.geo ? { "@type": "GeoCoordinates", ...opts.geo } : baseGeo,
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
-      opens: "00:00",
-      closes: "23:59",
+    geo: baseGeo,
+    areaServed: defaultAreaServed,
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Equipment & Engineering Machinery Rental",
+      itemListElement: equipmentTypes.map((equipment) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: `${equipment.label} Rental`,
+          url: `${siteConfig.url}${equipment.href}`,
+        },
+      })),
     },
-    areaServed:
-      opts?.areaServed?.map((name) => ({ "@type": "City", name })) ??
-      ["Abu Dhabi", "Dubai", "Sharjah", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain", "Al Ain"].map(
-        (name) => ({ "@type": "City", name }),
-      ),
-    sameAs: Object.values(siteConfig.social),
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: siteConfig.phoneE164,
+      contactType: "sales",
+      areaServed: "OM",
+      availableLanguage: ["en", "ar"],
+    },
+    ...(sameAs.length > 0 && { sameAs }),
   }
 }
 
@@ -73,36 +91,32 @@ export function organizationSchema(): WithContext<Record<string, unknown>> {
     "@type": "Organization",
     "@id": `${siteConfig.url}/#organization`,
     name: siteConfig.legalName,
-    alternateName: siteConfig.shortName,
+    legalName: siteConfig.legalName,
+    alternateName: [siteConfig.legalNameAr, siteConfig.name],
     url: siteConfig.url,
-    logo: `${siteConfig.url}/images/brand/logo-icon-512.png`,
+    logo: logoUrl,
     description: siteConfig.description,
-    foundingDate: `${siteConfig.foundingYear}`,
     email: siteConfig.email,
     telephone: siteConfig.phoneE164,
+    identifier: crIdentifier,
     address: baseAddress,
     // Plain statements of what the company is an authority on. Answer engines
     // use these to decide which entity to cite for a topic.
     knowsAbout: [
-      "Forklift rental",
-      "Mobile crane rental",
-      "Telehandler rental",
-      "Man lift and aerial work platform rental",
-      "Lift planning and rigging",
-      "Heavy equipment rental in Abu Dhabi",
-      "Heavy equipment rental in the UAE",
+      ...equipmentTypes.map((equipment) => `${equipment.label} rental`),
+      "Construction equipment rental in Oman",
+      "Engineering machinery rental for civil works",
+      "Heavy equipment rental in Sohar",
     ],
-    areaServed: ["Abu Dhabi", "Dubai", "Sharjah", "Ajman", "Ras Al Khaimah", "Fujairah", "Umm Al Quwain", "Al Ain"].map(
-      (name) => ({ "@type": "City", name }),
-    ),
-    sameAs: Object.values(siteConfig.social),
+    areaServed: defaultAreaServed,
     contactPoint: {
       "@type": "ContactPoint",
       telephone: siteConfig.phoneE164,
-      contactType: "customer service",
-      areaServed: "AE",
+      contactType: "sales",
+      areaServed: "OM",
       availableLanguage: ["en", "ar"],
     },
+    ...(sameAs.length > 0 && { sameAs }),
   }
 }
 
@@ -113,6 +127,7 @@ export function websiteSchema(): WithContext<Record<string, unknown>> {
     "@id": `${siteConfig.url}/#website`,
     url: siteConfig.url,
     name: siteConfig.name,
+    inLanguage: "en",
     publisher: { "@id": `${siteConfig.url}/#organization` },
   }
 }
@@ -131,10 +146,9 @@ export function serviceSchema(opts: {
     serviceType: opts.serviceType,
     description: opts.description,
     provider: { "@id": `${siteConfig.url}/#organization` },
-    areaServed: (opts.areaServed ?? ["Abu Dhabi", "Dubai", "United Arab Emirates"]).map((name) => ({
-      "@type": "City",
-      name,
-    })),
+    areaServed: opts.areaServed
+      ? opts.areaServed.map((name) => ({ "@type": name === "Oman" ? "Country" : "Place", name }))
+      : defaultAreaServed,
     url: opts.url,
   }
 }
@@ -194,14 +208,7 @@ export function blogPostingSchema(opts: {
       "@type": "Organization",
       name: opts.authorName,
     },
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.legalName,
-      logo: {
-        "@type": "ImageObject",
-        url: `${siteConfig.url}/images/brand/logo-icon-512.png`,
-      },
-    },
+    publisher: { "@id": `${siteConfig.url}/#organization` },
   }
 }
 
@@ -210,8 +217,19 @@ export function aboutPageSchema(url: string): WithContext<Record<string, unknown
     "@context": "https://schema.org",
     "@type": "AboutPage",
     url,
-    name: `About ${siteConfig.name}`,
+    name: `About ${siteConfig.legalName}`,
     about: { "@id": `${siteConfig.url}/#organization` },
+    isPartOf: { "@id": `${siteConfig.url}/#website` },
+  }
+}
+
+export function contactPageSchema(url: string): WithContext<Record<string, unknown>> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    url,
+    name: `Contact ${siteConfig.legalName}`,
+    about: { "@id": `${siteConfig.url}/#localbusiness` },
     isPartOf: { "@id": `${siteConfig.url}/#website` },
   }
 }

@@ -12,8 +12,8 @@ type PageSeoOptions = {
 /**
  * Builds a consistent Metadata object (canonical, OpenGraph, Twitter) for a
  * single route. `title` should be the page-specific title only — the
- * " | Seven Lift General Transport" suffix is applied by the root layout's
- * title template.
+ * " | Abdul Masood Trading" suffix is applied by the root layout's title
+ * template, so keep `title` to ~37 characters to stay inside ~60 overall.
  */
 export function pageMetadata({ title, description, path, image, keywords }: PageSeoOptions): Metadata {
   const url = `${siteConfig.url}${path}`
@@ -30,9 +30,9 @@ export function pageMetadata({ title, description, path, image, keywords }: Page
       title: `${title} | ${siteConfig.shortName}`,
       description,
       url,
-      siteName: siteConfig.name,
+      siteName: siteConfig.legalName,
       images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
-      locale: "en_AE",
+      locale: "en_OM",
       type: "website",
     },
     twitter: {

@@ -5,39 +5,62 @@ import { JsonLd } from "@/components/json-ld"
 import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema"
 import { pageMetadata } from "@/lib/seo"
 import { serviceAreaPages, getServiceAreaPage } from "@/lib/service-areas"
+import { services, getServiceBySlug } from "@/lib/services"
 import { siteConfig } from "@/lib/site-config"
 
 type PageProps = { params: Promise<{ slug: string }> }
 
 /**
- * Generates the service × city landing pages. The four hand-written pages under
- * app/services/ (forklift-rental-abu-dhabi, mobile-crane-rental-uae,
- * telehandler-rental, man-lift-access) are static route segments, which take
- * precedence over this dynamic route, and are excluded from `serviceAreaPages`.
+ * Serves both the hand-written hub pages (lib/services.ts) and the generated
+ * equipment × city pages (lib/service-areas.ts). Hub slugs are checked first;
+ * the two sets never share a slug.
  */
+function resolve(slug: string) {
+  const hub = getServiceBySlug(slug)
+  if (hub) {
+    return {
+      ...hub,
+      breadcrumbName: hub.shortTitle,
+      schemaName: hub.h1,
+    }
+  }
+
+  const page = getServiceAreaPage(slug)
+  if (!page) return undefined
+  const { equipment, location } = page
+  return {
+    ...page,
+    // Equipment without its own photo falls back to the city's hero image.
+    heroImage: equipment.image ?? location.heroImage,
+    heroImageAlt: equipment.image ? (equipment.imageAlt ?? equipment.label) : location.heroImageAlt,
+    serviceType: `${equipment.label} rental`,
+    breadcrumbName: page.cardTitle,
+    schemaName: page.h1,
+  }
+}
+
 export function generateStaticParams() {
-  return serviceAreaPages.map((page) => ({ slug: page.slug }))
+  return [...services, ...serviceAreaPages].map((page) => ({ slug: page.slug }))
 }
 
 export const dynamicParams = false
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const page = getServiceAreaPage(slug)
+  const page = resolve(slug)
   if (!page) return {}
 
   return pageMetadata({
     title: page.metaTitle,
     description: page.metaDescription,
     path: page.href,
-    image: page.equipment.heroImage,
     keywords: page.keywords,
   })
 }
 
-export default async function ServiceAreaPage({ params }: PageProps) {
+export default async function ServicePage({ params }: PageProps) {
   const { slug } = await params
-  const page = getServiceAreaPage(slug)
+  const page = resolve(slug)
   if (!page) notFound()
 
   const url = `${siteConfig.url}${page.href}`
@@ -49,11 +72,11 @@ export default async function ServiceAreaPage({ params }: PageProps) {
           breadcrumbSchema([
             { name: "Home", url: siteConfig.url },
             { name: "Services", url: `${siteConfig.url}/services` },
-            { name: page.cardTitle, url },
+            { name: page.breadcrumbName, url },
           ]),
           serviceSchema({
-            name: page.h1,
-            serviceType: `${page.equipment.label} rental`,
+            name: page.schemaName,
+            serviceType: page.serviceType,
             description: page.metaDescription,
             areaServed: page.areaServed,
             url,
@@ -65,8 +88,8 @@ export default async function ServiceAreaPage({ params }: PageProps) {
         eyebrow={page.eyebrow}
         title={page.h1}
         intro={page.intro}
-        heroImage={page.equipment.heroImage}
-        heroImageAlt={page.equipment.heroImageAltFor(page.location.cityName)}
+        heroImage={page.heroImage}
+        heroImageAlt={page.heroImageAlt}
         specs={page.specs}
         bulletGroups={page.bulletGroups}
         localContext={page.localContext}

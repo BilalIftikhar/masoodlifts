@@ -2,112 +2,55 @@ import type { Metadata } from "next"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ContactForm } from "@/components/contact-form"
+import { ContactDetails } from "@/components/contact-details"
 import { JsonLd } from "@/components/json-ld"
 import { Reveal } from "@/components/reveal"
-import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
-import { breadcrumbSchema } from "@/lib/schema"
+import { breadcrumbSchema, contactPageSchema, localBusinessSchema } from "@/lib/schema"
 import { pageMetadata } from "@/lib/seo"
 import { siteConfig } from "@/lib/site-config"
-import { Phone, Mail, Clock, MapPin } from "lucide-react"
+
+const path = "/contact"
 
 export const metadata: Metadata = pageMetadata({
-  title: "Contact Us | Request a Quote for Equipment Rental",
+  title: "Contact Us | Equipment Rental Quote",
   description:
-    "Get a forklift, crane, telehandler or man lift rental quote anywhere in the UAE. Call, email or WhatsApp us — available 24/7, reply in minutes.",
-  path: "/contact",
+    "Get an equipment rental quote from Abdul Masood Trading LLC, Sohar. Call +968 7928 8727, WhatsApp, or email chabdulmasood@gmail.com.",
+  path,
 })
 
 export default function ContactPage() {
+  const url = `${siteConfig.url}${path}`
+
   return (
     <main className="w-full overflow-x-hidden">
       <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", url: siteConfig.url },
-          { name: "Contact", url: `${siteConfig.url}/contact` },
-        ])}
+        data={[
+          breadcrumbSchema([
+            { name: "Home", url: siteConfig.url },
+            { name: "Contact", url },
+          ]),
+          contactPageSchema(url),
+          localBusinessSchema(),
+        ]}
       />
       <Header />
       <div className="min-h-screen bg-gradient-to-b from-background to-secondary pb-20 pt-16 md:pt-24">
         <div className="mx-auto max-w-7xl px-4">
-          <Reveal className="mb-16 max-w-3xl space-y-4">
+          <Reveal className="mb-14 max-w-3xl space-y-4">
             <p className="text-sm font-bold uppercase tracking-widest text-accent">Get In Touch</p>
-            <h1 className="text-foreground">Contact Us</h1>
+            <h1 className="text-foreground">Contact {siteConfig.legalName}</h1>
             <p className="text-lg font-medium text-muted-foreground">
-              Reach out for instant quotes, equipment inquiries, or to schedule a consultation with our team.
+              For availability and a quote, call or WhatsApp {siteConfig.phoneDisplay}, or send the form. Tell us
+              the machine, the site location, the job, and your dates.
             </p>
           </Reveal>
 
-          <div className="grid gap-12 md:grid-cols-2">
-            <div className="space-y-5">
-              <Reveal delay={0}>
-                <a
-                  href={siteConfig.telHref}
-                  className="flex w-full gap-4 rounded-xl border-2 border-accent/20 p-6 text-left transition-all hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-lg"
-                >
-                  <div className="h-fit rounded-lg bg-accent/10 p-3">
-                    <Phone size={22} className="text-accent" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold uppercase tracking-widest text-foreground">Phone / WhatsApp</p>
-                    <p className="mt-1 text-2xl font-extrabold text-accent">{siteConfig.phoneDisplay}</p>
-                  </div>
-                </a>
-              </Reveal>
-
-              <Reveal delay={80}>
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="flex w-full gap-4 rounded-xl border-2 border-accent/20 p-6 text-left transition-all hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-lg"
-                >
-                  <div className="h-fit rounded-lg bg-accent/10 p-3">
-                    <Mail size={22} className="text-accent" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold uppercase tracking-widest text-foreground">Email</p>
-                    <p className="font-semibold text-foreground">{siteConfig.email}</p>
-                  </div>
-                </a>
-              </Reveal>
-
-              <Reveal delay={160}>
-                <div className="flex gap-4 rounded-xl border-2 border-accent/20 p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg">
-                  <div className="h-fit rounded-lg bg-accent/10 p-3">
-                    <Clock size={22} className="text-accent" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold uppercase tracking-widest text-foreground">Availability</p>
-                    <p className="font-semibold text-foreground">24/7 Available — Emergency Support</p>
-                  </div>
-                </div>
-              </Reveal>
-
-              <Reveal delay={240}>
-                <div className="flex gap-4 rounded-xl border-2 border-accent/20 p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg">
-                  <div className="h-fit rounded-lg bg-accent/10 p-3">
-                    <MapPin size={22} className="text-accent" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold uppercase tracking-widest text-foreground">Service Area</p>
-                    <p className="font-semibold text-foreground">Abu Dhabi, Dubai &amp; All UAE Regions — Same-Day Service</p>
-                  </div>
-                </div>
-              </Reveal>
-
-              <Reveal delay={320}>
-                <div className="flex gap-4 rounded-xl border-2 border-accent/20 p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg">
-                  <div className="h-fit rounded-lg bg-accent/10 p-3">
-                    <WhatsAppIcon size={22} className="text-accent" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold uppercase tracking-widest text-foreground">Response Time</p>
-                    <p className="font-semibold text-foreground">Under 5 Minutes Guaranteed</p>
-                  </div>
-                </div>
-              </Reveal>
+          <div className="grid gap-12 lg:grid-cols-5">
+            <div className="lg:col-span-2">
+              <ContactDetails />
             </div>
-
-            <Reveal delay={120} className="rounded-xl border-2 border-border bg-gradient-to-br from-primary/5 to-accent/5 p-8 md:p-10">
-              <ContactForm showEquipmentSelect />
+            <Reveal delay={120} className="rounded-lg border-2 border-border bg-card p-6 md:p-10 lg:col-span-3">
+              <ContactForm />
             </Reveal>
           </div>
         </div>

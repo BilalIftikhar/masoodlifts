@@ -4,7 +4,7 @@ import { ArrowRight, Calendar, Clock } from "lucide-react"
 import type { BlogPost } from "@/lib/blog/types"
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-AE", { year: "numeric", month: "long", day: "numeric" })
+  return new Date(iso).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })
 }
 
 export function PostCard({ post, priority = false }: { post: BlogPost; priority?: boolean }) {

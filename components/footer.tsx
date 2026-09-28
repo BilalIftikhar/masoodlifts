@@ -1,83 +1,71 @@
 import Link from "next/link"
-import Image from "next/image"
-import { Phone, Mail, MapPin, Clock } from "lucide-react"
+import { Phone, Mail, MapPin, FileBadge } from "lucide-react"
+import { BrandLogo } from "@/components/brand-logo"
 import { siteConfig, serviceAreas } from "@/lib/site-config"
+import { equipmentTypes } from "@/lib/equipment"
 import { services } from "@/lib/services"
 import { locations } from "@/lib/locations"
 
-/** High-intent city pages surfaced sitewide so they gain internal link equity. */
+/** High-intent pages surfaced sitewide so they gain internal link equity. */
 const popularSearches = [
-  { label: "Crane Rental Abu Dhabi", href: "/services/mobile-crane-rental-abu-dhabi" },
-  { label: "Telehandler Rental Abu Dhabi", href: "/services/telehandler-rental-abu-dhabi" },
-  { label: "Man Lift Rental Abu Dhabi", href: "/services/man-lift-rental-abu-dhabi" },
-  { label: "Equipment Rental ICAD", href: "/locations/abu-dhabi/icad" },
-  { label: "Equipment Rental KIZAD", href: "/locations/abu-dhabi/kizad-khalifa-port" },
-  { label: "Forklift Rental Dubai", href: "/services/forklift-rental-dubai" },
+  { label: "Heavy Equipment Rental in Oman", href: "/" },
+  ...services.map((service) => ({ label: service.shortTitle, href: service.href })),
+  { label: "Construction Machinery Rental Muscat", href: "/locations/muscat" },
+  { label: "Excavator Rental Sohar", href: "/services/excavator-rental-sohar" },
+  { label: "Wheel Loader Rental Al Buraimi", href: "/services/wheel-loader-rental-al-buraimi" },
 ]
 
 export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="w-full bg-[#0b1526] text-white">
+    <footer className="w-full bg-industrial text-industrial-foreground">
+      <div className="hazard-stripe h-2" aria-hidden="true" />
       <div className="mx-auto max-w-7xl px-4 py-16">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
-          <div className="space-y-4 lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2.5">
-              <Image
-                src="/images/brand/logo-icon-512.png"
-                alt="Seven Lift General Transport logo"
-                width={44}
-                height={44}
-                className="rounded-md"
-              />
-              <div>
-                <span className="block text-base font-bold leading-none">Seven Lift</span>
-                <span className="block text-[10px] font-semibold uppercase tracking-widest text-white/60">
-                  General Transport L.L.C.
-                </span>
-              </div>
+          <div className="space-y-5 lg:col-span-2">
+            <Link href="/" aria-label={`${siteConfig.legalName} — home`}>
+              <BrandLogo tone="dark" />
             </Link>
-            <p className="max-w-sm text-sm leading-relaxed text-white/70">
-              Certified forklift, mobile crane, telehandler, and man lift rental across the UAE — with dedicated
-              coverage in Abu Dhabi (Musaffah, ICAD, KIZAD) and Dubai (JAFZA, Al Quoz, Dubai Industrial City).
-            </p>
-            <div className="space-y-2.5 pt-2 text-sm text-white/80">
-              <a href={siteConfig.telHref} className="flex items-center gap-2.5 hover:text-accent transition-colors">
-                <Phone size={16} className="shrink-0 text-accent" />
-                {siteConfig.phoneDisplay}
-              </a>
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="flex items-center gap-2.5 hover:text-accent transition-colors"
-              >
-                <Mail size={16} className="shrink-0 text-accent" />
-                {siteConfig.email}
-              </a>
-              <p className="flex items-start gap-2.5">
-                <MapPin size={16} className="mt-0.5 shrink-0 text-accent" />
-                {siteConfig.address.streetAddress}, {siteConfig.address.addressLocality}, UAE
-              </p>
-              <p className="flex items-center gap-2.5">
-                <Clock size={16} className="shrink-0 text-accent" />
-                Available 24/7 — Emergency Deployment
+            <div className="space-y-1 text-sm leading-relaxed text-white/70">
+              <p>{siteConfig.activity}</p>
+              <p lang="ar" dir="rtl" className="font-arabic text-right text-white/60 md:text-left">
+                {siteConfig.activityAr}
               </p>
             </div>
+            <address className="space-y-2.5 pt-1 text-sm not-italic text-white/85">
+              <p className="flex items-start gap-2.5">
+                <FileBadge size={16} className="mt-0.5 shrink-0 text-safety" />
+                C.R. No. {siteConfig.crNumber}
+              </p>
+              <p className="flex items-start gap-2.5">
+                <MapPin size={16} className="mt-0.5 shrink-0 text-safety" />
+                {siteConfig.addressLine}
+              </p>
+              <a href={siteConfig.telHref} className="flex items-center gap-2.5 hover:text-safety transition-colors">
+                <Phone size={16} className="shrink-0 text-safety" />
+                GSM / WhatsApp: {siteConfig.phoneDisplay}
+              </a>
+              <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2.5 hover:text-safety transition-colors">
+                <Mail size={16} className="shrink-0 text-safety" />
+                {siteConfig.email}
+              </a>
+            </address>
           </div>
 
           <div className="space-y-3">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Services</h3>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Equipment</h3>
             <ul className="space-y-2.5 text-sm text-white/70">
-              {services.map((service) => (
-                <li key={service.slug}>
-                  <Link href={service.href} className="hover:text-accent transition-colors">
-                    {service.shortTitle}
+              {equipmentTypes.map((equipment) => (
+                <li key={equipment.key}>
+                  <Link href={equipment.href} className="hover:text-safety transition-colors">
+                    {equipment.label} Rental
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/equipment" className="hover:text-accent transition-colors">
-                  Full Equipment Fleet
+                <Link href="/equipment" className="hover:text-safety transition-colors">
+                  Full Fleet
                 </Link>
               </li>
             </ul>
@@ -88,50 +76,45 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm text-white/70">
               {locations.map((location) => (
                 <li key={location.slug}>
-                  <Link href={location.href} className="hover:text-accent transition-colors">
-                    {location.shortTitle}
+                  <Link href={location.href} className="hover:text-safety transition-colors">
+                    Equipment Rental {location.cityName}
                   </Link>
                 </li>
               ))}
               <li>
-                <Link href="/locations" className="hover:text-accent transition-colors">
-                  All Coverage Areas
+                <Link href="/locations" className="hover:text-safety transition-colors">
+                  All Oman Coverage
                 </Link>
               </li>
             </ul>
-            <h3 className="pt-4 text-sm font-bold uppercase tracking-wider text-white">Popular Searches</h3>
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Popular Searches</h3>
             <ul className="space-y-2.5 text-sm text-white/70">
               {popularSearches.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="hover:text-accent transition-colors">
+                  <Link href={link.href} className="hover:text-safety transition-colors">
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div className="space-y-3">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Company</h3>
+            <h3 className="pt-4 text-sm font-bold uppercase tracking-wider text-white">Company</h3>
             <ul className="space-y-2.5 text-sm text-white/70">
               <li>
-                <Link href="/about" className="hover:text-accent transition-colors">
+                <Link href="/about" className="hover:text-safety transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-accent transition-colors">
-                  All Services
+                <Link href="/blog" className="hover:text-safety transition-colors">
+                  Guides
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-accent transition-colors">
-                  Blog &amp; Guides
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-accent transition-colors">
-                  Contact Us
+                <Link href="/contact" className="hover:text-safety transition-colors">
+                  Contact &amp; Quote
                 </Link>
               </li>
             </ul>
@@ -139,24 +122,17 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-white/10 pt-8">
-          <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-white/50">UAE Service Network</h3>
-          <p className="text-sm leading-relaxed text-white/60">
-            {serviceAreas.map((area) => area.name).join(" · ")}
-          </p>
+          <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-white/50">Oman Service Network</h3>
+          <p className="text-sm leading-relaxed text-white/60">{serviceAreas.map((area) => area.name).join(" · ")}</p>
         </div>
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/60 md:flex-row">
+        <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-8 text-center text-sm text-white/60 md:flex-row md:text-left">
           <p>
-            &copy; {year} {siteConfig.legalName}. All rights reserved.
+            &copy; {year} {siteConfig.legalName} · C.R. No. {siteConfig.crNumber}. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <Link href="/contact" className="hover:text-accent transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/contact" className="hover:text-accent transition-colors">
-              Terms of Service
-            </Link>
-          </div>
+          <p lang="ar" dir="rtl" className="font-arabic">
+            {siteConfig.legalNameAr} — صحار، سلطنة عمان
+          </p>
         </div>
       </div>
     </footer>

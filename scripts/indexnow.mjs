@@ -12,7 +12,7 @@
  * Google does not use IndexNow; use Search Console for Google.
  */
 
-const HOST = "www.sevenlift.net"
+const HOST = "masoodlifts.com" // keep in sync with siteConfig.domain
 const KEY = "2f5cee67c7d8744f8be324f575424edc" // served from public/2f5cee67c7d8744f8be324f575424edc.txt
 const SITE = `https://${HOST}`
 

@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-AE", { year: "numeric", month: "long", day: "numeric" })
+  return new Date(iso).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -50,7 +50,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   const relatedPosts = getRelatedPosts(post.slug)
-  const whatsappHref = waLink(`Hi Seven Lift, I read "${post.title}" and would like equipment rental information.`)
+  const whatsappHref = waLink(
+    `Hello Abdul Masood Trading, I read "${post.title}" and would like equipment rental information.`,
+  )
 
   return (
     <main className="w-full overflow-x-hidden">
@@ -138,17 +140,23 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="mt-10 rounded-xl bg-primary p-8 text-center text-white md:p-10">
             <h2 className="text-white">Need Equipment for Your Next Project?</h2>
             <p className="mx-auto mt-2 max-w-xl text-white/85">
-              Talk to our team for a fast quote on forklifts, mobile cranes, telehandlers, or man lifts anywhere in
-              the UAE.
+              Talk to our team for a quote on cranes, tippers, boom loaders, forklifts, excavators, JCBs, or wheel
+              loaders anywhere in Oman.
             </p>
             <a
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-8 py-3.5 text-sm font-bold text-accent-foreground transition-transform hover:scale-105"
+              className="mt-6 inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-8 py-3.5 text-sm font-bold text-white transition-transform hover:scale-105"
             >
               <WhatsAppIcon size={18} />
               Request a Quote on WhatsApp
+            </a>
+            <a
+              href={siteConfig.telHref}
+              className="ml-0 mt-3 inline-flex items-center justify-center gap-2 rounded-md bg-accent px-8 py-3.5 text-sm font-bold text-accent-foreground transition-transform hover:scale-105 sm:ml-3"
+            >
+              Call {siteConfig.phoneDisplay}
             </a>
           </div>
         </div>

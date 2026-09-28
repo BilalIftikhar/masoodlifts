@@ -10,9 +10,9 @@ import { getAllPosts } from "@/lib/blog/posts"
 import { siteConfig } from "@/lib/site-config"
 
 export const metadata: Metadata = pageMetadata({
-  title: "Blog | Heavy Equipment Rental Guides for the UAE",
+  title: "Equipment Rental Guides for Oman",
   description:
-    "Practical guides on forklift selection, crane safety and equipment rental strategy for contractors and warehouse operators across the UAE.",
+    "Practical guides on choosing cranes, excavators, JCBs, wheel loaders, boom loaders and forklifts for construction and civil works in Oman.",
   path: "/blog",
 })
 
@@ -33,10 +33,10 @@ export default function BlogIndexPage() {
         <div className="mx-auto max-w-7xl px-4">
           <Reveal className="mb-16 max-w-3xl space-y-4">
             <p className="text-sm font-bold uppercase tracking-widest text-accent">Guides &amp; Insights</p>
-            <h1 className="text-foreground">Heavy Equipment Rental Blog</h1>
+            <h1 className="text-foreground">Equipment Rental Guides</h1>
             <p className="text-lg font-medium text-muted-foreground">
-              Practical, UAE-specific guidance on choosing equipment, staying compliant, and planning rental
-              strategy for projects in Abu Dhabi, Dubai, and beyond.
+              Practical guidance on choosing the right machine, preparing your site, and planning equipment hire for
+              construction and civil works projects across Oman.
             </p>
           </Reveal>
 

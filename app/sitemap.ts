@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next"
 import { siteConfig } from "@/lib/site-config"
+import { equipmentTypes } from "@/lib/equipment"
 import { services } from "@/lib/services"
 import { locations } from "@/lib/locations"
-import { abuDhabiAreas } from "@/lib/abu-dhabi-areas"
 import { serviceAreaPages } from "@/lib/service-areas"
 import { getAllPosts } from "@/lib/blog/posts"
 
@@ -12,7 +12,7 @@ import { getAllPosts } from "@/lib/blog/posts"
  * Google the field is unreliable, and it then ignores lastmod for the whole site
  * — which slows the crawl of new pages.
  */
-const CONTENT_UPDATED = new Date("2026-09-19")
+const CONTENT_UPDATED = new Date("2026-09-25")
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = CONTENT_UPDATED
@@ -20,32 +20,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: siteConfig.url, lastModified: now, changeFrequency: "weekly", priority: 1 },
     { url: `${siteConfig.url}/equipment`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${siteConfig.url}/equipment/forklift`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${siteConfig.url}/equipment/mobile-crane`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${siteConfig.url}/equipment/telehandler`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${siteConfig.url}/equipment/man-lift`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${siteConfig.url}/services`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${siteConfig.url}/locations`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${siteConfig.url}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${siteConfig.url}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${siteConfig.url}/about`, lastModified: now, changeFrequency: "yearly", priority: 0.6 },
-    { url: `${siteConfig.url}/contact`, lastModified: now, changeFrequency: "yearly", priority: 0.6 },
+    { url: `${siteConfig.url}/contact`, lastModified: now, changeFrequency: "yearly", priority: 0.7 },
   ]
 
-  // Hand-written service pages (highest-intent, richest content).
+  const equipmentRoutes: MetadataRoute.Sitemap = equipmentTypes.map((equipment) => ({
+    url: `${siteConfig.url}${equipment.href}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.9,
+  }))
+
+  // Hand-written keyword hubs (highest-intent, richest content).
   const serviceRoutes: MetadataRoute.Sitemap = services.map((service) => ({
     url: `${siteConfig.url}${service.href}`,
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.95,
-  }))
-
-  // Generated service × city pages — the UAE-wide long-tail coverage.
-  const serviceAreaRoutes: MetadataRoute.Sitemap = serviceAreaPages.map((page) => ({
-    url: `${siteConfig.url}${page.href}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    // Core-emirate pages carry slightly more weight than the outlying ones.
-    priority: page.location.primary ? 0.9 : 0.8,
   }))
 
   const locationRoutes: MetadataRoute.Sitemap = locations.map((location) => ({
@@ -55,31 +49,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: location.primary ? 0.95 : 0.85,
   }))
 
-  const abuDhabiAreaRoutes: MetadataRoute.Sitemap = abuDhabiAreas.map((area) => ({
-    url: `${siteConfig.url}${area.href}`,
+  // Generated equipment × city pages — the Oman-wide long-tail coverage.
+  const serviceAreaRoutes: MetadataRoute.Sitemap = serviceAreaPages.map((page) => ({
+    url: `${siteConfig.url}${page.href}`,
     lastModified: now,
     changeFrequency: "monthly",
-    priority: 0.85,
+    // Core-coverage cities carry slightly more weight than project-hire ones.
+    priority: page.location.primary ? 0.8 : 0.7,
   }))
 
   const blogRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
     url: `${siteConfig.url}/blog/${post.slug}`,
     lastModified: new Date(post.dateModified ?? post.datePublished),
     changeFrequency: "yearly",
-    priority: 0.6,
+    priority: 0.5,
   }))
 
-  const all = [
+  return [
     ...staticRoutes,
+    ...equipmentRoutes,
     ...serviceRoutes,
-    ...serviceAreaRoutes,
     ...locationRoutes,
-    ...abuDhabiAreaRoutes,
+    ...serviceAreaRoutes,
     ...blogRoutes,
   ]
-
-  // Guard against a hand-written and generated page ever claiming the same URL.
-  return all.filter(
-    (entry, index) => all.findIndex((candidate) => candidate.url === entry.url) === index,
-  )
 }

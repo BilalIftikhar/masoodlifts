@@ -3,81 +3,33 @@ export type Faq = { question: string; answer: string }
 /** General company FAQs shown on the homepage. */
 export const generalFaqs: Faq[] = [
   {
-    question: "What areas in the UAE do you cover?",
+    question: "What equipment do you rent?",
     answer:
-      "We deploy equipment across Abu Dhabi (Musaffah, ICAD, Khalifa Industrial Zone / KIZAD, Mussafah Industrial Area) and Dubai (JAFZA, Dubai Industrial City, Al Quoz, DIP), plus Sharjah and the wider UAE on request. Same-day mobilization is available for most sites within our core coverage areas.",
+      "Cranes, tipper trucks, boom loaders, 3 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders for construction and civil works.",
   },
   {
-    question: "Do your rentals include a certified operator?",
+    question: "Which areas of Oman do you cover?",
     answer:
-      "Yes. Every forklift, mobile crane, telehandler, and man lift rental includes a trained, certified operator as standard. Operator-only or self-drive arrangements can also be discussed for clients with in-house certified staff.",
+      "We are registered in Sohar and supply equipment across Oman, with dedicated coverage of Sohar, Muscat, Al Buraimi, Nizwa, Duqm, and Salalah. Sohar and nearby areas are quickest to reach; for Duqm and Salalah we plan transport in advance.",
+  },
+  {
+    question: "Is an operator included?",
+    answer:
+      "Yes. Our machines are supplied with experienced operators and drivers. 3 ton forklifts can also be hired without an operator if your staff hold the required licence.",
   },
   {
     question: "What rental terms do you offer?",
     answer:
-      "We offer flexible daily, weekly, and monthly rental terms with no long-term lock-in required. Long-term project rates are available for construction, oil & gas, and logistics contracts running several months or longer.",
+      "Daily, weekly, and monthly hire. Longer-term rates are available for projects running several months, and a hire can usually be extended on site.",
   },
   {
-    question: "Can you handle emergency or same-day equipment requests?",
+    question: "How do I get a quote?",
     answer:
-      "Yes — our dispatch team operates 24/7 and can typically mobilize equipment to your site within hours for urgent breakdowns, project delays, or unplanned lifts, subject to fleet availability in your area.",
+      "Call or WhatsApp +968 7928 8727, email chabdulmasood@gmail.com, or use the inquiry form. Tell us the machine, the site location, the job, and the dates, and we will confirm availability and price.",
   },
   {
-    question: "Is your equipment insured and safety-certified?",
+    question: "Is ABDUL MASOOD TRADING LLC a registered company?",
     answer:
-      "All equipment in our fleet undergoes regular maintenance and safety inspection, and is covered by comprehensive insurance. Load charts, third-party inspection certificates, and safety documentation are provided for every crane and lifting job.",
-  },
-  {
-    question: "How quickly can I get a quote?",
-    answer:
-      "Send us your equipment type, capacity, location, and rental duration via WhatsApp or our contact form, and our team will respond with pricing and availability in under 5 minutes during business hours.",
-  },
-]
-
-/** FAQs specific to the Abu Dhabi / Musaffah location landing page. */
-export const abuDhabiFaqs: Faq[] = [
-  {
-    question: "Do you deliver equipment inside Musaffah and ICAD industrial zones?",
-    answer:
-      "Yes. Musaffah (M1–M45), ICAD 1–3, and Khalifa Industrial Zone (KIZAD) are core parts of our daily coverage area, with equipment already staged nearby for fast turnaround.",
-  },
-  {
-    question: "Can you supply cranes for lifts inside Abu Dhabi ports and free zones?",
-    answer:
-      "Yes, we regularly service Khalifa Port, KIZAD, and surrounding free zone facilities with mobile cranes rated from 25 to 500 tons, including certified riggers and lift plans where required.",
-  },
-  {
-    question: "Do you handle Abu Dhabi Municipality permit requirements for cranes?",
-    answer:
-      "We provide the equipment documentation, load charts, and certifications your site or contractor typically needs to secure municipality or client permits. Our team can advise on the process based on your project scope.",
-  },
-  {
-    question: "What is your typical response time for Musaffah warehouse forklift requests?",
-    answer:
-      "For standard forklift capacities (3–25 ton) within Musaffah and ICAD, we can usually mobilize the same day, and often within a few hours for urgent warehouse needs.",
-  },
-]
-
-/** FAQs specific to the Dubai location landing page. */
-export const dubaiFaqs: Faq[] = [
-  {
-    question: "Do you provide equipment rental inside JAFZA and Dubai Industrial City?",
-    answer:
-      "Yes, JAFZA, Dubai Industrial City, Al Quoz, and Dubai Investment Park are part of our regular Dubai coverage, with forklifts, telehandlers, and cranes available for both short-term and long-term contracts.",
-  },
-  {
-    question: "Can you support free zone logistics and warehousing operations in Dubai?",
-    answer:
-      "Absolutely — we regularly supply forklifts and side loaders to logistics and 3PL operators inside JAFZA and DIC, with flexible shift-based or monthly rental arrangements to match warehouse operating hours.",
-  },
-  {
-    question: "Do you offer mobile crane rental for Dubai construction sites?",
-    answer:
-      "Yes, our mobile crane fleet (25–500 ton capacity) serves construction, infrastructure, and industrial projects across Dubai, with certified operators and riggers included.",
-  },
-  {
-    question: "How far in advance should I book equipment for a Dubai project?",
-    answer:
-      "For standard equipment we can often mobilize within 24 hours. For larger cranes or multi-week/month projects, booking 3–5 days in advance helps guarantee availability of the exact capacity you need.",
+      "Yes. ABDUL MASOOD TRADING LLC (عبد المسعود للتجارة ش م م) is registered in the Sultanate of Oman under C.R. No. 1441246, with its address at P.O. Box 326, Postal Code 119, Sohar.",
   },
 ]

@@ -9,20 +9,19 @@ import { Reveal } from "@/components/reveal"
 import { breadcrumbSchema } from "@/lib/schema"
 import { pageMetadata } from "@/lib/seo"
 import { primaryLocations, secondaryLocations } from "@/lib/locations"
-import { abuDhabiAreas } from "@/lib/abu-dhabi-areas"
 import { siteConfig } from "@/lib/site-config"
 
 export const metadata: Metadata = pageMetadata({
-  title: "Service Areas | Equipment Rental, All 7 Emirates",
+  title: "Equipment Rental Locations in Oman",
   description:
-    "Equipment rental across the UAE: Abu Dhabi, Dubai, Sharjah, Ajman, RAK, Fujairah, Umm Al Quwain & Al Ain. Coverage areas and lead times per city.",
+    "Heavy equipment rental in Sohar, Muscat, Al Buraimi, Nizwa, Duqm & Salalah. Work areas, site conditions, and delivery from our Sohar base.",
   path: "/locations",
   keywords: [
-    "equipment rental UAE",
-    "heavy equipment rental all emirates",
-    "forklift rental UAE",
-    "crane rental UAE",
-    "equipment rental Northern Emirates",
+    "equipment rental Oman",
+    "heavy equipment rental Sohar",
+    "equipment rental Muscat",
+    "equipment rental Duqm",
+    "equipment rental Salalah",
   ],
 })
 
@@ -40,40 +39,44 @@ export default function LocationsPage() {
       <div className="min-h-screen bg-gradient-to-b from-background to-secondary pb-20 pt-16 md:pt-24">
         <div className="mx-auto max-w-7xl px-4">
           <Reveal className="mb-16 max-w-3xl space-y-4">
-            <p className="text-sm font-bold uppercase tracking-widest text-accent">UAE Service Network</p>
-            <h1 className="text-foreground">Where We Operate</h1>
+            <p className="text-sm font-bold uppercase tracking-widest text-accent">Oman Service Network</p>
+            <h1 className="text-foreground">Where We Supply Equipment</h1>
             <p className="text-lg font-medium text-muted-foreground">
-              Equipment rental across all seven emirates. Our fleet is based in Musaffah, Abu Dhabi, with scheduled
-              routes into Dubai, the Northern Emirates, Al Ain, and the east coast.
+              {siteConfig.legalName} is registered in Sohar. From there we supply construction and civil works
+              machinery across the Batinah coast, Muscat, Al Buraimi, and the interior, with planned project hire in
+              Duqm and Salalah.
             </p>
           </Reveal>
 
-          <div className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2">
+          <Reveal className="mb-8">
+            <h2 className="text-foreground">Core Coverage</h2>
+          </Reveal>
+          <div className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-3">
             {primaryLocations.map((location, idx) => (
               <Reveal key={location.slug} delay={idx * 100} className="h-full">
                 <Link
                   href={location.href}
-                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+                  className="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
                 >
-                  <div className="relative h-56 w-full bg-muted">
+                  <div className="relative h-48 w-full bg-muted">
                     <Image
                       src={location.heroImage}
-                      alt={location.title}
+                      alt={location.heroImageAlt}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(min-width: 768px) 50vw, 100vw"
+                      sizes="(min-width: 768px) 33vw, 100vw"
                     />
                   </div>
-                  <div className="flex flex-1 flex-col justify-between gap-4 p-8">
+                  <div className="flex flex-1 flex-col justify-between gap-4 p-7">
                     <div className="space-y-3">
-                      <span className="inline-block rounded-md bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
-                        {location.emirate}
+                      <span className="inline-block rounded bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
+                        {location.governorate}
                       </span>
-                      <h2 className="text-2xl font-extrabold text-foreground">{location.title}</h2>
-                      <p className="font-medium leading-relaxed text-muted-foreground">{location.description}</p>
+                      <h3 className="text-xl font-extrabold text-foreground">{location.title}</h3>
+                      <p className="text-sm font-medium leading-relaxed text-muted-foreground">{location.description}</p>
                     </div>
                     <span className="inline-flex items-center gap-2 text-sm font-bold text-accent">
-                      View Local Coverage
+                      View {location.cityName} Coverage
                       <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>
@@ -82,34 +85,11 @@ export default function LocationsPage() {
             ))}
           </div>
 
-          <Reveal className="mb-10 max-w-3xl space-y-3">
-            <p className="text-sm font-bold uppercase tracking-widest text-accent">Our Home Emirate</p>
-            <h2 className="text-foreground">Abu Dhabi, District by District</h2>
+          <Reveal className="mb-8 max-w-3xl space-y-3">
+            <h2 className="text-foreground">Interior &amp; Project Hire</h2>
             <p className="font-medium text-muted-foreground">
-              Our yard is in Musaffah, so we cover Abu Dhabi most closely. Each district page explains what equipment
-              work there involves: access, site rules, ground conditions, and the machines that suit them.
-            </p>
-          </Reveal>
-
-          <div className="mb-16 flex flex-wrap gap-3">
-            {abuDhabiAreas.map((area) => (
-              <Link
-                key={area.slug}
-                href={area.href}
-                className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-accent/50 hover:text-accent"
-              >
-                {area.name}
-                <ArrowRight size={14} />
-              </Link>
-            ))}
-          </div>
-
-          <Reveal className="mb-10 max-w-3xl space-y-3">
-            <p className="text-sm font-bold uppercase tracking-widest text-accent">Northern Emirates & Beyond</p>
-            <h2 className="text-foreground">Also Serving</h2>
-            <p className="font-medium text-muted-foreground">
-              Scheduled routes into every remaining emirate. Each page lists the industrial zones we cover there,
-              realistic delivery lead times, and the equipment that suits local site conditions.
+              Planned deliveries from Sohar. Each page covers local work areas, site conditions, and realistic
+              mobilization, and hires of a week or more work best here.
             </p>
           </Reveal>
 
@@ -118,18 +98,14 @@ export default function LocationsPage() {
               <Reveal key={location.slug} delay={idx * 80} className="h-full">
                 <Link
                   href={location.href}
-                  className="group flex h-full flex-col justify-between gap-4 rounded-xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg"
+                  className="group flex h-full flex-col justify-between gap-4 rounded-lg border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg"
                 >
                   <div className="space-y-3">
-                    <span className="inline-block rounded-md bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
-                      {location.emirate}
+                    <span className="inline-block rounded bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
+                      {location.governorate}
                     </span>
-                    <h3 className="text-xl font-extrabold text-foreground">
-                      Equipment Rental {location.cityName}
-                    </h3>
-                    <p className="text-sm font-medium leading-relaxed text-muted-foreground">
-                      {location.description}
-                    </p>
+                    <h3 className="text-xl font-extrabold text-foreground">{location.title}</h3>
+                    <p className="text-sm font-medium leading-relaxed text-muted-foreground">{location.description}</p>
                   </div>
                   <span className="inline-flex items-center gap-2 text-sm font-bold text-accent">
                     View {location.cityName} Coverage

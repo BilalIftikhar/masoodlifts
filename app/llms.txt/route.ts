@@ -1,7 +1,7 @@
 import { siteConfig } from "@/lib/site-config"
+import { equipmentTypes } from "@/lib/equipment"
 import { services } from "@/lib/services"
 import { locations } from "@/lib/locations"
-import { abuDhabiAreas } from "@/lib/abu-dhabi-areas"
 import { getAllPosts } from "@/lib/blog/posts"
 
 export const dynamic = "force-static"
@@ -15,31 +15,25 @@ export function GET() {
     `- [${title}](${siteConfig.url}${path})${note ? `: ${note}` : ""}`
 
   const body = [
-    `# ${siteConfig.name}`,
+    `# ${siteConfig.legalName}`,
     "",
     `> ${siteConfig.description}`,
     "",
-    `${siteConfig.legalName} was founded in ${siteConfig.foundingYear} and operates from ${siteConfig.address.streetAddress}, ${siteConfig.address.addressLocality}, UAE. Phone and WhatsApp: ${siteConfig.phoneDisplay}. Email: ${siteConfig.email}. Open 24/7. Rates are quote-based; the site does not publish prices.`,
+    `${siteConfig.legalName} (${siteConfig.legalNameAr}) is registered in the Sultanate of Oman under C.R. No. ${siteConfig.crNumber}. Activity: ${siteConfig.activity}. Address: ${siteConfig.addressLine}. GSM and WhatsApp: ${siteConfig.phoneDisplay}. Email: ${siteConfig.email}. Machines are hired with operators on daily, weekly, and monthly terms. Rates are quote-based; the site does not publish prices.`,
     "",
     "## Company",
-    link("About", "/about", "company facts, fleet capacity ranges, coverage"),
-    link("Contact", "/contact", "request a quote by phone, WhatsApp or email"),
+    link("About", "/about", "registration details, activity, coverage"),
+    link("Contact", "/contact", "request a quote by phone, WhatsApp, email, or form"),
+    "",
+    "## Equipment",
+    ...equipmentTypes.map((equipment) => link(`${equipment.label} rental`, equipment.href, equipment.summary)),
     "",
     "## Services",
-    ...services.map((service) => link(service.title, service.href, service.capacityRange)),
-    link("All services", "/services", "every equipment type in every emirate"),
+    ...services.map((service) => link(service.title, service.href, service.description)),
+    link("All services by city", "/services", "every equipment type in every city served"),
     "",
-    "## Equipment specifications",
-    link("Forklifts", "/equipment/forklift"),
-    link("Mobile cranes", "/equipment/mobile-crane"),
-    link("Telehandlers", "/equipment/telehandler"),
-    link("Man lifts", "/equipment/man-lift"),
-    "",
-    "## Abu Dhabi districts",
-    ...abuDhabiAreas.map((area) => link(area.title, area.href)),
-    "",
-    "## Emirates",
-    ...locations.map((location) => link(location.title, location.href)),
+    "## Locations",
+    ...locations.map((location) => link(location.title, location.href, location.description)),
     "",
     "## Guides",
     ...getAllPosts().map((post) => link(post.title, `/blog/${post.slug}`, post.description)),

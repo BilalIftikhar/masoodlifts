@@ -1,15 +1,15 @@
 import type { Faq } from "@/lib/faqs"
-
-export type EquipmentKey = "forklift" | "mobile-crane" | "telehandler" | "man-lift"
+import type { EquipmentKey } from "@/lib/equipment"
+import type { Governorate } from "@/lib/site-config"
 
 export type LocationSummary = {
   slug: string
   title: string
   shortTitle: string
-  /** City name as it appears mid-sentence, e.g. "Sharjah", "Ras Al Khaimah". */
+  /** City name as it appears mid-sentence, e.g. "Al Buraimi". */
   cityName: string
   href: string
-  emirate: string
+  governorate: Governorate
   description: string
   heroImage: string
   heroImageAlt: string
@@ -41,1059 +41,743 @@ export type LocationSummary = {
   nearby: string[]
   /** Dominant local industries — reused in the service × city page copy. */
   industries: string[]
-  /** One line on why this city needs lifting equipment; used on service × city pages. */
+  /** One line on why this city needs equipment; used on service × city pages. */
   demandNote: string
+  /** How equipment reaches this city from the Sohar base. */
+  mobilization: string
+  /** Ground, climate, and access conditions that affect every machine here. */
+  siteConditions: string
   /**
-   * What renting each equipment type in this city actually involves — local
-   * sites, ground, permits, climate. Rendered on the service × city pages so
-   * each one carries content no other page has.
+   * What renting each equipment type in this city actually involves. Rendered
+   * on the service × city pages so each one carries content no other page has.
    */
-  equipmentNotes: Record<EquipmentKey, string[]>
+  equipmentNotes: Record<EquipmentKey, string>
 }
 
 /**
- * Canonical list of geo-targeted landing pages, one per emirate plus Al Ain.
- * Referenced by the homepage, /locations index, footer, sitemap, and the
- * generated service × city pages in `lib/service-areas.ts`.
+ * The six Oman hubs targeted by the site, one landing page each. Referenced by
+ * the homepage, /locations index, footer, sitemap, and the generated
+ * service × city pages in `lib/service-areas.ts`.
  *
- * Every entry carries its own copy, FAQs, and area list — these pages must not
- * be near-duplicates of each other, or Google treats them as doorway pages.
+ * Every entry carries its own copy, FAQs, and notes — these pages must not be
+ * near-duplicates of each other, or Google treats them as doorway pages.
  */
 export const locations: LocationSummary[] = [
   {
-    slug: "abu-dhabi-musaffah",
-    metaZoneShort: "Musaffah, ICAD & KIZAD",
-    title: "Heavy Equipment Rental in Abu Dhabi & Musaffah",
-    shortTitle: "Abu Dhabi / Musaffah",
-    cityName: "Abu Dhabi",
-    href: "/locations/abu-dhabi-musaffah",
-    emirate: "Abu Dhabi",
+    slug: "sohar",
+    title: "Heavy Equipment Rental in Sohar",
+    shortTitle: "Sohar",
+    cityName: "Sohar",
+    href: "/locations/sohar",
+    governorate: "North Al Batinah",
     description:
-      "Forklift, mobile crane, telehandler, and man lift rental for Musaffah Industrial City, ICAD, and Khalifa Industrial Zone.",
+      "Our home base. Cranes, tippers, boom loaders, forklifts, excavators, JCBs, and wheel loaders for Sohar Port, the Freezone, and Sohar Industrial Estate.",
     heroImage: "/images/site/port-container-yard.jpg",
-    heroImageAlt: "Container yard at a port terminal in Abu Dhabi",
+    heroImageAlt: "Stacked shipping containers and trucks at a port container yard",
     areas: [
-      "Musaffah Industrial City (M1–M44)",
-      "ICAD 1, 2 & 3 (Industrial City of Abu Dhabi)",
-      "Khalifa Industrial Zone Abu Dhabi (KIZAD)",
-      "Mussafah Shabiya",
-      "Khalifa Port",
-      "Al Dhafra & Ruwais",
-      "Yas Island & Saadiyat",
+      "Sohar Port & Freezone",
+      "Sohar Industrial Estate",
+      "Falaj Al Qabail",
+      "Liwa",
+      "Saham",
+      "Shinas",
+      "Al Khaburah",
     ],
-    geo: { latitude: 24.3702, longitude: 54.5045 },
+    geo: { latitude: 24.347, longitude: 56.73 },
     primary: true,
+    metaZoneShort: "Sohar Port, Freezone & Industrial Estate",
 
-    eyebrow: "Abu Dhabi · Musaffah · ICAD",
+    eyebrow: "Sohar · North Al Batinah · Home Base",
     intro:
-      "Our home base. Forklift, mobile crane, telehandler, and man lift rental staged in Musaffah Industrial City for same-day dispatch to ICAD 1–3, Khalifa Industrial Zone (KIZAD), Khalifa Port, and projects across the Al Dhafra region.",
-    whyHeading: "Why Abu Dhabi Contractors Choose Seven Lift",
+      "ABDUL MASOOD TRADING LLC is registered in Sohar, so this is where our equipment is closest. We rent cranes, tipper trucks, boom loaders, 3 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders to contractors, factories, and logistics operators across Sohar Port and Freezone, Sohar Industrial Estate, and the wider North Al Batinah coast.",
+    whyHeading: "Why Sohar Contractors Rent From Us",
     whyPoints: [
       {
-        title: "Fleet Based in Musaffah",
+        title: "Based in Sohar",
         description:
-          "Our yard sits inside Musaffah Industrial Area M-44, so equipment reaches most M-sector and ICAD sites within the hour rather than the day.",
+          "Our company is registered in Sohar (P.O. Box 326, PC 119). Machines for Sohar jobs travel the shortest distance, which keeps mobilization simple and quick.",
       },
       {
-        title: "ICAD & KIZAD Gate Procedures",
+        title: "Port & Industrial Work",
         description:
-          "We hold the documentation and gate-pass experience needed for equipment entry into ICAD 1–3 and Khalifa Industrial Zone without delays at the checkpoint.",
+          "Cranes and forklifts for the plants, warehouses, and laydown yards around Sohar Port, the Freezone, and Sohar Industrial Estate.",
       },
       {
-        title: "Khalifa Port & Heavy Lift",
+        title: "Earthworks in One Package",
         description:
-          "Mobile cranes from 25 to 500 ton with certified riggers and lift plans for port, terminal, and industrial lifts around Khalifa Port.",
+          "Excavators, JCBs, wheel loaders, and tippers from one supplier, so digging, loading, and haulage run on one schedule.",
       },
       {
-        title: "Oil, Gas & Ruwais Projects",
-        description:
-          "Long-term equipment contracts for the Al Dhafra region and Ruwais industrial complex, with HSE documentation to match contractor requirements.",
+        title: "Batinah Coast Coverage",
+        description: "Regular work north to Shinas and south to Saham and Al Khaburah along the Batinah Expressway.",
       },
       {
-        title: "Certified Operators",
+        title: "Machines With Operators",
         description:
-          "Licensed forklift, crane, and access-platform operators available with every unit, plus third-party inspection certificates on request.",
+          "Equipment is supplied with operators and drivers who know the machines, so your site team can focus on the work.",
       },
       {
-        title: "24/7 Emergency Deployment",
-        description:
-          "Breakdown replacement and unplanned lifts handled around the clock — critical for the continuous-shift factories across Musaffah and ICAD.",
+        title: "Direct Contact",
+        description: `Call or WhatsApp the office directly to check availability and get a quote the same day.`,
       },
     ],
     faqs: [
       {
-        question: "Do you deliver equipment inside Musaffah and ICAD industrial zones?",
+        question: "Do you deliver equipment inside Sohar Port and the Freezone?",
         answer:
-          "Yes. Musaffah (M1–M45), ICAD 1–3, and Khalifa Industrial Zone (KIZAD) are core parts of our daily coverage area, with equipment already staged nearby for fast turnaround.",
+          "Yes. Sohar Port and Freezone, Sohar Industrial Estate, and the surrounding Liwa and Falaj Al Qabail areas are our closest work areas. Send your gate and site details and we will arrange access paperwork with you before delivery.",
       },
       {
-        question: "Can you supply cranes for lifts inside Abu Dhabi ports and free zones?",
+        question: "Which machines are most requested in Sohar?",
         answer:
-          "Yes, we regularly service Khalifa Port, KIZAD, and surrounding free zone facilities with mobile cranes rated from 25 to 500 tons, including certified riggers and lift plans where required.",
+          "Cranes and 3 ton forklifts for industrial and warehouse work around the port, and excavators, JCBs, wheel loaders, and tippers for construction and road projects across North Al Batinah.",
       },
       {
-        question: "Do you handle Abu Dhabi Municipality permit requirements for cranes?",
+        question: "Can you supply several machines for one Sohar project?",
         answer:
-          "We provide the equipment documentation, load charts, and certifications your site or contractor typically needs to secure municipality or client permits. Our team can advise on the process based on your project scope.",
+          "Yes. A common package is an excavator or JCB with tippers for earthworks, followed by a boom loader or crane for the structure. One supplier means one schedule and one point of contact.",
       },
       {
-        question: "What is your typical response time for Musaffah warehouse forklift requests?",
+        question: "How quickly can equipment reach a Sohar site?",
         answer:
-          "For standard forklift capacities (3–25 ton) within Musaffah and ICAD, we can usually mobilize the same day, and often within a few hours for urgent warehouse needs.",
-      },
-      {
-        question: "Do you cover Ruwais and the Al Dhafra region?",
-        answer:
-          "Yes. We run longer-term equipment contracts into Ruwais, Al Dhafra, and the western region, where mobilization is typically scheduled a day or two ahead given the travel distance from Musaffah.",
+          "Sohar is our home base, so it is the fastest area for us to mobilise. Call with your site location and the machine you need, and we will confirm availability and a delivery time on the call.",
       },
     ],
-    ctaHeading: "Need Equipment in Musaffah or ICAD Today?",
-    ctaSubheading:
-      "Send your site location and equipment need — our Abu Dhabi yard confirms availability within the hour.",
-    whatsappMessage: "Hi Seven Lift, I need heavy equipment rental in Abu Dhabi (Musaffah/ICAD).",
+    ctaHeading: "Need Equipment in Sohar?",
+    ctaSubheading: "Tell us the machine, the site, and the dates — we'll confirm availability and a quote.",
+    whatsappMessage: "Hello Abdul Masood Trading, I need equipment rental in Sohar.",
 
-    metaTitle: "Heavy Equipment Rental Abu Dhabi | Musaffah",
+    metaTitle: "Heavy Equipment Rental in Sohar",
     metaDescription:
-      "Forklift, crane, telehandler & man lift rental in Abu Dhabi. Fleet based in Musaffah, serving ICAD, KIZAD & Khalifa Port. Same-day dispatch, 24/7.",
+      "Crane, tipper, boom loader, forklift, excavator, JCB & wheel loader rental in Sohar — Port, Freezone & Industrial Estate. Call +968 7928 8727.",
     keywords: [
-      "heavy equipment rental Abu Dhabi",
-      "forklift rental Musaffah",
-      "crane rental Abu Dhabi",
-      "equipment rental ICAD",
-      "equipment rental KIZAD",
-      "telehandler rental Abu Dhabi",
+      "heavy equipment rental Sohar",
+      "equipment rental Sohar",
+      "crane rental Sohar",
+      "forklift rental Sohar",
+      "Sohar Port equipment hire",
+      "Sohar Industrial Estate equipment rental",
     ],
-    areaServed: ["Abu Dhabi", "Musaffah", "ICAD", "Khalifa Industrial Zone", "Khalifa Port", "Ruwais"],
-    nearby: ["al-ain", "dubai"],
+    areaServed: ["Sohar", "Liwa", "Saham", "Shinas", "Al Khaburah", "North Al Batinah"],
+    nearby: ["al-buraimi", "muscat"],
     industries: [
-      "oil, gas and petrochemical contracting",
-      "heavy manufacturing across ICAD",
-      "port and terminal logistics at Khalifa Port",
-      "government and infrastructure construction",
+      "port, metals, and petrochemical industry",
+      "Freezone logistics and warehousing",
+      "construction and road projects along the Batinah coast",
     ],
     demandNote:
-      "Abu Dhabi's industrial demand is concentrated in Musaffah's M-sectors, the ICAD manufacturing clusters, and the port and free-zone operations at KIZAD.",
+      "Sohar's port-side industry and the construction around it keep lifting and earthmoving equipment in steady demand.",
+    mobilization:
+      "Sohar is our registered base, so equipment for Sohar sites has the shortest trip and the simplest scheduling.",
+    siteConditions:
+      "Sites along the Batinah coast are mostly flat sand and gravel, with a high water table close to the sea that can affect deep digs and crane outrigger bearing. Summer heat means early starts on most sites, and industrial clients around the port usually require gate passes, machine documents, and operator IDs before entry.",
     equipmentNotes: {
-      forklift: [
-        "Most forklift work in Abu Dhabi splits between Musaffah's M-sector workshops, which need compact 3–5 ton diesel units that can turn inside a crowded yard, and the larger logistics sheds at KIZAD and ICAD, where 7–10 ton forklifts stuff and destuff containers coming off Khalifa Port.",
-        "If your facility is a cold store or a food-grade warehouse in KIZAD, specify electric units with non-marking tyres. For open yards in summer, diesel machines with enclosed, air-conditioned cabs keep operators productive through long shifts. Tell us the heaviest pallet, the lift height, and whether the floor is finished concrete or compacted ground, and we will match the machine to the site.",
-      ],
-      "mobile-crane": [
-        "Crane lifts in Abu Dhabi are planned under the emirate's occupational safety framework (OSHAD), so contractors in ICAD, KIZAD, and Khalifa Port expect a documented lift plan, current third-party inspection certificates, and certified operators and riggers before the crane is allowed to set up.",
-        "Summer shamal winds along the coast and in Al Dhafra regularly push wind speeds past the limits in a crane's load chart, so critical lifts at Khalifa Port and Ruwais are usually scheduled for the calmer early-morning window. For heavy plant lifts in Musaffah and ICAD, we survey outrigger positions in advance, because made-up yards and trench backfill are the most common hidden ground-bearing risk.",
-      ],
-      telehandler: [
-        "In Abu Dhabi, telehandlers do most of their work on villa and low-rise projects on Yas and Saadiyat, where they place blockwork and roof material at height without the cost of a crane, and on maintenance jobs inside ICAD plants.",
-        "For projects out in Al Dhafra, Ruwais, and the western region, where the ground is loose sand rather than prepared hardstanding, specify four-wheel-drive, rough-terrain units with sand-rated tyres. On tight Musaffah plots, a 3–4 ton compact telehandler with a 7 m boom usually outperforms a bigger machine that cannot manoeuvre.",
-      ],
-      "man-lift": [
-        "Man lifts in Abu Dhabi are mostly used for plant and facility maintenance: racking installation in KIZAD warehouses, MEP and cable-tray work in ICAD factories, and high-level inspection at Khalifa Port.",
-        "Indoor work on finished floors needs an electric scissor lift with non-marking tyres. Pipe racks and structures with obstacles underneath need an articulating boom that can reach up and over. Oil, gas, and petrochemical sites around Ruwais usually require a site-specific permit-to-work and operator certification before a platform is allowed in, so share the site's HSE requirements when you ask for a quote.",
-      ],
+      crane:
+        "Crane work in Sohar is dominated by the industrial plants and warehouses around Sohar Port, the Freezone, and Sohar Industrial Estate: installing plant, lifting steel, and offloading heavy deliveries. Share the load, radius, and site entry requirements early so gate permits and lift planning are ready before the crane arrives.",
+      tipper:
+        "Tippers in Sohar mostly haul excavated material off construction plots and bring aggregate in from the quarries inland. For Freezone and industrial estate sites, confirm the approved haul route and disposal point with the site so trucks are not held at the gate.",
+      "boom-loader":
+        "Boom loaders suit Sohar's building projects and warehouse construction, placing blocks and materials on upper floors and moving pallets across unmade ground on sites that are still being built.",
+      forklift:
+        "The 3 ton forklift is the workhorse of Sohar's Freezone warehouses and logistics yards, covering container stuffing and pallet handling. It is also the usual choice for short-term cover during peak shipments or when an in-house forklift is down for repair.",
+      excavator:
+        "Excavators in Sohar dig foundations for industrial and commercial buildings and trench for utilities. Near the coast the water table can be shallow, so tell us the dig depth and whether dewatering is planned so we can advise on the right machine.",
+      jcb: "A JCB is the practical choice on Sohar's villa plots, utility connections, and maintenance works around the city, where one machine digs, backfills, and levels without needing a separate loader.",
+      "wheel-loader":
+        "Wheel loaders in Sohar load tippers on earthworks jobs and manage stockpiles at batching plants and material yards serving the construction around the city and the industrial area.",
     },
   },
   {
-    slug: "dubai",
-    metaZoneShort: "JAFZA, Al Quoz & DIP",
-    title: "Heavy Equipment Rental in Dubai",
-    shortTitle: "Dubai",
-    cityName: "Dubai",
-    href: "/locations/dubai",
-    emirate: "Dubai",
+    slug: "muscat",
+    // Targets the "construction machinery rental Muscat" query directly, rather
+    // than a separate service page that would compete with this one.
+    title: "Construction Machinery Rental in Muscat",
+    shortTitle: "Muscat",
+    cityName: "Muscat",
+    href: "/locations/muscat",
+    governorate: "Muscat",
     description:
-      "Forklift, mobile crane, telehandler, and man lift rental for Jebel Ali Free Zone (JAFZA), Al Quoz, and Dubai Industrial City.",
-    heroImage: "/images/fleet/forklift-warehouse.jpg",
-    heroImageAlt: "Forklift operating in a Dubai warehouse facility",
+      "Construction machinery rental for Muscat's building, infrastructure, and industrial projects — Rusayl, Ghala, Al Misfah, Seeb, and Al Amerat.",
+    heroImage: "/images/fleet/telehandler-jcb.jpg",
+    heroImageAlt: "Telescopic boom loader with pallet forks on a construction site",
     areas: [
-      "Jebel Ali Free Zone (JAFZA)",
-      "Dubai Industrial City",
-      "Al Quoz Industrial Area 1–4",
-      "Dubai Investment Park (DIP)",
-      "Business Bay & Downtown Dubai",
-      "Ras Al Khor Industrial Area",
-      "Al Qusais Industrial Area",
-      "Dubai South & Expo City",
+      "Rusayl Industrial Estate",
+      "Ghala Industrial Area",
+      "Al Misfah",
+      "Wadi Kabir",
+      "Seeb & Al Mabelah",
+      "Al Amerat",
+      "Bawshar",
     ],
-    geo: { latitude: 25.0225, longitude: 55.1281 },
+    geo: { latitude: 23.588, longitude: 58.3829 },
     primary: true,
+    metaZoneShort: "Rusayl, Ghala, Al Misfah & Seeb",
 
-    eyebrow: "Dubai · JAFZA · Al Quoz",
+    eyebrow: "Muscat · Construction & Infrastructure",
     intro:
-      "Forklift, mobile crane, telehandler, and man lift rental for Jebel Ali Free Zone (JAFZA), Al Quoz Industrial Area, and Dubai Industrial City. Certified operators and 24/7 emergency deployment across Dubai's logistics and manufacturing hubs.",
-    whyHeading: "Why Dubai Contractors Choose Seven Lift",
+      "Cranes, boom loaders, excavators, JCBs, wheel loaders, tippers, and 3 ton forklifts for construction and civil works across the capital. We supply machines with operators to contractors working in Rusayl Industrial Estate, Ghala, Al Misfah, Seeb, Al Amerat, and residential and commercial developments across Muscat.",
+    whyHeading: "Why Muscat Contractors Choose Us",
     whyPoints: [
       {
-        title: "JAFZA Access Experience",
-        description: "Established free-zone entry procedures for equipment delivery inside Jebel Ali Free Zone.",
-      },
-      {
-        title: "Dubai Industrial City Ready",
-        description: "Regular deployments to manufacturing and logistics facilities across Dubai Industrial City.",
-      },
-      {
-        title: "Al Quoz Coverage",
-        description: "Fast dispatch to Al Quoz's dense mix of workshops, warehouses, and industrial units.",
-      },
-      {
-        title: "Fit-Out & Retail Access Work",
+        title: "Full Construction Package",
         description:
-          "Scissor lifts and low-noise electric units for mall fit-outs, hotel maintenance, and indoor work across Business Bay and Downtown.",
+          "Earthmoving, lifting, and haulage machines from one supplier, so a Muscat project deals with one company from site preparation to structure.",
       },
       {
-        title: "Certified Operators",
-        description: "Licensed forklift, crane, and access-platform operators available for every rental.",
-      },
-      {
-        title: "24/7 Emergency Deployment",
-        description: "Rapid same-day mobilization for breakdown replacement and urgent lifting needs.",
-      },
-    ],
-    faqs: [
-      {
-        question: "Do you provide equipment rental inside JAFZA and Dubai Industrial City?",
-        answer:
-          "Yes, JAFZA, Dubai Industrial City, Al Quoz, and Dubai Investment Park are part of our regular Dubai coverage, with forklifts, telehandlers, and cranes available for both short-term and long-term contracts.",
-      },
-      {
-        question: "Can you support free zone logistics and warehousing operations in Dubai?",
-        answer:
-          "Absolutely — we regularly supply forklifts and side loaders to logistics and 3PL operators inside JAFZA and DIC, with flexible shift-based or monthly rental arrangements to match warehouse operating hours.",
-      },
-      {
-        question: "Do you offer mobile crane rental for Dubai construction sites?",
-        answer:
-          "Yes, our mobile crane fleet (25–500 ton capacity) serves construction, infrastructure, and industrial projects across Dubai, with certified operators and riggers included.",
-      },
-      {
-        question: "How far in advance should I book equipment for a Dubai project?",
-        answer:
-          "For standard equipment we can often mobilize within 24 hours. For larger cranes or multi-week/month projects, booking 3–5 days in advance helps guarantee availability of the exact capacity you need.",
-      },
-      {
-        question: "Can you supply equipment for indoor fit-out work in Dubai malls and hotels?",
-        answer:
-          "Yes. We supply electric scissor lifts and non-marking-tire units suited to finished indoor floors, which are the standard requirement for mall, hotel, and office fit-out work in Dubai.",
-      },
-    ],
-    ctaHeading: "Need Equipment in JAFZA or Al Quoz Today?",
-    ctaSubheading:
-      "Share your site location and equipment need — our Dubai team will confirm availability within the hour.",
-    whatsappMessage: "Hi Seven Lift, I need heavy equipment rental in Dubai.",
-
-    metaTitle: "Heavy Equipment Rental Dubai | JAFZA & Al Quoz",
-    metaDescription:
-      "Forklift, crane, telehandler & man lift rental in Dubai. Serving JAFZA, Al Quoz, DIP & Dubai Industrial City. Certified operators, 24/7 deployment.",
-    keywords: [
-      "heavy equipment rental Dubai",
-      "forklift rental Dubai",
-      "mobile crane rental Dubai",
-      "equipment rental JAFZA",
-      "equipment rental Al Quoz",
-      "equipment rental Dubai Industrial City",
-    ],
-    areaServed: ["Dubai", "Jebel Ali Free Zone", "Al Quoz", "Dubai Industrial City", "Dubai Investment Park"],
-    nearby: ["sharjah", "abu-dhabi-musaffah"],
-    industries: [
-      "3PL warehousing and freight forwarding",
-      "high-rise and infrastructure construction",
-      "retail and hospitality fit-out",
-      "light manufacturing across DIC and DIP",
-    ],
-    demandNote:
-      "Dubai's equipment demand runs on two tracks: round-the-clock warehouse handling in JAFZA and DIP, and construction and fit-out work across the city's continuous development pipeline.",
-    equipmentNotes: {
-      forklift: [
-        "Dubai's forklift demand is driven by 3PL warehouses in JAFZA, Dubai Industrial City, and DIP that run double or triple shifts, and by container destuffing at facilities connected to Jebel Ali Port. Monthly hire with a standby unit is usually cheaper than paying for downtime.",
-        "Many Dubai warehouses have high-bay racking and finished epoxy floors, so electric forklifts with non-marking tyres and a mast matched to the top beam level are the common specification. For Al Quoz and Ras Al Khor workshops handling steel and timber, a side loader or a 5–7 ton diesel unit is usually the better fit.",
-      ],
-      "mobile-crane": [
-        "Crane work in Dubai involves both Dubai Municipality requirements and road-movement restrictions. Heavy vehicles face timed movement bans on major roads at peak hours, so large all-terrain cranes heading to Business Bay, Downtown, or DIP are often moved early in the morning or overnight.",
-        "City-centre lifts on constrained plots usually need a road-closure or right-of-way permit as well as the lift plan, so allow lead time for approvals. In JAFZA and Dubai Industrial City, where there is more space, the usual jobs are plant installation, precast placement, and machinery relocation, and 50–160 ton cranes cover most of them.",
-      ],
-      telehandler: [
-        "On Dubai construction sites, telehandlers are used where a tower crane has not yet been erected, or has already been dismantled, and material still has to reach upper floors: villa communities in Dubai South, low-rise blocks in DIP, and external works on larger projects.",
-        "Tight community plots with neighbours on both sides favour a compact 7 m unit with four-wheel steer. For warehouses and logistics yards, a telehandler fitted with forks does double duty as a rough-terrain forklift for unloading lorries on unmade ground.",
-      ],
-      "man-lift": [
-        "Fit-out is the largest source of man-lift demand in Dubai. Office floors in Business Bay, retail units in malls, and hotel refurbishments all need access platforms, often on night shifts so that occupied buildings stay open during the day.",
-        "Building managers usually specify low-noise electric scissor lifts with non-marking tyres, and will ask for insurance and operator certificates before the machine is allowed through the loading bay. Check lift-car and doorway dimensions before booking. A narrow-chassis 10 m scissor lift fits most service lifts, while larger units need ground-floor access.",
-      ],
-    },
-  },
-  {
-    slug: "sharjah",
-    metaZoneShort: "Industrial Areas, HFZA & SAIF Zone",
-    title: "Heavy Equipment Rental in Sharjah",
-    shortTitle: "Sharjah",
-    cityName: "Sharjah",
-    href: "/locations/sharjah",
-    emirate: "Sharjah",
-    description:
-      "Forklift, crane, telehandler, and man lift rental for Sharjah Industrial Areas, Hamriyah Free Zone, SAIF Zone, and Al Sajaa.",
-    heroImage: "/images/fleet/side-loader.jpg",
-    heroImageAlt: "Side loader handling long materials at a Sharjah industrial yard",
-    areas: [
-      "Sharjah Industrial Areas 1–18",
-      "Hamriyah Free Zone (HFZA)",
-      "Sharjah Airport International Free Zone (SAIF Zone)",
-      "Al Sajaa Industrial Area",
-      "Port Khalid & Port Khor Fakkan",
-      "Al Qasimia & Muwaileh",
-    ],
-    geo: { latitude: 25.3463, longitude: 55.4209 },
-    primary: true,
-
-    eyebrow: "Sharjah · Hamriyah · SAIF Zone",
-    intro:
-      "Sharjah runs the densest concentration of workshops and light manufacturing in the UAE. We supply forklifts, telehandlers, man lifts, and mobile cranes across Industrial Areas 1–18, Hamriyah Free Zone, SAIF Zone, and the heavy-industry cluster at Al Sajaa.",
-    whyHeading: "Why Sharjah Businesses Choose Seven Lift",
-    whyPoints: [
-      {
-        title: "Industrial Area Density",
+        title: "Urban & Industrial Sites",
         description:
-          "Sharjah's Industrial Areas 1–18 are tight, busy, and hard to manoeuvre in. We match unit size to the yard rather than sending the biggest machine available.",
-      },
-      {
-        title: "Hamriyah Free Zone Access",
-        description:
-          "Regular deliveries into HFZA for steel fabrication, petrochemical, and heavy-manufacturing tenants, with free-zone gate documentation handled up front.",
-      },
-      {
-        title: "SAIF Zone Logistics",
-        description:
-          "Warehouse forklifts and side loaders for the air-freight and distribution operators around Sharjah Airport International Free Zone.",
-      },
-      {
-        title: "Al Sajaa Heavy Industry",
-        description:
-          "Higher-capacity forklifts and mobile cranes for the quarrying, cement, and heavy-industrial operations concentrated at Al Sajaa.",
-      },
-      {
-        title: "Cross-Emirate Mobilization",
-        description:
-          "Sharjah sits between our Dubai and Northern Emirates routes, so we can often redeploy a unit the same day rather than scheduling a separate trip.",
-      },
-      {
-        title: "Flexible Short-Term Hire",
-        description:
-          "Daily and weekly hire suited to Sharjah's job-shop and fabrication businesses, where equipment need moves with the order book.",
-      },
-    ],
-    faqs: [
-      {
-        question: "Do you deliver equipment to Sharjah Industrial Area and Hamriyah Free Zone?",
-        answer:
-          "Yes. Sharjah Industrial Areas 1–18, Hamriyah Free Zone (HFZA), SAIF Zone, and Al Sajaa are all within our regular Sharjah delivery route, typically with next-day or same-day mobilization.",
-      },
-      {
-        question: "What size forklift works best in Sharjah's industrial workshops?",
-        answer:
-          "Most Sharjah workshops and fabrication units are best served by 3–5 ton diesel forklifts, which handle standard pallet and steel-section loads while still manoeuvring in narrow yards. For container and heavy machinery work we supply 10–25 ton units.",
-      },
-      {
-        question: "Can you supply cranes for steel fabrication and erection work in Sharjah?",
-        answer:
-          "Yes. We regularly supply mobile cranes with certified riggers for structural steel erection, plant installation, and machinery relocation across Sharjah's industrial areas and Hamriyah Free Zone.",
-      },
-      {
-        question: "Do you offer man lifts for warehouse and facility maintenance in Sharjah?",
-        answer:
-          "We supply scissor lifts and boom lifts from 10 m to 50 m working height for racking maintenance, lighting and HVAC work, and facade access across Sharjah warehouses and commercial buildings.",
-      },
-      {
-        question: "Is there a minimum rental period for Sharjah deliveries?",
-        answer:
-          "Our standard minimum is a single day's hire. For Sharjah's short-turnaround fabrication jobs, day and weekend rates are the most common arrangement, and we can extend on site without a new contract.",
-      },
-    ],
-    ctaHeading: "Need Equipment in Sharjah Industrial Area?",
-    ctaSubheading: "Tell us your zone and load requirement — we'll confirm availability and a delivery slot today.",
-    whatsappMessage: "Hi Seven Lift, I need heavy equipment rental in Sharjah.",
-
-    metaTitle: "Heavy Equipment Rental Sharjah | HFZA & SAIF",
-    metaDescription:
-      "Forklift, crane, telehandler & man lift rental in Sharjah. Covering Industrial Areas 1–18, Hamriyah Free Zone & SAIF Zone. Daily to monthly hire.",
-    keywords: [
-      "heavy equipment rental Sharjah",
-      "forklift rental Sharjah",
-      "crane rental Sharjah",
-      "forklift rental Sharjah Industrial Area",
-      "equipment rental Hamriyah Free Zone",
-      "equipment rental SAIF Zone",
-    ],
-    areaServed: ["Sharjah", "Hamriyah Free Zone", "SAIF Zone", "Al Sajaa", "Sharjah Industrial Area"],
-    nearby: ["ajman", "dubai", "umm-al-quwain"],
-    industries: [
-      "steel fabrication and metal workshops",
-      "light manufacturing and job shops",
-      "air-freight logistics around SAIF Zone",
-      "quarrying and cement at Al Sajaa",
-    ],
-    demandNote:
-      "Sharjah holds the UAE's densest cluster of workshops and fabrication units, where equipment is hired short-term and sized to fit tight industrial yards.",
-    equipmentNotes: {
-      forklift: [
-        "Sharjah's Industrial Areas are made up of small, packed yards, so the forklift has to fit the space as well as the load. Compact 3–5 ton diesel units with tight turning circles handle most workshop work, and side loaders suit the steel and pipe that fabrication shops handle.",
-        "Hires here tend to be short: a day for unloading a container, or a week while a shop's own machine is repaired. For Hamriyah Free Zone plants and SAIF Zone air-freight warehouses, longer monthly contracts with electric units are more common. Let us know whether you are in Industrial Area 1–18, Hamriyah, or SAIF Zone so we can plan access.",
-      ],
-      "mobile-crane": [
-        "In Sharjah, crane lifts are mostly for steel fabrication: loading finished structures onto trailers, placing heavy machinery inside workshops, and erecting steel frames for new industrial buildings in the Industrial Areas and Hamriyah.",
-        "Hamriyah Free Zone handles heavier plant and marine-related lifts near the port, where larger cranes and longer planning apply. In the older Industrial Areas, narrow access roads and overhead cables are the real constraint, so we check the route and the setup area before confirming the crane size, not just the lift weight.",
-      ],
-      telehandler: [
-        "Residential and mixed-use building in Muwaileh, Al Qasimia, and on the city's outskirts keeps telehandlers busy in Sharjah placing blockwork, rebar, and roof material on low- and mid-rise sites.",
-        "In the quarry and building-materials belt around Al Sajaa, rough-terrain four-wheel-drive units handle unmade ground and dust better than a standard forklift can. A telehandler with a bucket or jib attachment can often replace two separate machines on smaller Sharjah sites.",
-      ],
-      "man-lift": [
-        "In Sharjah's industrial areas, man lifts are mostly used for roof and cladding repairs on older workshop sheds, installing signage, and electrical or MEP work inside factories and warehouses.",
-        "Outdoors, on uneven yard surfaces, a rough-terrain diesel scissor lift or a boom lift is safer than an indoor slab machine. For work inside SAIF Zone warehouses or retail units, electric scissor lifts with non-marking tyres are the standard, and a boom lift is the answer when you have to reach over racking.",
-      ],
-    },
-  },
-  {
-    slug: "ajman",
-    metaZoneShort: "Industrial Area, Al Jurf & Free Zone",
-    title: "Heavy Equipment Rental in Ajman",
-    shortTitle: "Ajman",
-    cityName: "Ajman",
-    href: "/locations/ajman",
-    emirate: "Ajman",
-    description:
-      "Forklift, crane, telehandler, and man lift rental for Ajman Industrial Area 1 & 2, Ajman Free Zone, and Al Jurf.",
-    heroImage: "/images/fleet/forklift-warehouse.jpg",
-    heroImageAlt: "Warehouse forklift loading pallets at an Ajman distribution facility",
-    areas: [
-      "Ajman Industrial Area 1 & 2",
-      "Ajman Free Zone (AFZ)",
-      "Al Jurf Industrial Area 1, 2 & 3",
-      "New Industrial Area",
-      "Ajman Port & Corniche",
-      "Al Hamidiya & Al Rawda",
-    ],
-    geo: { latitude: 25.4052, longitude: 55.5136 },
-    primary: false,
-
-    eyebrow: "Ajman · Al Jurf · Free Zone",
-    intro:
-      "Equipment rental for Ajman's manufacturing and distribution base — Industrial Area 1 and 2, the Al Jurf industrial zones, and Ajman Free Zone. Forklifts, telehandlers, man lifts, and mobile cranes delivered on our Northern Emirates route.",
-    whyHeading: "Why Ajman Businesses Choose Seven Lift",
-    whyPoints: [
-      {
-        title: "Al Jurf Coverage",
-        description:
-          "Regular runs into Al Jurf Industrial 1–3, where much of Ajman's furniture, plastics, and building-materials manufacturing sits.",
-      },
-      {
-        title: "Ajman Free Zone Delivery",
-        description:
-          "Warehouse forklifts and access platforms delivered inside Ajman Free Zone, with gate documentation prepared before dispatch.",
-      },
-      {
-        title: "Cost-Effective Northern Route",
-        description:
-          "Ajman sits on our Sharjah–RAK corridor, so mobilization costs stay lower than a dedicated trip from Abu Dhabi.",
-      },
-      {
-        title: "Right-Sized Units",
-        description:
-          "Ajman's units are typically mid-size workshops — we lead with 3–5 ton forklifts and compact telehandlers rather than oversized machines.",
-      },
-      {
-        title: "Certified Operators",
-        description:
-          "Licensed operators supplied with every unit, or self-drive hire where you have certified staff in house.",
-      },
-      {
-        title: "Flexible Terms",
-        description:
-          "Daily, weekly, and monthly hire, with monthly rates that suit Ajman's steady manufacturing output.",
-      },
-    ],
-    faqs: [
-      {
-        question: "Do you deliver equipment to Ajman Industrial Area and Al Jurf?",
-        answer:
-          "Yes. Ajman Industrial Area 1 and 2, Al Jurf Industrial 1–3, and Ajman Free Zone are covered on our regular Northern Emirates route, usually with next-day mobilization and same-day where a unit is already nearby.",
-      },
-      {
-        question: "Is there a delivery charge for equipment rental in Ajman?",
-        answer:
-          "Mobilization is quoted per job based on the equipment type and your exact location. Because Ajman sits on our Sharjah–Ras Al Khaimah corridor, transport cost is usually lower than clients expect for a Northern Emirates delivery.",
-      },
-      {
-        question: "Can you supply forklifts for Ajman Free Zone warehouses?",
-        answer:
-          "Yes. We supply 3–10 ton diesel and electric forklifts for warehouse and distribution operations inside Ajman Free Zone, on shift-based, weekly, or monthly hire.",
-      },
-      {
-        question: "Do you provide mobile cranes in Ajman?",
-        answer:
-          "We supply mobile cranes for machinery installation, steel erection, and plant relocation across Ajman. For larger capacities we typically schedule a day or two ahead to route the right unit from Abu Dhabi or Dubai.",
-      },
-      {
-        question: "Can you supply man lifts for building maintenance in Ajman?",
-        answer:
-          "Yes — scissor lifts and boom lifts from 10 m to 50 m for facade cleaning, signage installation, lighting, and warehouse maintenance across Ajman's commercial and industrial buildings.",
-      },
-    ],
-    ctaHeading: "Need Equipment in Ajman?",
-    ctaSubheading: "Send your location and equipment type — we'll confirm a delivery slot on our next Ajman run.",
-    whatsappMessage: "Hi Seven Lift, I need heavy equipment rental in Ajman.",
-
-    metaTitle: "Heavy Equipment Rental Ajman | Al Jurf & AFZ",
-    metaDescription:
-      "Forklift, crane, telehandler & man lift rental in Ajman. Serving Industrial Area 1 & 2, Al Jurf & Ajman Free Zone. Next-day delivery.",
-    keywords: [
-      "heavy equipment rental Ajman",
-      "forklift rental Ajman",
-      "crane rental Ajman",
-      "equipment rental Ajman Free Zone",
-      "forklift rental Al Jurf",
-      "man lift rental Ajman",
-    ],
-    areaServed: ["Ajman", "Ajman Free Zone", "Al Jurf", "Ajman Industrial Area"],
-    nearby: ["sharjah", "umm-al-quwain", "dubai"],
-    industries: [
-      "furniture and woodworking manufacturing",
-      "plastics and packaging production",
-      "building-materials distribution",
-      "small-scale warehousing and 3PL",
-    ],
-    demandNote:
-      "Ajman's industrial base is built on mid-size manufacturing units in Al Jurf and the Industrial Areas, where compact, right-sized equipment matters more than raw capacity.",
-    equipmentNotes: {
-      forklift: [
-        "Ajman's furniture and woodworking manufacturers move long timber and board stock, which a side loader or a long-fork forklift handles more safely than a standard mast. The plastics and packaging plants in Al Jurf mainly shift lighter but bulky pallets.",
-        "Most Ajman sites are mid-size units with limited yard space, so a 3–5 ton forklift covers the majority of requests. Ajman Free Zone warehouses with finished floors should specify electric forklifts. For building-materials distributors unloading lorries all day, a monthly diesel unit is usually the most economical option.",
-      ],
-      "mobile-crane": [
-        "Crane work in Ajman is typically machinery installation for new manufacturing units in Al Jurf and the Industrial Areas, loading at Ajman Port, and structural work on mid-rise buildings, which a 25–80 ton all-terrain crane covers in most cases.",
-        "Larger capacities are routed in from our main fleet on a scheduled basis, so give us a few days' notice for anything over 100 tons. Because many Ajman plots share walls with neighbouring units, we plan the setup position and slew radius at the site survey rather than on the day of the lift.",
-      ],
-      telehandler: [
-        "On Ajman's residential and low-rise commercial projects in Al Rawda, Al Hamidiya, and the newer developments, telehandlers place materials on upper floors and roofs where a crane would be excessive.",
-        "Building-materials yards in Al Jurf also use telehandlers with forks to unload and stack block and cement bags on rough ground. For most Ajman sites, a 3–4 ton unit with around 7–13 m reach is enough, and the smaller machine is easier to move between plots.",
-      ],
-      "man-lift": [
-        "In Ajman factories and warehouses, man lifts are used to fit mezzanines, install high-bay lighting and ventilation, and repair roofs. Residential and commercial buildings use them for facade cleaning, signage, and exterior maintenance.",
-        "Indoor jobs on finished floors call for electric scissor lifts in the 8–12 m range. For exterior work on buildings along the Corniche and in Al Rawda, telescopic or articulating booms give the reach, and roadside setups may need municipality approval. We can advise on this when you book.",
-      ],
-    },
-  },
-  {
-    slug: "ras-al-khaimah",
-    metaZoneShort: "RAK FTZ, Al Ghail & Al Hamra",
-    title: "Heavy Equipment Rental in Ras Al Khaimah",
-    shortTitle: "Ras Al Khaimah",
-    cityName: "Ras Al Khaimah",
-    href: "/locations/ras-al-khaimah",
-    emirate: "Ras Al Khaimah",
-    description:
-      "Forklift, crane, telehandler, and man lift rental for RAK Free Trade Zone, Al Ghail, Al Hamra, and the Khor Khwair quarry belt.",
-    heroImage: "/images/fleet/excavator-transport.jpg",
-    heroImageAlt: "Heavy equipment being transported to a Ras Al Khaimah industrial site",
-    areas: [
-      "RAK Free Trade Zone (RAK FTZ)",
-      "Al Ghail Industrial Park",
-      "Al Hamra Industrial Zone",
-      "RAK Maritime City",
-      "Khor Khwair quarry & cement belt",
-      "Al Jazeera Al Hamra",
-    ],
-    geo: { latitude: 25.7895, longitude: 55.9432 },
-    primary: false,
-
-    eyebrow: "Ras Al Khaimah · RAK FTZ · Al Ghail",
-    intro:
-      "Ras Al Khaimah is the UAE's quarrying and building-materials heartland. We supply higher-capacity forklifts, mobile cranes, telehandlers, and access platforms to RAK Free Trade Zone, Al Ghail Industrial Park, Al Hamra, and the cement and aggregate operations along Khor Khwair.",
-    whyHeading: "Why RAK Operators Choose Seven Lift",
-    whyPoints: [
-      {
-        title: "Quarry & Cement Experience",
-        description:
-          "Equipment specified for the dust, load weights, and continuous-shift patterns of the Khor Khwair quarry and cement belt.",
-      },
-      {
-        title: "RAK FTZ & Al Ghail Delivery",
-        description:
-          "Scheduled mobilization into RAK Free Trade Zone and Al Ghail Industrial Park, with free-zone entry paperwork handled ahead of the delivery.",
-      },
-      {
-        title: "RAK Maritime City",
-        description:
-          "Forklifts, side loaders, and mobile cranes for bulk-handling and marine logistics operations at RAK Maritime City.",
-      },
-      {
-        title: "Higher-Capacity Fleet",
-        description:
-          "RAK jobs skew heavy. We lead with 10–25 ton forklifts and larger crane capacities rather than the light units suited to warehouse work.",
-      },
-      {
-        title: "Longer-Term Contracts",
-        description:
-          "Monthly and multi-month hire priced for the sustained equipment need at quarry, cement, and ceramics operations.",
+          "Compact JCBs and boom loaders for tight residential plots, and cranes and forklifts for industrial units in Rusayl and Ghala.",
       },
       {
         title: "Planned Mobilization",
         description:
-          "We schedule RAK deliveries in advance so the right capacity arrives on the agreed day — no substituting a smaller unit to make a slot.",
+          "Muscat is reached along the Batinah Expressway from our Sohar base. Book ahead and we schedule delivery for your start date.",
+      },
+      {
+        title: "Operators Included",
+        description: "Machines come with operators and drivers who know the equipment and the demands of city sites.",
+      },
+      {
+        title: "Flexible Hire",
+        description: "Daily, weekly, and monthly terms to match each phase of a project, from excavation to fit-out.",
+      },
+      {
+        title: "Registered Company",
+        description: "ABDUL MASOOD TRADING LLC, C.R. No. 1441246 — a registered Omani company you can contract with.",
       },
     ],
     faqs: [
       {
-        question: "Do you deliver equipment to Ras Al Khaimah and RAK Free Trade Zone?",
+        question: "Do you rent construction machinery in Muscat?",
         answer:
-          "Yes. RAK Free Trade Zone, Al Ghail Industrial Park, Al Hamra Industrial Zone, and RAK Maritime City are all served. Because RAK is at the northern end of our route, we typically ask for a day or two of notice to schedule the right unit.",
+          "Yes. We supply cranes, tippers, boom loaders, 3 ton forklifts, excavators, JCBs, and wheel loaders to projects across Muscat Governorate, including Rusayl, Ghala, Al Misfah, Seeb, Al Mabelah, Bawshar, and Al Amerat.",
       },
       {
-        question: "Can you supply equipment for quarry and cement operations in Khor Khwair?",
+        question: "How far in advance should I book equipment for Muscat?",
         answer:
-          "Yes. We supply higher-capacity forklifts, telehandlers, and mobile cranes to the quarry, aggregate, and cement operations along Khor Khwair, on monthly or project-length contracts with maintenance included.",
+          "Equipment is mobilised from our base in Sohar, so a few days' notice lets us plan transport and confirm the exact machine. For urgent needs, call — if a machine is already working in the Muscat area we can often move it sooner.",
       },
       {
-        question: "What crane capacities are available in Ras Al Khaimah?",
+        question: "Can you supply small machines for residential plots?",
         answer:
-          "Our mobile crane fleet runs from 25 ton to 500 ton and can be routed to RAK for plant installation, structural erection, and heavy machinery relocation. Larger capacities need advance scheduling for transport and permits.",
+          "Yes. JCB backhoe loaders and boom loaders suit tight villa and residential plots in Muscat, where access is limited and one machine needs to handle several tasks.",
       },
       {
-        question: "Do you offer long-term equipment rental in RAK?",
+        question: "Do you offer monthly equipment rental for Muscat projects?",
         answer:
-          "Yes, and it is the most common arrangement here. Monthly and multi-month contracts suit RAK's continuous industrial operations, and long-term rates are meaningfully lower than daily hire.",
-      },
-      {
-        question: "How much notice do you need for a RAK delivery?",
-        answer:
-          "For standard forklifts and telehandlers, 24 hours is usually enough. For larger cranes or specialised units, 3–5 days lets us confirm transport, permits, and the exact capacity you need.",
+          "Yes. Monthly hire is common for construction projects running several months, and it is usually better value than repeated daily hire.",
       },
     ],
-    ctaHeading: "Need Equipment in Ras Al Khaimah?",
-    ctaSubheading: "Share your site and capacity requirement — we'll schedule the right unit on our next RAK run.",
-    whatsappMessage: "Hi Seven Lift, I need heavy equipment rental in Ras Al Khaimah.",
+    ctaHeading: "Need Construction Machinery in Muscat?",
+    ctaSubheading: "Send your site location, machine, and start date — we'll plan delivery and quote.",
+    whatsappMessage: "Hello Abdul Masood Trading, I need construction machinery rental in Muscat.",
 
-    metaTitle: "Heavy Equipment Rental Ras Al Khaimah | RAK FTZ",
+    metaTitle: "Construction Machinery Rental Muscat",
     metaDescription:
-      "Forklift, crane, telehandler & man lift rental in Ras Al Khaimah. Serving RAK FTZ, Al Ghail, Al Hamra & the Khor Khwair quarry belt.",
+      "Construction machinery for rent in Muscat: cranes, excavators, JCBs, boom loaders, wheel loaders, tippers & forklifts with operators. Rusayl, Ghala, Seeb.",
     keywords: [
-      "heavy equipment rental Ras Al Khaimah",
-      "forklift rental RAK",
-      "crane rental Ras Al Khaimah",
-      "equipment rental RAK Free Trade Zone",
-      "telehandler rental Ras Al Khaimah",
-      "equipment rental Al Ghail",
+      "heavy equipment rental Muscat",
+      "construction machinery rental Muscat",
+      "equipment hire Muscat",
+      "JCB rental Muscat",
+      "excavator rental Muscat",
+      "crane rental Muscat",
     ],
-    areaServed: ["Ras Al Khaimah", "RAK Free Trade Zone", "Al Ghail", "Al Hamra", "RAK Maritime City"],
-    nearby: ["umm-al-quwain", "fujairah", "sharjah"],
+    areaServed: ["Muscat", "Seeb", "Bawshar", "Al Amerat", "Muttrah", "Qurayyat"],
+    nearby: ["sohar", "nizwa"],
     industries: [
-      "quarrying and aggregate production",
-      "cement and building materials",
-      "ceramics and glass manufacturing",
-      "marine and bulk logistics at RAK Maritime City",
+      "residential and commercial construction",
+      "roads, utilities, and infrastructure",
+      "light industry and logistics in Rusayl and Ghala",
     ],
     demandNote:
-      "Ras Al Khaimah's demand is heavy and continuous — quarries, cement plants, and ceramics operations that run on monthly contracts rather than day hire.",
+      "As Oman's capital and largest construction market, Muscat has continuous demand for earthmoving and lifting machinery.",
+    mobilization:
+      "Equipment reaches Muscat from our Sohar base along the Batinah Expressway, so we schedule deliveries in advance for your start date.",
+    siteConditions:
+      "Muscat sites range from flat plots in Seeb and Al Mabelah to rocky, sloping ground in Bawshar, Al Amerat, and the areas against the Hajar mountains, where rock breaking and careful machine positioning are common. City sites often have tight access and working-hour restrictions, so share access width and permitted hours when booking.",
     equipmentNotes: {
-      forklift: [
-        "Ras Al Khaimah's ceramics and glass manufacturers move heavy, fragile pallets that need a smooth-hydraulic 7–10 ton forklift and a careful operator rather than just raw capacity. The quarry and cement operations need rugged diesel units that can cope with dust all day.",
-        "Because RAK demand is continuous rather than project-based, most forklift hires here are monthly contracts that include scheduled servicing. In quarry and cement environments, air filters and cooling systems need frequent attention, and we build that into the maintenance plan instead of waiting for a breakdown.",
-      ],
-      "mobile-crane": [
-        "Crane work in Ras Al Khaimah centres on heavy industry: crusher and conveyor maintenance in the Khor Khwair quarry belt, kiln and plant work at cement and ceramics factories, and bulk and marine lifts at RAK Maritime City.",
-        "Planned shutdowns at these plants fix the lift window in advance, so the crane, riggers, and lift plan have to be booked ahead and confirmed against the shutdown schedule. Quarry sites often have loose or uneven ground, so outrigger mats and a ground-bearing assessment are standard on RAK jobs.",
-      ],
-      telehandler: [
-        "Telehandlers in Ras Al Khaimah divide between industrial maintenance at quarries, cement works, and factories, and the resort and residential building on Al Marjan Island and in Al Hamra.",
-        "Quarry and plant work calls for heavy four-wheel-drive units with bucket or jib attachments. Hospitality and villa projects on the coast need a mid-size 13–17 m boom to place material on upper floors and roofs. Because RAK sites tend to run for months, monthly terms are usually the better value here.",
-      ],
-      "man-lift": [
-        "In Ras Al Khaimah, man lifts are mostly used to maintain industrial structures such as conveyor galleries, silos, and kiln areas in the cement and ceramics belt. The resort and hospitality developments around Al Hamra and Al Marjan Island use them for facade and fit-out work.",
-        "Plant sites generally need rough-terrain booms that can work on uneven, dusty ground and reach over equipment. Hotel and residential projects on finished surfaces need electric units with non-marking tyres. Tell us which kind of site it is so we send the right platform.",
-      ],
+      crane:
+        "Cranes in Muscat lift steel, precast, and building services equipment on commercial and residential projects, and install plant in industrial units in Rusayl and Ghala. On city sites, road space for outriggers and permitted working hours often decide the crane choice, so share them early.",
+      tipper:
+        "Tippers in Muscat remove excavated rock and soil from building sites and bring in aggregate and fill. Rocky ground in Al Amerat and Bawshar produces heavy spoil, so give us the material type and daily volume to size the number of trucks.",
+      "boom-loader":
+        "Boom loaders suit Muscat's multi-storey residential and commercial projects, lifting blocks and materials to upper floors where a tower crane is not available or is already fully booked.",
+      forklift:
+        "3 ton forklifts in Muscat cover warehouse and distribution operations in Rusayl, Ghala, and Al Misfah, and material handling in contractors' yards.",
+      excavator:
+        "Excavators in Muscat handle foundations, basements, and utility trenching. On the rocky ground common in parts of the capital, tell us early if breaking is needed so we can plan the right machine and attachment.",
+      jcb: "The JCB is a natural fit for Muscat's villa plots and utility works: compact enough for residential streets and able to dig, load, and backfill in one visit.",
+      "wheel-loader":
+        "Wheel loaders in Muscat load tippers on larger earthworks, clear development plots, and manage stockpiles at material yards on the city's edges.",
     },
   },
   {
-    slug: "fujairah",
-    metaZoneShort: "Free Zone, Port & Al Hayl",
-    title: "Heavy Equipment Rental in Fujairah",
-    shortTitle: "Fujairah",
-    cityName: "Fujairah",
-    href: "/locations/fujairah",
-    emirate: "Fujairah",
+    slug: "duqm",
+    title: "Heavy Equipment Rental in Duqm",
+    shortTitle: "Duqm",
+    cityName: "Duqm",
+    href: "/locations/duqm",
+    governorate: "Al Wusta",
     description:
-      "Forklift, crane, telehandler, and man lift rental for Fujairah Free Zone, Fujairah Port, the oil terminal, and Al Hayl Industrial Area.",
+      "Project-based equipment hire for SEZAD, the Port of Duqm, and industrial and infrastructure works in Al Wusta.",
+    heroImage: "/images/mobile-crane.jpeg",
+    heroImageAlt: "All-terrain mobile crane ready for mobilization",
+    areas: [
+      "Special Economic Zone at Duqm (SEZAD)",
+      "Port of Duqm",
+      "Duqm Industrial Area",
+      "Duqm Town",
+      "Al Wusta Governorate",
+    ],
+    geo: { latitude: 19.6586, longitude: 57.7035 },
+    primary: false,
+    metaZoneShort: "SEZAD & Port of Duqm",
+
+    eyebrow: "Duqm · Al Wusta · Project Hire",
+    intro:
+      "Equipment rental for projects in the Special Economic Zone at Duqm (SEZAD), around the Port of Duqm, and across Al Wusta. Duqm is a long-haul mobilization from our Sohar base, so we specialise in planned, longer-term hire: excavators, wheel loaders, tippers, cranes, boom loaders, JCBs, and forklifts that stay on your project for weeks or months.",
+    whyHeading: "Renting Equipment for Duqm Projects",
+    whyPoints: [
+      {
+        title: "Built for Long-Term Hire",
+        description:
+          "Monthly rates for machines that stay on site for the duration, which is how most Duqm projects are resourced.",
+      },
+      {
+        title: "Planned Mobilization",
+        description:
+          "Transport by low-bed from Sohar is scheduled against your start date, with the machine and paperwork confirmed before it leaves.",
+      },
+      {
+        title: "Earthworks to Lifting",
+        description:
+          "Site preparation, haulage, and lifting machines from one supplier, reducing the number of contractors you coordinate on a remote site.",
+      },
+      {
+        title: "Operators Who Stay",
+        description:
+          "Operators travel with the machine for the hire period, so you are not relying on local availability.",
+      },
+      {
+        title: "Registered Omani Company",
+        description: "ABDUL MASOOD TRADING LLC, C.R. No. 1441246, registered in Sohar, Sultanate of Oman.",
+      },
+      {
+        title: "One Point of Contact",
+        description: "One phone number and one supplier for every machine on your Duqm package.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you supply equipment to Duqm?",
+        answer:
+          "Yes, for planned project hire. Duqm is a long-haul move from our Sohar base, so it suits hires of several weeks or months, where the transport cost is spread across the hire period.",
+      },
+      {
+        question: "How much notice do you need for a Duqm project?",
+        answer:
+          "Give us as much notice as you can, ideally one to two weeks, so we can confirm the machines, arrange low-bed transport, and complete any SEZAD or site entry requirements before arrival.",
+      },
+      {
+        question: "Do operators stay on site in Duqm?",
+        answer:
+          "Yes. For Duqm hires our operators travel with the equipment and stay for the hire period. We will discuss accommodation arrangements when we quote.",
+      },
+      {
+        question: "Which equipment is most useful for Duqm projects?",
+        answer:
+          "Most Duqm work starts with site preparation, so excavators, wheel loaders, and tippers come first, followed by cranes and boom loaders for construction and installation.",
+      },
+    ],
+    ctaHeading: "Planning a Project in Duqm?",
+    ctaSubheading: "Share the scope, machines, and start date — we'll plan mobilization and send a monthly quote.",
+    whatsappMessage: "Hello Abdul Masood Trading, I need equipment rental for a project in Duqm.",
+
+    metaTitle: "Heavy Equipment Rental in Duqm",
+    metaDescription:
+      "Project equipment hire for SEZAD & the Port of Duqm: excavators, wheel loaders, tippers, cranes, boom loaders & JCBs with operators. Monthly rates.",
+    keywords: [
+      "equipment rental Duqm",
+      "heavy equipment rental Duqm",
+      "SEZAD equipment hire",
+      "crane rental Duqm",
+      "excavator rental Duqm",
+    ],
+    areaServed: ["Duqm", "Al Wusta"],
+    nearby: ["salalah", "muscat"],
+    industries: [
+      "industrial and infrastructure development in SEZAD",
+      "port and logistics operations",
+      "remote-site civil works across Al Wusta",
+    ],
+    demandNote:
+      "Duqm's Special Economic Zone and port make it one of Oman's main centres of industrial and infrastructure development.",
+    mobilization:
+      "Duqm is a long-haul mobilization from Sohar by low-bed, so we plan it in advance and it suits hires of several weeks or longer.",
+    siteConditions:
+      "Duqm sites are typically open desert and coastal ground, remote from workshops and suppliers. Wind-blown sand, heat, and long distances between facilities make planned maintenance and reliable machines more important than on city sites. Allow time for zone and site entry approvals.",
+    equipmentNotes: {
+      crane:
+        "Cranes in Duqm support plant installation, structural erection, and heavy offloading around the industrial zone and port. Because the crane travels a long way to reach you, confirm the full lift list up front so the right crane and rigging arrive the first time.",
+      tipper:
+        "Tippers in Duqm move large volumes of fill and excavated material across open development areas. Long hires with a fixed number of trucks are the usual arrangement; tell us the daily volume and haul distance to size the fleet.",
+      "boom-loader":
+        "Boom loaders in Duqm handle materials on building and facility construction, working on unmade ground where standard forklifts cannot operate.",
+      forklift:
+        "3 ton forklifts in Duqm support warehouses, laydown yards, and site stores on longer projects. Because of the distance, they are usually hired monthly alongside other equipment.",
+      excavator:
+        "Excavators are often the first machine on a Duqm project, handling site preparation, foundations, and trenching across large plots. Monthly hire with an operator who stays on site is the typical setup.",
+      jcb: "A JCB covers the many smaller tasks on a remote Duqm site, from trenching for services to clean-up and backfilling, without mobilizing a separate machine for each.",
+      "wheel-loader":
+        "Wheel loaders in Duqm load tippers, spread fill, and manage stockpiles on large site-preparation and road works where volumes are high.",
+    },
+  },
+  {
+    slug: "salalah",
+    title: "Heavy Equipment Rental in Salalah",
+    shortTitle: "Salalah",
+    cityName: "Salalah",
+    href: "/locations/salalah",
+    governorate: "Dhofar",
+    description:
+      "Planned project hire for Port of Salalah, Salalah Free Zone, Raysut Industrial Estate, and construction across Dhofar.",
     heroImage: "/images/site/port-container-yard.jpg",
-    heroImageAlt: "Container terminal operations at Fujairah Port",
+    heroImageAlt: "Container stacks and trucks at a port terminal",
     areas: [
-      "Fujairah Free Zone (FFZ)",
-      "Port of Fujairah",
-      "Fujairah Oil Terminal (FOT)",
-      "Al Hayl Industrial Area",
-      "Dibba Al Fujairah",
-      "Fujairah Creative City",
+      "Port of Salalah",
+      "Salalah Free Zone",
+      "Raysut Industrial Estate",
+      "Salalah City",
+      "Taqah",
+      "Mirbat",
+      "Thumrait",
     ],
-    geo: { latitude: 25.1288, longitude: 56.3265 },
+    geo: { latitude: 17.0151, longitude: 54.0924 },
     primary: false,
+    metaZoneShort: "Port of Salalah, Free Zone & Raysut",
 
-    eyebrow: "Fujairah · Port · Oil Terminal",
+    eyebrow: "Salalah · Dhofar · Project Hire",
     intro:
-      "Fujairah's economy runs on its port and oil terminal. We supply forklifts, mobile cranes, telehandlers, and access platforms to Fujairah Free Zone, the Port of Fujairah, the Fujairah Oil Terminal bunkering complex, and the Al Hayl Industrial Area.",
-    whyHeading: "Why Fujairah Operators Choose Seven Lift",
+      "Equipment rental for projects in Salalah and across Dhofar Governorate, including the Port of Salalah, Salalah Free Zone, and Raysut Industrial Estate. Salalah is a long-distance move from our Sohar base, so we focus on planned hire: cranes, forklifts, excavators, wheel loaders, tippers, boom loaders, and JCBs for projects running several weeks or more.",
+    whyHeading: "Renting Equipment for Salalah Projects",
     whyPoints: [
       {
-        title: "Port & Bunkering Support",
+        title: "Monthly Project Rates",
         description:
-          "Equipment for the Port of Fujairah and Fujairah Oil Terminal, where tank-farm and bunkering operations set the safety and documentation bar.",
+          "Longer hires spread the transport cost from Sohar, so monthly rental is the most cost-effective way to resource a Salalah project.",
       },
       {
-        title: "East Coast Mobilization",
+        title: "Khareef-Aware Planning",
         description:
-          "Fujairah sits across the Hajar mountains from our main routes. We plan transport properly rather than promising a same-day slot we cannot hold.",
+          "We help plan machine choice and scheduling around the June–September khareef, when rain and mist change ground conditions.",
       },
       {
-        title: "Al Hayl Industrial Area",
+        title: "Port & Free Zone Work",
         description:
-          "Forklifts and telehandlers for the manufacturing, quarrying, and building-materials units at Al Hayl.",
+          "Cranes and forklifts for warehouses, plants, and laydown areas at the Port of Salalah, the Free Zone, and Raysut.",
       },
       {
-        title: "Oil & Gas Documentation",
-        description:
-          "Third-party inspection certificates, load charts, and HSE documentation prepared to the standard terminal operators require.",
+        title: "Operators Travel With the Machine",
+        description: "Our operators stay with the equipment for the hire period, so you are not relying on local availability.",
       },
       {
-        title: "Project-Length Contracts",
-        description:
-          "Given the transport distance, Fujairah work is best served by weekly, monthly, and shutdown-length contracts.",
+        title: "Earthmoving Packages",
+        description: "Excavators, loaders, and tippers together for site preparation and road works across Dhofar.",
       },
       {
-        title: "Certified Riggers",
-        description:
-          "Crane work at the terminals comes with certified riggers and a documented lift plan as standard.",
+        title: "Registered Omani Company",
+        description: "ABDUL MASOOD TRADING LLC, C.R. No. 1441246, Sohar, Sultanate of Oman.",
       },
     ],
     faqs: [
       {
-        question: "Do you deliver equipment to Fujairah and the east coast?",
+        question: "Do you rent equipment in Salalah?",
         answer:
-          "Yes. We cover Fujairah Free Zone, the Port of Fujairah, Fujairah Oil Terminal, Al Hayl Industrial Area, and Dibba. Because the east coast is across the mountains from our Abu Dhabi and Dubai routes, we schedule Fujairah deliveries in advance rather than same-day.",
+          "Yes, for planned project hire. Salalah is a long-distance mobilization from our Sohar base, so it works best for hires of several weeks or months.",
       },
       {
-        question: "Can you supply equipment for tank farm and bunkering operations in Fujairah?",
+        question: "Does the khareef season affect equipment hire in Salalah?",
         answer:
-          "Yes. We supply forklifts, telehandlers, man lifts, and mobile cranes to the Fujairah Oil Terminal area with the inspection certificates, load charts, and HSE documentation that terminal operators require for site entry.",
+          "It can. From roughly June to September the khareef brings drizzle and mist to the coastal plain and mountains, which softens ground and reduces visibility. Tell us if your project runs through the khareef so we can plan machine choice and working arrangements.",
       },
       {
-        question: "How much notice do you need for a Fujairah delivery?",
+        question: "How much notice do you need for Salalah?",
         answer:
-          "We ask for 2–3 days for standard equipment and around a week for larger cranes or shutdown work, which lets us confirm transport across the Hajar route and have documentation approved before the unit arrives.",
+          "Ideally one to two weeks, so we can confirm the machines, arrange transport, and handle any port, free zone, or site entry requirements before arrival.",
       },
       {
-        question: "Do you support plant shutdowns and turnarounds in Fujairah?",
+        question: "Can you supply equipment for work at the Port of Salalah?",
         answer:
-          "Yes. Shutdown and turnaround work is a common reason clients call us here — we can supply multiple units under one contract for the duration, with replacement cover if a machine goes down mid-shutdown.",
-      },
-      {
-        question: "What equipment is available for Al Hayl Industrial Area?",
-        answer:
-          "Al Hayl is mostly served by 3–10 ton forklifts and telehandlers for the manufacturing and building-materials units there, with mobile cranes available for machinery installation and structural work.",
+          "Yes. We supply cranes and forklifts for port-side warehouses, plants, and laydown areas, and earthmoving equipment for construction in the Free Zone and Raysut. Site entry requirements are arranged with you in advance.",
       },
     ],
-    ctaHeading: "Need Equipment in Fujairah?",
-    ctaSubheading:
-      "Tell us your site, dates, and documentation requirements — we'll schedule an east coast mobilization.",
-    whatsappMessage: "Hi Seven Lift, I need heavy equipment rental in Fujairah.",
+    ctaHeading: "Planning a Project in Salalah?",
+    ctaSubheading: "Send the scope, machines, and dates — we'll plan mobilization and quote monthly rates.",
+    whatsappMessage: "Hello Abdul Masood Trading, I need equipment rental for a project in Salalah.",
 
-    metaTitle: "Heavy Equipment Rental Fujairah | Port & FFZ",
+    metaTitle: "Heavy Equipment Rental in Salalah",
     metaDescription:
-      "Forklift, crane, telehandler & man lift rental in Fujairah. Serving Fujairah Free Zone, the Port, Oil Terminal & Al Hayl. Certified riggers.",
+      "Project equipment hire in Salalah & Dhofar: cranes, forklifts, excavators, wheel loaders, tippers & JCBs with operators for Port of Salalah & Raysut.",
     keywords: [
-      "heavy equipment rental Fujairah",
-      "forklift rental Fujairah",
-      "crane rental Fujairah",
-      "equipment rental Fujairah Free Zone",
-      "equipment rental Fujairah Port",
-      "man lift rental Fujairah",
+      "equipment rental Salalah",
+      "heavy equipment rental Salalah",
+      "crane rental Salalah",
+      "Salalah Free Zone equipment hire",
+      "excavator rental Salalah",
     ],
-    areaServed: ["Fujairah", "Fujairah Free Zone", "Port of Fujairah", "Al Hayl", "Dibba"],
-    nearby: ["ras-al-khaimah", "sharjah"],
+    areaServed: ["Salalah", "Taqah", "Mirbat", "Thumrait", "Dhofar"],
+    nearby: ["duqm", "nizwa"],
     industries: [
-      "oil storage, bunkering and terminal operations",
-      "port and container logistics",
-      "quarrying and building materials at Al Hayl",
-      "plant shutdown and turnaround contracting",
+      "port and free zone logistics",
+      "industrial development at Raysut",
+      "construction and road works across Dhofar",
     ],
     demandNote:
-      "Fujairah's lifting demand centres on the port and the oil terminal complex, where documentation and shutdown scheduling matter as much as the machine itself.",
+      "The Port of Salalah, the Free Zone, and Raysut make Salalah the industrial and logistics centre of southern Oman.",
+    mobilization:
+      "Salalah is a long-distance mobilization from Sohar, so we plan transport in advance and recommend monthly hire.",
+    siteConditions:
+      "Salalah's coastal plain is flat, but the June–September khareef brings drizzle, mist, and wet ground that slow earthworks and reduce visibility for lifting. Mountain roads towards Thumrait and the interior are steep, which matters when moving heavy machines between sites.",
     equipmentNotes: {
-      forklift: [
-        "Fujairah's forklift work comes from the Free Zone warehouses, container and general cargo at the Port of Fujairah, and the oil terminal complex, where drums, spares, and shutdown materials have to be moved around tank farms.",
-        "Oil terminal and tank farm areas run strict permit-to-work systems and may classify zones for ignition risk, so tell us the site's area classification and HSE requirements before we quote, and we will confirm what we can supply. For the Free Zone and Al Hayl building-materials yards, standard 3–10 ton diesel forklifts on monthly terms are the usual choice.",
-      ],
-      "mobile-crane": [
-        "Crane demand in Fujairah is dominated by the oil storage and bunkering hub, including tank construction, terminal maintenance, and planned shutdowns and turnarounds, as well as heavy lifts at the Port of Fujairah and the Al Hayl quarries.",
-        "Terminal operators require full lift documentation, third-party certificates, and certified crews, and lifts are fixed to shutdown schedules, so book the crane and lift plan well in advance. Large cranes travel to the east coast over the Hajar mountains, so allow for mobilization time when planning, particularly for capacities above 100 tons.",
-      ],
-      telehandler: [
-        "In Fujairah, telehandlers work in the Al Hayl quarry and building-materials area, on terminal and port maintenance jobs, and on residential and hospitality projects along the coast from Fujairah city to Dibba.",
-        "Quarry and industrial sites need rough-terrain four-wheel-drive units. Coastal villa and hotel projects mostly need a compact telehandler with a 7–13 m boom. Because sites are spread out along the east coast, monthly hire usually works out cheaper than repeated mobilizations.",
-      ],
-      "man-lift": [
-        "Access platforms in Fujairah are mostly used at the oil terminals and tank farms, for tank inspection, painting and coating, and pipe-rack maintenance, often during planned shutdowns. They are also used on port structures and warehouse maintenance in the Free Zone.",
-        "Terminal work usually needs rough-terrain booms that can reach over pipework, along with operator certificates and the site's permit-to-work. The coastal humidity and salt air are hard on exposed equipment, so check that the platform's inspection certificate is current before work starts. We supply it with every unit on request.",
-      ],
+      crane:
+        "Crane work in Salalah centres on the Port of Salalah, the Free Zone, and Raysut Industrial Estate: installing plant and offloading heavy cargo. During the khareef, reduced visibility and wind can limit lifting, so build weather allowance into the lift schedule.",
+      tipper:
+        "Tippers in Salalah move fill and aggregate on construction and road works. Wet khareef conditions soften haul roads on unsealed sites, so plan haul routes and allow for slower cycles in those months.",
+      "boom-loader":
+        "Boom loaders in Salalah place materials on building projects and move pallets across site compounds. Their rough-terrain tyres handle unsealed ground better than a forklift, including during the wetter months.",
+      forklift:
+        "3 ton forklifts in Salalah serve warehouses and logistics operations around the Port of Salalah and the Free Zone. Because of the distance from Sohar, monthly hire is the practical arrangement.",
+      excavator:
+        "Excavators in Salalah handle foundations, trenching, and site preparation. Ground on the coastal plain can be saturated during the khareef, so plan deep excavations for the drier months where possible.",
+      jcb: "A JCB covers smaller utilities, trenching, and site tasks around Salalah without mobilizing several machines from the north.",
+      "wheel-loader":
+        "Wheel loaders in Salalah load tippers and manage stockpiles on road and construction projects, and at material yards serving Dhofar's building sites.",
     },
   },
   {
-    slug: "umm-al-quwain",
-    metaZoneShort: "UAQ FTZ & Industrial Area",
-    title: "Heavy Equipment Rental in Umm Al Quwain",
-    shortTitle: "Umm Al Quwain",
-    cityName: "Umm Al Quwain",
-    href: "/locations/umm-al-quwain",
-    emirate: "Umm Al Quwain",
+    slug: "nizwa",
+    title: "Heavy Equipment Rental in Nizwa",
+    shortTitle: "Nizwa",
+    cityName: "Nizwa",
+    href: "/locations/nizwa",
+    governorate: "Ad Dakhiliyah",
     description:
-      "Forklift, crane, telehandler, and man lift rental for UAQ Free Trade Zone, the Industrial Area, and Al Salamah.",
+      "Excavators, JCBs, wheel loaders, tippers, cranes, and boom loaders for construction in Nizwa and across Ad Dakhiliyah.",
     heroImage: "/images/fleet/telehandler-jcb.jpg",
-    heroImageAlt: "Telehandler working on a construction site in Umm Al Quwain",
-    areas: [
-      "UAQ Free Trade Zone (UAQ FTZ)",
-      "Umm Al Quwain Industrial Area",
-      "Al Salamah",
-      "Umm Al Quwain Port",
-      "Falaj Al Mualla",
-    ],
-    geo: { latitude: 25.5641, longitude: 55.5552 },
+    heroImageAlt: "Telescopic boom loader lifting a pallet on site",
+    areas: ["Nizwa City", "Nizwa Industrial Estate", "Firq", "Bahla", "Izki", "Manah", "Birkat Al Mawz"],
+    geo: { latitude: 22.9333, longitude: 57.5333 },
     primary: false,
+    metaZoneShort: "Nizwa, Firq, Bahla & Izki",
 
-    eyebrow: "Umm Al Quwain · UAQ FTZ",
+    eyebrow: "Nizwa · Ad Dakhiliyah",
     intro:
-      "Equipment rental across Umm Al Quwain — UAQ Free Trade Zone, the Industrial Area, Al Salamah, and the agricultural and light-industrial belt around Falaj Al Mualla. Forklifts, telehandlers, man lifts, and mobile cranes on our Northern Emirates route.",
-    whyHeading: "Why UAQ Businesses Choose Seven Lift",
+      "Construction and civil works equipment for Nizwa and the interior. We supply excavators, JCB backhoe loaders, wheel loaders, tippers, cranes, boom loaders, and 3 ton forklifts with operators to projects in Nizwa city, Nizwa Industrial Estate, Firq, Bahla, Izki, Manah, and Birkat Al Mawz.",
+    whyHeading: "Why Nizwa Projects Rent From Us",
     whyPoints: [
       {
-        title: "UAQ Free Trade Zone Delivery",
+        title: "Earthworks on Rocky Ground",
         description:
-          "Warehouse forklifts and access platforms delivered into UAQ FTZ, with free-zone entry documentation prepared before dispatch.",
+          "Excavators, JCBs, and loaders for the gravel and rock common across the interior, with operators used to hard digging.",
       },
       {
-        title: "On the Northern Route",
+        title: "Planned Delivery",
         description:
-          "UAQ sits between Ajman and Ras Al Khaimah on our regular corridor, which keeps mobilization cost and lead time down.",
+          "Machines are mobilised from Sohar by road, so we schedule delivery ahead of your start date and confirm it before dispatch.",
       },
       {
-        title: "Small-Site Suitability",
+        title: "Village & Town Sites",
         description:
-          "Much of UAQ is smaller units and open sites — compact telehandlers and 3–5 ton forklifts usually beat larger machines here.",
+          "Compact JCBs for narrow streets and small plots in the older parts of Nizwa, Bahla, and the surrounding villages.",
       },
       {
-        title: "Construction & Development",
-        description:
-          "Telehandlers and man lifts for the residential and commercial development underway across UAQ.",
+        title: "Industrial Estate Support",
+        description: "Forklifts, boom loaders, and cranes for units and warehouses in Nizwa Industrial Estate.",
       },
       {
-        title: "Certified Operators",
-        description: "Licensed operators supplied with every unit, or self-drive hire for certified in-house staff.",
+        title: "Monthly Hire",
+        description: "Monthly rates for longer projects, with operators staying on site for the hire period.",
       },
       {
-        title: "Flexible Terms",
-        description: "Daily, weekly, and monthly hire, extendable on site without renegotiating the contract.",
+        title: "Registered Omani Company",
+        description: "ABDUL MASOOD TRADING LLC, C.R. No. 1441246, Sohar, Sultanate of Oman.",
       },
     ],
     faqs: [
       {
-        question: "Do you deliver equipment to Umm Al Quwain and UAQ Free Trade Zone?",
+        question: "Do you deliver equipment to Nizwa?",
         answer:
-          "Yes. UAQ Free Trade Zone, the Umm Al Quwain Industrial Area, Al Salamah, and Falaj Al Mualla are covered on our Northern Emirates route, typically with next-day mobilization.",
+          "Yes. We supply equipment to Nizwa city, Nizwa Industrial Estate, and surrounding wilayats including Bahla, Izki, Manah, and Birkat Al Mawz. Delivery is planned from our Sohar base, so a few days' notice helps.",
       },
       {
-        question: "What equipment is most commonly rented in Umm Al Quwain?",
+        question: "Can your excavators handle rocky ground in the interior?",
         answer:
-          "Telehandlers and 3–5 ton forklifts are the most common, reflecting UAQ's mix of construction sites, smaller industrial units, and free-zone warehousing. Man lifts are frequently hired for building maintenance and signage work.",
+          "Tell us the ground type when you book. Much of Ad Dakhiliyah is gravel and rock, and we will match the machine and bucket or breaking attachment to the digging conditions.",
       },
       {
-        question: "Can you supply mobile cranes in Umm Al Quwain?",
+        question: "Do you have small machines for narrow streets?",
         answer:
-          "Yes. Mobile cranes are routed to UAQ for machinery installation, structural erection, and precast work. We ask for a couple of days' notice to schedule transport and confirm the right capacity.",
+          "Yes. JCB backhoe loaders are compact enough for older town and village streets and can dig, load, and backfill without needing a second machine.",
       },
       {
-        question: "Is equipment rental in UAQ more expensive because of the distance?",
-        answer:
-          "Mobilization is quoted per job, but because UAQ sits directly on our Ajman–Ras Al Khaimah corridor, transport cost is generally comparable to a Sharjah or Ajman delivery rather than a remote-site charge.",
-      },
-      {
-        question: "Do you offer long-term rental for UAQ construction projects?",
-        answer:
-          "Yes. Monthly and project-length contracts are available and are the usual choice for development work, with servicing and breakdown replacement included for the contract duration.",
+        question: "Can I rent equipment in Nizwa for one month or longer?",
+        answer: "Yes. Monthly hire is common for interior projects and is usually the most cost-effective option.",
       },
     ],
-    ctaHeading: "Need Equipment in Umm Al Quwain?",
-    ctaSubheading: "Send your site location and equipment type — we'll confirm a slot on our next Northern route run.",
-    whatsappMessage: "Hi Seven Lift, I need heavy equipment rental in Umm Al Quwain.",
+    ctaHeading: "Need Equipment in Nizwa?",
+    ctaSubheading: "Tell us the job, the site, and your start date — we'll plan delivery and quote.",
+    whatsappMessage: "Hello Abdul Masood Trading, I need equipment rental in Nizwa.",
 
-    metaTitle: "Heavy Equipment Rental Umm Al Quwain | UAQ FTZ",
+    metaTitle: "Heavy Equipment Rental in Nizwa",
     metaDescription:
-      "Forklift, crane, telehandler & man lift rental in Umm Al Quwain. Serving UAQ Free Trade Zone, the Industrial Area & Al Salamah.",
+      "Excavator, JCB, wheel loader, tipper, crane & boom loader rental in Nizwa, Bahla, Izki & Nizwa Industrial Estate. Operators included. +968 7928 8727.",
     keywords: [
-      "heavy equipment rental Umm Al Quwain",
-      "forklift rental Umm Al Quwain",
-      "crane rental UAQ",
-      "equipment rental UAQ Free Trade Zone",
-      "telehandler rental Umm Al Quwain",
+      "equipment rental Nizwa",
+      "heavy equipment rental Nizwa",
+      "JCB rental Nizwa",
+      "excavator rental Nizwa",
+      "Ad Dakhiliyah equipment hire",
     ],
-    areaServed: ["Umm Al Quwain", "UAQ Free Trade Zone", "Al Salamah", "Falaj Al Mualla"],
-    nearby: ["ajman", "ras-al-khaimah", "sharjah"],
+    areaServed: ["Nizwa", "Bahla", "Izki", "Manah", "Birkat Al Mawz", "Ad Dakhiliyah"],
+    nearby: ["muscat", "al-buraimi"],
     industries: [
-      "free-zone warehousing and distribution",
-      "residential and commercial development",
-      "light manufacturing",
-      "fishing, marine and agricultural operations",
+      "residential and public-sector construction",
+      "roads and utilities across the interior",
+      "light industry at Nizwa Industrial Estate",
     ],
     demandNote:
-      "Umm Al Quwain's demand comes from free-zone warehousing and a steady development pipeline, where compact telehandlers and mid-size forklifts do most of the work.",
+      "Nizwa is the main town of the interior, and construction and road works across Ad Dakhiliyah keep earthmoving equipment in demand.",
+    mobilization:
+      "Equipment reaches Nizwa from our Sohar base by road, so we schedule delivery a few days ahead of your start date.",
+    siteConditions:
+      "The interior is mostly gravel plains and rock at the foot of the Hajar mountains, so digging is often harder than on the coast and breaking may be needed. Older parts of Nizwa and nearby towns have narrow streets and falaj channels that must be protected, and steep roads towards Jebel Akhdar limit what heavy machines can reach.",
     equipmentNotes: {
-      forklift: [
-        "Umm Al Quwain's forklift demand comes mainly from UAQ Free Trade Zone, where trading, e-commerce, and distribution companies operate small and mid-size warehouses that need reliable 3–5 ton units rather than heavy capacity.",
-        "For UAQ FTZ warehouses with finished floors, electric forklifts are the standard. For the Industrial Area and building-materials yards, a diesel unit is better. Many UAQ businesses hire monthly and ask for a standby replacement, which keeps a small warehouse moving without the cost of owning a backup machine.",
-      ],
-      "mobile-crane": [
-        "Crane lifts in Umm Al Quwain are usually mid-size jobs: machinery installation in the Industrial Area and Free Zone, marine and boat-yard lifts near Umm Al Quwain Port, and structural work on new residential and commercial buildings.",
-        "A 25–80 ton all-terrain crane covers most of these jobs. Larger capacities come from our main fleet on a scheduled basis, so book a few days ahead. Coastal plots near the lagoon and port can have soft ground, so we confirm outrigger bearing and setup position during the site survey.",
-      ],
-      telehandler: [
-        "On UAQ's residential and commercial development sites, telehandlers place blockwork, steel, and roofing material on low- and mid-rise buildings, and unload deliveries across rough site ground.",
-        "A compact 3–4 ton unit with around 7 m of reach does most of the work in Umm Al Quwain. Larger 13–17 m booms are available for taller buildings. Because UAQ is served on a scheduled route, booking a day ahead gets the best delivery slot.",
-      ],
-      "man-lift": [
-        "In Umm Al Quwain, man lifts are mostly used for warehouse and Free Zone facility maintenance, retail and commercial fit-out, and exterior work on new residential buildings such as signage, lighting, and facade finishing.",
-        "Indoor jobs on finished floors need electric scissor lifts with non-marking tyres. For exterior work, or for reaching over obstacles, telescopic and articulating booms are the right choice. Let us know the working height and the ground conditions, and we will specify the smallest platform that safely does the job.",
-      ],
+      crane:
+        "Cranes in Nizwa lift steel, precast, and equipment on public buildings, commercial projects, and units in Nizwa Industrial Estate. In older town areas, narrow streets can limit crane positioning, so share access details for a site check.",
+      tipper:
+        "Tippers in Nizwa haul excavated rock and gravel off site and bring in aggregate from interior quarries. Rocky spoil is heavy, so give us volumes and material type to plan the number of trucks.",
+      "boom-loader":
+        "Boom loaders in Nizwa place blocks and materials on residential and commercial buildings, working on the unmade gravel ground common on interior sites.",
+      forklift:
+        "3 ton forklifts in Nizwa support warehouses and workshops in Nizwa Industrial Estate and material handling at contractors' and suppliers' yards.",
+      excavator:
+        "Excavators in Nizwa work on foundations, trenching, and road works in ground that is often gravel or rock. Tell us the expected ground so we can plan the right bucket or breaking attachment.",
+      jcb: "JCB backhoe loaders are well suited to Nizwa's older neighbourhoods and surrounding villages, where compact size matters and one machine handles trenching, loading, and backfilling.",
+      "wheel-loader":
+        "Wheel loaders in Nizwa load tippers and manage aggregate at crusher yards and batching plants serving construction across the interior.",
     },
   },
   {
-    slug: "al-ain",
-    metaZoneShort: "Industrial City & Sanaiya",
-    title: "Heavy Equipment Rental in Al Ain",
-    shortTitle: "Al Ain",
-    cityName: "Al Ain",
-    href: "/locations/al-ain",
-    emirate: "Abu Dhabi",
+    slug: "al-buraimi",
+    title: "Heavy Equipment Rental in Al Buraimi",
+    shortTitle: "Al Buraimi",
+    cityName: "Al Buraimi",
+    href: "/locations/al-buraimi",
+    governorate: "Al Buraimi",
     description:
-      "Forklift, crane, telehandler, and man lift rental for Al Ain Industrial City, Sanaiya, and the Al Ain construction belt.",
-    heroImage: "/images/fleet/aerial-bucket-truck.jpg",
-    heroImageAlt: "Aerial work platform on a maintenance job in Al Ain",
-    areas: [
-      "Al Ain Industrial City (ICAD Al Ain)",
-      "Al Ain Sanaiya",
-      "Al Ain Industrial Area",
-      "Zayed Military City & Remah",
-      "Al Ain Airport & Al Faqa",
-      "Al Jimi & Al Muwaiji",
-    ],
-    geo: { latitude: 24.2075, longitude: 55.7447 },
-    primary: false,
+      "Equipment hire for Al Buraimi city, Buraimi Industrial Estate, and Mahdah — close to our Sohar base via the Sohar–Buraimi road.",
+    heroImage: "/images/fleet/forklift-warehouse.jpg",
+    heroImageAlt: "Forklift working inside a warehouse",
+    areas: ["Al Buraimi City", "Al Buraimi Industrial Estate", "Mahdah", "As Sunaynah", "Wadi Al Jizi corridor"],
+    geo: { latitude: 24.2508, longitude: 55.7931 },
+    primary: true,
+    metaZoneShort: "Al Buraimi, Industrial Estate & Mahdah",
 
-    eyebrow: "Al Ain · Sanaiya · Industrial City",
+    eyebrow: "Al Buraimi · Near Our Sohar Base",
     intro:
-      "Equipment rental across Al Ain and the eastern region of Abu Dhabi — Al Ain Industrial City, the Sanaiya workshop district, and the construction and agricultural belt running out to Remah and Al Faqa.",
-    whyHeading: "Why Al Ain Contractors Choose Seven Lift",
+      "Al Buraimi is a short run from our Sohar base along the Sohar–Buraimi road, making it one of the easiest areas for us to supply. We rent excavators, JCBs, wheel loaders, tippers, cranes, boom loaders, and 3 ton forklifts to contractors, quarries, and businesses in Al Buraimi city, Buraimi Industrial Estate, and Mahdah.",
+    whyHeading: "Why Al Buraimi Chooses Us",
     whyPoints: [
       {
-        title: "Same Emirate, Direct Route",
+        title: "Close to Sohar",
         description:
-          "Al Ain is served directly from our Abu Dhabi base along the Al Ain road, keeping mobilization straightforward and predictable.",
+          "The Sohar–Buraimi road links our base directly to Al Buraimi, so mobilization is quicker and simpler than from Muscat.",
       },
       {
-        title: "Sanaiya Workshop District",
+        title: "Quarry & Crusher Work",
         description:
-          "Compact forklifts and telehandlers sized for the dense automotive and fabrication workshops in Al Ain Sanaiya.",
+          "Wheel loaders, excavators, and tippers for the quarrying and crusher operations along the Wadi Al Jizi corridor and around Mahdah.",
       },
       {
-        title: "Al Ain Industrial City",
-        description:
-          "Warehouse and manufacturing equipment for the ZonesCorp-developed industrial estates on the city's outskirts.",
+        title: "Industrial Estate Support",
+        description: "Forklifts, boom loaders, and cranes for units and warehouses in Buraimi Industrial Estate.",
       },
       {
-        title: "Heat-Rated Equipment",
-        description:
-          "Al Ain runs hotter than the coast. Our units are maintained and specified for sustained inland summer operation.",
+        title: "Construction Packages",
+        description: "Excavators, JCBs, and tippers together for building and infrastructure projects around the city.",
       },
       {
-        title: "Construction & Infrastructure",
-        description:
-          "Telehandlers, man lifts, and mobile cranes for the residential, institutional, and road projects across the Al Ain region.",
+        title: "Operators Included",
+        description: "Machines are supplied with experienced operators and drivers.",
       },
       {
-        title: "Certified Operators",
-        description: "Licensed operators supplied with every rental, with documentation for municipality requirements.",
+        title: "Registered Omani Company",
+        description: "ABDUL MASOOD TRADING LLC, C.R. No. 1441246, Sohar, Sultanate of Oman.",
       },
     ],
     faqs: [
       {
-        question: "Do you deliver equipment to Al Ain and Al Ain Industrial City?",
+        question: "Do you rent equipment in Al Buraimi?",
         answer:
-          "Yes. Al Ain Industrial City, Al Ain Sanaiya, and the surrounding industrial areas are served directly from our Abu Dhabi base, with next-day mobilization standard and same-day possible for units already in the region.",
+          "Yes. Al Buraimi is close to our Sohar base along the Sohar–Buraimi road, and we supply the full range of our equipment to Al Buraimi city, Buraimi Industrial Estate, and Mahdah.",
       },
       {
-        question: "What equipment do Al Ain Sanaiya workshops usually need?",
+        question: "Can you supply equipment for quarry and crusher operations?",
         answer:
-          "Sanaiya's automotive and fabrication workshops mostly hire 3–5 ton forklifts and compact telehandlers, which fit the narrow yards and handle engine blocks, steel sections, and pallet loads.",
+          "Yes. Wheel loaders, excavators, and tippers are commonly hired for quarry and crusher work. Tell us the material, daily volumes, and whether you need loading, haulage, or both.",
       },
       {
-        question: "Can you supply cranes for construction projects in Al Ain?",
+        question: "How quickly can equipment reach Al Buraimi?",
         answer:
-          "Yes. Our mobile crane fleet from 25 to 500 ton serves construction, infrastructure, and precast installation work across the Al Ain region, with certified riggers and lift plans included.",
+          "Because Al Buraimi is close to Sohar, it is one of our quicker areas to mobilise to. Call with your site location and machine, and we will confirm availability and a delivery time.",
       },
       {
-        question: "Does equipment hold up in Al Ain's summer heat?",
-        answer:
-          "Yes. Inland temperatures run higher than the coast, so our units are serviced on a tighter cycle for cooling systems and hydraulics during summer, and we include breakdown replacement in every contract.",
-      },
-      {
-        question: "Do you cover Remah, Al Faqa, and the outlying Al Ain areas?",
-        answer:
-          "Yes, we mobilize to Remah, Al Faqa, and the wider eastern region for agricultural, infrastructure, and military-city projects, typically with a day or two of scheduling notice.",
+        question: "Do you offer monthly hire in Al Buraimi?",
+        answer: "Yes. Daily, weekly, and monthly hire are all available, and monthly rates suit ongoing quarry and construction work.",
       },
     ],
-    ctaHeading: "Need Equipment in Al Ain or Sanaiya?",
-    ctaSubheading: "Tell us your site and load requirement — we'll dispatch from Abu Dhabi on the Al Ain route.",
-    whatsappMessage: "Hi Seven Lift, I need heavy equipment rental in Al Ain.",
+    ctaHeading: "Need Equipment in Al Buraimi?",
+    ctaSubheading: "Tell us the machine and site location — we'll confirm availability and quote.",
+    whatsappMessage: "Hello Abdul Masood Trading, I need equipment rental in Al Buraimi.",
 
-    metaTitle: "Heavy Equipment Rental Al Ain | Sanaiya",
+    metaTitle: "Heavy Equipment Rental in Al Buraimi",
     metaDescription:
-      "Forklift, crane, telehandler & man lift rental in Al Ain. Serving Al Ain Industrial City, Sanaiya, Remah & Al Faqa. Next-day delivery.",
+      "Equipment rental in Al Buraimi & Mahdah: wheel loaders, excavators, tippers, JCBs, cranes, boom loaders & forklifts with operators. Near our Sohar base.",
     keywords: [
-      "heavy equipment rental Al Ain",
-      "forklift rental Al Ain",
-      "crane rental Al Ain",
-      "forklift rental Al Ain Sanaiya",
-      "equipment rental Al Ain Industrial City",
-      "telehandler rental Al Ain",
+      "equipment rental Al Buraimi",
+      "heavy equipment rental Buraimi",
+      "wheel loader rental Buraimi",
+      "excavator rental Buraimi",
+      "Buraimi Industrial Estate equipment hire",
     ],
-    areaServed: ["Al Ain", "Al Ain Industrial City", "Al Ain Sanaiya", "Remah", "Al Faqa"],
-    nearby: ["abu-dhabi-musaffah", "dubai"],
+    areaServed: ["Al Buraimi", "Mahdah", "As Sunaynah"],
+    nearby: ["sohar", "nizwa"],
     industries: [
-      "automotive and fabrication workshops in Sanaiya",
-      "food processing and light manufacturing",
-      "residential and institutional construction",
-      "agriculture and landscaping contracting",
+      "quarrying and crusher operations",
+      "construction and infrastructure around the city",
+      "industry and trade at Buraimi Industrial Estate",
     ],
     demandNote:
-      "Al Ain combines a dense workshop district at Sanaiya with steady construction and agricultural contracting across the eastern region.",
+      "Quarrying, construction, and the industrial estate make Al Buraimi a steady market for earthmoving and handling equipment.",
+    mobilization:
+      "Al Buraimi is a short run from Sohar along the Sohar–Buraimi road, one of the quickest areas for us to mobilise to.",
+    siteConditions:
+      "Al Buraimi sits on gravel plains with rocky ground towards the mountains, and quarry sites mean heavy, abrasive material that is tough on buckets and tyres. Summer heat is severe inland, so early starts and reliable machines matter.",
     equipmentNotes: {
-      forklift: [
-        "Forklift work in Al Ain is split between the Sanaiya workshop district, where compact diesel units move engines, parts, and fabricated steel in tight yards, and the region's food processing and dairy operations, which need electric forklifts rated for cold stores.",
-        "Al Ain Industrial City warehouses and manufacturing units usually take 5–10 ton forklifts on monthly terms. Summer temperatures inland are higher than on the coast, so for outdoor yard work we recommend enclosed, air-conditioned cabs and planning shifts around the hottest part of the day.",
-      ],
-      "mobile-crane": [
-        "The UAE's mandatory midday work break, 12:30 to 3:00 pm from mid-June to mid-September, has a strong effect on crane schedules in Al Ain because inland temperatures are among the highest in the country. Outdoor lifts are therefore planned for the morning or late afternoon.",
-        "Typical Al Ain crane jobs include steel erection for institutional and residential construction, machinery installation in Al Ain Industrial City, and heavy lifts for the region's agricultural and utility projects. Because Al Ain is served from our Abu Dhabi fleet, allow a day for mobilization, and more notice for capacities above 100 tons.",
-      ],
-      telehandler: [
-        "On Al Ain's residential and institutional construction sites, including villas, schools, and healthcare buildings, telehandlers are used to place material at height. The region's farms and landscaping contractors also use them with bucket and fork attachments.",
-        "Farm and landscaping sites are soft or sandy ground, which calls for four-wheel-drive, rough-terrain units. For villa and low-rise projects, a compact 7 m telehandler is usually the most efficient choice. For a project that runs for months, monthly terms cost much less than day hire.",
-      ],
-      "man-lift": [
-        "Beyond building maintenance, man lifts in Al Ain are used for landscaping and palm-tree maintenance. Articulating boom lifts give crews safe access to prune and treat tall date palms in public spaces, farms, and private estates.",
-        "Workshop and warehouse maintenance in Sanaiya and Al Ain Industrial City usually calls for electric or diesel scissor lifts. Exterior building work suits telescopic booms. Because of the inland heat, we recommend booking outdoor platform work for early starts, outside the midday break period.",
-      ],
+      crane:
+        "Cranes in Al Buraimi install equipment and lift steel on industrial units in the Buraimi Industrial Estate and on commercial projects in the city. Because Al Buraimi is close to Sohar, short-notice crane hire is more practical here than in more distant areas.",
+      tipper:
+        "Tippers in Al Buraimi haul aggregate from quarries and crushers and remove spoil from construction sites. Tell us the haul route and daily volume so we can size the number of trucks.",
+      "boom-loader":
+        "Boom loaders in Al Buraimi handle blocks and materials on building sites and move pallets across unmade ground in yards and compounds.",
+      forklift:
+        "3 ton forklifts in Al Buraimi serve warehouses and trading businesses in the Industrial Estate and around the city.",
+      excavator:
+        "Excavators in Al Buraimi dig foundations and trenches for construction and work in quarry operations. Rocky ground is common, so share the ground type to get the right machine and bucket.",
+      jcb: "JCBs in Al Buraimi handle utilities, small plots, and maintenance jobs around the city, where one compact machine can dig, load, and backfill.",
+      "wheel-loader":
+        "Wheel loaders are central to Al Buraimi's quarry and crusher operations, loading tippers and managing stockpiles. Monthly hire with an operator is the usual arrangement.",
     },
   },
 ]
@@ -1102,7 +786,6 @@ export function getLocationBySlug(slug: string) {
   return locations.find((location) => location.slug === slug)
 }
 
-/** The two flagship locations, surfaced first in the /locations index. */
 export const primaryLocations = locations.filter((location) => location.primary)
 
 export const secondaryLocations = locations.filter((location) => !location.primary)

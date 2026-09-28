@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, ShieldCheck, Timer, Gauge, Headset } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { JsonLd } from "@/components/json-ld"
@@ -13,28 +13,22 @@ import { equipmentCityLinksByEquipment } from "@/lib/service-areas"
 import { siteConfig } from "@/lib/site-config"
 
 export const metadata: Metadata = pageMetadata({
-  title: "Heavy Equipment Rental Services in the UAE",
+  title: "Equipment Rental Services in Oman",
   description:
-    "Forklift, crane, telehandler & man lift rental across all seven emirates. Certified operators, full insurance, daily to monthly hire, 24/7 support.",
+    "Crane, tipper, boom loader, forklift, excavator, JCB & wheel loader rental in Sohar, Muscat, Duqm, Salalah, Nizwa & Al Buraimi. Operators included.",
   path: "/services",
   keywords: [
-    "heavy equipment rental UAE",
-    "forklift rental UAE",
-    "crane rental UAE",
-    "telehandler rental UAE",
-    "man lift rental UAE",
-    "equipment rental all emirates",
+    "equipment rental services Oman",
+    "crane rental Oman",
+    "excavator rental Oman",
+    "JCB rental Oman",
+    "wheel loader rental Oman",
   ],
 })
 
-const guarantees = [
-  { icon: Gauge, title: "Full Capacity Range", description: "3 to 500+ ton equipment matched to your exact job requirements." },
-  { icon: Timer, title: "Flexible Terms", description: "Daily, weekly, and monthly rental agreements, no long-term lock-in." },
-  { icon: ShieldCheck, title: "Certified Operators", description: "Trained, licensed operators and full insurance on every rental." },
-  { icon: Headset, title: "24/7 Emergency Support", description: "Rapid same-day deployment anywhere across the UAE." },
-]
-
 export default function ServicesPage() {
+  const cityGroups = equipmentCityLinksByEquipment()
+
   return (
     <main className="w-full overflow-x-hidden">
       <JsonLd
@@ -48,11 +42,11 @@ export default function ServicesPage() {
       <div className="min-h-screen bg-gradient-to-b from-background to-secondary pb-20 pt-16 md:pt-24">
         <div className="mx-auto max-w-7xl px-4">
           <Reveal className="mb-16 max-w-3xl space-y-4">
-            <p className="text-sm font-bold uppercase tracking-widest text-accent">Comprehensive Solutions</p>
-            <h1 className="text-foreground">Professional Equipment Rental Services</h1>
+            <p className="text-sm font-bold uppercase tracking-widest text-accent">Rental Services</p>
+            <h1 className="text-foreground">Equipment Rental Services Across Oman</h1>
             <p className="text-lg font-medium text-muted-foreground">
-              Tailored lifting and material handling solutions for every industry and project requirement — with
-              dedicated support for Abu Dhabi (Musaffah, ICAD) and Dubai (JAFZA, Al Quoz) operations.
+              Construction and civil works machinery, hired with operators from our base in Sohar. Pick a service, or
+              jump straight to your machine and city below.
             </p>
           </Reveal>
 
@@ -61,12 +55,12 @@ export default function ServicesPage() {
               <Reveal key={service.slug} delay={idx * 100} className="h-full">
                 <Link
                   href={service.href}
-                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
+                  className="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl"
                 >
                   <div className="relative h-56 w-full bg-muted">
                     <Image
                       src={service.heroImage}
-                      alt={service.title}
+                      alt={service.heroImageAlt}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(min-width: 768px) 50vw, 100vw"
@@ -74,14 +68,14 @@ export default function ServicesPage() {
                   </div>
                   <div className="flex flex-1 flex-col justify-between gap-4 p-8">
                     <div className="space-y-3">
-                      <span className="inline-block rounded-md bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
-                        {service.capacityRange}
+                      <span className="inline-block rounded bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
+                        {service.tag}
                       </span>
                       <h2 className="text-2xl font-extrabold text-foreground">{service.title}</h2>
                       <p className="font-medium leading-relaxed text-muted-foreground">{service.description}</p>
                     </div>
                     <span className="inline-flex items-center gap-2 text-sm font-bold text-accent">
-                      View Service Details
+                      View Service
                       <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>
@@ -92,27 +86,31 @@ export default function ServicesPage() {
 
           <section className="mt-20">
             <Reveal className="mb-10 max-w-3xl space-y-3">
-              <p className="text-sm font-bold uppercase tracking-widest text-accent">UAE-Wide Coverage</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-accent">By Machine &amp; City</p>
               <h2 className="text-foreground">Equipment Rental by City</h2>
               <p className="font-medium text-muted-foreground">
-                Every equipment type, in every emirate. Pick your city for local coverage areas, delivery lead
-                times, and the fleet we hold for that region.
+                Every machine, in every hub we serve. Each page covers local work areas, site conditions, and how
+                the equipment reaches you.
               </p>
             </Reveal>
 
-            <div className="space-y-10">
-              {equipmentCityLinksByEquipment().map(({ equipment, links }) => (
-                <Reveal key={equipment.key} className="rounded-xl border border-border bg-card p-7">
+            <div className="space-y-6">
+              {cityGroups.map(({ equipment, links }) => (
+                <Reveal key={equipment.key} className="rounded-lg border border-border bg-card p-7">
                   <div className="mb-5 flex flex-wrap items-baseline gap-3">
-                    <h3 className="text-xl font-extrabold text-foreground">{equipment.label} Rental</h3>
-                    <span className="rounded-md bg-primary/10 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-primary">
-                      {equipment.capacityRange}
+                    <h3 className="text-xl font-extrabold text-foreground">
+                      <Link href={equipment.href} className="hover:text-accent">
+                        {equipment.label} Rental
+                      </Link>
+                    </h3>
+                    <span className="rounded bg-primary/10 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-primary">
+                      {equipment.tag}
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-2.5">
                     {links.map((link) => (
                       <Link
-                        key={link.slug}
+                        key={link.href}
                         href={link.href}
                         className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/50 px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-accent/50 hover:text-accent"
                       >
@@ -125,21 +123,6 @@ export default function ServicesPage() {
               ))}
             </div>
           </section>
-
-          <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-            {guarantees.map((item, idx) => {
-              const Icon = item.icon
-              return (
-                <Reveal key={item.title} delay={idx * 80} className="bg-card">
-                  <div className="flex flex-col gap-3 p-6">
-                    <Icon size={26} className="text-accent" />
-                    <h3 className="text-base font-bold text-foreground">{item.title}</h3>
-                    <p className="text-sm font-medium leading-relaxed text-muted-foreground">{item.description}</p>
-                  </div>
-                </Reveal>
-              )
-            })}
-          </div>
         </div>
       </div>
       <Footer />

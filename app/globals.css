@@ -3,83 +3,98 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * Industrial heavy-machinery palette for Abdul Masood Trading:
+ * - primary: deep slate navy (corporate, letterhead ink)
+ * - accent:  safety orange, darkened to orange-700 so white text on it and
+ *            orange text on white both clear WCAG AA (≈5.2:1)
+ * - safety:  high-visibility amber, decorative only (hazard stripes, icons on
+ *            dark backgrounds) — never for text on light surfaces
+ * - industrial: near-black slate for the footer and dark bands
+ */
 :root {
-  /* Professional corporate palette, refined from the Seven Lift brand mark
-     (navy #003b67 / brick red #ac261b) — deeper, less saturated tones for
-     an authoritative, enterprise feel */
-  --background: oklch(0.995 0 0);
-  --foreground: oklch(0.18 0.018 254);
+  --background: oklch(0.99 0.002 250);
+  --foreground: oklch(0.21 0.034 264.665);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.018 254);
+  --card-foreground: oklch(0.21 0.034 264.665);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.018 254);
-  --primary: oklch(0.26 0.06 246);
+  --popover-foreground: oklch(0.21 0.034 264.665);
+  --primary: oklch(0.29 0.065 256);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.955 0.004 255);
-  --secondary-foreground: oklch(0.26 0.06 246);
-  --muted: oklch(0.955 0.004 255);
-  --muted-foreground: oklch(0.46 0.015 255);
-  --accent: oklch(0.4 0.14 24);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.29 0.065 256);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.446 0.043 257.281);
+  --accent: oklch(0.553 0.195 38.402);
   --accent-foreground: oklch(0.99 0 0);
+  --safety: oklch(0.828 0.189 84.429);
+  --safety-foreground: oklch(0.21 0.034 264.665);
+  --industrial: oklch(0.18 0.03 262);
+  --industrial-foreground: oklch(0.97 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.885 0.005 255);
-  --input: oklch(0.97 0 0);
-  --ring: oklch(0.26 0.06 246);
-  --chart-1: oklch(0.26 0.06 246);
-  --chart-2: oklch(0.4 0.14 24);
+  --border: oklch(0.912 0.013 255.508);
+  --input: oklch(0.97 0.004 250);
+  --ring: oklch(0.553 0.195 38.402);
+  --chart-1: oklch(0.29 0.065 256);
+  --chart-2: oklch(0.553 0.195 38.402);
   --chart-3: oklch(0.5 0.09 200);
-  --chart-4: oklch(0.62 0.13 90);
+  --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.66 0.11 150);
-  --radius: 0.5rem;
+  --radius: 0.375rem;
   --sidebar: oklch(0.98 0 0);
-  --sidebar-foreground: oklch(0.18 0.018 254);
-  --sidebar-primary: oklch(0.26 0.06 246);
+  --sidebar-foreground: oklch(0.21 0.034 264.665);
+  --sidebar-primary: oklch(0.29 0.065 256);
   --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.955 0.004 255);
-  --sidebar-accent-foreground: oklch(0.26 0.06 246);
-  --sidebar-border: oklch(0.885 0.005 255);
-  --sidebar-ring: oklch(0.26 0.06 246);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.29 0.065 256);
+  --sidebar-border: oklch(0.912 0.013 255.508);
+  --sidebar-ring: oklch(0.553 0.195 38.402);
 }
 
 .dark {
-  --background: oklch(0.13 0.012 255);
+  --background: oklch(0.16 0.025 262);
   --foreground: oklch(0.97 0 0);
-  --card: oklch(0.17 0.014 255);
+  --card: oklch(0.2 0.03 262);
   --card-foreground: oklch(0.97 0 0);
-  --popover: oklch(0.15 0.01 255);
+  --popover: oklch(0.18 0.028 262);
   --popover-foreground: oklch(0.97 0 0);
-  --primary: oklch(0.58 0.09 248);
-  --primary-foreground: oklch(0.12 0 0);
-  --secondary: oklch(0.23 0.014 255);
+  --primary: oklch(0.62 0.1 250);
+  --primary-foreground: oklch(0.14 0.02 262);
+  --secondary: oklch(0.25 0.03 262);
   --secondary-foreground: oklch(0.97 0 0);
-  --muted: oklch(0.27 0.01 255);
-  --muted-foreground: oklch(0.72 0 0);
-  --accent: oklch(0.52 0.16 24);
-  --accent-foreground: oklch(0.99 0 0);
+  --muted: oklch(0.27 0.025 262);
+  --muted-foreground: oklch(0.74 0.02 255);
+  --accent: oklch(0.705 0.187 47.604);
+  --accent-foreground: oklch(0.14 0.02 262);
+  --safety: oklch(0.828 0.189 84.429);
+  --safety-foreground: oklch(0.21 0.034 264.665);
+  --industrial: oklch(0.12 0.025 262);
+  --industrial-foreground: oklch(0.97 0 0);
   --destructive: oklch(0.65 0.23 28);
   --destructive-foreground: oklch(0.1 0 0);
-  --border: oklch(0.27 0.01 255);
-  --input: oklch(0.22 0 0);
-  --ring: oklch(0.58 0.09 248);
-  --chart-1: oklch(0.58 0.09 248);
-  --chart-2: oklch(0.52 0.16 24);
+  --border: oklch(0.3 0.025 262);
+  --input: oklch(0.24 0.02 262);
+  --ring: oklch(0.705 0.187 47.604);
+  --chart-1: oklch(0.62 0.1 250);
+  --chart-2: oklch(0.705 0.187 47.604);
   --chart-3: oklch(0.58 0.11 200);
-  --chart-4: oklch(0.65 0.13 90);
+  --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.68 0.11 150);
-  --sidebar: oklch(0.15 0.01 255);
+  --sidebar: oklch(0.18 0.028 262);
   --sidebar-foreground: oklch(0.97 0 0);
-  --sidebar-primary: oklch(0.58 0.09 248);
-  --sidebar-primary-foreground: oklch(0.12 0 0);
-  --sidebar-accent: oklch(0.23 0.014 255);
+  --sidebar-primary: oklch(0.62 0.1 250);
+  --sidebar-primary-foreground: oklch(0.14 0.02 262);
+  --sidebar-accent: oklch(0.25 0.03 262);
   --sidebar-accent-foreground: oklch(0.97 0 0);
-  --sidebar-border: oklch(0.27 0.01 255);
-  --sidebar-ring: oklch(0.58 0.09 248);
+  --sidebar-border: oklch(0.3 0.025 262);
+  --sidebar-ring: oklch(0.705 0.187 47.604);
 }
 
 @theme inline {
-  --font-sans: "Geist", "Geist Fallback";
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --font-sans: var(--font-geist-sans), "Geist", "Geist Fallback";
+  --font-mono: var(--font-geist-mono), "Geist Mono", "Geist Mono Fallback";
+  --font-arabic: var(--font-noto-kufi-arabic), "Noto Kufi Arabic", "Geeza Pro", "Segoe UI", sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -94,6 +109,10 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-safety: var(--safety);
+  --color-safety-foreground: var(--safety-foreground);
+  --color-industrial: var(--industrial);
+  --color-industrial-foreground: var(--industrial-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -211,6 +230,23 @@
     100% {
       box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
     }
+  }
+
+  /* High-visibility hazard band, as on site barriers and machine counterweights. */
+  .hazard-stripe {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--safety) 0 14px,
+      var(--industrial) 14px 28px
+    );
+  }
+
+  /* Faint engineering-drawing grid for dark hero bands. */
+  .bg-blueprint {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
   .hover-lift {
