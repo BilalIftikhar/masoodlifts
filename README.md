@@ -49,6 +49,21 @@ submissions to chabdulmasood@gmail.com — no backend or API key required.
 activation email to chabdulmasood@gmail.com; click the link, or no inquiries
 are delivered. WhatsApp is offered next to the form as a fallback.
 
+**WhatsApp copy of every inquiry:** the form also posts to
+`app/api/inquiry-whatsapp`, which forwards the details to the company WhatsApp
+through [CallMeBot](https://www.callmebot.com). The customer doesn't need
+WhatsApp. To switch it on, get an API key by following the WhatsApp steps on
+callmebot.com from the receiving phone, then set these environment variables in
+the host (Vercel → Settings → Environment Variables) and redeploy:
+
+| Variable | Value |
+|---|---|
+| `CALLMEBOT_API_KEY` | the key CallMeBot sends you |
+| `WHATSAPP_NOTIFY_PHONE` | optional; receiving number in international format, defaults to +96879288727 |
+
+Without the key the route does nothing and inquiries go by email only. The
+customer sees "sent" when either email or WhatsApp delivery succeeds.
+
 ## SEO Notes
 
 - Page titles use the template `%s | Abdul Masood Trading`; keep page titles to ~37 characters.
@@ -69,3 +84,5 @@ are delivered. WhatsApp is offered next to the form as a fallback.
 - Replace stock photos with real fleet photos; add photos for tipper, JCB, and wheel loader (`lib/equipment.ts`).
 - Swap the generated AM monogram for the official logo if one exists (`components/brand-logo.tsx`, `public/images/brand/`).
 - Activate the FormSubmit endpoint (see above).
+- Set `CALLMEBOT_API_KEY` so inquiries also arrive on WhatsApp (see above).
+- Replace the placeholder testimonials in `lib/testimonials.ts` with real customer reviews.

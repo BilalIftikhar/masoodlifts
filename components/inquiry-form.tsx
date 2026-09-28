@@ -107,7 +107,19 @@ export function InquiryForm({
     if (honey) return
 
     setStatus("sending")
-    try {
+    const fields = {
+      Name: formData.name,
+      Company: formData.company || "—",
+      Phone: formData.phone,
+      Email: formData.email || "—",
+      Equipment: formData.equipment || "—",
+      "Site location": formData.location || "—",
+      Duration: formData.duration || "—",
+      Details: formData.message || "—",
+      Page: window.location.href,
+    }
+
+    const sendEmail = async () => {
       const res = await fetch(siteConfig.inquiryEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -116,23 +128,27 @@ export function InquiryForm({
           _template: "table",
           _captcha: "false",
           ...(formData.email && { _replyto: formData.email }),
-          Name: formData.name,
-          Company: formData.company || "—",
-          Phone: formData.phone,
-          Email: formData.email || "—",
-          Equipment: formData.equipment || "—",
-          "Site location": formData.location || "—",
-          Duration: formData.duration || "—",
-          Details: formData.message || "—",
-          Page: window.location.href,
+          ...fields,
         }),
       })
       const json = (await res.json().catch(() => ({}))) as { success?: string | boolean }
-      if (!res.ok || String(json.success) !== "true") throw new Error("Inquiry not accepted")
-      setStatus("sent")
-    } catch {
-      setStatus("error")
+      if (!res.ok || String(json.success) !== "true") throw new Error("Email not accepted")
     }
+
+    // Forwards the same details to the company WhatsApp (app/api/inquiry-whatsapp).
+    const sendWhatsApp = async () => {
+      const res = await fetch("/api/inquiry-whatsapp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fields),
+      })
+      const json = (await res.json().catch(() => ({}))) as { sent?: boolean }
+      if (!json.sent) throw new Error("WhatsApp not sent")
+    }
+
+    // Either channel reaching the team counts as delivered.
+    const results = await Promise.allSettled([sendEmail(), sendWhatsApp()])
+    setStatus(results.some((result) => result.status === "fulfilled") ? "sent" : "error")
   }
 
   const whatsappHref = waLink(
