@@ -18,7 +18,7 @@ import { generalFaqs } from "@/lib/faqs"
 export const metadata: Metadata = pageMetadata({
   title: "Heavy Equipment Rental in Oman",
   description:
-    "Crane, tipper, boom loader, 3 ton forklift, excavator, JCB & wheel loader rental across Oman with operators. Based in Sohar. Call +968 7928 8727.",
+    "Crane, tipper, boom loader, 3 to 18 ton forklift, excavator, JCB & wheel loader rental across Oman with operators. Based in Sohar. Call +968 7928 8727.",
   path: "/",
   keywords: [
     "heavy equipment rental Oman",

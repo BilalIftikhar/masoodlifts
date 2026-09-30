@@ -5,7 +5,7 @@ export const generalFaqs: Faq[] = [
   {
     question: "What equipment do you rent?",
     answer:
-      "Cranes, tipper trucks, boom loaders, 3 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders for construction and civil works.",
+      "Cranes, tipper trucks, boom loaders, 3 to 18 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders for construction and civil works.",
   },
   {
     question: "Which areas of Oman do you cover?",
@@ -15,7 +15,7 @@ export const generalFaqs: Faq[] = [
   {
     question: "Is an operator included?",
     answer:
-      "Yes. Our machines are supplied with experienced operators and drivers. 3 ton forklifts can also be hired without an operator if your staff hold the required licence.",
+      "Yes. Our machines are supplied with experienced operators and drivers. Forklifts can also be hired without an operator if your staff hold the required licence.",
   },
   {
     question: "What rental terms do you offer?",

@@ -61,7 +61,7 @@ export default function AboutPage() {
           {siteConfig.legalNameAr}
         </p>
         <p className="max-w-xl text-lg font-medium leading-relaxed text-white/85">
-          {siteConfig.legalName} is a Sohar-registered company that rents equipment and engineering machinery for construction and civil works. We supply cranes, tipper trucks, boom loaders, 3 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders to contractors, factories, and logistics operators, with experienced operators and drivers.
+          {siteConfig.legalName} is a Sohar-registered company that rents equipment and engineering machinery for construction and civil works. We supply cranes, tipper trucks, boom loaders, 3 to 18 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders to contractors, factories, and logistics operators, with experienced operators and drivers.
         </p>
       </PageHero>
 

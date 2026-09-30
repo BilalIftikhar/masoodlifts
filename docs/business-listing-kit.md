@@ -38,7 +38,7 @@ as a business address. Either enter the physical yard/office location in Sohar
 5. Trucking company (for tipper haulage)
 
 **Services / keywords to list:** heavy equipment rental, crane rental, tipper
-rental, boom loader rental, 3 ton forklift rental, excavator rental, JCB
+rental, boom loader rental, 3 to 18 ton forklift rental, excavator rental, JCB
 rental, backhoe loader rental, wheel loader rental, shovel rental, equipment
 with operator.
 
@@ -54,10 +54,10 @@ Al Wusta, Salalah, Dhofar.
 > Crane, tipper, boom loader, forklift, excavator, JCB & wheel loader rental with operators across Oman. Based in Sohar.
 
 **Medium (about 300 characters)**
-> ABDUL MASOOD TRADING LLC rents cranes, tipper trucks, boom loaders, 3 ton forklifts, excavators, JCB backhoe loaders and wheel loaders for construction and civil works. Based in Sohar and serving Muscat, Al Buraimi, Nizwa, Duqm and Salalah. Machines supplied with operators; daily, weekly and monthly hire.
+> ABDUL MASOOD TRADING LLC rents cranes, tipper trucks, boom loaders, 3 to 18 ton forklifts, excavators, JCB backhoe loaders and wheel loaders for construction and civil works. Based in Sohar and serving Muscat, Al Buraimi, Nizwa, Duqm and Salalah. Machines supplied with operators; daily, weekly and monthly hire.
 
 **Long (about 700 characters)**
-> ABDUL MASOOD TRADING LLC is a Sohar-registered company renting equipment and engineering machinery for construction and civil works. We supply cranes, tipper trucks, boom loaders, 3 ton forklifts, excavators, JCB backhoe loaders and wheel loaders to contractors, factories and logistics operators, with experienced operators and drivers. From Sohar we cover Sohar Port and Freezone, Sohar Industrial Estate and the Batinah coast, with road links to Muscat, Al Buraimi and Nizwa, and planned project hire in Duqm and Salalah. Daily, weekly and monthly terms. Call or WhatsApp +968 7928 8727.
+> ABDUL MASOOD TRADING LLC is a Sohar-registered company renting equipment and engineering machinery for construction and civil works. We supply cranes, tipper trucks, boom loaders, 3 to 18 ton forklifts, excavators, JCB backhoe loaders and wheel loaders to contractors, factories and logistics operators, with experienced operators and drivers. From Sohar we cover Sohar Port and Freezone, Sohar Industrial Estate and the Batinah coast, with road links to Muscat, Al Buraimi and Nizwa, and planned project hire in Duqm and Salalah. Daily, weekly and monthly terms. Call or WhatsApp +968 7928 8727.
 
 ---
 

@@ -1,6 +1,6 @@
 # ABDUL MASOOD TRADING LLC — masoodlifts.com
 
-Production website for **ABDUL MASOOD TRADING LLC** (عبد المسعود للتجارة ش م م), Sohar, Sultanate of Oman — renting equipment and engineering machinery for construction and civil works: crane, tipper, boom loader, 3 ton forklift, excavator, JCB, and wheel loader.
+Production website for **ABDUL MASOOD TRADING LLC** (عبد المسعود للتجارة ش م م), Sohar, Sultanate of Oman — renting equipment and engineering machinery for construction and civil works: crane, tipper, boom loader, 3 to 18 ton forklift, excavator, JCB, and wheel loader.
 
 ## Tech Stack
 

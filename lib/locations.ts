@@ -89,7 +89,7 @@ export const locations: LocationSummary[] = [
 
     eyebrow: "Sohar · North Al Batinah · Home Base",
     intro:
-      "ABDUL MASOOD TRADING LLC is registered in Sohar, so this is where our equipment is closest. We rent cranes, tipper trucks, boom loaders, 3 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders to contractors, factories, and logistics operators across Sohar Port and Freezone, Sohar Industrial Estate, and the wider North Al Batinah coast.",
+      "ABDUL MASOOD TRADING LLC is registered in Sohar, so this is where our equipment is closest. We rent cranes, tipper trucks, boom loaders, 3 to 18 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders to contractors, factories, and logistics operators across Sohar Port and Freezone, Sohar Industrial Estate, and the wider North Al Batinah coast.",
     whyHeading: "Why Sohar Contractors Rent From Us",
     whyPoints: [
       {
@@ -130,7 +130,7 @@ export const locations: LocationSummary[] = [
       {
         question: "Which machines are most requested in Sohar?",
         answer:
-          "Cranes and 3 ton forklifts for industrial and warehouse work around the port, and excavators, JCBs, wheel loaders, and tippers for construction and road projects across North Al Batinah.",
+          "Cranes and 3 to 18 ton forklifts for industrial and warehouse work around the port, and excavators, JCBs, wheel loaders, and tippers for construction and road projects across North Al Batinah.",
       },
       {
         question: "Can you supply several machines for one Sohar project?",
@@ -179,7 +179,7 @@ export const locations: LocationSummary[] = [
       "boom-loader":
         "Boom loaders suit Sohar's building projects and warehouse construction, placing blocks and materials on upper floors and moving pallets across unmade ground on sites that are still being built.",
       forklift:
-        "The 3 ton forklift is the workhorse of Sohar's Freezone warehouses and logistics yards, covering container stuffing and pallet handling. It is also the usual choice for short-term cover during peak shipments or when an in-house forklift is down for repair.",
+        "Forklifts from 3 to 18 ton are the workhorses of Sohar's Freezone warehouses and logistics yards, covering container stuffing and pallet handling. They are also the usual choice for short-term cover during peak shipments or when an in-house forklift is down for repair.",
       excavator:
         "Excavators in Sohar dig foundations for industrial and commercial buildings and trench for utilities. Near the coast the water table can be shallow, so tell us the dig depth and whether dewatering is planned so we can advise on the right machine.",
       jcb: "A JCB is the practical choice on Sohar's villa plots, utility connections, and maintenance works around the city, where one machine digs, backfills, and levels without needing a separate loader.",
@@ -215,7 +215,7 @@ export const locations: LocationSummary[] = [
 
     eyebrow: "Muscat · Construction & Infrastructure",
     intro:
-      "Cranes, boom loaders, excavators, JCBs, wheel loaders, tippers, and 3 ton forklifts for construction and civil works across the capital. We supply machines with operators to contractors working in Rusayl Industrial Estate, Ghala, Al Misfah, Seeb, Al Amerat, and residential and commercial developments across Muscat.",
+      "Cranes, boom loaders, excavators, JCBs, wheel loaders, tippers, and 3 to 18 ton forklifts for construction and civil works across the capital. We supply machines with operators to contractors working in Rusayl Industrial Estate, Ghala, Al Misfah, Seeb, Al Amerat, and residential and commercial developments across Muscat.",
     whyHeading: "Why Muscat Contractors Choose Us",
     whyPoints: [
       {
@@ -250,7 +250,7 @@ export const locations: LocationSummary[] = [
       {
         question: "Do you rent construction machinery in Muscat?",
         answer:
-          "Yes. We supply cranes, tippers, boom loaders, 3 ton forklifts, excavators, JCBs, and wheel loaders to projects across Muscat Governorate, including Rusayl, Ghala, Al Misfah, Seeb, Al Mabelah, Bawshar, and Al Amerat.",
+          "Yes. We supply cranes, tippers, boom loaders, 3 to 18 ton forklifts, excavators, JCBs, and wheel loaders to projects across Muscat Governorate, including Rusayl, Ghala, Al Misfah, Seeb, Al Mabelah, Bawshar, and Al Amerat.",
       },
       {
         question: "How far in advance should I book equipment for Muscat?",
@@ -304,7 +304,7 @@ export const locations: LocationSummary[] = [
       "boom-loader":
         "Boom loaders suit Muscat's multi-storey residential and commercial projects, lifting blocks and materials to upper floors where a tower crane is not available or is already fully booked.",
       forklift:
-        "3 ton forklifts in Muscat cover warehouse and distribution operations in Rusayl, Ghala, and Al Misfah, and material handling in contractors' yards.",
+        "Forklifts from 3 to 18 ton in Muscat cover warehouse and distribution operations in Rusayl, Ghala, and Al Misfah, and material handling in contractors' yards.",
       excavator:
         "Excavators in Muscat handle foundations, basements, and utility trenching. On the rocky ground common in parts of the capital, tell us early if breaking is needed so we can plan the right machine and attachment.",
       jcb: "The JCB is a natural fit for Muscat's villa plots and utility works: compact enough for residential streets and able to dig, load, and backfill in one visit.",
@@ -425,7 +425,7 @@ export const locations: LocationSummary[] = [
       "boom-loader":
         "Boom loaders in Duqm handle materials on building and facility construction, working on unmade ground where standard forklifts cannot operate.",
       forklift:
-        "3 ton forklifts in Duqm support warehouses, laydown yards, and site stores on longer projects. Because of the distance, they are usually hired monthly alongside other equipment.",
+        "Forklifts from 3 to 18 ton in Duqm support warehouses, laydown yards, and site stores on longer projects. Because of the distance, they are usually hired monthly alongside other equipment.",
       excavator:
         "Excavators are often the first machine on a Duqm project, handling site preparation, foundations, and trenching across large plots. Monthly hire with an operator who stays on site is the typical setup.",
       jcb: "A JCB covers the many smaller tasks on a remote Duqm site, from trenching for services to clean-up and backfilling, without mobilizing a separate machine for each.",
@@ -547,7 +547,7 @@ export const locations: LocationSummary[] = [
       "boom-loader":
         "Boom loaders in Salalah place materials on building projects and move pallets across site compounds. Their rough-terrain tyres handle unsealed ground better than a forklift, including during the wetter months.",
       forklift:
-        "3 ton forklifts in Salalah serve warehouses and logistics operations around the Port of Salalah and the Free Zone. Because of the distance from Sohar, monthly hire is the practical arrangement.",
+        "Forklifts from 3 to 18 ton in Salalah serve warehouses and logistics operations around the Port of Salalah and the Free Zone. Because of the distance from Sohar, monthly hire is the practical arrangement.",
       excavator:
         "Excavators in Salalah handle foundations, trenching, and site preparation. Ground on the coastal plain can be saturated during the khareef, so plan deep excavations for the drier months where possible.",
       jcb: "A JCB covers smaller utilities, trenching, and site tasks around Salalah without mobilizing several machines from the north.",
@@ -573,7 +573,7 @@ export const locations: LocationSummary[] = [
 
     eyebrow: "Nizwa · Ad Dakhiliyah",
     intro:
-      "Construction and civil works equipment for Nizwa and the interior. We supply excavators, JCB backhoe loaders, wheel loaders, tippers, cranes, boom loaders, and 3 ton forklifts with operators to projects in Nizwa city, Nizwa Industrial Estate, Firq, Bahla, Izki, Manah, and Birkat Al Mawz.",
+      "Construction and civil works equipment for Nizwa and the interior. We supply excavators, JCB backhoe loaders, wheel loaders, tippers, cranes, boom loaders, and 3 to 18 ton forklifts with operators to projects in Nizwa city, Nizwa Industrial Estate, Firq, Bahla, Izki, Manah, and Birkat Al Mawz.",
     whyHeading: "Why Nizwa Projects Rent From Us",
     whyPoints: [
       {
@@ -660,7 +660,7 @@ export const locations: LocationSummary[] = [
       "boom-loader":
         "Boom loaders in Nizwa place blocks and materials on residential and commercial buildings, working on the unmade gravel ground common on interior sites.",
       forklift:
-        "3 ton forklifts in Nizwa support warehouses and workshops in Nizwa Industrial Estate and material handling at contractors' and suppliers' yards.",
+        "Forklifts from 3 to 18 ton in Nizwa support warehouses and workshops in Nizwa Industrial Estate and material handling at contractors' and suppliers' yards.",
       excavator:
         "Excavators in Nizwa work on foundations, trenching, and road works in ground that is often gravel or rock. Tell us the expected ground so we can plan the right bucket or breaking attachment.",
       jcb: "JCB backhoe loaders are well suited to Nizwa's older neighbourhoods and surrounding villages, where compact size matters and one machine handles trenching, loading, and backfilling.",
@@ -686,7 +686,7 @@ export const locations: LocationSummary[] = [
 
     eyebrow: "Al Buraimi · Near Our Sohar Base",
     intro:
-      "Al Buraimi is a short run from our Sohar base along the Sohar–Buraimi road, making it one of the easiest areas for us to supply. We rent excavators, JCBs, wheel loaders, tippers, cranes, boom loaders, and 3 ton forklifts to contractors, quarries, and businesses in Al Buraimi city, Buraimi Industrial Estate, and Mahdah.",
+      "Al Buraimi is a short run from our Sohar base along the Sohar–Buraimi road, making it one of the easiest areas for us to supply. We rent excavators, JCBs, wheel loaders, tippers, cranes, boom loaders, and 3 to 18 ton forklifts to contractors, quarries, and businesses in Al Buraimi city, Buraimi Industrial Estate, and Mahdah.",
     whyHeading: "Why Al Buraimi Chooses Us",
     whyPoints: [
       {
@@ -772,7 +772,7 @@ export const locations: LocationSummary[] = [
       "boom-loader":
         "Boom loaders in Al Buraimi handle blocks and materials on building sites and move pallets across unmade ground in yards and compounds.",
       forklift:
-        "3 ton forklifts in Al Buraimi serve warehouses and trading businesses in the Industrial Estate and around the city.",
+        "Forklifts from 3 to 18 ton in Al Buraimi serve warehouses and trading businesses in the Industrial Estate and around the city.",
       excavator:
         "Excavators in Al Buraimi dig foundations and trenches for construction and work in quarry operations. Rocky ground is common, so share the ground type to get the right machine and bucket.",
       jcb: "JCBs in Al Buraimi handle utilities, small plots, and maintenance jobs around the city, where one compact machine can dig, load, and backfill.",

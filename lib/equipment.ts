@@ -6,7 +6,7 @@ import type { Faq } from "@/lib/faqs"
  * pages, contact form, schema, and llms.txt all read from it.
  *
  * Capacities and model details are deliberately left out of the copy until the
- * owner confirms the actual fleet — only "3 Ton" (from the letterhead) is
+ * owner confirms the actual fleet — only the 3 to 18 ton forklift range is
  * stated. When confirming, add specifics to `fleetItems` rather than inventing
  * them in page components.
  *
@@ -251,14 +251,14 @@ export const equipmentTypes: EquipmentType[] = [
     slug: "3-ton-forklift",
     href: "/equipment/3-ton-forklift",
     slugBase: "forklift-rental",
-    label: "3 Ton Forklift",
-    labelAr: "رافعة شوكية ٣ طن",
-    noun: "3 ton forklift",
-    nounPlural: "3 ton forklifts",
-    tag: "3 Ton Capacity",
-    summary: "3 ton forklift hire for warehouses, yards, container loading, and site material handling.",
+    label: "3–18 Ton Forklift",
+    labelAr: "رافعة شوكية ٣–١٨ طن",
+    noun: "forklift",
+    nounPlural: "forklifts",
+    tag: "3 to 18 Ton Capacity",
+    summary: "3 to 18 ton forklift hire for warehouses, yards, container loading, and site material handling.",
     overview:
-      "3 ton forklift rental for warehouses, logistics yards, factories, and construction sites across Oman. The 3 ton class handles most palletised goods, container stuffing and unstuffing, and general material movement on firm ground.",
+      "3 to 18 ton forklift rental for warehouses, logistics yards, factories, and construction sites across Oman. The 3 ton class handles most palletised goods, container stuffing and unstuffing, and general material movement on firm ground, while the larger machines up to 18 ton move heavy machinery, steel, and oversized loads.",
     useCase: "pallet handling, container loading, and moving material around yards and warehouses",
     image: "/images/fleet/forklift-warehouse.jpg",
     imageAlt: "Counterbalance forklift inside an empty warehouse",
@@ -278,7 +278,7 @@ export const equipmentTypes: EquipmentType[] = [
       },
     ],
     fleetItems: [
-      "3 ton capacity forklifts",
+      "Forklifts from 3 ton up to 18 ton capacity",
       "With operator, or self-operated by your licensed staff",
       "Short-term cover for peaks, breakdowns, and stock counts",
       "Daily, weekly, and monthly hire",
@@ -292,9 +292,9 @@ export const equipmentTypes: EquipmentType[] = [
     ],
     faqs: [
       {
-        question: "Is a 3 ton forklift enough for my loads?",
+        question: "Which forklift capacity do I need?",
         answer:
-          "A 3 ton forklift handles most palletised goods and general cargo. Its rated capacity reduces as loads get higher or longer, so tell us the heaviest load and the lift height and we will confirm it is the right machine.",
+          "We rent forklifts from 3 ton up to 18 ton. A 3 ton forklift handles most palletised goods and general cargo; heavier machinery, steel, and oversized loads need a larger machine. Rated capacity reduces as loads get higher or longer, so tell us the heaviest load and the lift height and we will confirm the right machine.",
       },
       {
         question: "Can I hire a forklift without an operator?",
@@ -307,7 +307,7 @@ export const equipmentTypes: EquipmentType[] = [
           "Yes. The 3 ton class is commonly used for container stuffing and unstuffing. Let us know if you need to drive inside the container so we can check mast height and clearance.",
       },
     ],
-    keywords: ["forklift rental Oman", "3 ton forklift rental Sohar", "forklift hire Muscat", "forklift rental Sohar"],
+    keywords: ["forklift rental Oman", "3 to 18 ton forklift rental Sohar", "forklift hire Muscat", "forklift rental Sohar"],
   },
   {
     key: "excavator",

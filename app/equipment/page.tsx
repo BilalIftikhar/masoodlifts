@@ -15,7 +15,7 @@ import { equipmentTypes } from "@/lib/equipment"
 export const metadata: Metadata = pageMetadata({
   title: "Equipment Fleet for Rent in Oman",
   description:
-    "Rent cranes, tippers, boom loaders, 3 ton forklifts, excavators, JCBs & wheel loaders with operators from Abdul Masood Trading LLC, Sohar, Oman.",
+    "Rent cranes, tippers, boom loaders, 3 to 18 ton forklifts, excavators, JCBs & wheel loaders with operators from Abdul Masood Trading LLC, Sohar, Oman.",
   path: "/equipment",
   keywords: equipmentTypes.map((equipment) => `${equipment.noun} rental Oman`),
 })
@@ -33,7 +33,7 @@ export default function EquipmentPage() {
       <PageHero
         eyebrow="Our Fleet"
         title="Equipment Fleet for Rent in Oman"
-        intro={`Cranes, tippers, boom loaders, 3 ton forklifts, excavators, JCBs, and wheel loaders, hired with operators from ${siteConfig.legalName} in Sohar. Daily, weekly, and monthly terms.`}
+        intro={`Cranes, tippers, boom loaders, 3 to 18 ton forklifts, excavators, JCBs, and wheel loaders, hired with operators from ${siteConfig.legalName} in Sohar. Daily, weekly, and monthly terms.`}
         backgroundImage="/images/site/port-container-yard.jpg"
       />
       <EquipmentShowcase />

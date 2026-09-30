@@ -26,7 +26,7 @@ export const siteConfig = {
   url: "https://masoodlifts.com",
   tagline: "Heavy Equipment & Construction Machinery Rental in Oman",
   description:
-    "ABDUL MASOOD TRADING LLC rents cranes, tipper trucks, boom loaders, 3 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders for construction and civil works across Oman — from Sohar to Muscat, Duqm, Salalah, Nizwa, and Al Buraimi.",
+    "ABDUL MASOOD TRADING LLC rents cranes, tipper trucks, boom loaders, 3 to 18 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders for construction and civil works across Oman — from Sohar to Muscat, Duqm, Salalah, Nizwa, and Al Buraimi.",
 
   phoneDisplay: "+968 7928 8727",
   phoneE164: "+96879288727",
