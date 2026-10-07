@@ -122,7 +122,49 @@ export function EquipmentDetailTemplate({ equipment, cityLinks }: EquipmentDetai
         </div>
       </section>
 
-      <section className="py-20 md:py-28">
+      {equipment.capacityGuide && (
+        <section className="py-20 md:py-28">
+          <div className="mx-auto max-w-5xl px-4">
+            <Reveal className="mb-8 space-y-3">
+              <h2 className="text-foreground">Which <span className="capitalize">{equipment.noun}</span> Capacity Do You Need?</h2>
+              <p className="text-lg font-medium leading-relaxed text-muted-foreground">{equipment.capacityGuide.intro}</p>
+            </Reveal>
+            <div className="overflow-x-auto rounded-lg border border-border bg-card">
+              <table className="w-full min-w-[36rem] text-left text-sm">
+                <thead className="bg-primary text-primary-foreground">
+                  <tr>
+                    {equipment.capacityGuide.headers.map((header) => (
+                      <th key={header} scope="col" className="px-5 py-3 font-bold">
+                        {header}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {equipment.capacityGuide.rows.map((row) => (
+                    <tr key={row[0]} className="border-t border-border">
+                      {row.map((cell, idx) =>
+                        idx === 0 ? (
+                          <th key={cell} scope="row" className="whitespace-nowrap px-5 py-4 font-bold text-foreground">
+                            {cell}
+                          </th>
+                        ) : (
+                          <td key={cell} className="px-5 py-4 font-medium text-muted-foreground">
+                            {cell}
+                          </td>
+                        ),
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-5 font-medium leading-relaxed text-muted-foreground">{equipment.capacityGuide.note}</p>
+          </div>
+        </section>
+      )}
+
+      <section className={equipment.capacityGuide ? "bg-secondary/60 py-20 md:py-28" : "py-20 md:py-28"}>
         <div className="mx-auto max-w-7xl px-4">
           <Reveal>
             <h2 className="mb-8 text-foreground">{equipment.label} Rental by City</h2>

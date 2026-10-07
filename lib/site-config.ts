@@ -7,7 +7,7 @@
  * listings (see docs/business-listing-kit.md) — search engines cross-check them.
  *
  * TODO (owner action required before go-live):
- * - point DNS for masoodlifts.com at the host and 301 www → apex
+ * - keep www.masoodlifts.com as the primary domain on the host (apex 308s to www)
  * - replace `geo` with the pin of the actual yard (currently Sohar city centre)
  * - add real social profile URLs to `social` once they exist
  */
@@ -22,8 +22,8 @@ export const siteConfig = {
 
   // MUST match the host that actually serves content and holds a valid TLS
   // certificate — canonicals, sitemap entries, and schema URLs all use it.
-  domain: "masoodlifts.com",
-  url: "https://masoodlifts.com",
+  domain: "www.masoodlifts.com",
+  url: "https://www.masoodlifts.com",
   tagline: "Heavy Equipment & Construction Machinery Rental in Oman",
   description:
     "ABDUL MASOOD TRADING LLC rents cranes, tipper trucks, boom loaders, 3 to 18 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders for construction and civil works across Oman — from Sohar to Muscat, Duqm, Salalah, Nizwa, and Al Buraimi.",

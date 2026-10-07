@@ -53,6 +53,13 @@ export type EquipmentType = {
   icon: EquipmentIcon
   applications: { title: string; description: string }[]
   fleetItems: string[]
+  /** Capacity classes within the confirmed range, and what each is typically hired for. */
+  capacityGuide?: {
+    intro: string
+    headers: string[]
+    rows: string[][]
+    note: string
+  }
   /** What the customer should tell us to get an accurate quote. */
   quoteChecklist: string[]
   faqs: Faq[]
@@ -283,6 +290,18 @@ export const equipmentTypes: EquipmentType[] = [
       "Short-term cover for peaks, breakdowns, and stock counts",
       "Daily, weekly, and monthly hire",
     ],
+    capacityGuide: {
+      intro:
+        "We rent forklifts from 3 ton up to 18 ton. Use this guide to see which capacity class usually fits the load, then send us the details and we will confirm the machine.",
+      headers: ["Capacity class", "Typical loads", "Where it is usually hired"],
+      rows: [
+        ["3 ton", "Standard pallets, cartons, bagged goods, light general cargo", "Warehouses, Freezone units, container stuffing and unstuffing"],
+        ["5 ton", "Heavy pallets, block and tile packs, drums, small machinery", "Building material yards, factories, site stores"],
+        ["7 to 10 ton", "Steel bundles, pipes, coils, crated machinery, precast items", "Fabrication yards, steel stockists, industrial plants"],
+        ["16 to 18 ton", "Heavy machinery, large fabrications, long or oversized loads", "Port laydown areas, heavy industry, project logistics yards"],
+      ],
+      note: "A forklift's rated capacity falls as the load centre moves out or the lift gets higher, so a long or bulky load can need a bigger machine than its weight suggests. Tell us the weight, the dimensions, and the lift height.",
+    },
     quoteChecklist: [
       "Heaviest pallet or load weight",
       "Lift height needed (rack level or truck bed)",
@@ -306,8 +325,26 @@ export const equipmentTypes: EquipmentType[] = [
         answer:
           "Yes. The 3 ton class is commonly used for container stuffing and unstuffing. Let us know if you need to drive inside the container so we can check mast height and clearance.",
       },
+      {
+        question: "Do you rent heavy forklifts above 10 ton?",
+        answer:
+          "Yes. Our forklift range goes up to 18 ton for heavy machinery, steel, and oversized loads. Heavy forklifts are moved to site on a low-bed trailer, so share the site location and access when you ask for a quote.",
+      },
+      {
+        question: "How long can I hire a forklift for?",
+        answer:
+          "Daily, weekly, or monthly. Short hires suit shipment peaks, stock counts, and breakdown cover; monthly hire is the usual choice for projects and for sites far from Sohar such as Duqm and Salalah.",
+      },
     ],
-    keywords: ["forklift rental Oman", "3 to 18 ton forklift rental Sohar", "forklift hire Muscat", "forklift rental Sohar"],
+    keywords: [
+      "forklift rental Oman",
+      "forklift rental Sohar",
+      "forklift hire Muscat",
+      "3 ton forklift rental Oman",
+      "5 ton forklift rental Oman",
+      "10 ton forklift rental Oman",
+      "heavy forklift rental Oman",
+    ],
   },
   {
     key: "excavator",
