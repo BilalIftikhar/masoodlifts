@@ -15,7 +15,7 @@ import { localBusinessSchema, faqSchema } from "@/lib/schema"
 import { pageMetadata } from "@/lib/seo"
 import { generalFaqs } from "@/lib/faqs"
 
-export const metadata: Metadata = pageMetadata({
+const homeMetadata = pageMetadata({
   title: "Heavy Equipment Rental in Oman",
   description:
     "Crane, tipper, boom loader, 3 to 18 ton forklift, excavator, JCB & wheel loader rental across Oman with operators. Based in Sohar. Call +968 7928 8727.",
@@ -28,6 +28,13 @@ export const metadata: Metadata = pageMetadata({
     "machinery rental Oman",
   ],
 })
+
+// The homepage shares the root layout's segment, so the layout's title template
+// never applies here — without this the brand is missing from the home title.
+export const metadata: Metadata = {
+  ...homeMetadata,
+  title: { absolute: "Heavy Equipment Rental in Oman | Abdul Masood Trading" },
+}
 
 export default function Home() {
   return (

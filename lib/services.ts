@@ -63,19 +63,19 @@ export const services: ServiceHub[] = [
     shortTitle: "Crane & Forklift Rental Sohar",
     tag: "Lifting & Handling",
     description:
-      "Cranes and 3 ton forklifts with operators for Sohar Port, the Freezone, Sohar Industrial Estate, and North Al Batinah sites.",
+      "Cranes and 3 to 18 ton forklifts with operators for Sohar Port, the Freezone, Sohar Industrial Estate, and North Al Batinah sites.",
     heroImage: "/images/mobile-crane.jpeg",
     heroImageAlt: "Yellow all-terrain mobile crane with its boom retracted",
 
     metaTitle: "Crane & Forklift Rental Sohar",
     metaDescription:
-      "Crane and 3 ton forklift rental in Sohar with operators — Sohar Port, Freezone & Industrial Estate. Daily to monthly hire. Call +968 7928 8727.",
+      "Crane & 3–18 ton forklift rental in Sohar with operators — Sohar Port, Freezone & Industrial Estate. Daily to monthly hire. Call +968 7928 8727.",
     keywords: [
       "crane rental Sohar",
       "forklift rental Sohar",
       "crane and forklift rental Sohar",
       "crane hire Sohar Port",
-      "3 ton forklift rental Sohar",
+      "3 to 18 ton forklift rental Sohar",
       "Sohar Freezone forklift hire",
     ],
     serviceType: "Crane and forklift rental",
@@ -84,7 +84,7 @@ export const services: ServiceHub[] = [
     eyebrow: "Crane & Forklift Rental · Sohar",
     h1: "Crane & Forklift Rental in Sohar",
     intro:
-      "Cranes and 3 ton forklifts for Sohar Port and Freezone, Sohar Industrial Estate, and construction sites across North Al Batinah, hired with operators from a company registered in Sohar. Book one or both: many jobs need a crane to offload and place heavy items, and a forklift to move and stack everything else.",
+      "Cranes and 3 to 18 ton forklifts for Sohar Port and Freezone, Sohar Industrial Estate, and construction sites across North Al Batinah, hired with operators from a company registered in Sohar. Book one or both: many jobs need a crane to offload and place heavy items, and a forklift to move and stack everything else.",
     specs: [
       { label: "Crane Hire", value: "With Operator" },
       { label: "Forklift", value: "3 Ton" },

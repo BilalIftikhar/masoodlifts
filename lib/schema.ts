@@ -35,7 +35,7 @@ const sameAs = Object.values(siteConfig.social)
 export function localBusinessSchema(opts?: { url?: string }): WithContext<Record<string, unknown>> {
   return {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "GeneralContractor"],
+    "@type": "LocalBusiness",
     // Distinct from the site-wide Organization node (#organization) that the
     // root layout emits on every page; the same @id with different @types
     // produces conflicting entities.
