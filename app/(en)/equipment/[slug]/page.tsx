@@ -7,6 +7,7 @@ import { pageMetadata } from "@/lib/seo"
 import { siteConfig } from "@/lib/site-config"
 import { equipmentTypes, getEquipmentBySlug } from "@/lib/equipment"
 import { cityLinksForEquipment } from "@/lib/service-areas"
+import { arabicPathFor } from "@/lib/arabic"
 
 type PageProps = { params: Promise<{ slug: string }> }
 
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${equipment.label} Rental in Oman`,
     description: `${equipment.summary} Across Oman from Sohar. Call ${siteConfig.phoneDisplay}.`,
     path: equipment.href,
-    keywords: equipment.keywords,
+    languages: { en: equipment.href, ar: arabicPathFor(equipment.href)! },
   })
 }
 

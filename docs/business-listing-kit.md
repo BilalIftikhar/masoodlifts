@@ -22,7 +22,7 @@ different phone format) weaken every listing.
 | Postal address | P.O. Box 326, Postal Code 119, Sohar, Sultanate of Oman |
 | Phone (GSM) | +968 7928 8727 |
 | WhatsApp | +968 7928 8727 |
-| Email | chabdulmasood@gmail.com |
+| Email | info@masoodlifts.com |
 | Website | https://masoodlifts.com |
 
 **Google Business Profile and a P.O. Box:** Google does not accept a P.O. Box

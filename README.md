@@ -13,22 +13,32 @@ Production website for **ABDUL MASOOD TRADING LLC** (عبد المسعود لل�
 
 ```
 app/
-  layout.tsx                Root layout, global metadata, Organization/WebSite JSON-LD, fonts
-  page.tsx                  Homepage ("Heavy Equipment Rental in Oman") + LocalBusiness JSON-LD
-  equipment/[slug]/         One page per machine (7), from lib/equipment.ts
-  services/[slug]/          Keyword hubs (lib/services.ts) + equipment × city pages (lib/service-areas.ts)
-  locations/[slug]/         Sohar, Muscat, Duqm, Salalah, Nizwa, Al Buraimi (lib/locations.ts)
-  blog/                     Guides (lib/blog/posts.ts)
-  about/, contact/          Company facts and quote form
+  fonts.ts                  Fonts shared by both root layouts
+  (en)/layout.tsx           English root layout: <html lang="en">, metadata, LocalBusiness/WebSite JSON-LD
+  (en)/page.tsx             Homepage ("Heavy Equipment Rental in Oman")
+  (en)/equipment/[slug]/    One page per machine (7), from lib/equipment.ts
+  (en)/equipment/[slug]/[capacity]/  Machine-size pages, e.g. 25-ton-crane-rental-oman (lib/capacities.ts)
+  (en)/services/[slug]/     Keyword hubs (lib/services.ts) + equipment × city pages (lib/service-areas.ts)
+  (en)/locations/           Oman index grouped by all 11 governorates
+  (en)/locations/[slug]/    Governorate hubs (lib/locations.ts) and town/industrial-area pages (lib/areas.ts)
+  (en)/ports/[slug]/        Port pages (lib/ports.ts) + /ports index
+  (en)/blog/                Guides (lib/blog/posts.ts)
+  (en)/about/, contact/     Company facts, quote form, yard map
+  (ar)/layout.tsx           Arabic root layout: <html lang="ar" dir="rtl">
+  (ar)/ar/                  Arabic pages (lib/arabic.ts), each paired with an English page via hreflang
   sitemap.ts, robots.ts, llms.txt/
-components/                 Header, footer, templates, homepage sections
+components/                 Header, footer, templates, homepage sections; components/ar/ for the Arabic section
 lib/
-  site-config.ts            Company NAP, phones, email, form endpoint — single source of truth
+  site-config.ts            Company NAP, yard, email, form endpoint, governorates — single source of truth
   equipment.ts              The 7 fleet categories
-  locations.ts              The 6 Oman hubs, with per-city copy and notes
-  service-areas.ts          Generates the 42 equipment × city pages
+  capacities.ts             Confirmed machine sizes (cranes 25/50 ton, forklifts 3/5/10/18 ton)
+  locations.ts              One hub per governorate (11)
+  areas.ts                  20 town and industrial-area pages, unique copy each
+  ports.ts                  8 port pages
+  service-areas.ts          Generates the 42 equipment × city pages for the six original hubs
   services.ts               Hand-written keyword hubs
-  schema.ts, seo.ts         JSON-LD builders and per-page metadata
+  arabic.ts                 Arabic section content
+  schema.ts, seo.ts         JSON-LD builders and per-page metadata (canonical, hreflang)
 docs/business-listing-kit.md  NAP details and directory/review checklist
 ```
 
@@ -55,21 +65,27 @@ are delivered by email.
 
 ## SEO Notes
 
-- Page titles use the template `%s | Abdul Masood Trading`; keep page titles to ~37 characters.
+- Page titles use the template `%s | Abdul Masood Trading`; when that would pass 60 characters, `pageMetadata` drops the suffix automatically.
 - Keyword ownership (one page per query, to avoid cannibalization):
   - "Heavy Equipment Rental in Oman" → `/`
   - "Crane & Forklift Rental Sohar" → `/services/crane-forklift-rental-sohar`
   - "Construction Machinery Rental Muscat" → `/locations/muscat`
   - "Boom Loader & Excavator Rental Oman" → `/services/boom-loader-excavator-rental-oman`
-- `LocalBusiness` (homepage, contact) and `Organization` (every page) JSON-LD point to the Sohar address and the Oman phone.
-- City pages use `Service` + `areaServed`, not `LocalBusiness` — the company has one registered address.
+- One `LocalBusiness` entity (`/#business`) is emitted on every page from both root layouts; `Service` nodes reference it as `provider`.
+- City, town, and port pages use `Service` + `areaServed`, not `LocalBusiness` — the company has one physical location, the Sohar yard.
+- No meta keywords tags, and no Review/AggregateRating markup for on-site testimonials (Google ignores self-serving reviews).
+- Pages with an Arabic version carry hreflang `en-OM` / `ar-OM` / `x-default`; the pairs come from `lib/arabic.ts`.
+- Only list machine sizes the yard actually has in `lib/capacities.ts`, and only towns and ports we deliver to in `lib/areas.ts` / `lib/ports.ts`.
 - Update `lib/site-config.ts` first when phone numbers, address, or domain change.
 - After deploying, run `pnpm indexnow` to ping Bing/IndexNow, and submit the sitemap in Search Console.
 
 ## Owner TODOs Before Launch
 
-- Point masoodlifts.com at the host and 301-redirect `www.` to the apex (canonicals, sitemap, and schema all use `https://masoodlifts.com`).
-- Replace `siteConfig.geo` with the real yard location in Sohar.
+- Keep `www.masoodlifts.com` as the primary domain (canonicals, sitemap, and schema all use it; the apex redirects to www).
+- Replace `siteConfig.geo` with the exact pin of the yard in Sohar Industrial Estate, and add the plot or way number to `siteConfig.address.streetAddress`.
+- Add the yard's opening hours to `siteConfig.openingHours`.
+- Check the approximate road distances in `lib/areas.ts` against real deliveries.
+- Point the FormSubmit relay at info@masoodlifts.com once that mailbox has clicked a FormSubmit activation link (see Inquiry Form).
 - Replace stock photos with real fleet photos; add photos for tipper, JCB, and wheel loader (`lib/equipment.ts`).
 - Swap the generated AM monogram for the official logo if one exists (`components/brand-logo.tsx`, `public/images/brand/`).
 - Activate the FormSubmit endpoint (see above).

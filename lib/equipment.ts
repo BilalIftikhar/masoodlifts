@@ -63,7 +63,6 @@ export type EquipmentType = {
   /** What the customer should tell us to get an accurate quote. */
   quoteChecklist: string[]
   faqs: Faq[]
-  keywords: string[]
 }
 
 export const equipmentTypes: EquipmentType[] = [
@@ -76,10 +75,10 @@ export const equipmentTypes: EquipmentType[] = [
     labelAr: "رافعة",
     noun: "crane",
     nounPlural: "cranes",
-    tag: "Lifting",
-    summary: "Mobile crane hire with operator for steel erection, precast, plant installation, and machinery moves.",
+    tag: "25 & 50 Ton",
+    summary: "25 and 50 ton mobile crane hire with operator for steel, precast, plant installation, and machinery moves.",
     overview:
-      "Crane rental for construction, industrial, and civil works across Oman. We match the crane to the heaviest load, the lift radius, and the ground at your site, and supply it with an experienced operator so the lift is planned before the crane arrives.",
+      "25 ton and 50 ton mobile crane rental for construction, industrial, and civil works across Oman. We match the crane to the heaviest load, the lift radius, and the ground at your site, and supply it with an experienced operator so the lift is planned before the crane arrives.",
     useCase: "lifting steel, precast, plant, and machinery into position",
     image: "/images/mobile-crane.jpeg",
     imageAlt: "Yellow all-terrain mobile crane with its boom retracted",
@@ -99,12 +98,22 @@ export const equipmentTypes: EquipmentType[] = [
       },
     ],
     fleetItems: [
-      "Mobile cranes sized to the load weight and lift radius",
+      "25 ton and 50 ton mobile cranes, matched to the load weight and lift radius",
       "Experienced crane operator supplied with the machine",
       "Rigging and lifting accessories arranged on request",
       "Load charts and inspection certificates for your safety officer",
       "Hourly, daily, weekly, or monthly hire",
     ],
+    capacityGuide: {
+      intro:
+        "Our cranes are 25 ton and 50 ton mobile cranes. The rated figure is what the crane lifts close in; the further out the load goes, the less it can lift, so the radius matters as much as the weight.",
+      headers: ["Crane", "Typical lifts", "Where it is usually hired"],
+      rows: [
+        ["25 ton", "Offloading trailers, generators and AC units, light steel, small precast items", "Factories, warehouses, villa and low-rise projects, maintenance work"],
+        ["50 ton", "Heavier steel and precast, tanks, transformers, plant items, lifts at longer radius", "Industrial estates, port laydown areas, plant installation and shutdowns"],
+      ],
+      note: "Send the heaviest load, its distance from where the crane can stand, and the lift height. The operator checks the lift against the crane's load chart before it is booked, so you do not pay for a bigger crane than the job needs.",
+    },
     quoteChecklist: [
       "Heaviest single load (tonnes) and its dimensions",
       "Distance from the crane position to the load's final position",
@@ -129,7 +138,6 @@ export const equipmentTypes: EquipmentType[] = [
           "Yes. Short hires for one-off lifts, such as offloading a delivery or placing a unit on a roof, are common. Longer daily and monthly hire is available for ongoing project work.",
       },
     ],
-    keywords: ["crane rental Oman", "crane hire Oman", "mobile crane rental Sohar", "crane rental Muscat"],
   },
   {
     key: "tipper",
@@ -189,7 +197,6 @@ export const equipmentTypes: EquipmentType[] = [
           "Both are possible. Short, defined jobs are often priced per trip; ongoing earthworks usually work out better on a daily or monthly rate. Tell us the volume and distance and we will quote the option that suits.",
       },
     ],
-    keywords: ["tipper rental Oman", "tipper truck hire Sohar", "tipper rental Muscat", "dump truck rental Oman"],
   },
   {
     key: "boom-loader",
@@ -251,12 +258,11 @@ export const equipmentTypes: EquipmentType[] = [
           "Yes. Boom loaders run on large rough-terrain tyres and are built for unmade site ground. Tell us about soft or sloping ground in advance so we can advise on safe working.",
       },
     ],
-    keywords: ["boom loader rental Oman", "boom loader hire Sohar", "telehandler rental Oman", "boom loader rental Muscat"],
   },
   {
     key: "forklift",
-    slug: "3-ton-forklift",
-    href: "/equipment/3-ton-forklift",
+    slug: "forklift",
+    href: "/equipment/forklift",
     slugBase: "forklift-rental",
     label: "3–18 Ton Forklift",
     labelAr: "رافعة شوكية ٣–١٨ طن",
@@ -336,15 +342,6 @@ export const equipmentTypes: EquipmentType[] = [
           "Daily, weekly, or monthly. Short hires suit shipment peaks, stock counts, and breakdown cover; monthly hire is the usual choice for projects and for sites far from Sohar such as Duqm and Salalah.",
       },
     ],
-    keywords: [
-      "forklift rental Oman",
-      "forklift rental Sohar",
-      "forklift hire Muscat",
-      "3 ton forklift rental Oman",
-      "5 ton forklift rental Oman",
-      "10 ton forklift rental Oman",
-      "heavy forklift rental Oman",
-    ],
   },
   {
     key: "excavator",
@@ -407,7 +404,6 @@ export const equipmentTypes: EquipmentType[] = [
           "Yes. We rent tipper trucks alongside our excavators, so digging and haulage run on one schedule under one supplier.",
       },
     ],
-    keywords: ["excavator rental Oman", "excavator hire Sohar", "excavator rental Muscat", "digger hire Oman"],
   },
   {
     key: "jcb",
@@ -467,7 +463,6 @@ export const equipmentTypes: EquipmentType[] = [
           "Short hires are available for small jobs. For ongoing work, daily and monthly rates are better value. Tell us the scope and we will suggest the right basis.",
       },
     ],
-    keywords: ["JCB rental Oman", "JCB hire Sohar", "backhoe loader rental Oman", "JCB rental Muscat"],
   },
   {
     key: "wheel-loader",
@@ -525,7 +520,6 @@ export const equipmentTypes: EquipmentType[] = [
         answer: "Yes. We rent tippers alongside our wheel loaders so loading and haulage run as one package.",
       },
     ],
-    keywords: ["wheel loader rental Oman", "shovel rental Sohar", "wheel loader hire Muscat", "loader rental Oman"],
   },
 ]
 

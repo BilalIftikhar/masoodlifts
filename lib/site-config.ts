@@ -8,7 +8,9 @@
  *
  * TODO (owner action required before go-live):
  * - keep www.masoodlifts.com as the primary domain on the host (apex 308s to www)
- * - replace `geo` with the pin of the actual yard (currently Sohar city centre)
+ * - replace `geo` with the exact pin of the yard inside Sohar Industrial Estate
+ *   (currently Sohar city centre), and add the plot/way number to `yard`
+ * - add the yard's opening hours to `openingHours` (schema emits them only when set)
  * - add real social profile URLs to `social` once they exist
  */
 
@@ -26,7 +28,7 @@ export const siteConfig = {
   url: "https://www.masoodlifts.com",
   tagline: "Heavy Equipment & Construction Machinery Rental in Oman",
   description:
-    "ABDUL MASOOD TRADING LLC rents cranes, tipper trucks, boom loaders, 3 to 18 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders for construction and civil works across Oman — from Sohar to Muscat, Duqm, Salalah, Nizwa, and Al Buraimi.",
+    "ABDUL MASOOD TRADING LLC rents cranes, tipper trucks, boom loaders, 3 to 18 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders with operators for construction and civil works in all 11 governorates of Oman, from its yard in Sohar Industrial Estate.",
 
   phoneDisplay: "+968 7928 8727",
   phoneE164: "+96879288727",
@@ -35,17 +37,23 @@ export const siteConfig = {
   // The endpoint wa.me redirects to. Linking it directly saves visitors a
   // redirect hop and clears "links to redirect" warnings in site audits.
   whatsappHref: "https://api.whatsapp.com/send?phone=96879288727",
-  email: "chabdulmasood@gmail.com",
+  email: "info@masoodlifts.com",
   /**
    * Inquiry form target. FormSubmit relays browser submissions to this inbox
    * with no backend or API key. The FIRST submission triggers a one-time
    * activation email to the inbox — click it, or no inquiries are delivered.
    * After activation FormSubmit offers a random alias you can swap in here to
    * keep the address out of the page source.
+   *
+   * Still relays to the Gmail inbox on purpose: pointing it at info@ needs a
+   * fresh FormSubmit activation from that mailbox, and until someone clicks it
+   * every form inquiry would be dropped.
    */
   inquiryEndpoint: "https://formsubmit.co/ajax/chabdulmasood@gmail.com",
 
   address: {
+    /** Where the yard is. Add the plot or way number once confirmed. */
+    streetAddress: "Sohar Industrial Estate",
     postOfficeBoxNumber: "326",
     postalCode: "119",
     addressLocality: "Sohar",
@@ -55,12 +63,25 @@ export const siteConfig = {
   },
   /** The address exactly as printed on the letterhead. */
   addressLine: "P.O. Box 326, Postal Code 119, Sohar, Sultanate of Oman",
+  /** The physical yard, shown beside the postal address and used for Google Maps. */
+  yardLine: "Sohar Industrial Estate, Sohar, North Al Batinah, Oman",
+  yardLineAr: "المنطقة الصناعية بصحار، صحار، شمال الباطنة، سلطنة عمان",
+  /** Google resolves the place by name, so the map stays right even while `geo` is approximate. */
+  mapQuery: "Sohar Industrial Estate, Sohar, Oman",
   geo: {
     latitude: 24.347,
     longitude: 56.73,
   },
 
   social: {} as Record<string, string>,
+
+  /**
+   * schema.org openingHoursSpecification entries, e.g.
+   * { dayOfWeek: ["Saturday", "Sunday"], opens: "07:00", closes: "18:00" }.
+   * Left empty until the owner confirms the hours — wrong hours on Google cost
+   * more calls than missing ones.
+   */
+  openingHours: [] as { dayOfWeek: string[]; opens: string; closes: string }[],
 
   // schema.org expects a symbolic range ("$$"), not a currency string. Rates are
   // quote-based, so this stays symbolic rather than naming figures.
@@ -71,38 +92,22 @@ export function waLink(message: string) {
   return `${siteConfig.whatsappHref}&text=${encodeURIComponent(message)}`
 }
 
-export type Governorate =
-  | "North Al Batinah"
-  | "Muscat"
-  | "Al Wusta"
-  | "Dhofar"
-  | "Ad Dakhiliyah"
-  | "Al Buraimi"
+export const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.mapQuery)}`
+export const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(siteConfig.mapQuery)}&output=embed`
 
-export type ServiceArea = {
-  name: string
-  governorate: Governorate
-}
+/** All 11 governorates of Oman, nearest to the Sohar base first. */
+export const governorates = [
+  { name: "North Al Batinah", nameAr: "شمال الباطنة" },
+  { name: "Al Buraimi", nameAr: "البريمي" },
+  { name: "South Al Batinah", nameAr: "جنوب الباطنة" },
+  { name: "Muscat", nameAr: "مسقط" },
+  { name: "Ad Dhahirah", nameAr: "الظاهرة" },
+  { name: "Ad Dakhiliyah", nameAr: "الداخلية" },
+  { name: "North Ash Sharqiyah", nameAr: "شمال الشرقية" },
+  { name: "South Ash Sharqiyah", nameAr: "جنوب الشرقية" },
+  { name: "Al Wusta", nameAr: "الوسطى" },
+  { name: "Dhofar", nameAr: "ظفار" },
+  { name: "Musandam", nameAr: "مسندم" },
+] as const
 
-/** Named industrial zones and districts we deliver into, listed in the footer service network. */
-export const serviceAreas: ServiceArea[] = [
-  { name: "Sohar Port & Freezone", governorate: "North Al Batinah" },
-  { name: "Sohar Industrial Estate", governorate: "North Al Batinah" },
-  { name: "Liwa", governorate: "North Al Batinah" },
-  { name: "Saham", governorate: "North Al Batinah" },
-  { name: "Shinas", governorate: "North Al Batinah" },
-  { name: "Rusayl Industrial Estate", governorate: "Muscat" },
-  { name: "Ghala Industrial Area", governorate: "Muscat" },
-  { name: "Al Misfah", governorate: "Muscat" },
-  { name: "Seeb & Al Mabelah", governorate: "Muscat" },
-  { name: "Al Amerat", governorate: "Muscat" },
-  { name: "SEZAD Duqm", governorate: "Al Wusta" },
-  { name: "Port of Duqm", governorate: "Al Wusta" },
-  { name: "Port of Salalah", governorate: "Dhofar" },
-  { name: "Salalah Free Zone", governorate: "Dhofar" },
-  { name: "Raysut Industrial Estate", governorate: "Dhofar" },
-  { name: "Nizwa Industrial Estate", governorate: "Ad Dakhiliyah" },
-  { name: "Bahla & Izki", governorate: "Ad Dakhiliyah" },
-  { name: "Al Buraimi Industrial Estate", governorate: "Al Buraimi" },
-  { name: "Mahdah", governorate: "Al Buraimi" },
-]
+export type Governorate = (typeof governorates)[number]["name"]

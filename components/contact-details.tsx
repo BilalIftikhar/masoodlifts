@@ -68,16 +68,17 @@ export function ContactDetails() {
             </span>
             <span>
               <span className="block text-xs font-bold uppercase tracking-widest text-muted-foreground">
-                Registered Address
+                Yard &amp; Registered Address
               </span>
               <span className="block font-extrabold text-foreground">{siteConfig.legalName}</span>
               <span lang="ar" dir="rtl" className="block font-arabic text-sm text-muted-foreground">
                 {siteConfig.legalNameAr}
               </span>
-              <span className="mt-1 block font-semibold text-foreground">
+              <span className="mt-1 block font-semibold text-foreground">{siteConfig.yardLine}</span>
+              <span className="mt-1 block text-sm font-semibold text-muted-foreground">
                 P.O. Box {siteConfig.address.postOfficeBoxNumber}, Postal Code {siteConfig.address.postalCode}
               </span>
-              <span className="block font-semibold text-foreground">
+              <span className="block text-sm font-semibold text-muted-foreground">
                 {siteConfig.address.addressLocality}, {siteConfig.address.countryName}
               </span>
             </span>

@@ -43,13 +43,18 @@ export function HeaderNav({ menus }: { menus: NavMenu[] }) {
               <span>{siteConfig.email}</span>
             </a>
           </div>
-          <p className="flex items-center gap-1.5 text-right text-industrial-foreground/80">
-            <MapPin size={13} className="hidden shrink-0 text-safety sm:block" />
-            <span>
-              <span className="hidden md:inline">{siteConfig.addressLine}</span>
-              <span className="md:hidden">Sohar, Oman</span>
-            </span>
-          </p>
+          <div className="flex items-center gap-4">
+            <p className="flex items-center gap-1.5 text-right text-industrial-foreground/80">
+              <MapPin size={13} className="hidden shrink-0 text-safety sm:block" />
+              <span>
+                <span className="hidden md:inline">{siteConfig.yardLine}</span>
+                <span className="md:hidden">Sohar, Oman</span>
+              </span>
+            </p>
+            <Link href="/ar" lang="ar" hrefLang="ar" className="font-arabic font-semibold hover:text-safety transition-colors">
+              العربية
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -58,7 +63,7 @@ export function HeaderNav({ menus }: { menus: NavMenu[] }) {
           <BrandLogo />
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-5 lg:flex xl:gap-6">
           {menus.map((menu) => (
             <div key={menu.key} className="group relative">
               <Link
@@ -88,10 +93,11 @@ export function HeaderNav({ menus }: { menus: NavMenu[] }) {
               </div>
             </div>
           ))}
-          <Link href="/about" className="text-sm font-semibold text-foreground hover:text-accent transition-colors">
+          {/* About and Guides drop out at lg to make room for the four menus; both stay in the footer and mobile menu. */}
+          <Link href="/about" className="hidden text-sm font-semibold text-foreground hover:text-accent transition-colors xl:inline">
             About
           </Link>
-          <Link href="/blog" className="text-sm font-semibold text-foreground hover:text-accent transition-colors">
+          <Link href="/blog" className="hidden text-sm font-semibold text-foreground hover:text-accent transition-colors xl:inline">
             Guides
           </Link>
           <Link href="/contact" className="text-sm font-semibold text-foreground hover:text-accent transition-colors">

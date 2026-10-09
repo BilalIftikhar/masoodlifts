@@ -19,13 +19,6 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Crane, tipper, boom loader, forklift, excavator, JCB & wheel loader rental in Sohar, Muscat, Duqm, Salalah, Nizwa & Al Buraimi. Operators included.",
   path: "/services",
-  keywords: [
-    "equipment rental services Oman",
-    "crane rental Oman",
-    "excavator rental Oman",
-    "JCB rental Oman",
-    "wheel loader rental Oman",
-  ],
 })
 
 export default function ServicesPage() {

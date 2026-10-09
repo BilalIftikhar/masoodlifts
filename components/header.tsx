@@ -1,7 +1,8 @@
 import { HeaderNav, type NavMenu } from "@/components/header-nav"
 import { equipmentTypes } from "@/lib/equipment"
 import { services } from "@/lib/services"
-import { locations } from "@/lib/locations"
+import { hubsByDistance } from "@/lib/locations"
+import { ports } from "@/lib/ports"
 
 const menus: NavMenu[] = [
   {
@@ -23,7 +24,14 @@ const menus: NavMenu[] = [
     label: "Locations",
     href: "/locations",
     allLabel: "All Oman Coverage",
-    items: locations.map((location) => ({ label: location.shortTitle, sub: location.governorate, href: location.href })),
+    items: hubsByDistance.map((location) => ({ label: location.shortTitle, sub: location.governorate, href: location.href })),
+  },
+  {
+    key: "ports",
+    label: "Ports",
+    href: "/ports",
+    allLabel: "All Omani Ports",
+    items: ports.map((port) => ({ label: port.shortName, sub: port.governorate, href: port.href })),
   },
 ]
 

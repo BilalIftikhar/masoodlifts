@@ -1,6 +1,6 @@
 import type { Faq } from "@/lib/faqs"
 import { getEquipment, type EquipmentKey } from "@/lib/equipment"
-import { getLocationBySlug, locations } from "@/lib/locations"
+import { serviceLocations, hubsByDistance } from "@/lib/locations"
 import { serviceAreaHref } from "@/lib/service-areas"
 import type { AreaLink, BulletGroup, LocalContext, SpecRow } from "@/components/service-landing-template"
 
@@ -17,7 +17,6 @@ export type ServiceHub = {
 
   metaTitle: string
   metaDescription: string
-  keywords: string[]
   serviceType: string
   areaServed: string[]
 
@@ -42,7 +41,7 @@ const crane = getEquipment("crane")
 const forklift = getEquipment("forklift")
 const excavator = getEquipment("excavator")
 const boomLoader = getEquipment("boom-loader")
-const sohar = getLocationBySlug("sohar")!
+const sohar = serviceLocations.find((location) => location.slug === "sohar")!
 
 /**
  * Hand-written hub pages for the combined high-intent queries. Each targets a
@@ -70,14 +69,6 @@ export const services: ServiceHub[] = [
     metaTitle: "Crane & Forklift Rental Sohar",
     metaDescription:
       "Crane & 3–18 ton forklift rental in Sohar with operators — Sohar Port, Freezone & Industrial Estate. Daily to monthly hire. Call +968 7928 8727.",
-    keywords: [
-      "crane rental Sohar",
-      "forklift rental Sohar",
-      "crane and forklift rental Sohar",
-      "crane hire Sohar Port",
-      "3 to 18 ton forklift rental Sohar",
-      "Sohar Freezone forklift hire",
-    ],
     serviceType: "Crane and forklift rental",
     areaServed: sohar.areaServed,
 
@@ -106,8 +97,8 @@ export const services: ServiceHub[] = [
       { name: "Forklift Rental Sohar", href: serviceAreaHref(forklift, sohar) },
       { name: "All Equipment in Sohar", href: sohar.href },
       { name: "About Our Cranes", href: crane.href },
-      { name: "About Our 3 Ton Forklifts", href: forklift.href },
-      ...locations
+      { name: "About Our 3–18 Ton Forklifts", href: forklift.href },
+      ...serviceLocations
         .filter((location) => location.slug !== "sohar")
         .flatMap((location) => [
           { name: `Crane Rental ${location.cityName}`, href: serviceAreaHref(crane, location) },
@@ -152,15 +143,8 @@ export const services: ServiceHub[] = [
     metaTitle: "Boom Loader & Excavator Rental Oman",
     metaDescription:
       "Boom loader and excavator rental across Oman with operators — Sohar, Muscat, Duqm, Salalah, Nizwa & Al Buraimi. Daily to monthly hire.",
-    keywords: [
-      "boom loader rental Oman",
-      "excavator rental Oman",
-      "boom loader and excavator rental",
-      "telehandler rental Oman",
-      "excavator hire Oman",
-    ],
     serviceType: "Boom loader and excavator rental",
-    areaServed: ["Oman", ...locations.map((location) => location.cityName)],
+    areaServed: ["Oman", ...hubsByDistance.map((location) => location.cityName)],
 
     eyebrow: "Boom Loader & Excavator Rental · Oman",
     h1: "Boom Loader & Excavator Rental in Oman",
@@ -169,7 +153,7 @@ export const services: ServiceHub[] = [
     specs: [
       { label: "Excavator", value: "Earthmoving" },
       { label: "Boom Loader", value: "Lift & Reach" },
-      { label: "Coverage", value: "6 Oman Hubs" },
+      { label: "Coverage", value: "All 11 Governorates" },
       { label: "Supplied With", value: "Operator" },
     ],
     bulletGroups: [
@@ -177,7 +161,7 @@ export const services: ServiceHub[] = [
       { title: "Boom Loader Hire", items: boomLoader.fleetItems },
       {
         title: "Where We Supply",
-        items: locations.map((location) => `${location.cityName} — ${location.governorate}`),
+        items: hubsByDistance.map((location) => `${location.cityName} — ${location.governorate}`),
       },
     ],
     localContext: {
@@ -192,7 +176,7 @@ export const services: ServiceHub[] = [
     areas: [
       { name: "About Our Excavators", href: excavator.href },
       { name: "About Our Boom Loaders", href: boomLoader.href },
-      ...locations.flatMap((location) => [
+      ...serviceLocations.flatMap((location) => [
         { name: `Excavator Rental ${location.cityName}`, href: serviceAreaHref(excavator, location) },
         { name: `Boom Loader Rental ${location.cityName}`, href: serviceAreaHref(boomLoader, location) },
       ]),
@@ -201,7 +185,7 @@ export const services: ServiceHub[] = [
       {
         question: "Where in Oman do you rent boom loaders and excavators?",
         answer:
-          "We are based in Sohar and supply Sohar, Muscat, Al Buraimi, Nizwa, Duqm, and Salalah. Nearby areas take the shortest time to reach. For Duqm and Salalah we plan transport in advance and recommend weekly or monthly hire.",
+          "We are based in Sohar Industrial Estate and supply all 11 governorates of Oman. The Batinah coast, Al Buraimi, and Muscat take the shortest time to reach. For Sur, Duqm, Salalah, and Musandam we plan transport in advance and recommend weekly or monthly hire.",
       },
       {
         question: "Can I hire an excavator and a boom loader on one agreement?",

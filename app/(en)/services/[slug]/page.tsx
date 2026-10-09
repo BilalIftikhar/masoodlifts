@@ -59,7 +59,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: page.metaTitle,
     description: page.metaDescription,
     path: page.href,
-    keywords: page.keywords,
   })
 }
 

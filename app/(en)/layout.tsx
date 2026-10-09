@@ -1,17 +1,17 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Geist, Geist_Mono, Noto_Kufi_Arabic } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { JsonLd } from "@/components/json-ld"
 import { StickyMobileCta } from "@/components/sticky-mobile-cta"
-import { organizationSchema, websiteSchema } from "@/lib/schema"
+import { businessSchema, websiteSchema } from "@/lib/schema"
 import { siteConfig } from "@/lib/site-config"
-import "./globals.css"
+import { fontVariables } from "../fonts"
+import "../globals.css"
 
-const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" })
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" })
-// Only the Arabic company name and short labels use this, so one weight is enough.
-const notoKufiArabic = Noto_Kufi_Arabic({ subsets: ["arabic"], weight: "600", variable: "--font-noto-kufi-arabic" })
+/**
+ * Root layout for the English site. The Arabic section under /ar has its own
+ * root layout (app/(ar)/layout.tsx) so its <html> carries lang="ar" dir="rtl".
+ */
 
 const defaultTitle = `Heavy Equipment Rental in Oman | ${siteConfig.legalName}`
 
@@ -22,17 +22,6 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.shortName}`,
   },
   description: siteConfig.description,
-  keywords: [
-    "heavy equipment rental Oman",
-    "crane rental Sohar",
-    "forklift rental Sohar",
-    "construction machinery rental Muscat",
-    "boom loader rental Oman",
-    "excavator rental Oman",
-    "JCB rental Oman",
-    "wheel loader rental Oman",
-    "tipper rental Oman",
-  ],
   authors: [{ name: siteConfig.legalName }],
   creator: siteConfig.legalName,
   publisher: siteConfig.legalName,
@@ -82,7 +71,7 @@ export const viewport: Viewport = {
   themeColor: "#1b2e4f",
 }
 
-export default function RootLayout({
+export default function EnglishRootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
@@ -90,9 +79,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${notoKufiArabic.variable} pb-14 font-sans antialiased md:pb-0`}
+        className={`${fontVariables} pb-14 font-sans antialiased md:pb-0`}
       >
-        <JsonLd data={[organizationSchema(), websiteSchema()]} />
+        <JsonLd data={[businessSchema(), websiteSchema()]} />
         {children}
         <StickyMobileCta />
         <Analytics />

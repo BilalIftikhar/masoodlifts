@@ -17,7 +17,6 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Rent cranes, tippers, boom loaders, 3 to 18 ton forklifts, excavators, JCBs & wheel loaders with operators from Abdul Masood Trading LLC, Sohar, Oman.",
   path: "/equipment",
-  keywords: equipmentTypes.map((equipment) => `${equipment.noun} rental Oman`),
 })
 
 export default function EquipmentPage() {

@@ -171,7 +171,7 @@ export const blogPosts: BlogPost[] = [
     ],
     relatedLinks: [
       { title: "Boom Loader Rental", href: "/equipment/boom-loader" },
-      { title: "3 Ton Forklift Rental", href: "/equipment/3-ton-forklift" },
+      { title: "3–18 Ton Forklift Rental", href: "/equipment/forklift" },
       { title: "Forklift Rental in Sohar", href: "/services/forklift-rental-sohar" },
     ],
   },

@@ -25,7 +25,7 @@ export const generalFaqs: Faq[] = [
   {
     question: "How do I get a quote?",
     answer:
-      "Call or WhatsApp +968 7928 8727, email chabdulmasood@gmail.com, or use the inquiry form. Tell us the machine, the site location, the job, and the dates, and we will confirm availability and price.",
+      "Call or WhatsApp +968 7928 8727, email info@masoodlifts.com, or use the inquiry form. Tell us the machine, the site location, the job, and the dates, and we will confirm availability and price.",
   },
   {
     question: "Is ABDUL MASOOD TRADING LLC a registered company?",

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, MapPin, Phone } from "lucide-react"
@@ -13,12 +14,17 @@ import type { Faq } from "@/lib/faqs"
 
 export type LocationServiceLink = {
   key: string
-  label: string
+  /** Card heading, e.g. "Crane Rental Sohar". */
+  title: string
   tag: string
   href: string
 }
 
 export type NearbyLink = { name: string; href: string }
+
+export type LinkGroup = { heading: string; links: NearbyLink[] }
+
+export type ContextSection = { heading: string; paragraphs: string[] }
 
 type LocationLandingTemplateProps = {
   eyebrow: string
@@ -29,15 +35,18 @@ type LocationLandingTemplateProps = {
   areas: string[]
   /** Equipment pages scoped to this city — the main internal-linking hub. */
   serviceLinks: LocationServiceLink[]
+  serviceHeading?: string
   cityName: string
   whyHeading: string
   whyPoints: { title: string; description: string }[]
   faqs?: Faq[]
   /** Free-text guidance on working in this area, shown after the area list. */
-  localContext?: { heading: string; paragraphs: string[] }
+  contextSections?: ContextSection[]
+  /** Rendered after the context sections, e.g. the yard map on the Sohar page. */
+  extraContent?: ReactNode
   governorate: string
-  nearbyLinks?: NearbyLink[]
-  nearbyHeading?: string
+  /** Internal links: towns and ports in the governorate, nearby hubs. */
+  linkGroups?: LinkGroup[]
   ctaHeading: string
   ctaSubheading: string
   whatsappMessage: string
@@ -51,14 +60,15 @@ export function LocationLandingTemplate({
   heroImageAlt,
   areas,
   serviceLinks,
+  serviceHeading,
   cityName,
   whyHeading,
   whyPoints,
   faqs,
-  localContext,
+  contextSections = [],
+  extraContent,
   governorate,
-  nearbyLinks,
-  nearbyHeading = "Nearby Coverage",
+  linkGroups = [],
   ctaHeading,
   ctaSubheading,
   whatsappMessage,
@@ -122,18 +132,19 @@ export function LocationLandingTemplate({
               </span>
             ))}
           </div>
-          {localContext && (
-            <div className="mt-16 max-w-4xl space-y-6">
+          {contextSections.map((section) => (
+            <div key={section.heading} className="mt-16 max-w-4xl space-y-6">
               <Reveal>
-                <h2 className="text-foreground">{localContext.heading}</h2>
+                <h2 className="text-foreground">{section.heading}</h2>
               </Reveal>
-              {localContext.paragraphs.map((paragraph) => (
+              {section.paragraphs.map((paragraph) => (
                 <p key={paragraph} className="text-lg font-medium leading-relaxed text-muted-foreground">
                   {paragraph}
                 </p>
               ))}
             </div>
-          )}
+          ))}
+          {extraContent && <div className="mt-16">{extraContent}</div>}
         </div>
       </section>
 
@@ -141,7 +152,7 @@ export function LocationLandingTemplate({
         <div className="mx-auto max-w-7xl px-4">
           <Reveal className="mb-14 space-y-2">
             <p className="text-sm font-bold uppercase tracking-widest text-accent">Equipment Available</p>
-            <h2 className="text-foreground">Rent by Equipment Type in {cityName}</h2>
+            <h2 className="text-foreground">{serviceHeading ?? `Rent by Equipment Type in ${cityName}`}</h2>
           </Reveal>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {serviceLinks.map((service, idx) => (
@@ -154,9 +165,7 @@ export function LocationLandingTemplate({
                     <span className="inline-block rounded-md bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
                       {service.tag}
                     </span>
-                    <h3 className="text-lg font-extrabold text-foreground">
-                      {service.label} {cityName}
-                    </h3>
+                    <h3 className="text-lg font-extrabold text-foreground">{service.title}</h3>
                   </div>
                   <span className="inline-flex items-center gap-1.5 text-sm font-bold text-accent">
                     View Details
@@ -200,24 +209,28 @@ export function LocationLandingTemplate({
         </section>
       )}
 
-      {nearbyLinks && nearbyLinks.length > 0 && (
+      {linkGroups.length > 0 && (
         <section className="bg-secondary/40 py-16 md:py-20">
-          <div className="mx-auto max-w-7xl px-4">
-            <Reveal>
-              <h2 className="mb-8 text-foreground">{nearbyHeading}</h2>
-            </Reveal>
-            <div className="flex flex-wrap gap-3">
-              {nearbyLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-accent/50 hover:text-accent"
-                >
-                  {link.name}
-                  <ArrowRight size={14} />
-                </Link>
-              ))}
-            </div>
+          <div className="mx-auto max-w-7xl space-y-12 px-4">
+            {linkGroups.map((group) => (
+              <div key={group.heading}>
+                <Reveal>
+                  <h2 className="mb-8 text-foreground">{group.heading}</h2>
+                </Reveal>
+                <div className="flex flex-wrap gap-3">
+                  {group.links.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-accent/50 hover:text-accent"
+                    >
+                      {link.name}
+                      <ArrowRight size={14} />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       )}

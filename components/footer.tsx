@@ -1,10 +1,12 @@
 import Link from "next/link"
 import { Phone, Mail, MapPin } from "lucide-react"
 import { BrandLogo } from "@/components/brand-logo"
-import { siteConfig, serviceAreas } from "@/lib/site-config"
+import { siteConfig, governorates } from "@/lib/site-config"
 import { equipmentTypes } from "@/lib/equipment"
 import { services } from "@/lib/services"
-import { locations } from "@/lib/locations"
+import { hubsByDistance } from "@/lib/locations"
+import { areas, areaHref } from "@/lib/areas"
+import { ports } from "@/lib/ports"
 
 /** High-intent pages surfaced sitewide so they gain internal link equity. */
 const popularSearches = [
@@ -13,6 +15,8 @@ const popularSearches = [
   { label: "Construction Machinery Rental Muscat", href: "/locations/muscat" },
   { label: "Excavator Rental Sohar", href: "/services/excavator-rental-sohar" },
   { label: "Wheel Loader Rental Al Buraimi", href: "/services/wheel-loader-rental-al-buraimi" },
+  { label: "25 Ton Crane Rental", href: "/equipment/crane/25-ton-crane-rental-oman" },
+  { label: "3 Ton Forklift Rental", href: "/equipment/forklift/3-ton-forklift-rental-oman" },
 ]
 
 export default function Footer() {
@@ -22,7 +26,7 @@ export default function Footer() {
     <footer className="w-full bg-industrial text-industrial-foreground">
       <div className="hazard-stripe h-2" aria-hidden="true" />
       <div className="mx-auto max-w-7xl px-4 py-16">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-6">
           <div className="space-y-5 lg:col-span-2">
             <Link href="/" aria-label={`${siteConfig.legalName} — home`}>
               <BrandLogo tone="dark" />
@@ -36,7 +40,10 @@ export default function Footer() {
             <address className="space-y-2.5 pt-1 text-sm not-italic text-white/85">
               <p className="flex items-start gap-2.5">
                 <MapPin size={16} className="mt-0.5 shrink-0 text-safety" />
-                {siteConfig.addressLine}
+                <span>
+                  Yard: {siteConfig.yardLine}
+                  <span className="block text-white/60">Postal: {siteConfig.addressLine}</span>
+                </span>
               </p>
               <a href={siteConfig.telHref} className="flex items-center gap-2.5 hover:text-safety transition-colors">
                 <Phone size={16} className="shrink-0 text-safety" />
@@ -70,7 +77,7 @@ export default function Footer() {
           <div className="space-y-3">
             <h3 className="text-sm font-bold uppercase tracking-wider text-white">Locations</h3>
             <ul className="space-y-2.5 text-sm text-white/70">
-              {locations.map((location) => (
+              {hubsByDistance.map((location) => (
                 <li key={location.slug}>
                   <Link href={location.href} className="hover:text-safety transition-colors">
                     Equipment Rental {location.cityName}
@@ -80,6 +87,24 @@ export default function Footer() {
               <li>
                 <Link href="/locations" className="hover:text-safety transition-colors">
                   All Oman Coverage
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="space-y-3">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Ports</h3>
+            <ul className="space-y-2.5 text-sm text-white/70">
+              {ports.map((port) => (
+                <li key={port.slug}>
+                  <Link href={port.href} className="hover:text-safety transition-colors">
+                    Crane &amp; Forklift Rental {port.shortName}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/ports" className="hover:text-safety transition-colors">
+                  All Omani Ports
                 </Link>
               </li>
             </ul>
@@ -113,13 +138,36 @@ export default function Footer() {
                   Contact &amp; Quote
                 </Link>
               </li>
+              <li>
+                <Link href="/ar" lang="ar" hrefLang="ar" className="font-arabic hover:text-safety transition-colors">
+                  الموقع بالعربية
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-12 border-t border-white/10 pt-8">
-          <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-white/50">Oman Service Network</h3>
-          <p className="text-sm leading-relaxed text-white/60">{serviceAreas.map((area) => area.name).join(" · ")}</p>
+          <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-white/50">Oman Service Network</h3>
+          <div className="grid gap-x-8 gap-y-3 text-sm text-white/60 sm:grid-cols-2 lg:grid-cols-3">
+            {governorates.map((governorate) => {
+              const towns = areas.filter((area) => area.governorate === governorate.name)
+              if (towns.length === 0) return null
+              return (
+                <p key={governorate.name} className="leading-relaxed">
+                  <span className="font-semibold text-white/80">{governorate.name}: </span>
+                  {towns.map((town, idx) => (
+                    <span key={town.slug}>
+                      {idx > 0 && " · "}
+                      <Link href={areaHref(town)} className="hover:text-safety transition-colors">
+                        {town.name}
+                      </Link>
+                    </span>
+                  ))}
+                </p>
+              )
+            })}
+          </div>
         </div>
 
         <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-8 text-center text-sm text-white/60 md:flex-row md:text-left">

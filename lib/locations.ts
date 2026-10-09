@@ -1,6 +1,6 @@
 import type { Faq } from "@/lib/faqs"
 import type { EquipmentKey } from "@/lib/equipment"
-import type { Governorate } from "@/lib/site-config"
+import { governorates, type Governorate } from "@/lib/site-config"
 
 export type LocationSummary = {
   slug: string
@@ -34,7 +34,6 @@ export type LocationSummary = {
   // --- SEO / schema ---
   metaTitle: string
   metaDescription: string
-  keywords: string[]
   /** Plain place names for schema.org areaServed. */
   areaServed: string[]
   /** Slugs of neighbouring locations, used for internal linking. */
@@ -50,14 +49,19 @@ export type LocationSummary = {
   /**
    * What renting each equipment type in this city actually involves. Rendered
    * on the service × city pages so each one carries content no other page has.
+   * Only hubs with these notes get equipment × city pages; the newer regional
+   * hubs link to the Oman-wide equipment pages instead of thin city copies.
    */
-  equipmentNotes: Record<EquipmentKey, string>
+  equipmentNotes?: Record<EquipmentKey, string>
 }
 
+export type ServiceLocation = LocationSummary & { equipmentNotes: Record<EquipmentKey, string> }
+
 /**
- * The six Oman hubs targeted by the site, one landing page each. Referenced by
- * the homepage, /locations index, footer, sitemap, and the generated
- * service × city pages in `lib/service-areas.ts`.
+ * One hub per governorate, one landing page each. Referenced by the /locations
+ * index, header, footer, sitemap, and the generated service × city pages in
+ * `lib/service-areas.ts`. Town and industrial-area pages live in `lib/areas.ts`,
+ * ports in `lib/ports.ts`.
  *
  * Every entry carries its own copy, FAQs, and notes — these pages must not be
  * near-duplicates of each other, or Google treats them as doorway pages.
@@ -150,16 +154,8 @@ export const locations: LocationSummary[] = [
     metaTitle: "Heavy Equipment Rental in Sohar",
     metaDescription:
       "Crane, tipper, boom loader, forklift, excavator, JCB & wheel loader rental in Sohar — Port, Freezone & Industrial Estate. Call +968 7928 8727.",
-    keywords: [
-      "heavy equipment rental Sohar",
-      "equipment rental Sohar",
-      "crane rental Sohar",
-      "forklift rental Sohar",
-      "Sohar Port equipment hire",
-      "Sohar Industrial Estate equipment rental",
-    ],
     areaServed: ["Sohar", "Liwa", "Saham", "Shinas", "Al Khaburah", "North Al Batinah"],
-    nearby: ["al-buraimi", "muscat"],
+    nearby: ["al-buraimi", "south-al-batinah", "muscat", "khasab"],
     industries: [
       "port, metals, and petrochemical industry",
       "Freezone logistics and warehousing",
@@ -275,16 +271,8 @@ export const locations: LocationSummary[] = [
     metaTitle: "Construction Machinery Rental Muscat",
     metaDescription:
       "Construction machinery for rent in Muscat: cranes, excavators, JCBs, boom loaders, wheel loaders, tippers & forklifts with operators. Rusayl, Ghala, Seeb.",
-    keywords: [
-      "heavy equipment rental Muscat",
-      "construction machinery rental Muscat",
-      "equipment hire Muscat",
-      "JCB rental Muscat",
-      "excavator rental Muscat",
-      "crane rental Muscat",
-    ],
     areaServed: ["Muscat", "Seeb", "Bawshar", "Al Amerat", "Muttrah", "Qurayyat"],
-    nearby: ["sohar", "nizwa"],
+    nearby: ["sohar", "south-al-batinah", "nizwa", "sur"],
     industries: [
       "residential and commercial construction",
       "roads, utilities, and infrastructure",
@@ -397,13 +385,6 @@ export const locations: LocationSummary[] = [
     metaTitle: "Heavy Equipment Rental in Duqm",
     metaDescription:
       "Project equipment hire for SEZAD & the Port of Duqm: excavators, wheel loaders, tippers, cranes, boom loaders & JCBs with operators. Monthly rates.",
-    keywords: [
-      "equipment rental Duqm",
-      "heavy equipment rental Duqm",
-      "SEZAD equipment hire",
-      "crane rental Duqm",
-      "excavator rental Duqm",
-    ],
     areaServed: ["Duqm", "Al Wusta"],
     nearby: ["salalah", "muscat"],
     industries: [
@@ -519,13 +500,6 @@ export const locations: LocationSummary[] = [
     metaTitle: "Heavy Equipment Rental in Salalah",
     metaDescription:
       "Project equipment hire in Salalah & Dhofar: cranes, forklifts, excavators, wheel loaders, tippers & JCBs with operators for Port of Salalah & Raysut.",
-    keywords: [
-      "equipment rental Salalah",
-      "heavy equipment rental Salalah",
-      "crane rental Salalah",
-      "Salalah Free Zone equipment hire",
-      "excavator rental Salalah",
-    ],
     areaServed: ["Salalah", "Taqah", "Mirbat", "Thumrait", "Dhofar"],
     nearby: ["duqm", "nizwa"],
     industries: [
@@ -632,15 +606,8 @@ export const locations: LocationSummary[] = [
     metaTitle: "Heavy Equipment Rental in Nizwa",
     metaDescription:
       "Excavator, JCB, wheel loader, tipper, crane & boom loader rental in Nizwa, Bahla, Izki & Nizwa Industrial Estate. Operators included. +968 7928 8727.",
-    keywords: [
-      "equipment rental Nizwa",
-      "heavy equipment rental Nizwa",
-      "JCB rental Nizwa",
-      "excavator rental Nizwa",
-      "Ad Dakhiliyah equipment hire",
-    ],
     areaServed: ["Nizwa", "Bahla", "Izki", "Manah", "Birkat Al Mawz", "Ad Dakhiliyah"],
-    nearby: ["muscat", "al-buraimi"],
+    nearby: ["muscat", "al-buraimi", "ibri"],
     industries: [
       "residential and public-sector construction",
       "roads and utilities across the interior",
@@ -744,15 +711,8 @@ export const locations: LocationSummary[] = [
     metaTitle: "Heavy Equipment Rental in Al Buraimi",
     metaDescription:
       "Equipment rental in Al Buraimi & Mahdah: wheel loaders, excavators, tippers, JCBs, cranes, boom loaders & forklifts with operators. Near our Sohar base.",
-    keywords: [
-      "equipment rental Al Buraimi",
-      "heavy equipment rental Buraimi",
-      "wheel loader rental Buraimi",
-      "excavator rental Buraimi",
-      "Buraimi Industrial Estate equipment hire",
-    ],
     areaServed: ["Al Buraimi", "Mahdah", "As Sunaynah"],
-    nearby: ["sohar", "nizwa"],
+    nearby: ["sohar", "ibri", "nizwa"],
     industries: [
       "quarrying and crusher operations",
       "construction and infrastructure around the city",
@@ -780,12 +740,471 @@ export const locations: LocationSummary[] = [
         "Wheel loaders are central to Al Buraimi's quarry and crusher operations, loading tippers and managing stockpiles. Monthly hire with an operator is the usual arrangement.",
     },
   },
+  {
+    slug: "south-al-batinah",
+    title: "Heavy Equipment Rental in South Al Batinah",
+    shortTitle: "South Al Batinah",
+    cityName: "South Al Batinah",
+    href: "/locations/south-al-batinah",
+    governorate: "South Al Batinah",
+    description:
+      "Excavators, JCBs, tippers, cranes, forklifts, and boom loaders for Barka, Al Musannah, Rustaq, Nakhal, and the rest of South Al Batinah.",
+    heroImage: "/images/fleet/excavator-transport.jpg",
+    heroImageAlt: "Excavator loaded on a low-bed trailer for delivery",
+    areas: ["Barka", "Al Musannah", "Rustaq", "Nakhal", "Wadi Al Maawil", "Al Awabi"],
+    geo: { latitude: 23.678, longitude: 57.881 },
+    primary: false,
+    metaZoneShort: "Barka, Al Musannah, Rustaq & Nakhal",
+
+    eyebrow: "South Al Batinah · Barka to Rustaq",
+    intro:
+      "South Al Batinah sits between our Sohar base and Muscat, so machines reach it along the Batinah Expressway without a long haul. We supply excavators, JCB backhoe loaders, wheel loaders, tippers, cranes, 3 to 18 ton forklifts, and boom loaders to contractors, farms, and plants in Barka, Al Musannah, Rustaq, Nakhal, and the mountain wilayats of Wadi Al Maawil and Al Awabi.",
+    whyHeading: "Why South Al Batinah Contractors Call Us",
+    whyPoints: [
+      {
+        title: "On the Expressway From Sohar",
+        description:
+          "Al Musannah and Barka are a straight run down the Batinah Expressway from our yard, so most South Al Batinah jobs are a same-day or next-day delivery.",
+      },
+      {
+        title: "Coast and Mountain Sites",
+        description:
+          "From flat coastal plots in Barka to wadi roads below the Hajar in Rustaq and Nakhal, we match the machine to the ground and the access.",
+      },
+      {
+        title: "Earthworks Packages",
+        description:
+          "Excavator or JCB, wheel loader, and tippers on one booking, so digging, loading, and haulage keep the same schedule.",
+      },
+      {
+        title: "Plant and Utility Work",
+        description:
+          "Cranes and heavy forklifts for maintenance and installation work at the power, water, and industrial facilities along the coast.",
+      },
+      {
+        title: "Operators Included",
+        description: "Every machine comes with an operator or driver, so your team does not need to find and manage one.",
+      },
+      {
+        title: "Flexible Hire",
+        description: "Daily hire for short jobs close to the expressway, and weekly or monthly terms for projects inland.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Which South Al Batinah areas do you deliver to?",
+        answer:
+          "Barka, Al Musannah, Rustaq, Nakhal, Wadi Al Maawil, and Al Awabi. Coastal sites near the expressway are the quickest to reach; mountain sites in Rustaq and Al Awabi need a check of the access road for low-bed trailers.",
+      },
+      {
+        question: "How long does delivery from Sohar take?",
+        answer:
+          "Al Musannah is roughly an hour and a half from Sohar by road and Barka a little further. We confirm the delivery time when you book, based on the machine and the site.",
+      },
+      {
+        question: "Can you supply machines for farm and plantation work?",
+        answer:
+          "Yes. JCBs and excavators are often hired for farm channels, land clearing, and boundary works, with tippers to move soil. Tell us the size of the area and the work.",
+      },
+      {
+        question: "Do you rent cranes in Barka?",
+        answer:
+          "Yes. Our 25 ton and 50 ton cranes are hired for plant maintenance, steel erection, and offloading in Barka and along the coast. Send the load and radius so we can confirm the right crane.",
+      },
+    ],
+    ctaHeading: "Need Equipment in South Al Batinah?",
+    ctaSubheading: "Tell us the wilayat, the machine, and your dates — we'll confirm availability and a quote.",
+    whatsappMessage: "Hello Abdul Masood Trading, I need equipment rental in South Al Batinah.",
+
+    metaTitle: "Equipment Rental in South Al Batinah",
+    metaDescription:
+      "Equipment rental in Barka, Al Musannah, Rustaq & Nakhal: excavators, JCBs, tippers, cranes & forklifts with operators. Call +968 7928 8727.",
+    areaServed: ["Barka", "Al Musannah", "Rustaq", "Nakhal", "Wadi Al Maawil", "Al Awabi", "South Al Batinah"],
+    nearby: ["sohar", "muscat"],
+    industries: [
+      "power, water, and coastal industry",
+      "farms and plantations across the Batinah plain",
+      "housing and road projects between Barka and Rustaq",
+    ],
+    demandNote:
+      "Housing growth near Muscat, coastal plants, and farm works keep earthmoving and lifting equipment busy across South Al Batinah.",
+    mobilization:
+      "South Al Batinah is reached from Sohar along the Batinah Expressway. Coastal wilayats are usually a same-day or next-day delivery, while Rustaq, Nakhal, and the mountain wilayats need a little more planning for the access road.",
+    siteConditions:
+      "The coastal strip is flat sand and farmland with a shallow water table near the sea, while Rustaq, Nakhal, and Al Awabi sit at the foot of the Hajar, where wadi crossings, gravel, and rock change the machine and bucket you need. After rain, wadi roads can close, so inland deliveries are planned around the weather.",
+  },
+  {
+    slug: "ibri",
+    title: "Heavy Equipment Rental in Ibri",
+    shortTitle: "Ibri",
+    cityName: "Ibri",
+    href: "/locations/ibri",
+    governorate: "Ad Dhahirah",
+    description:
+      "Construction and earthmoving equipment for Ibri, Yanqul, Dhank, and Ad Dhahirah, planned from our Sohar base.",
+    heroImage: "/images/fleet/excavator-transport.jpg",
+    heroImageAlt: "Tracked excavator on a low-bed trailer ready for transport",
+    areas: ["Ibri", "Yanqul", "Dhank", "Al Araqi", "Bat"],
+    geo: { latitude: 23.226, longitude: 56.516 },
+    primary: false,
+    metaZoneShort: "Ibri, Yanqul & Dhank",
+
+    eyebrow: "Ad Dhahirah · Ibri, Yanqul & Dhank",
+    intro:
+      "Equipment rental for Ad Dhahirah Governorate, from Ibri city to Yanqul and Dhank. We supply excavators, JCBs, wheel loaders, tippers, cranes, boom loaders, and forklifts with operators for roads, government and commercial buildings, farms, and quarry work across the governorate, delivered from our Sohar yard on planned dates.",
+    whyHeading: "Why Ad Dhahirah Projects Hire From Us",
+    whyPoints: [
+      {
+        title: "Planned From Sohar",
+        description:
+          "Ad Dhahirah is a planned delivery from our yard. We agree the date, the route, and the drop point before the low-bed leaves.",
+      },
+      {
+        title: "Built for Inland Ground",
+        description:
+          "Gravel plains, rock, and wadi beds are normal here, so we match buckets, tyres, and machine size to the ground at your site.",
+      },
+      {
+        title: "Earthmoving Fleets",
+        description:
+          "Excavators, wheel loaders, and tippers together for road works, land preparation, and quarry loading.",
+      },
+      {
+        title: "Lifting When Needed",
+        description:
+          "25 ton and 50 ton cranes and boom loaders for steel, precast, and materials on building projects in Ibri.",
+      },
+      {
+        title: "Operators Who Stay",
+        description:
+          "Operators stay with the machine for the length of the hire, so your site keeps the same experienced hands.",
+      },
+      {
+        title: "Weekly and Monthly Terms",
+        description:
+          "Longer hires spread the transport cost from Sohar, which is why most Ad Dhahirah jobs are booked by the week or month.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you deliver equipment to Ibri?",
+        answer:
+          "Yes. Ibri, Yanqul, Dhank, and Al Araqi are within our coverage. Deliveries are planned from Sohar, so tell us the site location and start date and we will confirm the schedule.",
+      },
+      {
+        question: "What equipment is most hired in Ad Dhahirah?",
+        answer:
+          "Excavators, wheel loaders, and tippers for roads, land preparation, and quarry work, and JCBs for utilities and farm jobs. Cranes and boom loaders are hired for building projects in Ibri.",
+      },
+      {
+        question: "Is short-term hire possible in Ibri?",
+        answer:
+          "Weekly and monthly hire works best because transport from Sohar is spread over the hire. A shorter job is possible when a machine is already working in the area — ask us.",
+      },
+      {
+        question: "Can you supply a full earthworks package?",
+        answer:
+          "Yes. An excavator or wheel loader with tippers, and a JCB for finishing, can be booked together so the work runs on one schedule.",
+      },
+    ],
+    ctaHeading: "Need Equipment in Ibri or Ad Dhahirah?",
+    ctaSubheading: "Send the site location, the machine, and the start date — we'll plan the delivery and quote.",
+    whatsappMessage: "Hello Abdul Masood Trading, I need equipment rental in Ibri / Ad Dhahirah.",
+
+    metaTitle: "Heavy Equipment Rental in Ibri",
+    metaDescription:
+      "Heavy equipment rental in Ibri, Yanqul & Dhank: excavators, wheel loaders, tippers, JCBs & cranes with operators. Call +968 7928 8727.",
+    areaServed: ["Ibri", "Yanqul", "Dhank", "Al Araqi", "Ad Dhahirah"],
+    nearby: ["al-buraimi", "nizwa"],
+    industries: [
+      "road and infrastructure works",
+      "quarrying and land preparation",
+      "farms and government buildings",
+    ],
+    demandNote: "Road works, quarrying, and public building projects drive equipment demand across Ad Dhahirah.",
+    mobilization:
+      "Ad Dhahirah is an inland delivery from Sohar on a low-bed trailer, planned a few days ahead. Weekly and monthly hire make the most sense here, and several machines can travel together to save on transport.",
+    siteConditions:
+      "Ad Dhahirah is inland: gravel plains, rocky ground, and wadi beds, with summer temperatures that are higher than on the coast. Expect early starts, rock buckets or breakers on hard ground, and wadi crossings that can close after heavy rain.",
+  },
+  {
+    slug: "ibra",
+    title: "Heavy Equipment Rental in Ibra",
+    shortTitle: "Ibra",
+    cityName: "Ibra",
+    href: "/locations/ibra",
+    governorate: "North Ash Sharqiyah",
+    description:
+      "Equipment hire for Ibra, Al Mudaybi, Sinaw, Bidiyah, and North Ash Sharqiyah, with operators and planned delivery.",
+    heroImage: "/images/fleet/telehandler-jcb.jpg",
+    heroImageAlt: "Telescopic boom loader with pallet forks on a construction site",
+    areas: ["Ibra", "Al Mudaybi", "Sinaw", "Bidiyah", "Al Qabil", "Wadi Bani Khalid", "Dima Wa Al Tayeen"],
+    geo: { latitude: 22.69, longitude: 58.53 },
+    primary: false,
+    metaZoneShort: "Ibra, Al Mudaybi, Sinaw & Bidiyah",
+
+    eyebrow: "North Ash Sharqiyah · Ibra & Al Mudaybi",
+    intro:
+      "Heavy equipment for North Ash Sharqiyah: Ibra, Al Mudaybi and Sinaw, Bidiyah on the edge of the Sharqiyah Sands, and the towns along the inland road toward Sur. We supply excavators, JCBs, wheel loaders, tippers, boom loaders, cranes, and forklifts with operators for roads, public buildings, housing, and farm works.",
+    whyHeading: "Why North Ash Sharqiyah Sites Use Us",
+    whyPoints: [
+      {
+        title: "Planned Delivery",
+        description:
+          "North Ash Sharqiyah is reached from Sohar through Muscat. We plan the route and date so the machine arrives when your site is ready.",
+      },
+      {
+        title: "Sand and Gravel Know-How",
+        description:
+          "Around Bidiyah and the sands the ground is soft; elsewhere it is gravel and rock. We size machines and tyres for the ground you have.",
+      },
+      {
+        title: "Building Projects",
+        description: "Boom loaders and cranes for placing materials and steel on schools, offices, and housing in Ibra.",
+      },
+      {
+        title: "Road and Utility Work",
+        description: "Excavators, JCBs, and tippers for road widening, drainage, and service connections.",
+      },
+      {
+        title: "Experienced Operators",
+        description: "Operators and drivers travel with the machines and stay for the hire.",
+      },
+      {
+        title: "Longer Hire Terms",
+        description: "Weekly and monthly hire keeps the delivery cost from Sohar low per day.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you rent equipment in Ibra?",
+        answer:
+          "Yes. We deliver to Ibra, Al Mudaybi, Sinaw, Bidiyah, Al Qabil, and the surrounding wilayats. Send the site location and dates and we will plan the delivery from Sohar.",
+      },
+      {
+        question: "Can your machines work on sand near Bidiyah?",
+        answer:
+          "Soft sand needs the right machine and tyres. Tracked excavators and wheel loaders cope better than wheeled forklifts there. Tell us the ground and we will advise before booking.",
+      },
+      {
+        question: "What hire terms work for North Ash Sharqiyah?",
+        answer:
+          "Weekly and monthly hire are most common because the transport cost is spread over the job. Shorter hire is possible when we already have a machine nearby.",
+      },
+      {
+        question: "Can I hire several machines for one project?",
+        answer:
+          "Yes. A typical package is an excavator with tippers for earthworks, a JCB for utilities, and a boom loader once the building goes up.",
+      },
+    ],
+    ctaHeading: "Need Equipment in Ibra?",
+    ctaSubheading: "Tell us the town, the job, and the start date — we'll confirm the machines and a quote.",
+    whatsappMessage: "Hello Abdul Masood Trading, I need equipment rental in Ibra / North Ash Sharqiyah.",
+
+    metaTitle: "Heavy Equipment Rental in Ibra",
+    metaDescription:
+      "Equipment rental in Ibra, Al Mudaybi, Sinaw & Bidiyah: excavators, JCBs, tippers, boom loaders & cranes with operators. Call +968 7928 8727.",
+    areaServed: ["Ibra", "Al Mudaybi", "Sinaw", "Bidiyah", "Al Qabil", "North Ash Sharqiyah"],
+    nearby: ["sur", "muscat"],
+    industries: ["road and utility works", "public buildings and housing", "farms and date plantations"],
+    demandNote: "Roads, public buildings, and new housing keep equipment in demand across North Ash Sharqiyah.",
+    mobilization:
+      "Equipment for North Ash Sharqiyah travels from Sohar through Muscat and inland toward Ibra. It is a planned move, usually booked a few days ahead, and suits weekly or monthly hire.",
+    siteConditions:
+      "Ground ranges from gravel plains and rocky wadis around Ibra to soft sand near Bidiyah and the Sharqiyah Sands. Soft ground limits wheeled machines and heavy outrigger loads, so tell us the surface before we choose the machine.",
+  },
+  {
+    slug: "sur",
+    title: "Heavy Equipment Rental in Sur",
+    shortTitle: "Sur",
+    cityName: "Sur",
+    href: "/locations/sur",
+    governorate: "South Ash Sharqiyah",
+    description:
+      "Cranes, forklifts, excavators, and earthmoving equipment for Sur, Sur Industrial Estate, Qalhat, and South Ash Sharqiyah.",
+    heroImage: "/images/mobile-crane.jpeg",
+    heroImageAlt: "Mobile crane with its boom retracted, ready to travel",
+    areas: ["Sur", "Sur Industrial Estate", "Qalhat", "Ras Al Hadd", "Al Kamil Wal Wafi", "Jalan Bani Bu Ali", "Al Ashkharah"],
+    geo: { latitude: 22.566, longitude: 59.528 },
+    primary: false,
+    metaZoneShort: "Sur, Sur Industrial Estate & Qalhat",
+
+    eyebrow: "South Ash Sharqiyah · Sur & Qalhat",
+    intro:
+      "Equipment rental for Sur and South Ash Sharqiyah, including Sur Industrial Estate, the port and Qalhat, and the towns south to Jalan Bani Bu Ali and Al Ashkharah. We supply 25 ton and 50 ton cranes, 3 to 18 ton forklifts, boom loaders, excavators, JCBs, wheel loaders, and tippers with operators, delivered from Sohar for planned project hire.",
+    whyHeading: "Why Sur Projects Hire From Us",
+    whyPoints: [
+      {
+        title: "Industrial and Port Work",
+        description:
+          "Cranes and heavy forklifts for maintenance, installation, and cargo handling around Sur Industrial Estate, the port, and Qalhat.",
+      },
+      {
+        title: "Coastal Highway Delivery",
+        description: "Machines travel from Sohar through Muscat and down the coastal road to Sur on a planned date.",
+      },
+      {
+        title: "Gate Paperwork Ready",
+        description:
+          "Industrial sites ask for machine documents and operator IDs at the gate; we send them ahead so entry is not held up.",
+      },
+      {
+        title: "Earthworks Too",
+        description: "Excavators, JCBs, loaders, and tippers for roads, housing, and coastal works across the governorate.",
+      },
+      {
+        title: "Operators Included",
+        description: "Every machine comes with an experienced operator or driver for the whole hire.",
+      },
+      {
+        title: "Project Terms",
+        description: "Weekly and monthly hire, with machines able to stay on site for shutdowns and longer projects.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you supply cranes in Sur?",
+        answer:
+          "Yes. Our 25 ton and 50 ton cranes are hired for plant work, steel erection, and offloading in Sur and at the industrial estate. Send the load, radius, and site, and we will plan the lift and delivery.",
+      },
+      {
+        question: "Can you work inside industrial sites near Qalhat?",
+        answer:
+          "Yes, subject to each site's entry rules. We supply the machine documents and operator details sites usually request. Tell us the requirements early so passes are ready.",
+      },
+      {
+        question: "How far ahead should I book for Sur?",
+        answer:
+          "A few days ahead for most machines, because the move from Sohar is a planned one. For shutdowns, book as soon as your dates are fixed.",
+      },
+      {
+        question: "Do you cover Jalan Bani Bu Ali and Al Ashkharah?",
+        answer:
+          "Yes. Both are part of our South Ash Sharqiyah coverage. Longer hires work best there, and we can send several machines together.",
+      },
+    ],
+    ctaHeading: "Need Equipment in Sur?",
+    ctaSubheading: "Send the site, the machine, and your dates — we'll confirm availability and plan the delivery.",
+    whatsappMessage: "Hello Abdul Masood Trading, I need equipment rental in Sur.",
+
+    metaTitle: "Heavy Equipment Rental in Sur",
+    metaDescription:
+      "Crane, forklift, excavator & JCB rental in Sur, Sur Industrial Estate & Qalhat with operators. Planned delivery. Call +968 7928 8727.",
+    areaServed: ["Sur", "Qalhat", "Ras Al Hadd", "Al Kamil Wal Wafi", "Jalan Bani Bu Ali", "Al Ashkharah", "South Ash Sharqiyah"],
+    nearby: ["ibra", "muscat"],
+    industries: ["gas, energy, and industrial plants", "port and fishing harbour works", "roads and housing projects"],
+    demandNote: "Industrial plants, the port, and road and housing projects make Sur the busiest equipment market in Ash Sharqiyah.",
+    mobilization:
+      "Equipment for Sur leaves Sohar on a low-bed, passes Muscat, and follows the coastal highway through Quriyat. It is a full day's planned move, so we book delivery dates in advance and favour weekly or monthly hire.",
+    siteConditions:
+      "Sur's coastal sites are flat but humid and salty, which is hard on machines left outside. Inland toward Al Kamil Wal Wafi and Jalan Bani Bu Ali the ground turns to gravel and sand. Industrial sites near Qalhat have strict entry and safety rules that need planning before the machine arrives.",
+  },
+  {
+    slug: "khasab",
+    title: "Heavy Equipment Rental in Khasab",
+    shortTitle: "Khasab",
+    cityName: "Khasab",
+    href: "/locations/khasab",
+    governorate: "Musandam",
+    description:
+      "Planned equipment hire for Khasab, Bukha, and Dibba Al Bayah in Musandam, for projects that run several weeks or more.",
+    heroImage: "/images/fleet/excavator-transport.jpg",
+    heroImageAlt: "Excavator secured on a trailer for a long-distance move",
+    areas: ["Khasab", "Khasab Port", "Bukha", "Dibba Al Bayah"],
+    geo: { latitude: 26.18, longitude: 56.25 },
+    primary: false,
+    metaZoneShort: "Khasab, Bukha & Dibba Al Bayah",
+
+    eyebrow: "Musandam · Khasab & Bukha",
+    intro:
+      "Musandam is separated from the rest of Oman by the UAE, so equipment for Khasab, Bukha, and Dibba Al Bayah needs more planning than anywhere else we work. We supply excavators, JCBs, wheel loaders, tippers, cranes, boom loaders, and forklifts with operators for longer project hires, and plan the move from Sohar with you well before the start date.",
+    whyHeading: "How We Handle Musandam Jobs",
+    whyPoints: [
+      {
+        title: "Move Planned Early",
+        description:
+          "The road from Sohar crosses the UAE, with border formalities on the way. We agree the route, dates, and documents with you before the machine travels.",
+      },
+      {
+        title: "Project Hire",
+        description:
+          "Because of the move, Musandam hires usually run for several weeks or months, and machines stay until the work is done.",
+      },
+      {
+        title: "Mountain and Coastal Ground",
+        description:
+          "Steep mountain roads and narrow coastal strips limit machine size. We check access before choosing the machine.",
+      },
+      {
+        title: "Several Machines Together",
+        description:
+          "Sending an excavator, a JCB, and a tipper in one move keeps the transport cost per machine down.",
+      },
+      {
+        title: "Operators Travel With Them",
+        description: "Operators and drivers go with the machines and stay for the hire.",
+      },
+      {
+        title: "Direct Contact",
+        description: "Call or WhatsApp the office to talk through the job, the timing, and the move.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Do you deliver equipment to Khasab?",
+        answer:
+          "Yes, for planned project hire. The road from Sohar to Khasab is roughly 290 km and crosses the UAE, so we arrange the move and the border paperwork in advance. Tell us your start date as early as you can.",
+      },
+      {
+        question: "What is the minimum hire for Musandam?",
+        answer:
+          "There is no fixed minimum, but because of the transport, hires of several weeks or more are the practical arrangement. We will advise when you share the job.",
+      },
+      {
+        question: "Can big machines reach sites in Musandam?",
+        answer:
+          "It depends on the access. Mountain roads and tight village streets can rule out large machines, so send the site location and we will check before quoting.",
+      },
+      {
+        question: "Do you supply equipment for work at Khasab Port?",
+        answer:
+          "Yes. Cranes and forklifts can be supplied for port and harbour work, subject to the port's entry rules. See our Khasab Port page for details.",
+      },
+    ],
+    ctaHeading: "Planning a Project in Musandam?",
+    ctaSubheading: "Share the site, the machines, and your timeline — we'll plan the move and quote.",
+    whatsappMessage: "Hello Abdul Masood Trading, I need equipment rental in Khasab / Musandam.",
+
+    metaTitle: "Heavy Equipment Rental in Khasab",
+    metaDescription:
+      "Planned equipment hire in Khasab, Bukha & Dibba Al Bayah, Musandam: excavators, JCBs, cranes & forklifts with operators. Call +968 7928 8727.",
+    areaServed: ["Khasab", "Bukha", "Dibba Al Bayah", "Musandam"],
+    nearby: ["sohar"],
+    industries: ["port and harbour works", "roads in mountain terrain", "public buildings and tourism projects"],
+    demandNote: "Port, road, and public building projects bring equipment demand to Musandam.",
+    mobilization:
+      "Musandam is roughly 290 km from Sohar by road, through the UAE, so every move is planned in advance with the border documents ready. Several machines usually travel together, and hires run for weeks or months.",
+    siteConditions:
+      "Musandam is mountains dropping straight into the sea. Flat working space is scarce, roads are steep and winding, and village access can be tight. Rock is everywhere, so excavators often need rock buckets or breakers.",
+  },
 ]
 
 export function getLocationBySlug(slug: string) {
   return locations.find((location) => location.slug === slug)
 }
 
-export const primaryLocations = locations.filter((location) => location.primary)
+export function hasServicePages(location: LocationSummary): location is ServiceLocation {
+  return Boolean(location.equipmentNotes)
+}
 
-export const secondaryLocations = locations.filter((location) => !location.primary)
+/** Hubs that carry the generated equipment × city pages. */
+export const serviceLocations = locations.filter(hasServicePages)
+
+export function getLocationByGovernorate(governorate: Governorate) {
+  return locations.find((location) => location.governorate === governorate)
+}
+
+/** One hub per governorate, nearest to the Sohar yard first. */
+export const hubsByDistance = governorates
+  .map((governorate) => getLocationByGovernorate(governorate.name))
+  .filter((location): location is LocationSummary => Boolean(location))

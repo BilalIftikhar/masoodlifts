@@ -11,7 +11,7 @@ import { FaqSection } from "@/components/faq-section"
 import ContactSection from "@/components/contact-section"
 import Footer from "@/components/footer"
 import { JsonLd } from "@/components/json-ld"
-import { localBusinessSchema, faqSchema } from "@/lib/schema"
+import { faqSchema } from "@/lib/schema"
 import { pageMetadata } from "@/lib/seo"
 import { generalFaqs } from "@/lib/faqs"
 
@@ -20,13 +20,7 @@ const homeMetadata = pageMetadata({
   description:
     "Crane, tipper, boom loader, 3 to 18 ton forklift, excavator, JCB & wheel loader rental across Oman with operators. Based in Sohar. Call +968 7928 8727.",
   path: "/",
-  keywords: [
-    "heavy equipment rental Oman",
-    "equipment rental Oman",
-    "construction equipment rental Oman",
-    "heavy equipment rental Sohar",
-    "machinery rental Oman",
-  ],
+  languages: { en: "/", ar: "/ar" },
 })
 
 // The homepage shares the root layout's segment, so the layout's title template
@@ -39,7 +33,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="w-full overflow-x-hidden">
-      <JsonLd data={[localBusinessSchema(), faqSchema(generalFaqs)]} />
+      <JsonLd data={faqSchema(generalFaqs)} />
       <Header />
       <HeroSection />
       <EquipmentShowcase />

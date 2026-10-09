@@ -1,9 +1,14 @@
 import { InquiryForm } from "@/components/inquiry-form"
 import { equipmentTypes } from "@/lib/equipment"
 import { locations } from "@/lib/locations"
+import { areasForHub } from "@/lib/areas"
 
 const equipmentOptions = equipmentTypes.map((equipment) => equipment.label)
-const locationOptions = locations.map((location) => location.cityName)
+// Each governorate hub followed by its towns, so a town page can pre-select itself.
+const locationOptions = locations.flatMap((location) => [
+  location.cityName,
+  ...areasForHub(location.slug).map((area) => area.name),
+])
 
 /**
  * Server wrapper for the quote form: passes the option lists in as props so

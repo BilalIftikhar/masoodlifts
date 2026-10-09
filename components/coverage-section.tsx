@@ -1,8 +1,9 @@
 import Link from "next/link"
-import { ArrowRight, MapPin, Phone } from "lucide-react"
+import { Anchor, ArrowRight, MapPin, Phone } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 import { siteConfig } from "@/lib/site-config"
-import { locations } from "@/lib/locations"
+import { hubsByDistance } from "@/lib/locations"
+import { ports } from "@/lib/ports"
 
 export default function CoverageSection() {
   return (
@@ -12,13 +13,14 @@ export default function CoverageSection() {
           <p className="text-sm font-bold uppercase tracking-widest text-accent">Oman-Wide Coverage</p>
           <h2 className="mt-2 text-foreground">Equipment Rental Across the Sultanate</h2>
           <p className="mt-3 text-lg font-medium text-muted-foreground">
-            From our base in Sohar we supply the industrial and commercial hubs of Oman. Nearby areas are quickest to
-            reach; for Duqm and Salalah we plan transport in advance for project hire.
+            From our yard in Sohar Industrial Estate we supply all 11 governorates of Oman. The Batinah coast, Al
+            Buraimi, and Muscat are quickest to reach; for Sur, Duqm, Salalah, and Musandam we plan transport in
+            advance for project hire.
           </p>
         </Reveal>
 
         <div className="mb-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {locations.map((location, idx) => (
+          {hubsByDistance.map((location, idx) => (
             <Reveal key={location.slug} delay={(idx % 3) * 80} className="h-full">
               <Link
                 href={location.href}
@@ -49,6 +51,20 @@ export default function CoverageSection() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal className="mb-12 flex flex-wrap items-center gap-2">
+          <span className="me-2 text-sm font-bold uppercase tracking-wide text-muted-foreground">Ports:</span>
+          {ports.map((port) => (
+            <Link
+              key={port.slug}
+              href={port.href}
+              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-accent/50 hover:text-accent"
+            >
+              <Anchor size={13} className="text-accent" />
+              {port.shortName}
+            </Link>
+          ))}
+        </Reveal>
 
         <Reveal className="relative overflow-hidden rounded-lg bg-primary p-8 text-center text-white md:p-10">
           <div className="bg-blueprint absolute inset-0" aria-hidden="true" />
