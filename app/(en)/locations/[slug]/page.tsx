@@ -111,6 +111,7 @@ function HubPage({ location }: { location: LocationSummary }) {
         whyPoints={location.whyPoints}
         faqs={location.faqs}
         linkGroups={linkGroups}
+        guides={{ path: location.href }}
         ctaHeading={location.ctaHeading}
         ctaSubheading={location.ctaSubheading}
         whatsappMessage={location.whatsappMessage}
@@ -180,6 +181,7 @@ function TownPage({ area }: { area: AreaPage }) {
         }))}
         faqs={area.faqs}
         linkGroups={[{ heading: `More Coverage Near ${area.name}`, links: coverageLinks }]}
+        guides={{ path: areaHref(area), equipment: area.machines.map((machine) => machine.key) }}
         ctaHeading={`Need Equipment in ${area.name}?`}
         ctaSubheading="Tell us the machine, the site, and your dates — we'll confirm availability and a quote."
         whatsappMessage={`Hello Abdul Masood Trading, I need equipment rental in ${area.name}.`}

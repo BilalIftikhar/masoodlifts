@@ -59,6 +59,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: page.metaTitle,
     description: page.metaDescription,
     path: page.href,
+    // The 42 generated equipment × city pages share ~93% of their text, and
+    // that many near-duplicates can read as doorway pages and weigh on how
+    // Google rates the rest of the site. They stay live and linked for
+    // visitors; only the hand-written hubs are indexed.
+    noindex: !getServiceBySlug(slug),
   })
 }
 
@@ -89,6 +94,7 @@ export default async function ServicePage({ params }: PageProps) {
         ]}
       />
       <ServiceLandingTemplate
+        path={page.href}
         eyebrow={page.eyebrow}
         title={page.h1}
         intro={page.intro}

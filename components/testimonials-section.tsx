@@ -19,6 +19,7 @@ export function TestimonialsSection({
   className = "bg-card",
 }: TestimonialsSectionProps) {
   const items = relevantTestimonials({ equipment, city })
+  if (items.length === 0) return null
 
   return (
     <section className={`w-full py-20 md:py-28 ${className}`}>

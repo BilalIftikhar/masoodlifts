@@ -13,6 +13,11 @@ type PageSeoOptions = {
   languages?: { en: string; ar: string }
   /** "ar" for pages in the Arabic section. */
   locale?: "en" | "ar"
+  /**
+   * Keep the page out of Google's index while still letting its links pass.
+   * For pages that serve visitors but are too close to other pages to rank.
+   */
+  noindex?: boolean
 }
 
 /**
@@ -25,7 +30,15 @@ type PageSeoOptions = {
  * No meta keywords: Google ignores the tag and it only hands competitors the
  * target list.
  */
-export function pageMetadata({ title, description, path, image, languages, locale = "en" }: PageSeoOptions): Metadata {
+export function pageMetadata({
+  title,
+  description,
+  path,
+  image,
+  languages,
+  locale = "en",
+  noindex = false,
+}: PageSeoOptions): Metadata {
   const url = `${siteConfig.url}${path}`
   const ogImage = image ?? "/images/og/og-default.jpg"
   const siteName = locale === "ar" ? siteConfig.legalNameAr : siteConfig.shortName
@@ -34,6 +47,7 @@ export function pageMetadata({ title, description, path, image, languages, local
   return {
     title: fitsWithBrand ? title : { absolute: title },
     description,
+    ...(noindex && { robots: { index: false, follow: true } }),
     alternates: {
       canonical: url,
       ...(languages && {

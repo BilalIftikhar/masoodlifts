@@ -8,6 +8,9 @@ different phone format) weaken every listing.
 
 > If anything here changes, update `lib/site-config.ts` in the website too, so
 > the site and listings stay identical.
+>
+> For the full plan (indexing, backlinks, social, next guides), see
+> [seo-growth-plan.md](seo-growth-plan.md).
 
 ---
 
@@ -23,7 +26,7 @@ different phone format) weaken every listing.
 | Phone (GSM) | +968 7928 8727 |
 | WhatsApp | +968 7928 8727 |
 | Email | info@masoodlifts.com |
-| Website | https://masoodlifts.com |
+| Website | https://www.masoodlifts.com |
 
 **Google Business Profile and a P.O. Box:** Google does not accept a P.O. Box
 as a business address. Either enter the physical yard/office location in Sohar
@@ -67,7 +70,7 @@ Tick each one off and record the login in your password manager.
 
 **Week 1 — the essentials**
 - [ ] Google Business Profile — business.google.com (see the P.O. Box note above; add photos of the machines and yard)
-- [ ] Google Search Console — verify `https://masoodlifts.com` and submit `/sitemap.xml`
+- [ ] Google Search Console — verify the domain `masoodlifts.com` (DNS) and submit `https://www.masoodlifts.com/sitemap.xml`
 - [ ] Bing Webmaster Tools — bing.com/webmasters (import from Search Console)
 - [ ] Bing Places — bingplaces.com (can import from Google Business Profile)
 - [ ] Apple Business Connect — businessconnect.apple.com (Apple Maps / Siri)
@@ -112,7 +115,7 @@ assistants answering "best equipment rental in Sohar".
 >
 > Thank you again for working with us on [project] in [area]. We're writing up a short case study of the job for our website and would love to include [company name].
 >
-> If you have a projects or suppliers page, would you consider a one-line mention with a link to https://masoodlifts.com? We're happy to share photos from the job that you can use too.
+> If you have a projects or suppliers page, would you consider a one-line mention with a link to https://www.masoodlifts.com? We're happy to share photos from the job that you can use too.
 >
 > Best regards,
 > [Your name], ABDUL MASOOD TRADING LLC — +968 7928 8727
@@ -129,6 +132,10 @@ assistants answering "best equipment rental in Sohar".
 > [Your name], [title], ABDUL MASOOD TRADING LLC — +968 7928 8727
 
 **Good article topics** (each has a guide on the site to adapt):
+- Oman's summer midday work ban: planning machines and crews around it (pitch in May)
+- Crane and forklift paperwork on Oman sites: inspection certificates and operator cards
+- 25 ton or 50 ton crane: why the tonnage is not what it lifts
+- Preparing a villa plot: which machines, in what order
 - Excavator, JCB or wheel loader: choosing earthmoving equipment
 - Crane hire: what to prepare before the lift
 - Boom loader or forklift: picking the right material handler

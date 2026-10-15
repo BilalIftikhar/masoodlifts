@@ -13,10 +13,10 @@ const popularSearches = [
   { label: "Heavy Equipment Rental in Oman", href: "/" },
   ...services.map((service) => ({ label: service.shortTitle, href: service.href })),
   { label: "Construction Machinery Rental Muscat", href: "/locations/muscat" },
-  { label: "Excavator Rental Sohar", href: "/services/excavator-rental-sohar" },
-  { label: "Wheel Loader Rental Al Buraimi", href: "/services/wheel-loader-rental-al-buraimi" },
   { label: "25 Ton Crane Rental", href: "/equipment/crane/25-ton-crane-rental-oman" },
+  { label: "50 Ton Crane Rental", href: "/equipment/crane/50-ton-crane-rental-oman" },
   { label: "3 Ton Forklift Rental", href: "/equipment/forklift/3-ton-forklift-rental-oman" },
+  { label: "18 Ton Forklift Rental", href: "/equipment/forklift/18-ton-forklift-rental-oman" },
 ]
 
 export default function Footer() {

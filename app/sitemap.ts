@@ -3,7 +3,6 @@ import { siteConfig } from "@/lib/site-config"
 import { equipmentTypes } from "@/lib/equipment"
 import { services } from "@/lib/services"
 import { locations } from "@/lib/locations"
-import { serviceAreaPages } from "@/lib/service-areas"
 import { getAllPosts } from "@/lib/blog/posts"
 import { areas, areaHref } from "@/lib/areas"
 import { ports } from "@/lib/ports"
@@ -16,7 +15,7 @@ import { arabicPages, arabicPathFor } from "@/lib/arabic"
  * Google the field is unreliable, and it then ignores lastmod for the whole site
  * — which slows the crawl of new pages.
  */
-const CONTENT_UPDATED = new Date("2026-10-10")
+const CONTENT_UPDATED = new Date("2026-10-15")
 
 /** hreflang alternates for a page that exists in both languages. */
 function languagesFor(enPath: string) {
@@ -101,20 +100,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: languagesFor(page.enPath),
   }))
 
-  // Generated equipment × city pages — the Oman-wide long-tail coverage.
-  const serviceAreaRoutes: MetadataRoute.Sitemap = serviceAreaPages.map((page) => ({
-    url: `${siteConfig.url}${page.href}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    // Core-coverage cities carry slightly more weight than project-hire ones.
-    priority: page.location.primary ? 0.8 : 0.7,
-  }))
+  // The generated equipment × city pages (lib/service-areas.ts) are noindexed,
+  // so they stay out of the sitemap: listing a noindex URL sends Google mixed signals.
 
   const blogRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
     url: `${siteConfig.url}/blog/${post.slug}`,
     lastModified: new Date(post.dateModified ?? post.datePublished),
     changeFrequency: "yearly",
-    priority: 0.5,
+    priority: 0.6,
   }))
 
   return [
@@ -125,7 +118,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...locationRoutes,
     ...areaRoutes,
     ...portRoutes,
-    ...serviceAreaRoutes,
     ...arabicRoutes,
     ...blogRoutes,
   ]

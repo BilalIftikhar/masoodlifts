@@ -7,9 +7,10 @@ import { Reveal } from "@/components/reveal"
 import { EquipmentVisual } from "@/components/equipment-visual"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
 import { HeroQuoteForm } from "@/components/contact-form"
+import { RelatedGuides } from "@/components/blog/related-guides"
 import { siteConfig, waLink } from "@/lib/site-config"
 import type { EquipmentType } from "@/lib/equipment"
-import type { CapacityPage } from "@/lib/capacities"
+import { capacityHref, type CapacityPage } from "@/lib/capacities"
 
 type CapacityDetailTemplateProps = {
   equipment: EquipmentType
@@ -151,6 +152,8 @@ export function CapacityDetailTemplate({ equipment, page, siblings }: CapacityDe
           </div>
         </div>
       </section>
+
+      <RelatedGuides path={capacityHref(equipment, page)} equipment={[equipment.key]} heading={`Guides for Planning a ${page.label} Hire`} />
 
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-4xl px-4">

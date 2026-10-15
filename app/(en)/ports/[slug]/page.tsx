@@ -122,6 +122,7 @@ export default async function PortDetailPage({ params }: PageProps) {
             links: [homeLink(port), ...otherPorts, { name: "All Omani Ports", href: "/ports" }],
           },
         ]}
+        guides={{ path: port.href, equipment: port.machines.map((machine) => machine.key) }}
         ctaHeading={`Need a Crane or Forklift at ${port.shortName}?`}
         ctaSubheading="Send the load, the site, and your gate requirements — we'll confirm the machine and plan the delivery."
         whatsappMessage={`Hello Abdul Masood Trading, I need crane / forklift rental at ${port.shortName}.`}

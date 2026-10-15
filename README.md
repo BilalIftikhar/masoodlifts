@@ -18,11 +18,11 @@ app/
   (en)/page.tsx             Homepage ("Heavy Equipment Rental in Oman")
   (en)/equipment/[slug]/    One page per machine (7), from lib/equipment.ts
   (en)/equipment/[slug]/[capacity]/  Machine-size pages, e.g. 25-ton-crane-rental-oman (lib/capacities.ts)
-  (en)/services/[slug]/     Keyword hubs (lib/services.ts) + equipment × city pages (lib/service-areas.ts)
+  (en)/services/[slug]/     Keyword hubs (lib/services.ts) + equipment × city pages (lib/service-areas.ts, noindexed)
   (en)/locations/           Oman index grouped by all 11 governorates
   (en)/locations/[slug]/    Governorate hubs (lib/locations.ts) and town/industrial-area pages (lib/areas.ts)
   (en)/ports/[slug]/        Port pages (lib/ports.ts) + /ports index
-  (en)/blog/                Guides (lib/blog/posts.ts)
+  (en)/blog/                Guides (lib/blog/posts.ts, posts-planning.ts); landing pages link in via RelatedGuides
   (en)/about/, contact/     Company facts, quote form, yard map
   (ar)/layout.tsx           Arabic root layout: <html lang="ar" dir="rtl">
   (ar)/ar/                  Arabic pages (lib/arabic.ts), each paired with an English page via hreflang
@@ -35,11 +35,12 @@ lib/
   locations.ts              One hub per governorate (11)
   areas.ts                  20 town and industrial-area pages, unique copy each
   ports.ts                  8 port pages
-  service-areas.ts          Generates the 42 equipment × city pages for the six original hubs
+  service-areas.ts          Generates the 42 equipment × city pages for the six original hubs (noindex, not in sitemap)
   services.ts               Hand-written keyword hubs
   arabic.ts                 Arabic section content
   schema.ts, seo.ts         JSON-LD builders and per-page metadata (canonical, hreflang)
 docs/business-listing-kit.md  NAP details and directory/review checklist
+docs/seo-growth-plan.md       Indexing steps after deploy, backlinks, social, next guides
 ```
 
 ## Local Development
@@ -74,6 +75,8 @@ are delivered by email.
 - One `LocalBusiness` entity (`/#business`) is emitted on every page from both root layouts; `Service` nodes reference it as `provider`.
 - City, town, and port pages use `Service` + `areaServed`, not `LocalBusiness` — the company has one physical location, the Sohar yard.
 - No meta keywords tags, and no Review/AggregateRating markup for on-site testimonials (Google ignores self-serving reviews).
+- The 42 generated equipment × city pages (`/services/<machine>-rental-<city>`) are `noindex, follow` and left out of the sitemap: they share ~93% of their text, and that many near-duplicates can read as doorway pages and weigh on indexing of the unique town, port and size pages. Link to an equipment, size, or location page instead when you want a page to rank.
+- Every guide sets `equipment`; `RelatedGuides` uses it to link equipment, size, town, port and hub pages to relevant guides. Reading time is computed from the content.
 - Pages with an Arabic version carry hreflang `en-OM` / `ar-OM` / `x-default`; the pairs come from `lib/arabic.ts`.
 - Only list machine sizes the yard actually has in `lib/capacities.ts`, and only towns and ports we deliver to in `lib/areas.ts` / `lib/ports.ts`.
 - Update `lib/site-config.ts` first when phone numbers, address, or domain change.
@@ -89,4 +92,4 @@ are delivered by email.
 - Replace stock photos with real fleet photos; add photos for tipper, JCB, and wheel loader (`lib/equipment.ts`).
 - Swap the generated AM monogram for the official logo if one exists (`components/brand-logo.tsx`, `public/images/brand/`).
 - Activate the FormSubmit endpoint (see above).
-- Replace the placeholder testimonials in `lib/testimonials.ts` with real customer reviews.
+- Add real customer reviews to `lib/testimonials.ts` (empty until then; the section is hidden while it is empty).

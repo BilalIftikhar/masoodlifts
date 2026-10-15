@@ -8,6 +8,7 @@ import { Reveal } from "@/components/reveal"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
 import { HeroQuoteForm } from "@/components/contact-form"
 import { TestimonialsSection } from "@/components/testimonials-section"
+import { RelatedGuides } from "@/components/blog/related-guides"
 import { siteConfig, waLink } from "@/lib/site-config"
 import type { EquipmentKey } from "@/lib/equipment"
 
@@ -18,6 +19,8 @@ export type AreaLink = { name: string; href: string }
 export type LocalContext = { heading: string; paragraphs: string[] }
 
 type ServiceLandingTemplateProps = {
+  /** This page's path, for the guides block. */
+  path: string
   eyebrow: string
   title: string
   intro: string
@@ -40,6 +43,7 @@ type ServiceLandingTemplateProps = {
 }
 
 export function ServiceLandingTemplate({
+  path,
   eyebrow,
   title,
   intro,
@@ -175,6 +179,12 @@ export function ServiceLandingTemplate({
           </div>
         </div>
       </section>
+
+      <RelatedGuides
+        path={path}
+        equipment={equipmentKey ? [equipmentKey] : undefined}
+        className={b ? "bg-background" : "bg-secondary/40"}
+      />
 
       <TestimonialsSection
         equipment={equipmentKey}

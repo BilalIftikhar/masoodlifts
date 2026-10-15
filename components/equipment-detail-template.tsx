@@ -8,6 +8,7 @@ import { EquipmentVisual } from "@/components/equipment-visual"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
 import { HeroQuoteForm } from "@/components/contact-form"
 import { TestimonialsSection } from "@/components/testimonials-section"
+import { RelatedGuides } from "@/components/blog/related-guides"
 import { siteConfig, waLink } from "@/lib/site-config"
 import type { EquipmentType } from "@/lib/equipment"
 import { capacitiesFor, capacityHref } from "@/lib/capacities"
@@ -199,6 +200,8 @@ export function EquipmentDetailTemplate({ equipment, cityLinks }: EquipmentDetai
           </div>
         </div>
       </section>
+
+      <RelatedGuides path={equipment.href} equipment={[equipment.key]} className="bg-secondary/60" />
 
       <TestimonialsSection equipment={equipment.key} className="bg-secondary/60" />
 

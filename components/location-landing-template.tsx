@@ -9,8 +9,10 @@ import { Reveal } from "@/components/reveal"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
 import { HeroQuoteForm } from "@/components/contact-form"
 import { TestimonialsSection } from "@/components/testimonials-section"
+import { RelatedGuides } from "@/components/blog/related-guides"
 import { siteConfig, waLink } from "@/lib/site-config"
 import type { Faq } from "@/lib/faqs"
+import type { EquipmentKey } from "@/lib/equipment"
 
 export type LocationServiceLink = {
   key: string
@@ -47,6 +49,8 @@ type LocationLandingTemplateProps = {
   governorate: string
   /** Internal links: towns and ports in the governorate, nearby hubs. */
   linkGroups?: LinkGroup[]
+  /** This page's path and the machines most hired here, for the guides block. */
+  guides: { path: string; equipment?: EquipmentKey[] }
   ctaHeading: string
   ctaSubheading: string
   whatsappMessage: string
@@ -69,6 +73,7 @@ export function LocationLandingTemplate({
   extraContent,
   governorate,
   linkGroups = [],
+  guides,
   ctaHeading,
   ctaSubheading,
   whatsappMessage,
@@ -195,6 +200,8 @@ export function LocationLandingTemplate({
           </div>
         </div>
       </section>
+
+      <RelatedGuides path={guides.path} equipment={guides.equipment} className="bg-secondary/40" />
 
       <TestimonialsSection city={cityName} className="bg-secondary/40" />
 
