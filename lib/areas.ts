@@ -116,7 +116,7 @@ export const areas: AreaPage[] = [
           "Our operators regularly work on industrial sites around Sohar and Liwa. Tell us the site's induction and permit rules so we can prepare before arrival.",
       },
     ],
-    neighbours: ["shinas", "saham"],
+    neighbours: ["sohar-freezone", "shinas", "saham"],
     ports: ["sohar-port"],
     metaTitle: "Heavy Equipment Rental in Liwa",
     metaDescription:
@@ -239,11 +239,161 @@ export const areas: AreaPage[] = [
         answer: "Yes. Every machine is supplied with an experienced operator or driver.",
       },
     ],
-    neighbours: ["liwa", "al-khaburah"],
+    neighbours: ["liwa", "sohar-industrial-estate", "al-khaburah"],
     metaTitle: "Heavy Equipment Rental in Saham",
     metaDescription:
       "JCB, excavator, tipper & boom loader rental in Saham with operators. Close to our Sohar yard, daily hire available. Call +968 7928 8727.",
     ...boomLoader,
+  },
+  {
+    // Our own yard. Also searched as "Sohar Industrial City" (the Madayn name)
+    // and "Sohar industrial area", so the copy uses all three.
+    slug: "sohar-industrial-estate",
+    name: "Sohar Industrial Estate",
+    hubSlug: "sohar",
+    governorate: "North Al Batinah",
+    delivery:
+      "Our yard is inside Sohar Industrial Estate, so a machine for a plot here usually travels a few kilometres, not a few dozen. When a machine is free, it can often be at your gate within hours of the call, and short or half-day jobs make sense in a way they rarely do further away.",
+    intro:
+      "Sohar Industrial Estate, run by Madayn and also called Sohar Industrial City or the Sohar industrial area, is where our yard is. We rent 25 and 50 ton cranes, forklifts from 3 to 18 ton, boom loaders, excavators, JCBs, wheel loaders, and tippers with operators to the factories, workshops, and contractors on the estate's plots, from the long-occupied early phases to the plots still being built on in the newer ones.",
+    projects: [
+      "Factory work is the steady core: moving and installing production machinery, lifting moulds, coils, and steel sections, and covering for an in-house forklift that is down for repair. These are often short jobs booked at short notice, which is where a yard on the same estate pays off.",
+      "The newer phases bring construction. Empty plots need levelling, foundations, and service trenches before a factory shed goes up, then a crane or boom loader for the steel frame, cladding, and roof sheets. One supplier on the estate can run the whole sequence, from the first excavator to the last lift.",
+      "Plant relocations are the third kind of job: a company moving machines from one shed to another, or from Muscat to Sohar. That needs a forklift or crane at each end, careful timing, and somewhere to put the machine down.",
+    ],
+    machines: [
+      {
+        key: "forklift",
+        note: "3 ton for pallets and raw material; 10 to 18 ton for moulds, coils, presses, and moving production machinery between sheds.",
+      },
+      {
+        key: "crane",
+        note: "Installing machines through roof openings or over walls, erecting steel frames, and lifting rooftop chillers and tanks.",
+      },
+      {
+        key: "excavator",
+        note: "Foundations, machine bases, and drainage and utility trenches on new plots in the later phases.",
+      },
+      {
+        key: "boom-loader",
+        note: "Cladding, roof sheets, and materials at height on new factory sheds, where a crane would sit idle between lifts.",
+      },
+    ],
+    conditions:
+      "Plots are flat, with paved estate roads that a low-bed can use right to the gate, but many factory yards are tight once stock and parked trucks are in them. Check the set-up area for a crane and the floor rating inside any shed before a heavy forklift drives in. Most occupied plots ask for machine papers and operator IDs at the gate, and the summer midday break applies to outdoor work.",
+    places: [
+      "Sohar Industrial City (Madayn)",
+      "Early phases",
+      "New expansion phases",
+      "Falaj Al Qabail",
+      "Factory and workshop plots",
+      "Batinah Expressway access",
+    ],
+    faqs: [
+      {
+        question: "Is Sohar Industrial Estate the same as Sohar Industrial City?",
+        answer:
+          "Yes. Madayn, which runs Oman's industrial estates, calls it Sohar Industrial City; many people call it Sohar Industrial Estate or the Sohar industrial area. Our yard is there.",
+      },
+      {
+        question: "How fast can you get a forklift to a factory on the estate?",
+        answer:
+          "Because the yard is on the estate, a free forklift can often arrive within hours. Tell us the heaviest item, the plot number, and the gate procedure when you call.",
+      },
+      {
+        question: "Can you help relocate production machinery?",
+        answer:
+          "We supply the forklifts and cranes, with operators, for each end of the move. Send the weight, size, and lifting points of each machine and photos of both locations so we can match the equipment.",
+      },
+      {
+        question: "Do you hire equipment for a half day inside the estate?",
+        answer:
+          "Short jobs are practical here because travel from our yard is so short. Ask when you book; the minimum hire depends on the machine and the job.",
+      },
+      {
+        question: "Which machines do I need to build a factory shed on a new plot?",
+        answer:
+          "Usually an excavator or JCB with tippers for the foundations, then a crane for the steel frame and a boom loader for cladding and roof sheets. We can schedule them as one package.",
+      },
+    ],
+    neighbours: ["sohar", "sohar-freezone", "saham", "liwa"],
+    ports: ["sohar-port"],
+    metaTitle: "Equipment Rental Sohar Industrial Estate",
+    metaDescription:
+      "Crane, forklift & excavator rental in Sohar Industrial Estate (Sohar Industrial City) from our yard on the estate. Fast delivery. Call +968 7928 8727.",
+    ...forklift,
+  },
+  {
+    // The port terminals have their own page under /ports/sohar-port; this one
+    // targets the Freezone tenants (warehouses, plants, new plots) so the two
+    // don't compete for the same searches.
+    slug: "sohar-freezone",
+    name: "Sohar Freezone",
+    hubSlug: "sohar",
+    governorate: "North Al Batinah",
+    delivery:
+      "Sohar Freezone sits in Liwa beside the port, a short drive up the coast from our yard in Sohar Industrial Estate. The drive is the easy part; the gate pass usually decides how fast a machine gets in, so start that paperwork at booking.",
+    intro:
+      "Sohar Freezone covers roughly 4,500 hectares beside Sohar Port in the wilayat of Liwa, with companies grouped into logistics, metals, petrochemicals, and food clusters. We supply forklifts from 3 to 18 ton, 25 and 50 ton cranes, boom loaders, and earthmoving machines with operators to Freezone tenants: warehouse operators, manufacturers, and the contractors building on new plots.",
+    projects: [
+      "For logistics tenants, the work is warehouse handling: stuffing and stripping containers, moving pallets between racking and the loading bay, and extra forklifts when a big shipment lands at once. Monthly hire is common for companies that do not want to own machines they only fully use at peak.",
+      "Manufacturers in the metals and food clusters hire heavier: forklifts for coils, billets, and bulk bags, and cranes for installing process equipment and for maintenance lifts during planned shutdowns.",
+      "New Freezone plots go through the same build sequence every time: levelling and compaction, foundations and services, then the structure and the fit-out. Excavators, wheel loaders, and tippers come first; cranes and boom loaders follow.",
+    ],
+    machines: [
+      {
+        key: "forklift",
+        note: "3 ton for container stuffing and warehouse pallets; 5 to 18 ton for steel, coils, and heavy crates in the metals cluster.",
+      },
+      {
+        key: "crane",
+        note: "Process equipment installation, shutdown maintenance lifts, and steel erection for new Freezone buildings.",
+      },
+      {
+        key: "wheel-loader",
+        note: "Levelling new plots, loading tippers, and moving bulk material in open yards.",
+      },
+      {
+        key: "boom-loader",
+        note: "Cladding and roofing on new warehouses, and moving pallets over unmade yard ground before the slab is poured.",
+      },
+    ],
+    conditions:
+      "The Freezone is flat coastal ground; finished plots are paved, but new plots are loose sand that needs mats under crane outriggers. Every tenant runs its own gate and HSE rules on top of the Freezone's, so expect a pass, machine documents, operator IDs, and often an induction. Salt air is hard on machines, which is one reason tenants rent instead of parking their own outdoors.",
+    places: ["Logistics cluster", "Metals cluster", "Petrochemicals cluster", "Food cluster", "New Freezone plots", "Liwa"],
+    faqs: [
+      {
+        question: "Where is Sohar Freezone?",
+        answer:
+          "In the wilayat of Liwa, North Al Batinah, directly beside Sohar Port and a short drive north of Sohar city and our yard in Sohar Industrial Estate.",
+      },
+      {
+        question: "Can I rent a forklift monthly for a Freezone warehouse?",
+        answer:
+          "Yes. Monthly hire is common for warehouses, with or without an operator. Tell us the heaviest pallet, the lift height, and whether the forklift has to drive into containers.",
+      },
+      {
+        question: "What do Freezone tenants need for a crane to enter?",
+        answer:
+          "Usually a gate pass, the crane's registration and inspection certificate, the operator's ID and licence, and a lift plan for planned lifts. Each tenant has its own rules, so send yours at booking.",
+      },
+      {
+        question: "Do you supply equipment to build on a new Freezone plot?",
+        answer:
+          "Yes. Excavators, wheel loaders, JCBs, and tippers for site preparation and foundations, then cranes and boom loaders for the structure.",
+      },
+      {
+        question: "Is the Freezone page different from your Sohar Port page?",
+        answer:
+          "Yes. Our Sohar Port page covers terminal and laydown-yard work; this page covers Freezone tenants' warehouses, plants, and building plots.",
+      },
+    ],
+    neighbours: ["liwa", "sohar-industrial-estate", "sohar"],
+    ports: ["sohar-port"],
+    metaTitle: "Forklift & Crane Rental Sohar Freezone",
+    metaDescription:
+      "Forklift (3–18 ton), crane & boom loader rental for Sohar Freezone warehouses, plants & new plots, with operators. Call +968 7928 8727.",
+    ...port,
   },
   {
     slug: "al-khaburah",

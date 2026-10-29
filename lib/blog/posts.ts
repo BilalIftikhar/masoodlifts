@@ -1,6 +1,7 @@
 import type { BlogPost, BlogPostInput, ContentBlock } from "@/lib/blog/types"
 import type { EquipmentKey } from "@/lib/equipment"
 import { planningPosts } from "@/lib/blog/posts-planning"
+import { soharPosts } from "@/lib/blog/posts-sohar"
 
 const originalPosts: BlogPostInput[] = [
   {
@@ -237,7 +238,7 @@ function withReadingTime(post: BlogPostInput): BlogPost {
   return { ...post, readingTime: `${Math.max(2, Math.round(words / 200))} min read` }
 }
 
-export const blogPosts: BlogPost[] = [...originalPosts, ...planningPosts].map(withReadingTime)
+export const blogPosts: BlogPost[] = [...originalPosts, ...planningPosts, ...soharPosts].map(withReadingTime)
 
 export function getAllPosts() {
   return [...blogPosts].sort(

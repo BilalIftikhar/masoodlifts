@@ -171,6 +171,8 @@ export function blogPostingSchema(opts: {
   dateModified?: string
   image: string
   authorName: string
+  /** Places the article is about (towns, industrial areas, ports in Oman). */
+  places?: string[]
 }): WithContext<Record<string, unknown>> {
   return {
     "@context": "https://schema.org",
@@ -187,6 +189,15 @@ export function blogPostingSchema(opts: {
       name: opts.authorName,
     },
     publisher: { "@id": businessId },
+    ...(opts.places?.length
+      ? {
+          about: opts.places.map((name) => ({
+            "@type": "Place",
+            name,
+            containedInPlace: { "@type": "Country", name: "Oman" },
+          })),
+        }
+      : {}),
   }
 }
 

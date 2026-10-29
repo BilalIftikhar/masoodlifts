@@ -12,7 +12,8 @@ import { Reveal } from "@/components/reveal"
 import { PageHero } from "@/components/page-hero"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { WhatsAppIcon } from "@/components/icons/whatsapp-icon"
-import { blogPostingSchema, breadcrumbSchema } from "@/lib/schema"
+import { FaqSection } from "@/components/faq-section"
+import { blogPostingSchema, breadcrumbSchema, faqSchema } from "@/lib/schema"
 import { pageMetadata } from "@/lib/seo"
 import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/blog/posts"
 import { siteConfig, waLink } from "@/lib/site-config"
@@ -73,7 +74,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             dateModified: post.dateModified,
             image: post.heroImage,
             authorName: siteConfig.legalName,
+            places: post.places,
           }),
+          ...(post.faqs?.length ? [faqSchema(post.faqs)] : []),
         ]}
       />
       <Header />
@@ -173,6 +176,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         )}
       </article>
+
+      {post.faqs && post.faqs.length > 0 && (
+        <FaqSection faqs={post.faqs} eyebrow="Quick Answers" heading="Questions About This Guide" />
+      )}
 
       <TestimonialsSection />
 

@@ -1,4 +1,5 @@
 import type { EquipmentKey } from "@/lib/equipment"
+import type { Faq } from "@/lib/faqs"
 
 export type ContentBlock =
   | { type: "paragraph"; text: string }
@@ -31,6 +32,17 @@ export type BlogPost = {
   heroImageAlt: string
   content: ContentBlock[]
   relatedLinks: RelatedLink[]
+  /**
+   * Short question-and-answer pairs shown under the article and emitted as
+   * FAQPage schema. Each answer must stand on its own, because answer engines
+   * quote them without the article around them.
+   */
+  faqs?: Faq[]
+  /**
+   * Places the guide is about, emitted as schema.org `about` so search and AI
+   * engines tie the article to Sohar, Liwa, Saham, and so on.
+   */
+  places?: string[]
 }
 
 /** A post as written in the data files; `readingTime` is filled in from the content. */
