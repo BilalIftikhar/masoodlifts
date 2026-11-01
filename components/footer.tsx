@@ -172,7 +172,13 @@ export default function Footer() {
 
         <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-8 text-center text-sm text-white/60 md:flex-row md:text-left">
           <p>
-            &copy; {year} {siteConfig.legalName}. All rights reserved.
+            &copy; {year} {siteConfig.legalName}. All rights reserved.{" "}
+            <span className="whitespace-nowrap">
+              Developed by{" "}
+              <a href="https://7code.digital" target="_blank" rel="noopener" className="font-semibold text-white/80 hover:text-white transition-colors">
+                7CODE
+              </a>
+            </span>
           </p>
           <p lang="ar" dir="rtl" className="font-arabic">
             {siteConfig.legalNameAr} — صحار، سلطنة عمان

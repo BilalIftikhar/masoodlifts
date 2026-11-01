@@ -83,7 +83,13 @@ export function FooterAr() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-8 text-center text-sm text-white/60 md:flex-row md:text-start">
           <p>
-            © {year} {siteConfig.legalNameAr}. جميع الحقوق محفوظة.
+            © {year} {siteConfig.legalNameAr}. جميع الحقوق محفوظة.{" "}
+            <span className="whitespace-nowrap">
+              تطوير{" "}
+              <a href="https://7code.digital" target="_blank" rel="noopener" dir="ltr" className="font-sans font-semibold text-white/80 hover:text-white transition-colors">
+                7CODE
+              </a>
+            </span>
           </p>
           <p dir="ltr" className="font-sans">
             {siteConfig.legalName} — Sohar, Sultanate of Oman
