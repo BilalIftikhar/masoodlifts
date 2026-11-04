@@ -39,3 +39,28 @@ Each guide opens with a self-contained "Short answer" paragraph, holds its facts
 2. Add Arabic counterparts for the two new landing pages (تأجير رافعات شوكية المنطقة الحرة بصحار، تأجير معدات المنطقة الصناعية بصحار).
 3. Add "Sohar Industrial Estate" and "Sohar Freezone" as service areas on the Google Business Profile.
 4. Second batch of guides: Freezone plot site preparation, factory shutdown crane planning in Sohar, Liwa industrial site permits, Saham villa build sequence.
+
+## Competitor comparison — Semrush Oman database (2026-11-05)
+
+Top results for "construction equipment rental" (Oman): alasfaroman.com, albahar.com, dubizzle.com.om, kandasrental.com, atninfo.com, kiheofficial.com, byrnerental.com, binsalim.om, almarwan.com.
+
+What they rank for in Oman is small: Al Asfar 9 keywords, Kanda's 11. Both win on the same three head terms, each about 140 searches a month with KD 16–21 (easy):
+
+| Keyword | Volume | KD | Our target page |
+|---|---|---|---|
+| equipment for rent | 140 | 16 | Homepage (copy + FAQ) |
+| equipment rental | 140 | 16 | Homepage (title) |
+| construction equipment rental | 140 | 21 | Homepage (title, H1, description) |
+
+The larger informational demand in Oman that none of them cover:
+
+| Keyword cluster | Volume (OM) | New page |
+|---|---|---|
+| crane, mobile crane, eot/crawler/gantry/tower/overhead/jib crane | 720 / 210 / 70–170 each | /blog/types-of-cranes |
+| crane load chart (25/50/100 ton load chart, load chart pdf, calculation) | 20–40 each, many variants | /blog/how-to-read-a-crane-load-chart |
+| crane hand signals, crane signals | 30 each | /blog/crane-hand-signals |
+| crane lifting hazards and control measures, crane safety | 30 each | /blog/crane-lifting-hazards-control-measures |
+| forklift safety, forklift (inspection) checklist, forklift operation safety | ~30 each | /blog/forklift-safety-daily-inspection-checklist |
+| mobile crane | 210 | /equipment/crane ("What is a mobile crane?" FAQ) |
+
+Not targeted, on purpose: "crane operator" / "forklift operator job in oman" (110 each) are job searches, and "car rental" is a different market.

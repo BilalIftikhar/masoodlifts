@@ -30,15 +30,15 @@ export default function HeroSection() {
           </span>
 
           <h1 className="animate-slide-up text-white" style={{ animationDelay: "80ms" }}>
-            Heavy Equipment Rental in <span className="text-safety">Oman</span>
+            Heavy &amp; Construction Equipment Rental in <span className="text-safety">Oman</span>
           </h1>
 
           <p
             className="animate-slide-up max-w-xl text-lg font-medium leading-relaxed text-white/85"
             style={{ animationDelay: "160ms" }}
           >
-            Cranes, tippers, boom loaders, 3 to 18 ton forklifts, excavators, JCBs, and wheel loaders for construction and
-            civil works, hired with operators from {siteConfig.legalName} in Sohar. Daily, weekly, and monthly terms
+            Construction equipment for rent: cranes, tippers, boom loaders, 3 to 18 ton forklifts, excavators, JCBs, and
+            wheel loaders for construction and civil works, hired with operators from {siteConfig.legalName} in Sohar. Daily, weekly, and monthly terms
             across the Sultanate.
           </p>
 

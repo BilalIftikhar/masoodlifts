@@ -13,6 +13,11 @@ export const generalFaqs: Faq[] = [
       "We are registered in Sohar and supply equipment across Oman, with dedicated coverage of Sohar, Muscat, Al Buraimi, Nizwa, Duqm, and Salalah. Sohar and nearby areas are quickest to reach; for Duqm and Salalah we plan transport in advance.",
   },
   {
+    question: "Where can I find construction equipment for rent near me in Oman?",
+    answer:
+      "Abdul Masood Trading rents construction equipment from its yard in Sohar Industrial Estate and delivers to sites across Oman. Sohar, Liwa, Saham, Shinas, and the Batinah coast are quickest to reach, often the same day; Muscat, Al Buraimi, Nizwa, Duqm, and Salalah are planned in advance. Call or WhatsApp +968 7928 8727 with your site location.",
+  },
+  {
     question: "Is an operator included?",
     answer:
       "Yes. Our machines are supplied with experienced operators and drivers. Forklifts can also be hired without an operator if your staff hold the required licence.",

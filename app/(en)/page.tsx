@@ -16,9 +16,12 @@ import { pageMetadata } from "@/lib/seo"
 import { generalFaqs } from "@/lib/faqs"
 
 const homeMetadata = pageMetadata({
-  title: "Heavy Equipment Rental in Oman",
+  // "construction equipment rental", "equipment rental", and "equipment for
+  // rent" are the Oman head terms every ranking competitor wins on (Semrush,
+  // Nov 2026), so the title and description lead with them.
+  title: "Construction Equipment Rental in Oman",
   description:
-    "Crane, tipper, boom loader, 3 to 18 ton forklift, excavator, JCB & wheel loader rental across Oman with operators. Based in Sohar. Call +968 7928 8727.",
+    "Construction equipment for rent in Oman: cranes, tippers, boom loaders, 3–18 ton forklifts, excavators, JCBs & wheel loaders with operators. Call +968 7928 8727.",
   path: "/",
   languages: { en: "/", ar: "/ar" },
 })
@@ -27,7 +30,7 @@ const homeMetadata = pageMetadata({
 // never applies here — without this the brand is missing from the home title.
 export const metadata: Metadata = {
   ...homeMetadata,
-  title: { absolute: "Heavy Equipment Rental in Oman | Abdul Masood Trading" },
+  title: { absolute: "Construction Equipment Rental in Oman | Abdul Masood Trading" },
 }
 
 export default function Home() {

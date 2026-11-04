@@ -133,6 +133,11 @@ export const equipmentTypes: EquipmentType[] = [
     ],
     faqs: [
       {
+        question: "What is a mobile crane?",
+        answer:
+          "A mobile crane is a crane mounted on a wheeled truck chassis that drives to site on the road, sets up on outriggers, and lifts with a telescopic boom. Unlike a tower crane it needs no assembly, so it suits single lifts and short hires. Abdul Masood Trading rents 25 and 50 ton mobile cranes with operators across Oman.",
+      },
+      {
         question: "Do you supply the crane with an operator?",
         answer:
           "Yes. Our cranes are hired with an operator who knows the machine. Tell us about the lift beforehand so the operator arrives with the right configuration and rigging.",
