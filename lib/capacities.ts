@@ -96,7 +96,7 @@ const capacityPages: CapacityPage[] = [
     tons: 50,
     slug: "50-ton-crane-rental-oman",
     label: "50 Ton Crane",
-    metaTitle: "50 Ton Crane Rental in Oman",
+    metaTitle: "50 Ton Mobile Crane for Rent in Oman",
     metaDescription:
       "50 ton mobile crane rental with operator for steel, precast, tanks and plant installs at Omani sites and ports. Call +968 7928 8727.",
     intro:

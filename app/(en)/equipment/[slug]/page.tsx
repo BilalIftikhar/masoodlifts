@@ -23,8 +23,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!equipment) return {}
 
   return pageMetadata({
-    title: `${equipment.label} Rental in Oman`,
-    description: `${equipment.summary} Across Oman from Sohar. Call ${siteConfig.phoneDisplay}.`,
+    title: equipment.metaTitle ?? `${equipment.label} Rental in Oman`,
+    description:
+      equipment.metaDescription ?? `${equipment.summary} Across Oman from Sohar. Call ${siteConfig.phoneDisplay}.`,
     path: equipment.href,
     languages: { en: equipment.href, ar: arabicPathFor(equipment.href)! },
   })

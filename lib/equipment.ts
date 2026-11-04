@@ -43,6 +43,13 @@ export type EquipmentType = {
   tag: string
   /** One-line card description. */
   summary: string
+  /**
+   * <title> for the spec page, worded the way people search in Search Console
+   * ("wheel loader for rent oman", "rent jcb"). Falls back to "{label} Rental in Oman".
+   */
+  metaTitle?: string
+  /** Meta description for the spec page; falls back to the summary. */
+  metaDescription?: string
   /** Spec-page intro. */
   overview: string
   /** The job this machine actually does — used mid-sentence in generated copy. */
@@ -77,6 +84,9 @@ export const equipmentTypes: EquipmentType[] = [
     nounPlural: "cranes",
     tag: "25 & 50 Ton",
     summary: "25 and 50 ton mobile crane hire with operator for steel, precast, plant installation, and machinery moves.",
+    metaTitle: "Crane Rental in Oman: 25 & 50 Ton Mobile Cranes",
+    metaDescription:
+      "25 and 50 ton mobile crane rental with operator in Sohar, Muscat & all of Oman — steel, precast, plant installation & offloading. Quote: +968 7928 8727.",
     overview:
       "25 ton and 50 ton mobile crane rental for construction, industrial, and civil works across Oman. We match the crane to the heaviest load, the lift radius, and the ground at your site, and supply it with an experienced operator so the lift is planned before the crane arrives.",
     useCase: "lifting steel, precast, plant, and machinery into position",
@@ -150,6 +160,9 @@ export const equipmentTypes: EquipmentType[] = [
     nounPlural: "tipper trucks",
     tag: "Haulage",
     summary: "Tipper truck hire with driver for sand, aggregate, excavated soil, and site waste.",
+    metaTitle: "Tipper Truck for Rent in Oman",
+    metaDescription:
+      "Tipper truck rental with driver in Sohar, Muscat & across Oman for sand, aggregate, soil & site waste. Daily or monthly hire. Call +968 7928 8727.",
     overview:
       "Tipper truck rental for earthworks, road works, and construction sites across Oman. Our tippers move excavated material off site, bring in sand, gravel, and aggregate, and haul debris to approved disposal points, all with a licensed driver.",
     useCase: "hauling sand, aggregate, excavated soil, and site waste",
@@ -209,6 +222,9 @@ export const equipmentTypes: EquipmentType[] = [
     nounPlural: "boom loaders",
     tag: "Lift & Reach",
     summary: "Telescopic boom loaders for lifting pallets and material to height across rough ground.",
+    metaTitle: "Boom Loader for Rent in Oman (Telehandler Hire)",
+    metaDescription:
+      "Boom loader (telehandler) rental with operator in Sohar, Muscat & all of Oman. Lifts blocks & pallets to upper floors on rough ground. Call +968 7928 8727.",
     overview:
       "Boom loader (telehandler) rental for construction sites across Oman. A boom loader lifts palletised blocks, rebar, and formwork to upper floors and over obstacles on unmade ground, where a forklift cannot reach and a crane is more than the job needs.",
     useCase: "lifting pallets and material to height and reach across rough ground",
@@ -243,6 +259,11 @@ export const equipmentTypes: EquipmentType[] = [
     ],
     faqs: [
       {
+        question: "What is a boom loader?",
+        answer:
+          "A boom loader, also called a telehandler or telescopic handler, is a rough-terrain machine with a telescopic arm that lifts pallets and materials up and forward, for example onto an upper floor or over a wall. It is used on construction sites for blocks, cement, rebar, and formwork.",
+      },
+      {
         question: "What is the difference between a boom loader and a forklift?",
         answer:
           "A boom loader has a telescopic arm that extends up and forward, so it can place loads on upper floors and over obstacles. A standard forklift lifts straight up and works best on firm, level ground such as yards and warehouses.",
@@ -270,6 +291,9 @@ export const equipmentTypes: EquipmentType[] = [
     nounPlural: "forklifts",
     tag: "3 to 18 Ton Capacity",
     summary: "3 to 18 ton forklift hire for warehouses, yards, container loading, and site material handling.",
+    metaTitle: "Forklift for Rent in Oman: 3 to 18 Ton",
+    metaDescription:
+      "Forklift rental from 3 to 18 ton in Sohar, Muscat & across Oman for warehouses, containers, steel & machinery, with operator. Call +968 7928 8727.",
     overview:
       "3 to 18 ton forklift rental for warehouses, logistics yards, factories, and construction sites across Oman. The 3 ton class handles most palletised goods, container stuffing and unstuffing, and general material movement on firm ground, while the larger machines up to 18 ton move heavy machinery, steel, and oversized loads.",
     useCase: "pallet handling, container loading, and moving material around yards and warehouses",
@@ -354,6 +378,9 @@ export const equipmentTypes: EquipmentType[] = [
     nounPlural: "excavators",
     tag: "Earthmoving",
     summary: "Excavator hire with operator for foundations, trenching, utilities, and truck loading.",
+    metaTitle: "Excavator for Rent in Oman",
+    metaDescription:
+      "Excavator rental with operator in Sohar, Muscat & all of Oman for foundations, trenching, roads & truck loading. Daily to monthly hire. Call +968 7928 8727.",
     overview:
       "Excavator rental for construction, infrastructure, and civil works across Oman. Our excavators dig foundations and basements, cut trenches for utilities and drainage, and load tippers, supplied with an operator who works to your site engineer's levels.",
     useCase: "digging foundations, trenches, and utility runs and loading trucks",
@@ -416,6 +443,9 @@ export const equipmentTypes: EquipmentType[] = [
     nounPlural: "JCB backhoe loaders",
     tag: "Backhoe Loader",
     summary: "JCB backhoe loader hire for trenching, backfilling, loading, and site levelling.",
+    metaTitle: "JCB for Rent in Oman (Backhoe Loader Hire)",
+    metaDescription:
+      "JCB backhoe loader rental with operator in Sohar, Muscat & across Oman for digging, backfilling & levelling. Hire by the day. Call +968 7928 8727.",
     overview:
       "JCB backhoe loader rental for construction, utilities, and municipal works across Oman. A JCB digs with the rear backhoe and loads, backfills, and levels with the front bucket, so one machine and one operator cover several tasks on smaller sites.",
     useCase: "trenching, backfilling, loading, and site levelling with one machine",
@@ -475,6 +505,9 @@ export const equipmentTypes: EquipmentType[] = [
     nounPlural: "wheel loaders",
     tag: "Bulk Loading",
     summary: "Wheel loader (shovel) hire for loading tippers, stockpiling, and moving bulk material.",
+    metaTitle: "Wheel Loader for Rent in Oman (Shovel Hire)",
+    metaDescription:
+      "Wheel loader (shovel) rental with operator in Muscat, Sohar & all of Oman for loading tippers, stockpiles & site grading. Call +968 7928 8727.",
     overview:
       "Wheel loader rental for quarries, crusher yards, batching plants, road works, and large construction sites across Oman. A wheel loader moves large volumes of sand, aggregate, and fill quickly, whether it is loading trucks, building stockpiles, or feeding plant.",
     useCase: "loading tippers, stockpiling aggregate, and moving bulk material",
