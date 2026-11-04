@@ -39,6 +39,9 @@ export type ServiceAreaPage = {
   areaServed: string[]
 }
 
+/** Machines that have equipment × city pages (the original seven). */
+const gridEquipment = equipmentTypes.filter((equipment) => equipment.cityPages !== false)
+
 export function serviceAreaHref(equipment: EquipmentType, location: ServiceLocation) {
   return `/services/${equipment.slugBase}-${location.slug}`
 }
@@ -100,14 +103,14 @@ function buildBulletGroups(equipment: EquipmentType, location: ServiceLocation):
 export function localContextFor(equipment: EquipmentType, location: ServiceLocation): LocalContext {
   return {
     heading: `Renting a ${equipment.label} in ${location.cityName}: What to Plan For`,
-    paragraphs: [location.equipmentNotes[equipment.key], location.siteConditions, location.mobilization],
+    paragraphs: [location.equipmentNotes[equipment.key] ?? "", location.siteConditions, location.mobilization],
   }
 }
 
 function buildAreaLinks(equipment: EquipmentType, location: ServiceLocation): AreaLink[] {
   // The other machines in the same city — cross-links within the matrix so
   // every page is reachable from its siblings, not only from /services.
-  const siblingLinks: AreaLink[] = equipmentTypes
+  const siblingLinks: AreaLink[] = gridEquipment
     .filter((other) => other.key !== equipment.key)
     .map((other) => ({
       name: `${other.label} Rental ${location.cityName}`,
@@ -169,7 +172,7 @@ function buildPage(equipment: EquipmentType, location: ServiceLocation): Service
 }
 
 /** Every generated equipment × city page. */
-export const serviceAreaPages: ServiceAreaPage[] = equipmentTypes.flatMap((equipment) =>
+export const serviceAreaPages: ServiceAreaPage[] = gridEquipment.flatMap((equipment) =>
   serviceLocations.map((location) => buildPage(equipment, location)),
 )
 
@@ -179,7 +182,7 @@ export function getServiceAreaPage(slug: string) {
 
 /** Every equipment × city link, grouped by equipment type, for the /services index. */
 export function equipmentCityLinksByEquipment() {
-  return equipmentTypes.map((equipment) => ({
+  return gridEquipment.map((equipment) => ({
     equipment,
     links: serviceLocations.map((location) => ({
       cityName: location.cityName,
@@ -197,7 +200,7 @@ export function equipmentLinksForLocation(location: LocationSummary) {
   return equipmentTypes.map((equipment) => ({
     key: equipment.key,
     tag: equipment.tag,
-    ...(hasServicePages(location)
+    ...(hasServicePages(location) && equipment.cityPages !== false
       ? { title: `${equipment.label} Rental ${location.cityName}`, href: serviceAreaHref(equipment, location) }
       : { title: `${equipment.label} Rental`, href: equipment.href }),
   }))
@@ -205,6 +208,13 @@ export function equipmentLinksForLocation(location: LocationSummary) {
 
 /** Every city page for one equipment type, for the /equipment spec pages. */
 export function cityLinksForEquipment(equipment: EquipmentType): AreaLink[] {
+  // Newer machines have no city pages, so they link to the location hubs.
+  if (equipment.cityPages === false) {
+    return serviceLocations.map((location) => ({
+      name: `${equipment.label} Rental ${location.cityName}`,
+      href: location.href,
+    }))
+  }
   return serviceLocations.map((location) => ({
     name: `${equipment.label} Rental ${location.cityName}`,
     href: serviceAreaHref(equipment, location),

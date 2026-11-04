@@ -5,7 +5,7 @@ export const generalFaqs: Faq[] = [
   {
     question: "What equipment do you rent?",
     answer:
-      "Cranes, tipper trucks, boom loaders, 3 to 18 ton forklifts, excavators, JCB backhoe loaders, and wheel loaders for construction and civil works.",
+      "Cranes, tipper trucks, boom loaders, 3 to 18 ton forklifts, excavators, JCB backhoe loaders, wheel loaders, bulldozers, and motor graders for construction and civil works, plus boom lifts and scissor lifts for work at height.",
   },
   {
     question: "Which areas of Oman do you cover?",

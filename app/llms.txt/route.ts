@@ -23,7 +23,7 @@ export function GET() {
     "",
     `> ${siteConfig.description}`,
     "",
-    `${siteConfig.legalName} (${siteConfig.legalNameAr}) is registered in Sohar, Sultanate of Oman. Activity: ${siteConfig.activity}. Yard: ${siteConfig.yardLine}. Postal address: ${siteConfig.addressLine}. GSM and WhatsApp: ${siteConfig.phoneDisplay}. Email: ${siteConfig.email}. Fleet: 25 ton and 50 ton mobile cranes, forklifts from 3 to 18 ton, tippers, boom loaders, excavators, JCB backhoe loaders, and wheel loaders. Machines are hired with operators on daily, weekly, and monthly terms, and delivered to all 11 governorates of Oman. Rates are quote-based; the site does not publish prices.`,
+    `${siteConfig.legalName} (${siteConfig.legalNameAr}) is registered in Sohar, Sultanate of Oman. Activity: ${siteConfig.activity}. Yard: ${siteConfig.yardLine}. Postal address: ${siteConfig.addressLine}. GSM and WhatsApp: ${siteConfig.phoneDisplay}. Email: ${siteConfig.email}. Fleet: 25 ton and 50 ton mobile cranes, forklifts from 3 to 18 ton, tippers, boom loaders, excavators, JCB backhoe loaders, wheel loaders, bulldozers, motor graders, and boom lifts and scissor lifts for work at height. Machines are hired with operators on daily, weekly, and monthly terms, and delivered to all 11 governorates of Oman. Rates are quote-based; the site does not publish prices.`,
     "",
     "## Company",
     link("About", "/about", "registration details, activity, coverage"),

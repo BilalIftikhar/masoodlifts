@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description:
       equipment.metaDescription ?? `${equipment.summary} Across Oman from Sohar. Call ${siteConfig.phoneDisplay}.`,
     path: equipment.href,
-    languages: { en: equipment.href, ar: arabicPathFor(equipment.href)! },
+    ...(arabicPathFor(equipment.href) && { languages: { en: equipment.href, ar: arabicPathFor(equipment.href)! } }),
   })
 }
 

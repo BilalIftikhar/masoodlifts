@@ -89,7 +89,7 @@ export const services: ServiceHub[] = [
     ],
     localContext: {
       heading: "Crane and Forklift Work Around Sohar",
-      paragraphs: [sohar.equipmentNotes.crane, sohar.equipmentNotes.forklift, sohar.siteConditions],
+      paragraphs: [sohar.equipmentNotes.crane ?? "", sohar.equipmentNotes.forklift ?? "", sohar.siteConditions],
     },
     areasHeading: "Crane & Forklift Rental Across Oman",
     areas: [

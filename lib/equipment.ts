@@ -23,8 +23,12 @@ export type EquipmentKey =
   | "excavator"
   | "jcb"
   | "wheel-loader"
+  | "boom-lift"
+  | "scissor-lift"
+  | "bulldozer"
+  | "motor-grader"
 
-export type EquipmentIcon = "crane" | "truck" | "boom" | "forklift" | "excavator" | "tractor" | "loader"
+export type EquipmentIcon = "crane" | "truck" | "boom" | "forklift" | "excavator" | "tractor" | "loader" | "lift"
 
 export type EquipmentType = {
   key: EquipmentKey
@@ -70,6 +74,12 @@ export type EquipmentType = {
   /** What the customer should tell us to get an accurate quote. */
   quoteChecklist: string[]
   faqs: Faq[]
+  /**
+   * false for machines added after the equipment × city grid was retired
+   * (lib/service-areas.ts). They get one national page that links to the
+   * location hubs instead of six noindexed city pages.
+   */
+  cityPages?: false
 }
 
 export const equipmentTypes: EquipmentType[] = [
@@ -556,6 +566,266 @@ export const equipmentTypes: EquipmentType[] = [
       {
         question: "Can you supply tippers with the wheel loader?",
         answer: "Yes. We rent tippers alongside our wheel loaders so loading and haulage run as one package.",
+      },
+    ],
+  },
+  // ------------------------------------------------------------------
+  // Added November 2026 after Search Console showed impressions for these
+  // machines (owner confirmed they can be supplied). Sizes and models are not
+  // confirmed yet, so the copy names no heights, tonnages, or brands — add
+  // them to `fleetItems` once the owner confirms the fleet.
+  {
+    key: "boom-lift",
+    slug: "boom-lift",
+    href: "/equipment/boom-lift",
+    slugBase: "boom-lift-rental",
+    label: "Boom Lift",
+    labelAr: "رافعة سلة",
+    noun: "boom lift",
+    nounPlural: "boom lifts",
+    tag: "Access at Height",
+    summary: "Telescopic and articulating boom lift (man lift) hire for safe work at height.",
+    metaTitle: "Boom Lift Rental in Oman (Telescopic Man Lift Hire)",
+    metaDescription:
+      "Telescopic and articulating boom lift rental in Oman for work at height: cladding, steel, maintenance & installation. Sohar, Muscat & all Oman. Call +968 7928 8727.",
+    overview:
+      "Boom lift rental for work at height across Oman. A boom lift — also called a man lift, cherry picker, or aerial work platform — carries workers and their tools in a basket on a telescopic or articulating arm, reaching up and out over obstacles to facades, steelwork, ceilings, signage, and plant.",
+    useCase: "lifting workers and tools to height in a platform basket",
+    icon: "lift",
+    cityPages: false,
+    applications: [
+      {
+        title: "Facade & Cladding Work",
+        description: "Fixing cladding, glazing, and signage on building faces and warehouse walls.",
+      },
+      {
+        title: "Steel & MEP Installation",
+        description: "Bolting steelwork and running ducts, pipes, and cable trays at height in sheds and plants.",
+      },
+      {
+        title: "Maintenance & Inspection",
+        description: "Reaching lights, roofs, tanks, and plant for planned maintenance and shutdowns.",
+      },
+    ],
+    fleetItems: [
+      "Telescopic boom lifts for maximum height and outreach",
+      "Articulating boom lifts for reaching up and over obstacles",
+      "Operator or trained basket crew arranged on request",
+      "Daily, weekly, and monthly hire",
+    ],
+    quoteChecklist: [
+      "Working height and how far out the platform must reach",
+      "Number of people and the weight of tools and materials in the basket",
+      "Indoor or outdoor, and the ground or floor conditions",
+      "Site location and hire duration",
+    ],
+    faqs: [
+      {
+        question: "What is a boom lift?",
+        answer:
+          "A boom lift is a mobile elevating work platform: a basket for workers on the end of a telescopic or articulating arm. It lifts people, not loads, and is also called a man lift or cherry picker.",
+      },
+      {
+        question: "What is the difference between a boom lift and a boom loader?",
+        answer:
+          "A boom lift carries people in a basket to work at height. A boom loader (telehandler) carries materials on forks. Abdul Masood Trading rents both.",
+      },
+      {
+        question: "Telescopic or articulating boom lift — which do I need?",
+        answer:
+          "A telescopic boom lift reaches the greatest height and outreach in a straight line. An articulating boom lift has a jointed arm that goes up and over obstacles such as pipe racks or roof edges.",
+      },
+      {
+        question: "Can a boom lift work on uneven ground?",
+        answer:
+          "Rough-terrain boom lifts are built for site ground, but the machine must be set up within its slope limits. Tell us about the ground so we send the right machine.",
+      },
+    ],
+  },
+  {
+    key: "scissor-lift",
+    slug: "scissor-lift",
+    href: "/equipment/scissor-lift",
+    slugBase: "scissor-lift-rental",
+    label: "Scissor Lift",
+    labelAr: "رافعة مقصية",
+    noun: "scissor lift",
+    nounPlural: "scissor lifts",
+    tag: "Platform Access",
+    summary: "Scissor lift hire for straight-up access with a wide platform, indoors and on site.",
+    metaTitle: "Scissor Lift Rental in Oman (Hire by Day or Month)",
+    metaDescription:
+      "Scissor lift rental in Oman for ceilings, MEP, fit-out, warehouses & maintenance — electric and rough-terrain. Sohar, Muscat & across Oman. Call +968 7928 8727.",
+    overview:
+      "Scissor lift rental for fit-out, MEP, warehouse, and maintenance work across Oman. A scissor lift raises a wide platform straight up on a folding scissor mechanism, so a crew can work across a ceiling or wall with tools and materials beside them.",
+    useCase: "raising a crew and materials straight up on a wide work platform",
+    icon: "lift",
+    cityPages: false,
+    applications: [
+      {
+        title: "Ceilings & MEP",
+        description: "Installing ceilings, lighting, ducts, sprinklers, and cable trays inside buildings.",
+      },
+      {
+        title: "Warehouse & Racking",
+        description: "Fitting and maintaining racking, lights, and roofs in warehouses and factories.",
+      },
+      {
+        title: "Fit-Out & Painting",
+        description: "Painting, finishing, and fixing work across walls and high ceilings.",
+      },
+    ],
+    fleetItems: [
+      "Electric scissor lifts for indoor work on finished floors",
+      "Rough-terrain scissor lifts for outdoor and site use",
+      "Operator or trained crew arranged on request",
+      "Daily, weekly, and monthly hire",
+    ],
+    quoteChecklist: [
+      "Working height needed",
+      "Indoor or outdoor, and the floor or ground conditions",
+      "Door widths and floor loading on the route in",
+      "Site location and hire duration",
+    ],
+    faqs: [
+      {
+        question: "What is a scissor lift used for?",
+        answer:
+          "Work at height that is directly above the machine: ceilings, lighting, ducts, racking, and painting. The wide platform holds a crew and their materials.",
+      },
+      {
+        question: "Scissor lift or boom lift?",
+        answer:
+          "Choose a scissor lift when the work is straight up and you need platform space. Choose a boom lift when you have to reach out or over obstacles.",
+      },
+      {
+        question: "Can a scissor lift be used outdoors?",
+        answer:
+          "Rough-terrain scissor lifts are made for outdoor site use. Electric slab scissor lifts are for indoor, level floors. Tell us where it will work.",
+      },
+    ],
+  },
+  {
+    key: "bulldozer",
+    slug: "bulldozer",
+    href: "/equipment/bulldozer",
+    slugBase: "bulldozer-rental",
+    label: "Bulldozer",
+    labelAr: "بلدوزر",
+    noun: "bulldozer",
+    nounPlural: "bulldozers",
+    tag: "Push & Clear",
+    summary: "Bulldozer (dozer) hire with operator for land clearing, pushing fill, and rough grading.",
+    metaTitle: "Bulldozer for Rent in Oman (Dozer Hire with Operator)",
+    metaDescription:
+      "Bulldozer rental with operator in Oman for land clearing, pushing and spreading fill, road formation & rough grading. Sohar, Muscat & all Oman. Call +968 7928 8727.",
+    overview:
+      "Bulldozer rental for earthworks, road projects, quarries, and land development across Oman. A bulldozer, or dozer, is a tracked machine with a heavy front blade that pushes, spreads, and levels large volumes of soil, sand, and rock, often with a rear ripper for hard ground.",
+    useCase: "pushing, spreading, and rough-levelling large volumes of earth",
+    icon: "tractor",
+    cityPages: false,
+    applications: [
+      {
+        title: "Land Clearing",
+        description: "Clearing scrub, rock, and debris from plots, farms, and new development land.",
+      },
+      {
+        title: "Fill & Spreading",
+        description: "Pushing and spreading fill in layers on platforms, embankments, and road formations.",
+      },
+      {
+        title: "Ripping & Quarry Work",
+        description: "Ripping hard ground and pushing material at quarries and crusher yards.",
+      },
+    ],
+    fleetItems: [
+      "Tracked bulldozers with front blade",
+      "Operator supplied with the machine",
+      "Paired with excavators, wheel loaders, and tippers for full earthworks",
+      "Weekly and monthly hire for projects",
+    ],
+    quoteChecklist: [
+      "Area to clear or level and the material (sand, gravel, rock)",
+      "Whether ripping is needed",
+      "Site location and access for a low-bed",
+      "Hire duration",
+    ],
+    faqs: [
+      {
+        question: "What is a bulldozer used for?",
+        answer:
+          "Pushing, spreading, and rough-levelling large volumes of earth: clearing land, building platforms and embankments, and moving material at quarries.",
+      },
+      {
+        question: "Bulldozer or wheel loader?",
+        answer:
+          "A bulldozer pushes and spreads material over a distance. A wheel loader picks material up and loads it into trucks. Large earthworks often use both.",
+      },
+      {
+        question: "Do you supply the bulldozer with an operator?",
+        answer: "Yes. Every bulldozer is supplied with an experienced operator.",
+      },
+    ],
+  },
+  {
+    key: "motor-grader",
+    slug: "motor-grader",
+    href: "/equipment/motor-grader",
+    slugBase: "motor-grader-rental",
+    label: "Motor Grader",
+    labelAr: "جريدر",
+    noun: "motor grader",
+    nounPlural: "motor graders",
+    tag: "Fine Grading",
+    summary: "Motor grader hire with operator for road formation, fine grading, and graded tracks.",
+    metaTitle: "Motor Grader for Rent in Oman (Grader Hire)",
+    metaDescription:
+      "Motor grader rental with operator in Oman for road building, fine grading, sub-base layers & graded tracks. Sohar, Muscat & across Oman. Call +968 7928 8727.",
+    overview:
+      "Motor grader rental for road construction, site platforms, and graded tracks across Oman. A grader's long central blade cuts and spreads material to an accurate level and camber, so it finishes the surfaces that a bulldozer or loader has roughly shaped.",
+    useCase: "cutting and spreading material to an accurate level and camber",
+    icon: "tractor",
+    cityPages: false,
+    applications: [
+      {
+        title: "Road Formation",
+        description: "Shaping sub-grade and spreading sub-base layers to level and camber for new roads.",
+      },
+      {
+        title: "Fine Grading",
+        description: "Finishing site platforms, car parks, and yards to accurate levels before paving.",
+      },
+      {
+        title: "Tracks & Maintenance",
+        description: "Grading and maintaining access tracks, haul roads, and graded roads.",
+      },
+    ],
+    fleetItems: [
+      "Motor graders with operator",
+      "Works alongside tippers and rollers on road jobs",
+      "Weekly and monthly hire for road projects",
+    ],
+    quoteChecklist: [
+      "Length and width of road or area to grade",
+      "Layer type (sub-grade, sub-base, gravel track)",
+      "Site location and access",
+      "Hire duration",
+    ],
+    faqs: [
+      {
+        question: "What does a motor grader do?",
+        answer:
+          "It cuts and spreads soil and gravel to an accurate level and slope with its long blade, mainly for building and maintaining roads and site platforms.",
+      },
+      {
+        question: "Grader or bulldozer?",
+        answer:
+          "A bulldozer moves and roughly spreads large volumes; a grader finishes the surface to an accurate level and camber. Road jobs often use the bulldozer first and the grader after.",
+      },
+      {
+        question: "Do you rent graders for road projects outside Sohar?",
+        answer:
+          "Yes. Motor graders are delivered from Sohar to road and site projects across Oman, usually on weekly or monthly hire.",
       },
     ],
   },

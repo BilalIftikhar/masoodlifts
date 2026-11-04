@@ -37,8 +37,8 @@ export default function HeroSection() {
             className="animate-slide-up max-w-xl text-lg font-medium leading-relaxed text-white/85"
             style={{ animationDelay: "160ms" }}
           >
-            Construction equipment for rent: cranes, tippers, boom loaders, 3 to 18 ton forklifts, excavators, JCBs, and
-            wheel loaders for construction and civil works, hired with operators from {siteConfig.legalName} in Sohar. Daily, weekly, and monthly terms
+            Construction equipment for rent: cranes, tippers, boom loaders, 3 to 18 ton forklifts, excavators, JCBs, wheel
+            loaders, bulldozers, motor graders, boom lifts, and scissor lifts, hired with operators from {siteConfig.legalName} in Sohar. Daily, weekly, and monthly terms
             across the Sultanate.
           </p>
 

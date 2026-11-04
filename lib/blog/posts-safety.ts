@@ -15,6 +15,89 @@ import type { BlogPostInput } from "@/lib/blog/types"
  * follows, with a pointer to check the site's own rules.
  */
 export const safetyPosts: BlogPostInput[] = [
+  // ------------------------------------------------- Boom lift vs scissor vs loader
+  {
+    // Search Console shows "boom loader", "boom lift", "telescopic boom lift",
+    // and "scissor lift" queries landing on the same pages, so this guide
+    // separates the three machines and links each to its own page.
+    slug: "boom-lift-vs-scissor-lift-vs-boom-loader",
+    title: "Boom Lift vs Scissor Lift vs Boom Loader: Which Machine Do You Need?",
+    seoTitle: "Boom Lift vs Scissor Lift vs Boom Loader",
+    description:
+      "Boom lifts and scissor lifts carry people; boom loaders carry materials. How the three differ, which one fits your job, and what to tell the rental company.",
+    category: "Equipment Guides",
+    equipment: ["boom-lift", "scissor-lift", "boom-loader"],
+    datePublished: "2026-11-05",
+    places: ["Oman"],
+    heroImage: "/images/fleet/telehandler-jcb.jpg",
+    heroImageAlt: "Telescopic boom loader on a construction site",
+    content: [
+      {
+        type: "paragraph",
+        text: "Short answer: if people need to work at height, hire a work platform — a scissor lift when the work is straight up and you need a wide deck, or a boom lift when you must reach out or over obstacles. If materials need to go up, hire a boom loader (telehandler), which carries pallets on forks and is not designed to lift people. The names sound alike, but the machines do different jobs.",
+      },
+      {
+        type: "table",
+        caption: "Boom lift, scissor lift, and boom loader compared",
+        headers: ["", "Boom lift", "Scissor lift", "Boom loader (telehandler)"],
+        rows: [
+          ["Lifts", "People and hand tools", "People, tools, and some materials", "Materials on forks"],
+          ["Movement", "Up and out on a telescopic or jointed arm", "Straight up only", "Up and forward on a telescopic boom"],
+          ["Best for", "Facades, steel, reaching over obstacles", "Ceilings, MEP, racking, painting", "Blocks, cement, rebar to upper floors"],
+          ["Platform", "Small basket", "Wide deck", "No platform — forks or attachments"],
+          ["Other names", "Man lift, cherry picker, aerial work platform", "Scissor platform", "Telehandler, telescopic handler"],
+        ],
+      },
+      { type: "heading", level: 2, text: "When to Choose a Boom Lift" },
+      {
+        type: "paragraph",
+        text: "Choose a boom lift when the work is not directly above where the machine can stand: a facade behind a landscaped strip, steel over a pipe rack, a light above a roof edge. Telescopic boom lifts give the most height and outreach in a straight line; articulating boom lifts bend up and over obstacles.",
+      },
+      { type: "heading", level: 2, text: "When to Choose a Scissor Lift" },
+      {
+        type: "paragraph",
+        text: "Choose a scissor lift for long runs of work directly overhead, such as ceilings, ducts, sprinklers, and racking, where a crew needs room for tools and materials. Electric models suit indoor finished floors; rough-terrain models work outdoors on site.",
+      },
+      { type: "heading", level: 2, text: "When to Choose a Boom Loader" },
+      {
+        type: "paragraph",
+        text: "Choose a boom loader to move materials: pallets of blocks onto a slab, cement bags to a scaffold bay, rebar bundles across rough ground. It is a material handler, not a work platform.",
+      },
+      { type: "heading", level: 2, text: "What to Tell the Rental Company" },
+      {
+        type: "list",
+        items: [
+          "Whether you are lifting people or materials.",
+          "The working height, and how far out the work is from where the machine can stand.",
+          "Indoor or outdoor, and the floor or ground conditions.",
+          "The weight in the basket or on the forks.",
+          "The site location and how long you need the machine.",
+        ],
+      },
+    ],
+    relatedLinks: [
+      { title: "Boom Lift Rental in Oman", href: "/equipment/boom-lift" },
+      { title: "Scissor Lift Rental in Oman", href: "/equipment/scissor-lift" },
+      { title: "Boom Loader Rental in Oman", href: "/equipment/boom-loader" },
+      { title: "Boom Loader vs Forklift", href: "/blog/boom-loader-vs-forklift" },
+    ],
+    faqs: [
+      {
+        question: "Is a boom lift the same as a boom loader?",
+        answer:
+          "No. A boom lift carries people in a basket for work at height; a boom loader (telehandler) carries materials on forks.",
+      },
+      {
+        question: "What is the difference between a scissor lift and a boom lift?",
+        answer:
+          "A scissor lift goes straight up with a wide platform; a boom lift reaches up and out on an arm with a small basket.",
+      },
+      {
+        question: "Does Abdul Masood Trading rent all three?",
+        answer: "Yes. Boom lifts, scissor lifts, and boom loaders are all available for rent across Oman from Sohar.",
+      },
+    ],
+  },
   // ---------------------------------------------------------------- Types of crane
   {
     slug: "types-of-cranes",

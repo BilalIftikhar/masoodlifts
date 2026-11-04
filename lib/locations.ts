@@ -52,10 +52,10 @@ export type LocationSummary = {
    * Only hubs with these notes get equipment × city pages; the newer regional
    * hubs link to the Oman-wide equipment pages instead of thin city copies.
    */
-  equipmentNotes?: Record<EquipmentKey, string>
+  equipmentNotes?: Partial<Record<EquipmentKey, string>>
 }
 
-export type ServiceLocation = LocationSummary & { equipmentNotes: Record<EquipmentKey, string> }
+export type ServiceLocation = LocationSummary & { equipmentNotes: Partial<Record<EquipmentKey, string>> }
 
 /**
  * One hub per governorate, one landing page each. Referenced by the /locations

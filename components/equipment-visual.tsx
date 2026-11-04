@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Construction, Forklift, Shovel, Tractor, Truck, Container, type LucideIcon } from "lucide-react"
+import { ArrowUpFromLine, Construction, Forklift, Shovel, Tractor, Truck, Container, type LucideIcon } from "lucide-react"
 import type { EquipmentIcon, EquipmentType } from "@/lib/equipment"
 
 const icons: Record<EquipmentIcon, LucideIcon> = {
@@ -10,6 +10,7 @@ const icons: Record<EquipmentIcon, LucideIcon> = {
   excavator: Shovel,
   tractor: Tractor,
   loader: Shovel,
+  lift: ArrowUpFromLine,
 }
 
 type EquipmentVisualProps = {
