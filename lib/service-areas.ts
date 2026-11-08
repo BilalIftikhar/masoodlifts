@@ -2,6 +2,8 @@ import type { Faq } from "@/lib/faqs"
 import { equipmentTypes, type EquipmentType } from "@/lib/equipment"
 import { serviceLocations, hasServicePages, type LocationSummary, type ServiceLocation } from "@/lib/locations"
 import { siteConfig } from "@/lib/site-config"
+import { getAreaBySlug } from "@/lib/areas"
+import { soharFocus } from "@/lib/sohar-focus"
 import type { BulletGroup, SpecRow, AreaLink, LocalContext } from "@/components/service-landing-template"
 
 /**
@@ -39,8 +41,19 @@ export type ServiceAreaPage = {
   areaServed: string[]
 }
 
-/** Machines that have equipment × city pages (the original seven). */
+/** Machines that have equipment × city pages in every city (the original seven). */
 const gridEquipment = equipmentTypes.filter((equipment) => equipment.cityPages !== false)
+
+/**
+ * Sohar, the yard's home city, gets a page for every machine, and those pages
+ * are indexed with extra Sohar-only copy (lib/sohar-focus.ts). Elsewhere only
+ * the original seven machines have city pages, and those stay noindexed.
+ */
+const isSohar = (location: { slug: string }) => location.slug === "sohar"
+
+export function hasCityPage(equipment: EquipmentType, location: { slug: string }) {
+  return equipment.cityPages !== false || isSohar(location)
+}
 
 export function serviceAreaHref(equipment: EquipmentType, location: ServiceLocation) {
   return `/services/${equipment.slugBase}-${location.slug}`
@@ -103,15 +116,20 @@ function buildBulletGroups(equipment: EquipmentType, location: ServiceLocation):
 export function localContextFor(equipment: EquipmentType, location: ServiceLocation): LocalContext {
   return {
     heading: `Renting a ${equipment.label} in ${location.cityName}: What to Plan For`,
-    paragraphs: [location.equipmentNotes[equipment.key] ?? "", location.siteConditions, location.mobilization],
+    paragraphs: [
+      location.equipmentNotes[equipment.key],
+      ...(isSohar(location) ? soharFocus[equipment.key].paragraphs : []),
+      location.siteConditions,
+      location.mobilization,
+    ].filter((paragraph): paragraph is string => Boolean(paragraph)),
   }
 }
 
 function buildAreaLinks(equipment: EquipmentType, location: ServiceLocation): AreaLink[] {
   // The other machines in the same city — cross-links within the matrix so
   // every page is reachable from its siblings, not only from /services.
-  const siblingLinks: AreaLink[] = gridEquipment
-    .filter((other) => other.key !== equipment.key)
+  const siblingLinks: AreaLink[] = equipmentTypes
+    .filter((other) => other.key !== equipment.key && hasCityPage(other, location))
     .map((other) => ({
       name: `${other.label} Rental ${location.cityName}`,
       href: serviceAreaHref(other, location),
@@ -119,14 +137,23 @@ function buildAreaLinks(equipment: EquipmentType, location: ServiceLocation): Ar
 
   const nearbyLinks: AreaLink[] = location.nearby
     .map((slug) => serviceLocations.find((l) => l.slug === slug))
-    .filter((l): l is ServiceLocation => Boolean(l))
+    .filter((l): l is ServiceLocation => Boolean(l) && hasCityPage(equipment, l as ServiceLocation))
     .map((l) => ({
       name: `${equipment.label} Rental ${l.cityName}`,
       href: serviceAreaHref(equipment, l),
     }))
 
+  // Sohar pages link to the Sohar neighbourhoods where this machine works.
+  const soharAreaLinks: AreaLink[] = isSohar(location)
+    ? soharFocus[equipment.key].areaSlugs
+        .map((areaSlug) => getAreaBySlug(areaSlug))
+        .filter((area): area is NonNullable<typeof area> => Boolean(area))
+        .map((area) => ({ name: `Equipment Rental ${area.name}`, href: `/locations/${area.slug}` }))
+    : []
+
   return [
     { name: `All Equipment in ${location.cityName}`, href: location.href },
+    ...soharAreaLinks,
     { name: `About Our ${equipment.label}s`, href: equipment.href },
     ...siblingLinks,
     ...nearbyLinks,
@@ -152,7 +179,9 @@ function buildPage(equipment: EquipmentType, location: ServiceLocation): Service
     // Kept inside Google's display limits: ~60 chars for title including the
     // " | Abdul Masood Trading" template suffix, and ~155 for the description.
     metaTitle: `${equipment.label} Rental in ${city}`,
-    metaDescription: `${equipment.label} rental in ${city} with operator. Serving ${location.metaZoneShort}. Daily to monthly hire. Call ${siteConfig.phoneDisplay}.`,
+    metaDescription: isSohar(location)
+      ? soharFocus[equipment.key].metaDescription
+      : `${equipment.label} rental in ${city} with operator. Serving ${location.metaZoneShort}. Daily to monthly hire. Call ${siteConfig.phoneDisplay}.`,
     specs: [
       { label: "Equipment", value: equipment.tag },
       { label: "Supplied With", value: "Operator" },
@@ -163,7 +192,7 @@ function buildPage(equipment: EquipmentType, location: ServiceLocation): Service
     localContext: localContextFor(equipment, location),
     areasHeading: `More Equipment in ${city} & Nearby`,
     areas: buildAreaLinks(equipment, location),
-    faqs: buildFaqs(equipment, location),
+    faqs: [...buildFaqs(equipment, location), ...(isSohar(location) ? soharFocus[equipment.key].faqs : [])],
     ctaHeading: `Need a ${equipment.label} in ${city}?`,
     ctaSubheading: "Send your job details and site location — we'll confirm the right machine and a delivery slot.",
     whatsappMessage: `Hello Abdul Masood Trading, I need ${equipment.noun} rental in ${city}.`,
@@ -172,9 +201,12 @@ function buildPage(equipment: EquipmentType, location: ServiceLocation): Service
 }
 
 /** Every generated equipment × city page. */
-export const serviceAreaPages: ServiceAreaPage[] = gridEquipment.flatMap((equipment) =>
-  serviceLocations.map((location) => buildPage(equipment, location)),
+export const serviceAreaPages: ServiceAreaPage[] = equipmentTypes.flatMap((equipment) =>
+  serviceLocations.filter((location) => hasCityPage(equipment, location)).map((location) => buildPage(equipment, location)),
 )
+
+/** The generated pages Google may index: Sohar only (see `isSohar`). */
+export const indexedServiceAreaPages = serviceAreaPages.filter((page) => isSohar(page.location))
 
 export function getServiceAreaPage(slug: string) {
   return serviceAreaPages.find((page) => page.slug === slug)
@@ -200,7 +232,7 @@ export function equipmentLinksForLocation(location: LocationSummary) {
   return equipmentTypes.map((equipment) => ({
     key: equipment.key,
     tag: equipment.tag,
-    ...(hasServicePages(location) && equipment.cityPages !== false
+    ...(hasServicePages(location) && hasCityPage(equipment, location)
       ? { title: `${equipment.label} Rental ${location.cityName}`, href: serviceAreaHref(equipment, location) }
       : { title: `${equipment.label} Rental`, href: equipment.href }),
   }))
@@ -212,7 +244,7 @@ export function cityLinksForEquipment(equipment: EquipmentType): AreaLink[] {
   if (equipment.cityPages === false) {
     return serviceLocations.map((location) => ({
       name: `${equipment.label} Rental ${location.cityName}`,
-      href: location.href,
+      href: hasCityPage(equipment, location) ? serviceAreaHref(equipment, location) : location.href,
     }))
   }
   return serviceLocations.map((location) => ({

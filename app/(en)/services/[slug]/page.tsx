@@ -4,7 +4,7 @@ import { ServiceLandingTemplate } from "@/components/service-landing-template"
 import { JsonLd } from "@/components/json-ld"
 import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema"
 import { pageMetadata } from "@/lib/seo"
-import { serviceAreaPages, getServiceAreaPage } from "@/lib/service-areas"
+import { indexedServiceAreaPages, serviceAreaPages, getServiceAreaPage } from "@/lib/service-areas"
 import { services, getServiceBySlug } from "@/lib/services"
 import { getEquipment } from "@/lib/equipment"
 import { siteConfig } from "@/lib/site-config"
@@ -63,7 +63,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     // that many near-duplicates can read as doorway pages and weigh on how
     // Google rates the rest of the site. They stay live and linked for
     // visitors; only the hand-written hubs are indexed.
-    noindex: !getServiceBySlug(slug),
+    // Exception: the Sohar pages, which rank and carry Sohar-only copy.
+    noindex: !getServiceBySlug(slug) && !indexedServiceAreaPages.some((page) => page.slug === slug),
   })
 }
 

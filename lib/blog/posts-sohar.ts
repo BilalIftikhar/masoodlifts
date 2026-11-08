@@ -26,7 +26,8 @@ export const soharPosts: BlogPostInput[] = [
     category: "Local Guides",
     equipment: ["crane", "forklift", "excavator", "jcb", "wheel-loader", "tipper", "boom-loader"],
     datePublished: "2026-10-30",
-    places: ["Sohar", "Sohar Industrial Estate", "Sohar Port", "Sohar Freezone", "Liwa", "Saham", "North Al Batinah"],
+    dateModified: "2026-11-09",
+    places: ["Sohar", "Sohar Industrial Estate", "Falaj Al Qabail", "Al Hambar", "Al Tareef", "Majis", "Sohar Port", "Sohar Freezone", "Liwa", "Saham", "North Al Batinah"],
     heroImage: "/images/site/port-container-yard.jpg",
     heroImageAlt: "Container yard and trucks near Sohar Port",
     content: [
@@ -41,7 +42,11 @@ export const soharPosts: BlogPostInput[] = [
         headers: ["Area", "Distance from yard", "Most hired machines", "What usually sets the start time"],
         rows: [
           ["Sohar Industrial Estate", "On the estate", "Forklifts, cranes, excavators", "Machine availability; gates are quick"],
-          ["Sohar city", "A short drive", "JCBs, excavators, tippers, boom loaders", "Street access to the plot"],
+          ["Falaj Al Qabail", "Next to the yard", "JCBs, boom loaders, tippers, forklifts", "Narrow lanes between houses"],
+          ["Al Hambar", "A short drive", "JCBs, boom loaders, cranes, scissor lifts", "Street access and neighbours"],
+          ["Al Tareef (coast)", "A short drive", "Excavators, JCBs, tippers, cranes", "Loose sand and shallow groundwater"],
+          ["City centre & Corniche", "A short drive", "Scissor lifts, boom lifts, cranes, forklifts", "Set-up space and road permits"],
+          ["Majis", "A short drive north", "Cranes, forklifts, boom lifts", "Plant permits and inductions"],
           ["Sohar Port", "A short drive north", "Forklifts, cranes", "Gate pass and port documents"],
           ["Sohar Freezone (in Liwa)", "A short drive north", "Forklifts, cranes, wheel loaders", "Tenant's own gate and HSE rules"],
           ["Liwa", "About 25 km", "Cranes, forklifts, JCBs, tippers", "Site type: industrial permit or village access"],
@@ -88,6 +93,11 @@ export const soharPosts: BlogPostInput[] = [
     relatedLinks: [
       { title: "Heavy Equipment Rental in Sohar", href: "/locations/sohar" },
       { title: "Equipment Rental in Sohar Industrial Estate", href: "/locations/sohar-industrial-estate" },
+      { title: "Equipment Rental in Falaj Al Qabail", href: "/locations/falaj-al-qabail" },
+      { title: "Equipment Rental in Al Hambar", href: "/locations/al-hambar" },
+      { title: "Equipment Rental in Al Tareef", href: "/locations/al-tareef" },
+      { title: "Equipment Rental in Sohar City Centre", href: "/locations/sohar-city-centre" },
+      { title: "Crane & Equipment Rental in Majis", href: "/locations/majis" },
       { title: "Crane & Forklift Rental at Sohar Port", href: "/ports/sohar-port" },
       { title: "Forklift & Crane Rental in Sohar Freezone", href: "/locations/sohar-freezone" },
       { title: "Crane & Forklift Rental in Sohar", href: "/services/crane-forklift-rental-sohar" },
@@ -101,7 +111,7 @@ export const soharPosts: BlogPostInput[] = [
       {
         question: "Which areas around Sohar do you deliver to?",
         answer:
-          "Sohar city, Sohar Industrial Estate, Sohar Port, Sohar Freezone, Liwa, Saham, Shinas, and Al Khaburah, as well as the rest of Oman.",
+          "Every part of Sohar — Sohar Industrial Estate, Falaj Al Qabail, Al Hambar, Al Tareef, the city centre and Corniche, Majis, Sohar Port, and the Freezone — plus Liwa, Saham, Shinas, Al Khaburah, and the rest of Oman.",
       },
       {
         question: "Can I hire equipment with an operator in Sohar?",

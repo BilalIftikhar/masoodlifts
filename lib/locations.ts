@@ -82,6 +82,10 @@ export const locations: LocationSummary[] = [
       "Sohar Port & Freezone",
       "Sohar Industrial Estate",
       "Falaj Al Qabail",
+      "Al Hambar",
+      "Al Tareef",
+      "Sohar City Centre & Corniche",
+      "Majis",
       "Liwa",
       "Saham",
       "Shinas",
@@ -126,6 +130,11 @@ export const locations: LocationSummary[] = [
       },
     ],
     faqs: [
+      {
+        question: "Which areas of Sohar do you cover?",
+        answer:
+          "All of Sohar: Sohar Industrial Estate (where our yard is), Falaj Al Qabail, Al Hambar, Al Tareef, the city centre and Corniche, Majis, Sohar Port, and the Freezone, plus Liwa, Saham, and Shinas nearby. Most Sohar sites can be reached the same day.",
+      },
       {
         question: "Do you deliver equipment inside Sohar Port and the Freezone?",
         answer:

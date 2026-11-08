@@ -1,3 +1,4 @@
+import { indexedServiceAreaPages } from "@/lib/service-areas"
 import type { MetadataRoute } from "next"
 import { siteConfig } from "@/lib/site-config"
 import { equipmentTypes } from "@/lib/equipment"
@@ -100,8 +101,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: languagesFor(page.enPath),
   }))
 
-  // The generated equipment × city pages (lib/service-areas.ts) are noindexed,
-  // so they stay out of the sitemap: listing a noindex URL sends Google mixed signals.
+  // The generated equipment × city pages (lib/service-areas.ts) are noindexed
+  // and stay out of the sitemap, except the Sohar ones, which are indexed.
+  const soharServiceRoutes: MetadataRoute.Sitemap = indexedServiceAreaPages.map((page) => ({
+    url: `${siteConfig.url}${page.href}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.9,
+  }))
 
   const blogRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
     url: `${siteConfig.url}/blog/${post.slug}`,
@@ -115,6 +122,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...equipmentRoutes,
     ...capacityRoutes,
     ...serviceRoutes,
+    ...soharServiceRoutes,
     ...locationRoutes,
     ...areaRoutes,
     ...portRoutes,

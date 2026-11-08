@@ -395,6 +395,234 @@ export const areas: AreaPage[] = [
       "Forklift (3–18 ton), crane & boom loader rental for Sohar Freezone warehouses, plants & new plots, with operators. Call +968 7928 8727.",
     ...port,
   },
+  // ---------------------------------------------------------------- Sohar neighbourhoods
+  // Added November 2026 so every part of Sohar has its own page. Each one is
+  // written around the work that actually happens there (villas, shops,
+  // plants), not the same text with the name swapped.
+  {
+    slug: "falaj-al-qabail",
+    name: "Falaj Al Qabail",
+    hubSlug: "sohar",
+    governorate: "North Al Batinah",
+    delivery:
+      "Falaj Al Qabail sits right next to Sohar Industrial Estate, where our yard is, so it is the shortest delivery we make. A free machine can often be on a plot here within an hour or two of the call.",
+    intro:
+      "Falaj Al Qabail, named after the old falaj that has watered its farms for generations, has grown from farmland into a busy mix of homes, workshops, showrooms, and building-material yards between Sohar city and the industrial estate. We rent cranes, boom loaders, JCBs, excavators, tippers, forklifts, and wheel loaders with operators for the building and commercial work that growth brings.",
+    projects: [
+      "New villas and family homes are the most common job: footings and backfill by JCB, soil out by tipper, and a boom loader to lift blocks to the first floor and roof.",
+      "Commercial plots along the main roads bring workshops, showrooms, and warehouses, which need excavators for foundations, a crane or boom loader for the steel and roof sheets, and forklifts once stock arrives.",
+      "Material yards and block factories here keep wheel loaders and forklifts busy, often on monthly hire.",
+    ],
+    machines: [
+      { key: "jcb", note: "Villa footings, backfill, levelling, and the trench for water and power connections." },
+      { key: "boom-loader", note: "Blocks, cement, and steel to upper floors and roofs on villa and showroom builds." },
+      { key: "tipper", note: "Soil off new plots and sand and aggregate in; short runs mean many trips a day." },
+      { key: "forklift", note: "Unloading containers and moving stock at workshops, showrooms, and material yards." },
+    ],
+    conditions:
+      "Ground is mostly firm sand and gravel, with softer patches where old farmland has been built over. Inner lanes between houses are narrow and often lined with parked cars, so send a photo of the approach for a low-bed. Farm walls, falaj channels, and buried pipes run close to many plots; mark them before digging.",
+    places: ["Falaj Al Qabail", "Main road commercial plots", "Villa plots", "Workshops and showrooms", "Material yards", "Next to Sohar Industrial Estate"],
+    faqs: [
+      {
+        question: "How fast can a machine reach Falaj Al Qabail?",
+        answer:
+          "It is next to our yard in Sohar Industrial Estate, so a free machine can often arrive within an hour or two.",
+      },
+      {
+        question: "Which machine do I need for a villa in Falaj Al Qabail?",
+        answer:
+          "Usually a JCB for footings and levelling, a tipper to move soil, and a boom loader for blocks to upper floors.",
+      },
+      {
+        question: "Can you dig near a falaj or farm channel?",
+        answer:
+          "Yes, with care. Mark the channel and any pipes before the machine starts, and the operator will keep clear of them.",
+      },
+    ],
+    neighbours: ["sohar-industrial-estate", "sohar-city-centre", "al-hambar", "sohar"],
+    metaTitle: "Equipment Rental in Falaj Al Qabail, Sohar",
+    metaDescription:
+      "JCB, boom loader, tipper, crane & forklift rental in Falaj Al Qabail, Sohar — next to our yard, often on site within hours. Call +968 7928 8727.",
+    ...boomLoader,
+  },
+  {
+    slug: "al-hambar",
+    name: "Al Hambar",
+    hubSlug: "sohar",
+    governorate: "North Al Batinah",
+    delivery:
+      "Al Hambar is a short drive from our yard in Sohar Industrial Estate, so same-day delivery is often possible. Most jobs are on residential streets, so the approach to the plot matters more than the distance.",
+    intro:
+      "Al Hambar (also written Al Humbar) is one of Sohar's main residential districts, with new villas, house extensions, schools, and small commercial buildings going up on its plots. We rent JCBs, boom loaders, tippers, excavators, cranes, and scissor lifts with operators for the building, extension, and fit-out work across the district.",
+    projects: [
+      "Villa construction is the main work: a JCB for the footings and levelling, tippers to clear soil, a boom loader for blocks on each floor, and a crane for the water tanks and any precast at the end.",
+      "Extensions and additional floors on existing homes need smaller, careful machines that fit a tight plot and do not damage the neighbour's wall, often a JCB and a boom loader for a few days.",
+      "Fit-out of schools, clinics, and shops brings scissor lifts for ceilings, lighting, and ducts.",
+    ],
+    machines: [
+      { key: "jcb", note: "Footings, backfill, and levelling on villa plots and extensions." },
+      { key: "boom-loader", note: "Blocks and cement to upper floors without a crane on the street." },
+      { key: "crane", note: "Water tanks, rooftop units, and precast stairs lifted over boundary walls." },
+      { key: "scissor-lift", note: "Ceilings, lighting, and MEP fit-out in new schools, clinics, and shops." },
+    ],
+    conditions:
+      "Plots are mostly flat sand with firm ground below, but streets are residential and busy at school times. A crane or boom loader often has to set up in the road, which may need the neighbours' cooperation and, for longer jobs, a municipality permit. Overhead power and telecom cables run along many streets; check them before a crane or boom loader arrives.",
+    places: ["Al Hambar villa plots", "Extensions and additional floors", "Schools and clinics", "Neighbourhood shops", "Residential streets"],
+    faqs: [
+      {
+        question: "Can you send a JCB to a villa plot in Al Hambar for one day?",
+        answer: "Yes. Daily JCB hire with an operator is available in Al Hambar.",
+      },
+      {
+        question: "Do I need a crane or a boom loader for my villa in Al Hambar?",
+        answer:
+          "A boom loader for blocks and materials to upper floors; a crane for heavy single lifts such as water tanks, precast stairs, or rooftop units over a wall.",
+      },
+      {
+        question: "Is Al Humbar the same as Al Hambar?",
+        answer: "Yes. It is the same Sohar district, written two ways in English.",
+      },
+    ],
+    neighbours: ["falaj-al-qabail", "sohar-city-centre", "al-tareef", "sohar"],
+    metaTitle: "Equipment Rental in Al Hambar, Sohar",
+    metaDescription:
+      "JCB, boom loader, crane, tipper & scissor lift rental in Al Hambar (Al Humbar), Sohar for villas, extensions & fit-out. Same-day from Sohar. +968 7928 8727.",
+    ...excavator,
+  },
+  {
+    slug: "al-tareef",
+    name: "Al Tareef",
+    hubSlug: "sohar",
+    governorate: "North Al Batinah",
+    delivery:
+      "Al Tareef is on Sohar's coast, a short drive from our yard. Same-day delivery is often possible; sandy beach-side plots are the part that needs planning.",
+    intro:
+      "Al Tareef (also written Al Tarif) is Sohar's coastal district, with beach-side villas, hotels, and residential plots near the sea. We rent excavators, JCBs, tippers, boom loaders, and cranes with operators for villa construction, extensions, and seafront building work, planned around the loose sand and shallow groundwater that come with building near the beach.",
+    projects: [
+      "Seafront and near-sea villas need foundations dug in loose, wet sand, which means an excavator with trench support or dewatering on deeper digs, and tippers for the spoil.",
+      "Hotels and larger buildings along the coast bring crane lifts for rooftop plant, tanks, and precast, and boom lifts for facade and signage work.",
+      "Boundary walls and landscaping on beach plots are classic JCB jobs: trenching, backfilling, and levelling sand.",
+    ],
+    machines: [
+      { key: "excavator", note: "Foundations in loose, wet coastal sand, with spoil loaded straight into tippers." },
+      { key: "jcb", note: "Boundary-wall trenches, backfill, and levelling on beach-side plots." },
+      { key: "crane", note: "Rooftop units, tanks, and precast on villas and hotels, with mats under the outriggers." },
+      { key: "boom-lift", note: "Facade, signage, and maintenance at height on coastal buildings." },
+    ],
+    conditions:
+      "Ground near the beach is loose sand over a shallow water table: trench sides slump, deep digs fill with water, and crane outriggers need mats. Salt air and blowing sand are hard on machines and materials. Plan deep foundations with your engineer, and expect the summer midday outdoor work break.",
+    places: ["Al Tareef beach-side plots", "Seafront villas", "Coastal hotels", "Residential streets near the sea"],
+    faqs: [
+      {
+        question: "Is digging near the beach in Al Tareef difficult?",
+        answer:
+          "It can be. Loose sand and shallow groundwater mean trench support or dewatering may be needed for deep digs. Tell us the depth and location.",
+      },
+      {
+        question: "Can a crane set up on sand in Al Tareef?",
+        answer: "Yes, on outrigger mats. Tell us the set-up area so the right mats come with the crane.",
+      },
+      {
+        question: "Is Al Tarif the same as Al Tareef?",
+        answer: "Yes. It is the same coastal district of Sohar, spelled two ways in English.",
+      },
+    ],
+    neighbours: ["sohar-city-centre", "al-hambar", "sohar"],
+    metaTitle: "Equipment Rental in Al Tareef, Sohar",
+    metaDescription:
+      "Excavator, JCB, tipper, crane & boom lift rental in Al Tareef (Al Tarif), Sohar for seafront villas & coastal buildings. Planned for sandy ground. +968 7928 8727.",
+    ...excavator,
+  },
+  {
+    slug: "sohar-city-centre",
+    name: "Sohar City Centre & Corniche",
+    hubSlug: "sohar",
+    governorate: "North Al Batinah",
+    delivery:
+      "The city centre is a short drive from our yard. Traffic, parking, and space to set up — not distance — decide the start time, so early-morning slots are common for lifts on busy streets.",
+    intro:
+      "Sohar's city centre runs from the souq and Sohar Fort along the Corniche, with shops, offices, malls, restaurants, and older buildings packed close together. We rent scissor lifts, boom lifts, forklifts, cranes, and JCBs with operators for the fit-out, signage, maintenance, and small building work that keeps the centre changing.",
+    projects: [
+      "Shop, office, and restaurant fit-outs bring scissor lifts for ceilings, lighting, and ducts, and forklifts to unload fixtures and stock from containers.",
+      "Signage and facade work on shopfronts and malls needs boom lifts that reach out over the pavement from the road.",
+      "Rooftop air-conditioning units, water tanks, and small extensions on older buildings need a crane set up in a narrow street, usually early in the morning before traffic builds.",
+    ],
+    machines: [
+      { key: "scissor-lift", note: "Ceilings, lighting, ducts, and painting in shop, mall, and office fit-outs." },
+      { key: "boom-lift", note: "Shopfront signage, facades, and maintenance reached from the street." },
+      { key: "crane", note: "Rooftop AC units, tanks, and plant lifted over buildings, set up in tight streets." },
+      { key: "forklift", note: "Unloading containers of stock and fixtures for shops and showrooms." },
+    ],
+    conditions:
+      "Streets are narrow, busy, and lined with parking, and set-up space is the main constraint. A crane or boom lift working from the road usually needs a municipality permit and sometimes traffic control; allow time for it. Overhead cables, balconies, and signs crowd the space above the street, so send photos of the set-up position.",
+    places: ["Sohar souq", "Sohar Fort area", "Sohar Corniche", "Shopping malls", "Offices and showrooms", "Restaurants and cafés"],
+    faqs: [
+      {
+        question: "Can a crane work in a narrow street in Sohar's centre?",
+        answer:
+          "Usually, with planning. Send photos of the street and set-up point; road occupation may need a municipality permit, and early starts avoid traffic.",
+      },
+      {
+        question: "Do you rent scissor lifts for shop fit-out in Sohar?",
+        answer: "Yes. Scissor lifts are available for ceilings, lighting, and MEP work in shops, malls, and offices.",
+      },
+      {
+        question: "What do I need for shopfront signage in Sohar?",
+        answer: "A boom lift, which reaches up and out over the pavement from the road. Tell us the height and outreach.",
+      },
+    ],
+    neighbours: ["al-tareef", "al-hambar", "falaj-al-qabail", "sohar"],
+    metaTitle: "Equipment Rental Sohar City Centre & Corniche",
+    metaDescription:
+      "Scissor lift, boom lift, crane & forklift rental in Sohar city centre, souq & Corniche for fit-out, signage & rooftop lifts. Call +968 7928 8727.",
+    ...crane,
+  },
+  {
+    slug: "majis",
+    name: "Majis",
+    hubSlug: "sohar",
+    governorate: "North Al Batinah",
+    delivery:
+      "Majis is on the coast beside Sohar Port, a short drive from our yard. Plant and port-area gate procedures usually take longer than the drive, so start the pass request when you book.",
+    intro:
+      "Majis (also written Majees) is the coastal area of Sohar beside the port, where power, water, and industrial plants and their contractors' yards sit. We rent cranes, forklifts, boom lifts, wheel loaders, and earthmoving machines with operators for plant maintenance, shutdowns, and the construction and logistics work around the port.",
+    projects: [
+      "Plant maintenance and planned shutdowns bring crane lifts for pumps, motors, valves, and heat-exchanger parts, and boom lifts for inspection and repair at height.",
+      "Contractors' yards and laydown areas need forklifts and wheel loaders to move pipe, steel, and bulk material.",
+      "New industrial construction and utility lines around the port area need excavators, tippers, and graders for the civil works.",
+    ],
+    machines: [
+      { key: "crane", note: "Maintenance and shutdown lifts at plants, and offloading heavy equipment." },
+      { key: "forklift", note: "Pipe, steel, and crates in contractors' yards and laydown areas." },
+      { key: "boom-lift", note: "Inspection and repair at height on plant structures and tanks." },
+      { key: "wheel-loader", note: "Bulk material and yard work around the port-side plants." },
+    ],
+    conditions:
+      "Ground is flat coastal sand; finished plant areas are paved, while laydown yards and new plots are soft and need outrigger mats. Every plant runs its own permit-to-work and HSE rules: expect inductions, machine inspection certificates, operator licences, and lift plans. Salt air and humidity are hard on machines left outside.",
+    places: ["Majis coastal plants", "Contractors' yards", "Laydown areas", "Utility corridors", "Beside Sohar Port"],
+    faqs: [
+      {
+        question: "Can you support a plant shutdown in Majis?",
+        answer:
+          "Yes. Cranes, forklifts, and boom lifts with operators can be booked for the shutdown window. Send the lift list and the plant's permit requirements early.",
+      },
+      {
+        question: "What documents do plants in Majis ask for?",
+        answer:
+          "Usually machine registration and inspection certificates, operator IDs and licences, and a lift plan; most also require a site induction.",
+      },
+      {
+        question: "Is Majees the same as Majis?",
+        answer: "Yes. It is the same coastal area of Sohar beside the port, spelled two ways in English.",
+      },
+    ],
+    neighbours: ["sohar-freezone", "sohar-industrial-estate", "liwa", "sohar"],
+    ports: ["sohar-port"],
+    metaTitle: "Crane & Equipment Rental in Majis, Sohar",
+    metaDescription:
+      "Crane, forklift, boom lift & wheel loader rental in Majis (Majees), Sohar for plant maintenance, shutdowns & port-side work. Call +968 7928 8727.",
+    ...port,
+  },
   {
     slug: "al-khaburah",
     name: "Al Khaburah",
