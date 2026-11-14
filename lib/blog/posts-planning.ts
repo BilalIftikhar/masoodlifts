@@ -275,7 +275,7 @@ export const planningPosts: BlogPostInput[] = [
     title: "Crane and Forklift Paperwork on Oman Sites: Inspection Certificates, Operator Cards and Gate Passes",
     seoTitle: "TPI Certificates and Operator Cards in Oman",
     description:
-      "Inspection certificates, operator cards, and gate passes: what to ask an Omani port, industrial estate, or oil and gas site before a crane or forklift arrives.",
+      "Inspection certificates, operator cards and gate passes: what to ask an Omani port, industrial estate or oil & gas site before a crane or forklift arrives.",
     category: "Site Compliance",
     equipment: ["crane", "forklift", "boom-loader"],
     datePublished: "2026-10-15",

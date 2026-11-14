@@ -237,9 +237,9 @@ export const equipmentTypes: EquipmentType[] = [
     nounPlural: "boom loaders",
     tag: "Lift & Reach",
     summary: "Telescopic boom loaders for lifting pallets and material to height across rough ground.",
-    metaTitle: "Boom Loader for Rent in Oman (Telehandler Hire)",
+    metaTitle: "Boom Loader Rental Oman | Telehandler Hire from Sohar",
     metaDescription:
-      "Boom loader (telehandler) rental with operator in Sohar, Muscat & all of Oman. Lifts blocks & pallets to upper floors on rough ground. Call +968 7928 8727.",
+      "Boom loader for rent in Oman with operator: lifts blocks and pallets to upper floors on rough ground. Daily or monthly, delivered across Oman from Sohar.",
     overview:
       "Boom loader (telehandler) rental for construction sites across Oman. A boom loader lifts palletised blocks, rebar, and formwork to upper floors and over obstacles on unmade ground, where a forklift cannot reach and a crane is more than the job needs.",
     useCase: "lifting pallets and material to height and reach across rough ground",
@@ -395,7 +395,7 @@ export const equipmentTypes: EquipmentType[] = [
     summary: "Excavator hire with operator for foundations, trenching, utilities, and truck loading.",
     metaTitle: "Excavator for Rent in Oman",
     metaDescription:
-      "Excavator rental with operator in Sohar, Muscat & all of Oman for foundations, trenching, roads & truck loading. Daily to monthly hire. Call +968 7928 8727.",
+      "Excavator rental with operator in Sohar, Muscat & all of Oman for foundations, trenching, roads & truck loading. Daily to monthly hire.",
     overview:
       "Excavator rental for construction, infrastructure, and civil works across Oman. Our excavators dig foundations and basements, cut trenches for utilities and drainage, and load tippers, supplied with an operator who works to your site engineer's levels.",
     useCase: "digging foundations, trenches, and utility runs and loading trucks",
@@ -587,7 +587,7 @@ export const equipmentTypes: EquipmentType[] = [
     summary: "Telescopic and articulating boom lift (man lift) hire for safe work at height.",
     metaTitle: "Boom Lift Rental in Oman (Telescopic Man Lift Hire)",
     metaDescription:
-      "Telescopic and articulating boom lift rental in Oman for work at height: cladding, steel, maintenance & installation. Sohar, Muscat & all Oman. Call +968 7928 8727.",
+      "Telescopic and articulating boom lift rental in Oman for work at height: cladding, steel, maintenance & installation. Sohar, Muscat & all Oman.",
     overview:
       "Boom lift rental for work at height across Oman. A boom lift — also called a man lift, cherry picker, or aerial work platform — carries workers and their tools in a basket on a telescopic or articulating arm, reaching up and out over obstacles to facades, steelwork, ceilings, signage, and plant.",
     useCase: "lifting workers and tools to height in a platform basket",
@@ -655,7 +655,7 @@ export const equipmentTypes: EquipmentType[] = [
     summary: "Scissor lift hire for straight-up access with a wide platform, indoors and on site.",
     metaTitle: "Scissor Lift Rental in Oman (Hire by Day or Month)",
     metaDescription:
-      "Scissor lift rental in Oman for ceilings, MEP, fit-out, warehouses & maintenance — electric and rough-terrain. Sohar, Muscat & across Oman. Call +968 7928 8727.",
+      "Scissor lift rental in Oman for ceilings, MEP, fit-out, warehouses & maintenance — electric and rough-terrain. Sohar, Muscat & across Oman.",
     overview:
       "Scissor lift rental for fit-out, MEP, warehouse, and maintenance work across Oman. A scissor lift raises a wide platform straight up on a folding scissor mechanism, so a crew can work across a ceiling or wall with tools and materials beside them.",
     useCase: "raising a crew and materials straight up on a wide work platform",
@@ -718,7 +718,7 @@ export const equipmentTypes: EquipmentType[] = [
     summary: "Bulldozer (dozer) hire with operator for land clearing, pushing fill, and rough grading.",
     metaTitle: "Bulldozer for Rent in Oman (Dozer Hire with Operator)",
     metaDescription:
-      "Bulldozer rental with operator in Oman for land clearing, pushing and spreading fill, road formation & rough grading. Sohar, Muscat & all Oman. Call +968 7928 8727.",
+      "Bulldozer rental with operator in Oman for land clearing, pushing and spreading fill, road formation & rough grading. Sohar, Muscat & all Oman.",
     overview:
       "Bulldozer rental for earthworks, road projects, quarries, and land development across Oman. A bulldozer, or dozer, is a tracked machine with a heavy front blade that pushes, spreads, and levels large volumes of soil, sand, and rock, often with a rear ripper for hard ground.",
     useCase: "pushing, spreading, and rough-levelling large volumes of earth",
@@ -780,7 +780,7 @@ export const equipmentTypes: EquipmentType[] = [
     summary: "Motor grader hire with operator for road formation, fine grading, and graded tracks.",
     metaTitle: "Motor Grader for Rent in Oman (Grader Hire)",
     metaDescription:
-      "Motor grader rental with operator in Oman for road building, fine grading, sub-base layers & graded tracks. Sohar, Muscat & across Oman. Call +968 7928 8727.",
+      "Motor grader rental with operator in Oman for road building, fine grading, sub-base layers & graded tracks. Sohar, Muscat & across Oman.",
     overview:
       "Motor grader rental for road construction, site platforms, and graded tracks across Oman. A grader's long central blade cuts and spreads material to an accurate level and camber, so it finishes the surfaces that a bulldozer or loader has roughly shaped.",
     useCase: "cutting and spreading material to an accurate level and camber",

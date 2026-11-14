@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Analytics } from "@vercel/analytics/next"
+import { ConversionTracking } from "@/components/conversion-tracking"
 import { JsonLd } from "@/components/json-ld"
 import { StickyMobileCta } from "@/components/sticky-mobile-cta"
 import { businessSchema, websiteSchema } from "@/lib/schema"
@@ -85,6 +86,7 @@ export default function EnglishRootLayout({
         {children}
         <StickyMobileCta />
         <Analytics />
+        <ConversionTracking />
       </body>
     </html>
   )

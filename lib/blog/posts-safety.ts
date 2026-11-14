@@ -24,7 +24,7 @@ export const safetyPosts: BlogPostInput[] = [
     title: "Boom Lift vs Scissor Lift vs Boom Loader: Which Machine Do You Need?",
     seoTitle: "Boom Lift vs Scissor Lift vs Boom Loader",
     description:
-      "Boom lifts and scissor lifts carry people; boom loaders carry materials. How the three differ, which one fits your job, and what to tell the rental company.",
+      "Boom lifts and scissor lifts carry people; boom loaders carry materials. How they differ, which fits your job, and what to tell the rental company.",
     category: "Equipment Guides",
     equipment: ["boom-lift", "scissor-lift", "boom-loader"],
     datePublished: "2026-11-05",
@@ -269,7 +269,7 @@ export const safetyPosts: BlogPostInput[] = [
     title: "Crane Hand Signals: The Standard Signals for Safe Lifting",
     seoTitle: "Crane Hand Signals: Standard Signals Explained",
     description:
-      "The standard crane hand signals a banksman uses — hoist, lower, stop, emergency stop, swing, boom up and down, extend and retract — and the rules that keep them safe.",
+      "The standard crane hand signals a banksman uses: hoist, lower, stop, emergency stop, swing, boom up/down and extend/retract, and the rules for using them.",
     category: "Lifting",
     equipment: ["crane"],
     datePublished: "2026-11-05",
@@ -344,7 +344,7 @@ export const safetyPosts: BlogPostInput[] = [
     title: "Crane Lifting Hazards and Control Measures: A Practical Guide for Sites in Oman",
     seoTitle: "Crane Lifting Hazards and Control Measures",
     description:
-      "The main hazards in a crane lift — overload, ground failure, overhead lines, wind, rigging failure, and people under the load — with the control measure for each.",
+      "The main crane lifting hazards (overload, ground failure, overhead lines, wind, rigging failure, people under the load) and the control measure for each.",
     category: "Lifting",
     equipment: ["crane"],
     datePublished: "2026-11-05",
@@ -427,7 +427,7 @@ export const safetyPosts: BlogPostInput[] = [
     title: "Forklift Safety and Daily Inspection Checklist",
     seoTitle: "Forklift Safety & Daily Inspection Checklist",
     description:
-      "A daily forklift pre-use inspection checklist, the main forklift hazards and how to control them, and safe operating rules for warehouses and sites in Oman.",
+      "A daily forklift pre-use inspection checklist, the main forklift hazards and their controls, and safe operating rules for warehouses and sites in Oman.",
     category: "Material Handling",
     equipment: ["forklift"],
     datePublished: "2026-11-05",

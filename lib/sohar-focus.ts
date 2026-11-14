@@ -50,7 +50,7 @@ export const soharFocus: Record<EquipmentKey, SoharFocus> = {
       },
     ],
     metaDescription:
-      "25 & 50 ton crane rental in Sohar with operator — Industrial Estate, Majis, Freezone, city centre & Al Hambar. Same-day lifts from our Sohar yard. +968 7928 8727.",
+      "25 & 50 ton crane rental in Sohar with operator — Industrial Estate, Majis, Freezone, city centre & Al Hambar. Same-day lifts from our Sohar yard.",
   },
   tipper: {
     paragraphs: [
@@ -69,7 +69,7 @@ export const soharFocus: Record<EquipmentKey, SoharFocus> = {
       },
     ],
     metaDescription:
-      "Tipper truck rental in Sohar with driver for soil removal, sand & aggregate delivery — Al Hambar, Al Tareef, Falaj Al Qabail & industrial sites. +968 7928 8727.",
+      "Tipper truck rental in Sohar with driver for soil removal, sand & aggregate delivery — Al Hambar, Al Tareef, Falaj Al Qabail & industrial sites.",
   },
   "boom-loader": {
     paragraphs: [
@@ -89,7 +89,7 @@ export const soharFocus: Record<EquipmentKey, SoharFocus> = {
       },
     ],
     metaDescription:
-      "Boom loader (telehandler) rental in Sohar with operator — blocks & materials to upper floors in Al Hambar, Al Tareef, Falaj Al Qabail. Same-day. +968 7928 8727.",
+      "Boom loader (telehandler) rental in Sohar with operator — blocks & materials to upper floors in Al Hambar, Al Tareef, Falaj Al Qabail. Same-day.",
   },
   forklift: {
     paragraphs: [
@@ -128,7 +128,7 @@ export const soharFocus: Record<EquipmentKey, SoharFocus> = {
       },
     ],
     metaDescription:
-      "Excavator rental in Sohar with operator — foundations, basements & trenches in the Industrial Estate, Al Hambar, Falaj Al Qabail & Al Tareef. +968 7928 8727.",
+      "Excavator rental in Sohar with operator — foundations, basements & trenches in the Industrial Estate, Al Hambar, Falaj Al Qabail & Al Tareef.",
   },
   jcb: {
     paragraphs: [
@@ -148,7 +148,7 @@ export const soharFocus: Record<EquipmentKey, SoharFocus> = {
       },
     ],
     metaDescription:
-      "JCB backhoe loader rental in Sohar with operator — villa plots in Al Hambar, Al Tareef & Falaj Al Qabail, trenches & levelling. Hire by the day. +968 7928 8727.",
+      "JCB backhoe loader rental in Sohar with operator — villa plots in Al Hambar, Al Tareef & Falaj Al Qabail, trenches & levelling. Hire by the day.",
   },
   "wheel-loader": {
     paragraphs: [
@@ -167,12 +167,14 @@ export const soharFocus: Record<EquipmentKey, SoharFocus> = {
       },
     ],
     metaDescription:
-      "Wheel loader (shovel) rental in Sohar with operator — loading tippers, stockpiles & plot levelling in the Industrial Estate, Freezone & yards. +968 7928 8727.",
+      "Wheel loader (shovel) rental in Sohar with operator — loading tippers, stockpiles & plot levelling in the Industrial Estate, Freezone & yards.",
   },
   "boom-lift": {
     paragraphs: [
       "Boom lifts in Sohar are used for facade and signage work on shops and showrooms in the city centre, cladding and steel on factory sheds in Sohar Industrial Estate, and maintenance at height in plants in Majis and the Freezone.",
       "Tell us the working height and how far out the work is from where the machine can stand, and whether it is on paved ground or site sand.",
+      "The reason to choose a boom lift over a scissor lift is outreach. On a city-centre shop front the machine often has to stand at the kerb and reach over a canopy or a parked car; on a factory shed it may need to reach over pipework or a lower roof. A boom lift's arm goes up and out, so it can reach the work from where it is allowed to stand.",
+      "Outdoor work in Sohar also means wind and heat. Boom lifts have a wind limit for the platform, so facade and signage work is best planned for calmer, cooler parts of the day, especially near the coast.",
     ],
     areaSlugs: ["sohar-city-centre", "sohar-industrial-estate", "majis", "sohar-freezone"],
     faqs: [
@@ -184,6 +186,11 @@ export const soharFocus: Record<EquipmentKey, SoharFocus> = {
         question: "Boom lift or boom loader for my Sohar job?",
         answer: "A boom lift lifts people to work at height; a boom loader lifts materials. Tell us the job and we will confirm.",
       },
+      {
+        question: "When do I need a boom lift instead of a scissor lift in Sohar?",
+        answer:
+          "When the machine cannot stand directly under the work, for example at a shop front with a canopy, over a lower roof, or across pipework. A scissor lift only goes straight up.",
+      },
     ],
     metaDescription:
       "Boom lift (man lift) rental in Sohar for facades, signage, factory cladding & plant maintenance — city centre, Industrial Estate, Majis. +968 7928 8727.",
@@ -192,6 +199,8 @@ export const soharFocus: Record<EquipmentKey, SoharFocus> = {
     paragraphs: [
       "Scissor lifts in Sohar work inside: ceilings, lighting, and ducts in shops and malls in the city centre, racking and roof work in Freezone warehouses, and MEP fit-out in new buildings in Al Hambar and Falaj Al Qabail.",
       "Tell us the working height, the floor type, and the door width on the way in, so the right size of platform is sent.",
+      "A scissor lift is the right machine when the platform can stand directly under the work on a firm, level floor. Its wide deck holds two or three workers with tools and materials, so ceiling grids, cable trays and light fittings can be done in long runs without climbing down, which is why it is the usual choice in malls, showrooms and warehouse aisles.",
+      "Electric models are quiet and produce no exhaust, so they can work inside occupied shops and offices. Check the floor can take the machine's weight on finished or raised floors, and that it fits through the doors and lifts on the way in.",
     ],
     areaSlugs: ["sohar-city-centre", "sohar-freezone", "al-hambar", "falaj-al-qabail"],
     faqs: [
@@ -202,6 +211,11 @@ export const soharFocus: Record<EquipmentKey, SoharFocus> = {
       {
         question: "Do scissor lifts work outdoors in Sohar?",
         answer: "Rough-terrain scissor lifts work outdoors; indoor electric models need level floors.",
+      },
+      {
+        question: "How many people can work on a scissor lift platform?",
+        answer:
+          "Usually two or three, depending on the model and its rated platform load, which includes people, tools and materials together. Tell us your crew size and what they carry.",
       },
     ],
     metaDescription:

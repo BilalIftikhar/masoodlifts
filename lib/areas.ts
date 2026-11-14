@@ -486,7 +486,7 @@ export const areas: AreaPage[] = [
     neighbours: ["falaj-al-qabail", "sohar-city-centre", "al-tareef", "sohar"],
     metaTitle: "Equipment Rental in Al Hambar, Sohar",
     metaDescription:
-      "JCB, boom loader, crane, tipper & scissor lift rental in Al Hambar (Al Humbar), Sohar for villas, extensions & fit-out. Same-day from Sohar. +968 7928 8727.",
+      "JCB, boom loader, crane, tipper & scissor lift rental in Al Hambar (Al Humbar), Sohar for villas, extensions & fit-out. Same-day from Sohar.",
     ...excavator,
   },
   {
@@ -530,7 +530,7 @@ export const areas: AreaPage[] = [
     neighbours: ["sohar-city-centre", "al-hambar", "sohar"],
     metaTitle: "Equipment Rental in Al Tareef, Sohar",
     metaDescription:
-      "Excavator, JCB, tipper, crane & boom lift rental in Al Tareef (Al Tarif), Sohar for seafront villas & coastal buildings. Planned for sandy ground. +968 7928 8727.",
+      "Excavator, JCB, tipper, crane & boom lift rental in Al Tareef (Al Tarif), Sohar for seafront villas & coastal buildings. Planned for sandy ground.",
     ...excavator,
   },
   {

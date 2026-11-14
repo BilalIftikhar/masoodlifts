@@ -36,7 +36,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const area = getAreaBySlug(slug)
   if (!area) return {}
-  return pageMetadata({ title: area.metaTitle, description: area.metaDescription, path: areaHref(area) })
+  const arArea = arabicPathFor(areaHref(area))
+  return pageMetadata({
+    title: area.metaTitle,
+    description: area.metaDescription,
+    path: areaHref(area),
+    ...(arArea && { languages: { en: areaHref(area), ar: arArea } }),
+  })
 }
 
 function isDefined<T>(value: T | undefined): value is T {

@@ -12,6 +12,12 @@ import { ports } from "@/lib/ports"
 const popularSearches = [
   { label: "Heavy Equipment Rental in Oman", href: "/" },
   ...services.map((service) => ({ label: service.shortTitle, href: service.href })),
+  // North Al Batinah focus areas around the Sohar yard (Search Console, Nov 2026: weak outside Sohar itself).
+  { label: "Equipment Rental Sohar Industrial Estate", href: "/locations/sohar-industrial-estate" },
+  { label: "Equipment Rental Sohar Freezone", href: "/locations/sohar-freezone" },
+  { label: "Equipment Hire at Sohar Port", href: "/ports/sohar-port" },
+  { label: "Equipment Rental Liwa", href: "/locations/liwa" },
+  { label: "Equipment Rental Saham", href: "/locations/saham" },
   { label: "Construction Machinery Rental Muscat", href: "/locations/muscat" },
   { label: "25 Ton Crane Rental", href: "/equipment/crane/25-ton-crane-rental-oman" },
   { label: "50 Ton Crane Rental", href: "/equipment/crane/50-ton-crane-rental-oman" },

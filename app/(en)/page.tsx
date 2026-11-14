@@ -21,7 +21,7 @@ const homeMetadata = pageMetadata({
   // Nov 2026), so the title and description lead with them.
   title: "Construction Equipment Rental in Oman",
   description:
-    "Construction equipment for rent in Oman: cranes, tippers, boom loaders, 3–18 ton forklifts, excavators, JCBs & wheel loaders with operators. Call +968 7928 8727.",
+    "Construction equipment for rent in Oman: cranes, tippers, boom loaders, 3–18 ton forklifts, excavators, JCBs & wheel loaders with operators.",
   path: "/",
   languages: { en: "/", ar: "/ar" },
 })

@@ -22,7 +22,7 @@ export const soharPosts: BlogPostInput[] = [
     title: "Heavy Equipment Rental in Sohar: Areas, Machines, and Lead Times",
     seoTitle: "Heavy Equipment Rental in Sohar: Local Guide",
     description:
-      "Which machines are hired where around Sohar, how fast they reach Sohar Industrial Estate, the Port, the Freezone, Liwa, and Saham, and what each area asks for at the gate.",
+      "Which machines are hired where around Sohar, how fast they reach the Industrial Estate, Port, Freezone, Liwa and Saham, and what each asks for at the gate.",
     category: "Local Guides",
     equipment: ["crane", "forklift", "excavator", "jcb", "wheel-loader", "tipper", "boom-loader"],
     datePublished: "2026-10-30",
@@ -131,7 +131,7 @@ export const soharPosts: BlogPostInput[] = [
     title: "Moving or Installing Factory Machinery in Sohar Industrial Estate: Forklift or Crane?",
     seoTitle: "Factory Machinery Moves in Sohar Industrial Estate",
     description:
-      "How to plan a machine move or installation in Sohar Industrial Estate (Sohar Industrial City): forklift or crane, the right size, floor and door checks, and what to send for a quote.",
+      "Planning a machine move or installation in Sohar Industrial Estate: forklift or crane, the right size, floor and door checks, and what to send for a quote.",
     category: "Local Guides",
     equipment: ["forklift", "crane"],
     datePublished: "2026-10-30",
@@ -214,7 +214,7 @@ export const soharPosts: BlogPostInput[] = [
     title: "Booking Cranes and Forklifts Around Vessel Arrivals at Sohar Port",
     seoTitle: "Sohar Port Equipment Hire Around Vessel Arrivals",
     description:
-      "How to time crane and forklift hire to a ship's arrival at Sohar Port: standby, night and Friday work, shifting berth dates, and how to avoid paying for idle machines.",
+      "Timing crane and forklift hire to a ship's arrival at Sohar Port: standby, night and Friday work, shifting berth dates, and avoiding idle machine costs.",
     category: "Local Guides",
     equipment: ["forklift", "crane"],
     datePublished: "2026-10-30",
@@ -294,7 +294,7 @@ export const soharPosts: BlogPostInput[] = [
     title: "Forklift Rental for Sohar Freezone Warehouses: Rent, Buy, or Cover the Peaks?",
     seoTitle: "Sohar Freezone Forklift Rental: Rent or Buy?",
     description:
-      "A guide for Sohar Freezone tenants: when renting forklifts beats buying, which size for containers, racking, and heavy cargo, and how monthly and peak hire work.",
+      "For Sohar Freezone tenants: when renting forklifts beats buying, which size for containers, racking and heavy cargo, and how monthly and peak hire work.",
     category: "Local Guides",
     equipment: ["forklift", "boom-loader"],
     datePublished: "2026-10-30",
@@ -369,7 +369,7 @@ export const soharPosts: BlogPostInput[] = [
     title: "Building in Liwa: Sandy Ground, a High Water Table, and Which Machines to Hire",
     seoTitle: "Liwa Site Preparation: Ground & Machine Guide",
     description:
-      "What Liwa's coastal ground means for foundations, digging, and crane set-ups, and which machines to hire for villa plots, farms, and industrial sites near Sohar Port.",
+      "What Liwa's coastal ground means for foundations, digging and crane set-ups, and which machines suit villa plots, farms and sites near Sohar Port.",
     category: "Local Guides",
     equipment: ["excavator", "jcb", "tipper", "wheel-loader", "crane"],
     datePublished: "2026-10-30",
@@ -449,7 +449,7 @@ export const soharPosts: BlogPostInput[] = [
     title: "Farm Work in Saham: Land Clearing, Irrigation Channels, and Which Machine to Hire",
     seoTitle: "Saham Farm Equipment Hire: JCB, Excavator, Loader",
     description:
-      "How Saham farm owners hire equipment: JCB, excavator, or wheel loader for clearing, levelling, channels, and boundary walls, how long jobs take, and getting machines down farm tracks.",
+      "How Saham farm owners hire a JCB, excavator or wheel loader for clearing, levelling, channels and boundary walls, job lengths, and access down farm tracks.",
     category: "Local Guides",
     equipment: ["jcb", "excavator", "wheel-loader", "tipper"],
     datePublished: "2026-10-30",

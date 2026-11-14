@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Analytics } from "@vercel/analytics/next"
+import { ConversionTracking } from "@/components/conversion-tracking"
 import { JsonLd } from "@/components/json-ld"
 import { StickyCtaAr } from "@/components/ar/sticky-cta-ar"
 import { businessSchema, websiteSchema } from "@/lib/schema"
@@ -52,6 +53,7 @@ export default function ArabicRootLayout({ children }: Readonly<{ children: Reac
         {children}
         <StickyCtaAr />
         <Analytics />
+        <ConversionTracking />
       </body>
     </html>
   )

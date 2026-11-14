@@ -3,6 +3,7 @@ import { equipmentTypes, type EquipmentType } from "@/lib/equipment"
 import { serviceLocations, hasServicePages, type LocationSummary, type ServiceLocation } from "@/lib/locations"
 import { siteConfig } from "@/lib/site-config"
 import { getAreaBySlug } from "@/lib/areas"
+import { cityFocus } from "@/lib/city-focus"
 import { soharFocus } from "@/lib/sohar-focus"
 import type { BulletGroup, SpecRow, AreaLink, LocalContext } from "@/components/service-landing-template"
 
@@ -119,6 +120,7 @@ export function localContextFor(equipment: EquipmentType, location: ServiceLocat
     paragraphs: [
       location.equipmentNotes[equipment.key],
       ...(isSohar(location) ? soharFocus[equipment.key].paragraphs : []),
+      ...(cityFocus[`${equipment.slugBase}-${location.slug}`]?.paragraphs ?? []),
       location.siteConditions,
       location.mobilization,
     ].filter((paragraph): paragraph is string => Boolean(paragraph)),
@@ -181,7 +183,9 @@ function buildPage(equipment: EquipmentType, location: ServiceLocation): Service
     metaTitle: `${equipment.label} Rental in ${city}`,
     metaDescription: isSohar(location)
       ? soharFocus[equipment.key].metaDescription
-      : `${equipment.label} rental in ${city} with operator. Serving ${location.metaZoneShort}. Daily to monthly hire. Call ${siteConfig.phoneDisplay}.`,
+      : cityFocus[slug]
+        ? cityFocus[slug].metaDescription
+        : `${equipment.label} rental in ${city} with operator. Serving ${location.metaZoneShort}. Daily to monthly hire. Call ${siteConfig.phoneDisplay}.`,
     specs: [
       { label: "Equipment", value: equipment.tag },
       { label: "Supplied With", value: "Operator" },
@@ -192,7 +196,11 @@ function buildPage(equipment: EquipmentType, location: ServiceLocation): Service
     localContext: localContextFor(equipment, location),
     areasHeading: `More Equipment in ${city} & Nearby`,
     areas: buildAreaLinks(equipment, location),
-    faqs: [...buildFaqs(equipment, location), ...(isSohar(location) ? soharFocus[equipment.key].faqs : [])],
+    faqs: [
+      ...buildFaqs(equipment, location),
+      ...(isSohar(location) ? soharFocus[equipment.key].faqs : []),
+      ...(cityFocus[slug]?.faqs ?? []),
+    ],
     ctaHeading: `Need a ${equipment.label} in ${city}?`,
     ctaSubheading: "Send your job details and site location — we'll confirm the right machine and a delivery slot.",
     whatsappMessage: `Hello Abdul Masood Trading, I need ${equipment.noun} rental in ${city}.`,
@@ -205,8 +213,8 @@ export const serviceAreaPages: ServiceAreaPage[] = equipmentTypes.flatMap((equip
   serviceLocations.filter((location) => hasCityPage(equipment, location)).map((location) => buildPage(equipment, location)),
 )
 
-/** The generated pages Google may index: Sohar only (see `isSohar`). */
-export const indexedServiceAreaPages = serviceAreaPages.filter((page) => isSohar(page.location))
+/** The generated pages Google may index: Sohar, plus the ranking city pages with their own copy (lib/city-focus.ts). */
+export const indexedServiceAreaPages = serviceAreaPages.filter((page) => isSohar(page.location) || page.slug in cityFocus)
 
 export function getServiceAreaPage(slug: string) {
   return serviceAreaPages.find((page) => page.slug === slug)
